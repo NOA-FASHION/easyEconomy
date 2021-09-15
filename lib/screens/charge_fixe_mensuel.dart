@@ -11,8 +11,7 @@ class ChargeFixeMensuel extends StatefulWidget {
   _ChargeFixeMensuelState createState() => _ChargeFixeMensuelState();
 }
 
-class _ChargeFixeMensuelState extends State<ChargeFixeMensuel>
-    with SingleTickerProviderStateMixin {
+class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late PersistentBottomSheetController _bottomSheetController;
@@ -23,6 +22,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel>
   Widget build(BuildContext context) {
     return Material(
       child: Scaffold(
+        key: scaffoldkey,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(240.0),
           child: SafeArea(
