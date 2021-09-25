@@ -13,10 +13,11 @@ List<GestionMensuel> _listGestionMensuel = [];
 List<MontantUniverselle> _listMontantUniverselle = [];
 
 class EasyController extends ChangeNotifier {
+  DateTime today = new DateTime.now();
   late SharedPreferences _localData;
   late SharedPreferences _localDataMontaUniverselle;
   late SharedPreferences _localDataEcononyDays;
-  late EconomyDays economyDays;
+  late EconomyDays economyDays = EconomyDays(date: today);
   EasyController() {
     _initEconomy();
   }
@@ -140,6 +141,7 @@ class EasyController extends ChangeNotifier {
 
   void starteconomyDays() async {
     DateTime today = new DateTime.now();
+    print(DateFormat('MMM').format(economyDays.date));
     if (economyDays.date == null) {
       economyDays.date = today;
       await _saveEconomyDays();
@@ -149,7 +151,8 @@ class EasyController extends ChangeNotifier {
   }
 
   Future<bool> _saveEconomyDays() async {
-    if (economyDays.date != null) {
+    if (DateFormat('MMM').format(economyDays.date).isEmpty) {
+      print("enregistrement ok");
       Map mapday = economyDays.toJson();
       String _jsonDay = jsonEncode(mapday);
       return _localDataEcononyDays.setString(keyAccesEconomyDays, _jsonDay);
@@ -171,16 +174,17 @@ class EasyController extends ChangeNotifier {
 
   void creatListGestionMensuel() async {
     DateTime today = new DateTime.now();
-    if (economyDays.date.month != today.month) {
+    if (economyDays.date != today) {
+      print('date != econonydays');
       economyDays.date = today;
-      _listGestionMensuel.add(
-        GestionMensuel(
-            idGestion: nanoid(10),
-            mois: DateFormat('MMM').format(today),
-            montantUniverselle: [],
-            nom: 'Mois en cours',
-            tendance: ''),
-      );
+      // _listGestionMensuel.add(
+      //   GestionMensuel(
+      //       idGestion: nanoid(10),
+      //       mois: DateFormat('MMM').format(today),
+      //       montantUniverselle: [],
+      //       nom: 'Mois en cours',
+      //       tendance: ''),
+      // );
       await _saveEconomyDays();
       await _saveGestionMensuelle();
       _initEconomyDays();
