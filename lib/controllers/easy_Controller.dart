@@ -146,6 +146,7 @@ class EasyController extends ChangeNotifier {
       economyDays.date = today;
       await _saveEconomyDays();
       _initEconomyDays();
+      notifyListeners();
     }
     creatListGestionMensuel();
   }
@@ -188,6 +189,7 @@ class EasyController extends ChangeNotifier {
       await _saveEconomyDays();
       await _saveGestionMensuelle();
       _initEconomyDays();
+      notifyListeners();
     }
   }
 
