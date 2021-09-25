@@ -4,47 +4,23 @@ enum unity_Montant_universelle {
   ChargeFixe,
   DepenseImprevu,
 }
-// class RevenuFixe {
-//   String nom;
-//   double montant;
 
-//   RevenuFixe({
-//     required this.nom,
-//     required this.montant,
-//   });
+class EconomyDays {
+  DateTime date;
 
-//   RevenuFixe.fromJSON(Map<String, dynamic> json)
-//       : nom = json['nom'],
-//         montant = json['montant'];
+  EconomyDays({
+    required this.date,
+  });
 
-//   Map<String, dynamic> toJson() {
-//     return {
-//       "nom": nom,
-//       "montant": montant,
-//     };
-//   }
-// }
+  EconomyDays.fromJSON(Map<String, dynamic> json) : date = json['date'];
 
-// class ChargeFixe {
-//   String nom;
-//   double montant;
+  Map<String, dynamic> toJson() {
+    return {
+      "date": date,
+    };
+  }
+}
 
-//   ChargeFixe({
-//     required this.nom,
-//     required this.montant,
-//   });
-
-//   ChargeFixe.fromJSON(Map<String, dynamic> json)
-//       : nom = json['nom'],
-//         montant = json['montant'];
-
-//   Map<String, dynamic> toJson() {
-//     return {
-//       "nom": nom,
-//       "montant": montant,
-//     };
-//   }
-// }
 choixDesciptionEnum1(dynamic json) {
   unity_Montant_universelle unity = unity_Montant_universelle.DepensePrevu;
   if (json['unity'] == "unity_Montant_universelle.DepensePrevu") {
@@ -87,52 +63,10 @@ class MontantUniverselle {
   }
 }
 
-// class DepensePrev {
-//   String nom;
-//   double montant;
-
-//   DepensePrev({
-//     required this.nom,
-//     required this.montant,
-//   });
-
-//   DepensePrev.fromJSON(Map<String, dynamic> json)
-//       : nom = json['nom'],
-//         montant = json['montant'];
-
-//   Map<String, dynamic> toJson() {
-//     return {
-//       "nom": nom,
-//       "montant": montant,
-//     };
-//   }
-// }
-
-// class DepenseImprevu {
-//   String nom;
-//   double montant;
-
-//   DepenseImprevu({
-//     required this.nom,
-//     required this.montant,
-//   });
-
-//   DepenseImprevu.fromJSON(Map<String, dynamic> json)
-//       : nom = json['nom'],
-//         montant = json['montant'];
-
-//   Map<String, dynamic> toJson() {
-//     return {
-//       "nom": nom,
-//       "montant": montant,
-//     };
-//   }
-// }
-
 class GestionMensuel {
   String idGestion;
   String nom;
-  DateTime mois;
+  String mois;
   String tendance;
   List<MontantUniverselle> montantUniverselle;
 
