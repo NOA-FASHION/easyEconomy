@@ -246,9 +246,13 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                                   formKey.currentState!.save();
                                   {}
 
-                                  // Provider.of<EasyController>(context,
-                                  //         listen: false)
-                                  //     .addChallenge();
+                                  Provider.of<EasyController>(context,
+                                          listen: false)
+                                      .addMontanUniverselle(
+                                          id: '',
+                                          montant: null,
+                                          nom: '',
+                                          unity: '');
 
                                   Navigator.pop(context);
                                 }

@@ -91,4 +91,42 @@ class EasyController extends ChangeNotifier {
 
     return false;
   }
+
+  unity_Montant_universelle choixDesciptionEnum1(dynamic json) {
+    unity_Montant_universelle unity = unity_Montant_universelle.ChargeFixe;
+    ;
+    if (json == "haute") {
+      unity = unity_Montant_universelle.ChargeFixe;
+      return unity;
+    } else if (json == "normal") {
+      unity = unity_Montant_universelle.DepenseImprevu;
+      return unity;
+    } else if (json == "quotidien") {
+      unity = unity_Montant_universelle.DepensePrevu;
+      return unity;
+    } else if (json == "hebdomadaire") {
+      unity = unity_Montant_universelle.RevenuFixe;
+      return unity;
+    }
+    return unity;
+  }
+
+  void addMontanUniverselle({
+    required String nom,
+    required double montant,
+    required String id,
+    required String unity,
+  }) async {
+    _listMontantUniverselle.add(
+      MontantUniverselle(
+          unity: choixDesciptionEnum1(unity),
+          id: id,
+          montant: montant,
+          nom: nom),
+    );
+
+    await _saveMontantUniverselle();
+    _initEconomy();
+    notifyListeners();
+  }
 }
