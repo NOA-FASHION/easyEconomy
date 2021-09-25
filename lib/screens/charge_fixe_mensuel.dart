@@ -1,5 +1,6 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/screens/build_charge_fixe.dart';
+import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
@@ -24,7 +25,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
       child: Scaffold(
         key: scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(240.0),
+          preferredSize: Size.fromHeight(260.0),
           child: SafeArea(
             child: AppBar(
               title: Text("Charge fixe mensuelle"),
@@ -32,7 +33,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
               flexibleSpace: Column(
                 children: [
                   Container(
-                    height: 120,
+                    height: 90,
                     padding: EdgeInsets.only(top: 40.0),
                     alignment: Alignment.center,
                     child: Image.asset(
@@ -47,41 +48,31 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                             colors: <Color>[Colors.orange, Colors.blueAccent])),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 40.0),
+                    padding: EdgeInsets.only(top: 10.0),
                     alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 2.5,
-                              height: 80,
-                              child: Card(
-                                  color: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  elevation: 25.0,
-                                  child:
-                                      Center(child: Text("Prévisons charges"))),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width / 2.5,
-                              height: 80,
-                              child: Card(
-                                  color: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  elevation: 15.0,
-                                  child: Center(
-                                      child: Text("Prévisions revenus"))),
-                            ),
-                          ],
-                        ),
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ScreenIndicatorMontant(
+                                titre: "Prévisons charges",
+                                icones: Icons.price_change_rounded,
+                              ),
+                              ScreenIndicatorMontant(
+                                titre: "Prévisions revenus",
+                                icones: Icons.money,
+                              ),
+                              ScreenIndicatorMontant(
+                                  titre: "Solde prévisionnel",
+                                  icones: Icons.preview),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -159,7 +150,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                             },
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "Merci d'entrer un nom pour la charge ";
+                                return "Merci d'entrer un montant ";
                               }
                               return null;
                             },
@@ -174,41 +165,14 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                                     borderRadius: BorderRadius.circular(15.0)),
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
-                                labelText: "Charge",
+                                labelText: "Montant",
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15.0))),
                           ),
                           SizedBox(
                             height: 15.0,
                           ),
-                          TextFormField(
-                            textCapitalization: TextCapitalization.sentences,
-                            onSaved: (value) {
-                              nomRevenu = value!;
-                            },
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Merci d'entrer un nom pour le revenu";
-                              } else if (value.length > 35) {
-                                return "Pas plus de 50 caractères";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 2.0, color: Colors.blueAccent),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 1.0, color: Colors.blueAccent),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                labelText: "revenu",
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15.0))),
-                          ),
+
                           SizedBox(
                             height: 15.0,
                           ),

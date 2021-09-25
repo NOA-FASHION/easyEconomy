@@ -1,131 +1,168 @@
-class RevenuFixe {
+enum unity_Montant_universelle {
+  DepensePrevu,
+  RevenuFixe,
+  ChargeFixe,
+  DepenseImprevu,
+}
+// class RevenuFixe {
+//   String nom;
+//   double montant;
+
+//   RevenuFixe({
+//     required this.nom,
+//     required this.montant,
+//   });
+
+//   RevenuFixe.fromJSON(Map<String, dynamic> json)
+//       : nom = json['nom'],
+//         montant = json['montant'];
+
+//   Map<String, dynamic> toJson() {
+//     return {
+//       "nom": nom,
+//       "montant": montant,
+//     };
+//   }
+// }
+
+// class ChargeFixe {
+//   String nom;
+//   double montant;
+
+//   ChargeFixe({
+//     required this.nom,
+//     required this.montant,
+//   });
+
+//   ChargeFixe.fromJSON(Map<String, dynamic> json)
+//       : nom = json['nom'],
+//         montant = json['montant'];
+
+//   Map<String, dynamic> toJson() {
+//     return {
+//       "nom": nom,
+//       "montant": montant,
+//     };
+//   }
+// }
+choixDesciptionEnum1(dynamic json) {
+  unity_Montant_universelle unity = unity_Montant_universelle.DepensePrevu;
+  if (json['unity'] == "unity_Montant_universelle.DepensePrevu") {
+    unity = unity_Montant_universelle.DepensePrevu;
+  } else if (json['unity'] == "unity_Montant_universelle.RevenuFixe") {
+    unity = unity_Montant_universelle.RevenuFixe;
+  } else if (json['unity'] == "unity_Montant_universelle.ChargeFixe") {
+    unity = unity_Montant_universelle.ChargeFixe;
+  } else if (json['unity'] == "unity_Montant_universelle.DepenseImprevu") {
+    unity = unity_Montant_universelle.DepenseImprevu;
+  }
+  return unity;
+}
+
+class MontantUniverselle {
+  String id;
   String nom;
   double montant;
+  unity_Montant_universelle unity;
 
-  RevenuFixe({
-    required this.nom,
-    required this.montant,
-  });
+  MontantUniverselle(
+      {required this.id,
+      required this.nom,
+      required this.montant,
+      required this.unity});
 
-  RevenuFixe.fromJSON(Map<String, dynamic> json)
-      : nom = json['nom'],
-        montant = json['montant'];
+  MontantUniverselle.fromJSON(Map<String, dynamic> json)
+      : id = json['id'],
+        nom = json['nom'],
+        montant = json['montant'],
+        unity = choixDesciptionEnum1(json);
 
   Map<String, dynamic> toJson() {
     return {
+      "id": id,
       "nom": nom,
       "montant": montant,
+      "unity": unity.toString(),
     };
   }
 }
 
-class ChargeFixe {
-  String nom;
-  double montant;
+// class DepensePrev {
+//   String nom;
+//   double montant;
 
-  ChargeFixe({
-    required this.nom,
-    required this.montant,
-  });
+//   DepensePrev({
+//     required this.nom,
+//     required this.montant,
+//   });
 
-  ChargeFixe.fromJSON(Map<String, dynamic> json)
-      : nom = json['nom'],
-        montant = json['montant'];
+//   DepensePrev.fromJSON(Map<String, dynamic> json)
+//       : nom = json['nom'],
+//         montant = json['montant'];
 
-  Map<String, dynamic> toJson() {
-    return {
-      "nom": nom,
-      "montant": montant,
-    };
-  }
-}
+//   Map<String, dynamic> toJson() {
+//     return {
+//       "nom": nom,
+//       "montant": montant,
+//     };
+//   }
+// }
 
-class DepensePrev {
-  String nom;
-  double montant;
+// class DepenseImprevu {
+//   String nom;
+//   double montant;
 
-  DepensePrev({
-    required this.nom,
-    required this.montant,
-  });
+//   DepenseImprevu({
+//     required this.nom,
+//     required this.montant,
+//   });
 
-  DepensePrev.fromJSON(Map<String, dynamic> json)
-      : nom = json['nom'],
-        montant = json['montant'];
+//   DepenseImprevu.fromJSON(Map<String, dynamic> json)
+//       : nom = json['nom'],
+//         montant = json['montant'];
 
-  Map<String, dynamic> toJson() {
-    return {
-      "nom": nom,
-      "montant": montant,
-    };
-  }
-}
-
-class DepenseImprevu {
-  String nom;
-  double montant;
-
-  DepenseImprevu({
-    required this.nom,
-    required this.montant,
-  });
-
-  DepenseImprevu.fromJSON(Map<String, dynamic> json)
-      : nom = json['nom'],
-        montant = json['montant'];
-
-  Map<String, dynamic> toJson() {
-    return {
-      "nom": nom,
-      "montant": montant,
-    };
-  }
-}
+//   Map<String, dynamic> toJson() {
+//     return {
+//       "nom": nom,
+//       "montant": montant,
+//     };
+//   }
+// }
 
 class GestionMensuel {
+  String idGestion;
   String nom;
   DateTime mois;
   String tendance;
-  List<RevenuFixe> revenuFixe;
-  List<ChargeFixe> chargeFixe;
-  List<DepensePrev> depensePrev;
-  List<DepenseImprevu> depenseImprevu;
+  List<MontantUniverselle> montantUniverselle;
 
   GestionMensuel({
+    required this.idGestion,
     required this.nom,
     required this.mois,
     required this.tendance,
-    required this.revenuFixe,
-    required this.chargeFixe,
-    required this.depensePrev,
-    required this.depenseImprevu,
+    required this.montantUniverselle,
   });
 
   factory GestionMensuel.fromJSON(Map<String, dynamic> json) => GestionMensuel(
+        idGestion: json['idGestion'],
         nom: json['nom'],
         mois: json['mois'],
         tendance: json['tendance'],
-        revenuFixe: List<RevenuFixe>.from(
-            json["revenuFixe"].map((x) => RevenuFixe.fromJSON(x)).toList()),
-        chargeFixe: List<ChargeFixe>.from(
-            json["chargeFixe"].map((x) => ChargeFixe.fromJSON(x)).toList()),
-        depensePrev: List<DepensePrev>.from(
-            json["depensePrev"].map((x) => DepensePrev.fromJSON(x)).toList()),
-        depenseImprevu: List<DepenseImprevu>.from(json["depenseImprevu"]
-            .map((x) => DepenseImprevu.fromJSON(x))
-            .toList()),
+        montantUniverselle: List<MontantUniverselle>.from(
+            json["montantUniverselle"]
+                .map((x) => MontantUniverselle.fromJSON(x))
+                .toList()),
       );
 
   Map<String, dynamic> toJson() {
     return {
+      "idGestion": idGestion,
       "nom": nom,
       "mois": mois,
       "tendance": tendance,
-      "revenuFixe": List<dynamic>.from(revenuFixe.map((x) => x.toJson())),
-      "chargeFixe": List<dynamic>.from(chargeFixe.map((x) => x.toJson())),
-      "depensePrev": List<dynamic>.from(depensePrev.map((x) => x.toJson())),
-      "depenseImprevu":
-          List<dynamic>.from(depenseImprevu.map((x) => x.toJson()))
+      "montantUniverselle":
+          List<dynamic>.from(montantUniverselle.map((x) => x.toJson())),
     };
   }
 }

@@ -31,6 +31,9 @@ dependencies:
   provider: ^5.0.0
   shimmer_animation: ^2.0.0
   page_transition: "^2.0.2"
+  shared_preferences: ^2.0.6
+  marquee_text: ^2.0.0
+  lottie: ^1.0.1
 
 dev_dependencies:
   flutter_test:
