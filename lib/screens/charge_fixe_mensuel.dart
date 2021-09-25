@@ -2,6 +2,7 @@ import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/screens/build_charge_fixe.dart';
 import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 import 'package:flutter/material.dart';
+import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
@@ -18,6 +19,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
   late PersistentBottomSheetController _bottomSheetController;
   late String nomCharge;
   late String nomRevenu;
+  double montantCharge = 0;
   String unityChallenge = "Revenu";
   @override
   Widget build(BuildContext context) {
@@ -150,6 +152,32 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                             },
                             validator: (value) {
                               if (value!.isEmpty) {
+                                return "Merci d'entrer un nom ";
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2.0, color: Colors.blueAccent),
+                                    borderRadius: BorderRadius.circular(15.0)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1.0, color: Colors.blueAccent),
+                                    borderRadius: BorderRadius.circular(15.0)),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                labelText: "Nom",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15.0))),
+                          ),
+                          TextFormField(
+                            textCapitalization: TextCapitalization.sentences,
+                            onSaved: (value) {
+                              montantCharge = double.parse(value!);
+                            },
+                            validator: (value) {
+                              if (value!.isEmpty) {
                                 return "Merci d'entrer un montant ";
                               }
                               return null;
@@ -249,10 +277,10 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                                   Provider.of<EasyController>(context,
                                           listen: false)
                                       .addMontanUniverselle(
-                                          id: '',
-                                          montant: null,
-                                          nom: '',
-                                          unity: '');
+                                          id: nanoid(10),
+                                          montant: montantCharge,
+                                          nom: nomCharge,
+                                          unity: unityChallenge);
 
                                   Navigator.pop(context);
                                 }
