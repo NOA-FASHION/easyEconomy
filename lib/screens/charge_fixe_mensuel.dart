@@ -39,7 +39,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
               flexibleSpace: Column(
                 children: [
                   Container(
-                    height: 90,
+                    height: 94,
                     padding: EdgeInsets.only(top: 40.0),
                     alignment: Alignment.center,
                     child: Image.asset(

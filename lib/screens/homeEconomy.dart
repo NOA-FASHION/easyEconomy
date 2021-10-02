@@ -73,16 +73,34 @@ class _HomeState extends State<Home> {
                                     child: ChargeFixeMensuel())));
                       },
                       child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [Colors.blueAccent, Colors.orange])),
                         width: MediaQuery.of(context).size.width / 1.2,
                         height: 210,
                         child: Card(
-                            color: Colors.white,
+                            color: Colors.transparent,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30.0),
                             ),
                             elevation: 15.0,
-                            child:
-                                Center(child: Text("Charge fixe mensuelle"))),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.monetization_on,
+                                  color: Colors.white,
+                                  size: 45,
+                                ),
+                                SizedBox(
+                                  height: 15.0,
+                                ),
+                                Center(child: Text("Charge fixe mensuelle")),
+                              ],
+                            )),
                       ),
                     ),
                   ),
@@ -98,16 +116,34 @@ class _HomeState extends State<Home> {
                                     child: SimulatorGestion())));
                       },
                       child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [Colors.blueAccent, Colors.orange])),
                         width: MediaQuery.of(context).size.width / 1.2,
                         height: 210,
                         child: Card(
-                            color: Colors.white,
+                            color: Colors.transparent,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30.0),
                             ),
                             elevation: 15.0,
-                            child:
-                                Center(child: Text("Simulateur de gestion"))),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.alarm_on,
+                                  color: Colors.white,
+                                  size: 45,
+                                ),
+                                SizedBox(
+                                  height: 15.0,
+                                ),
+                                Center(child: Text("Simulateur de gestion")),
+                              ],
+                            )),
                       ),
                     ),
                   ),
@@ -122,15 +158,34 @@ class _HomeState extends State<Home> {
                                     value: variable, child: GestionMensuel())));
                       },
                       child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [Colors.blueAccent, Colors.orange])),
                         width: MediaQuery.of(context).size.width / 1.2,
                         height: 210,
                         child: Card(
-                            color: Colors.white,
+                            color: Colors.transparent,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30.0),
                             ),
                             elevation: 15.0,
-                            child: Center(child: Text("Gestion mensuelle"))),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.dashboard,
+                                  color: Colors.white,
+                                  size: 45,
+                                ),
+                                SizedBox(
+                                  height: 15.0,
+                                ),
+                                Center(child: Text("Gestion mensuelle")),
+                              ],
+                            )),
                       ),
                     ),
                   ),

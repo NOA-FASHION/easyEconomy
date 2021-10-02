@@ -303,6 +303,10 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
             key: Key(UniqueKey().toString()),
             child: Container(
               decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [Colors.orange, Colors.blueAccent]),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black,
@@ -318,57 +322,66 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                 color: Colors.transparent,
               ),
               child: Card(
+                color: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 elevation: 20.0,
-                child: ListTile(
-                  onTap: () async {
-                    // Navigator.push(
-                    //     context,
-                    //     PageTransition(
-                    //         type: PageTransitionType.bottomToTop,
-                    //         child: ChangeNotifierProvider.value(
-                    //             value: variable,
-                    //             child: ResultDays(
-                    //                 index, _productGagnantList[index].id))));
-                  },
-                  title: Container(
-                    child: Row(
-                      children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          elevation: 15.0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Titre".toUpperCase(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.purple),
-                                ),
-                                SizedBox(
-                                  width: 5.0,
-                                ),
-                                maxLetterTitre(_listMontantUniverselle[index]
-                                    .nom
-                                    .toUpperCase()),
-                              ],
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [Colors.blueAccent, Colors.orange])),
+                  child: ListTile(
+                    onTap: () async {
+                      // Navigator.push(
+                      //     context,
+                      //     PageTransition(
+                      //         type: PageTransitionType.bottomToTop,
+                      //         child: ChangeNotifierProvider.value(
+                      //             value: variable,
+                      //             child: ResultDays(
+                      //                 index, _productGagnantList[index].id))));
+                    },
+                    title: Container(
+                      child: Row(
+                        children: [
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            elevation: 15.0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Titre".toUpperCase(),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.purple),
+                                  ),
+                                  SizedBox(
+                                    width: 5.0,
+                                  ),
+                                  maxLetterTitre(_listMontantUniverselle[index]
+                                      .nom
+                                      .toUpperCase()),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 5.0,
-                        ),
-                      ],
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                        ],
+                      ),
                     ),
+                    subtitle: activeGlow(_listMontantUniverselle[index]),
+                    isThreeLine: true,
                   ),
-                  subtitle: activeGlow(_listMontantUniverselle[index]),
-                  isThreeLine: true,
                 ),
               ),
             ),
