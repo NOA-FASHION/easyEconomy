@@ -1,21 +1,21 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
-import 'package:easyeconomy/screens/build_charge_fixe.dart';
+import 'package:easyeconomy/screens/build_simulator_gestion.dart';
 import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
-class ChargeFixeMensuel extends StatefulWidget {
-  ChargeFixeMensuel({Key? key}) : super(key: key);
+class SimulatorGestion extends StatefulWidget {
+  SimulatorGestion({Key? key}) : super(key: key);
 
   @override
-  _ChargeFixeMensuelState createState() => _ChargeFixeMensuelState();
+  _SimulatorGestionState createState() => _SimulatorGestionState();
 }
 
-class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
-  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+class _SimulatorGestionState extends State<SimulatorGestion> {
+final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late PersistentBottomSheetController _bottomSheetController;
   late String nomCharge;
@@ -107,7 +107,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     colors: [Colors.orange, Colors.blueAccent])),
-            child: BuildChargeFixe(),
+            child: BuildSimulatorGestion(),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

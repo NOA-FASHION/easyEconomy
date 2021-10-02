@@ -1,10 +1,12 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
+import 'package:easyeconomy/screens/simulator_gestion.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
 import 'charge_fixe_mensuel.dart';
+import 'gestion_mensuel.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -93,7 +95,7 @@ class _HomeState extends State<Home> {
                                 type: PageTransitionType.bottomToTop,
                                 child: ChangeNotifierProvider.value(
                                     value: variable,
-                                    child: ChargeFixeMensuel())));
+                                    child: SimulatorGestion())));
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width / 1.2,
@@ -104,7 +106,8 @@ class _HomeState extends State<Home> {
                               borderRadius: BorderRadius.circular(30.0),
                             ),
                             elevation: 15.0,
-                            child: Center(child: Text("Revenu fixe mensuel"))),
+                            child:
+                                Center(child: Text("Simulateur de gestion"))),
                       ),
                     ),
                   ),
@@ -116,8 +119,7 @@ class _HomeState extends State<Home> {
                             PageTransition(
                                 type: PageTransitionType.bottomToTop,
                                 child: ChangeNotifierProvider.value(
-                                    value: variable,
-                                    child: ChargeFixeMensuel())));
+                                    value: variable, child: GestionMensuel())));
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width / 1.2,

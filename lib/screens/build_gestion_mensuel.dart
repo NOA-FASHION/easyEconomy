@@ -1,20 +1,20 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/gestion_mensuel_live.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-class BuildChargeFixe extends StatefulWidget {
-  // final String gestionId;
-  // BuildChargeFixe({required this.gestionId});
+class BuildGestionMensuel extends StatefulWidget {
+  BuildGestionMensuel({Key? key}) : super(key: key);
 
   @override
-  _BuildChargeFixeState createState() => _BuildChargeFixeState();
+  _BuildGestionMensuelState createState() => _BuildGestionMensuelState();
 }
 
-class _BuildChargeFixeState extends State<BuildChargeFixe> {
+class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
   Widget maxLetter(String word) {
     Widget longLetter;
 
@@ -85,7 +85,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
     return longLetter;
   }
 
-  Widget activeGlow(MontantUniverselle gestion) {
+  Widget activeGlow(GestionMensuel gestion) {
     Widget glow = Padding(
       padding: const EdgeInsets.all(1.0),
       child: Container(
@@ -112,7 +112,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                       child: Row(
                         children: [
                           Text(
-                            "Type de montant",
+                            "Mois",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.blue),
@@ -120,12 +120,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                           SizedBox(
                             width: 5.0,
                           ),
-                          maxLetter(
-                            gestion.unity
-                                .toString()
-                                .replaceAll(unityPattern, "")
-                                .toUpperCase(),
-                          ),
+                          maxLetter(gestion.mois),
                         ],
                       ),
                     ),
@@ -144,30 +139,13 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                             width: 5.0,
                           ),
                           Text(
-                            gestion.montant.toString(),
+                            gestion.tendance,
                           ),
                         ],
                       ),
                     ),
                   ],
                 ),
-                // Card(
-                //   shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.circular(60.0),
-                //   ),
-                //   elevation: 15.0,
-                //   child: Container(
-                //     child: ClipRRect(
-                //       borderRadius: BorderRadius.circular(40.0),
-                //       child: Image(
-                //         width: MediaQuery.of(context).size.width / 6,
-                //         height: MediaQuery.of(context).size.height / 16,
-                //         image: NetworkImage(
-                //             "https://cdn.pixabay.com/photo/2017/10/12/20/15/photoshop-2845779_960_720.jpg"),
-                //       ),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -178,18 +156,16 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
     return glow;
   }
 
-  String unityPattern = "unity_Montant_universelle.";
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
-    List<MontantUniverselle> _listMontantUniverselle =
-        variable.getMontantUniverselle();
+    List<GestionMensuel> _listGestionMensuel = variable.getGestionMensuel();
 
-    if (_listMontantUniverselle.isEmpty) {
+    if (_listGestionMensuel.isEmpty) {
       return Container(
         alignment: Alignment.center,
         child: Text(
-          "Pas de charge.",
+          "Pas de mois en cours.",
           style: TextStyle(color: Colors.orange[600], fontSize: 18.0),
           textAlign: TextAlign.center,
         ),
@@ -197,7 +173,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
     }
 
     return ListView.builder(
-      itemCount: _listMontantUniverselle.length,
+      itemCount: _listGestionMensuel.length,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 3.0, left: 8.0, right: 8.0),
@@ -324,14 +300,12 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                 elevation: 20.0,
                 child: ListTile(
                   onTap: () async {
-                    // Navigator.push(
-                    //     context,
-                    //     PageTransition(
-                    //         type: PageTransitionType.bottomToTop,
-                    //         child: ChangeNotifierProvider.value(
-                    //             value: variable,
-                    //             child: ResultDays(
-                    //                 index, _productGagnantList[index].id))));
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.bottomToTop,
+                            child: ChangeNotifierProvider.value(
+                                value: variable, child: GestionMensuelLive())));
                   },
                   title: Container(
                     child: Row(
@@ -354,7 +328,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                 SizedBox(
                                   width: 5.0,
                                 ),
-                                maxLetterTitre(_listMontantUniverselle[index]
+                                maxLetterTitre(_listGestionMensuel[index]
                                     .nom
                                     .toUpperCase()),
                               ],
@@ -367,7 +341,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                       ],
                     ),
                   ),
-                  subtitle: activeGlow(_listMontantUniverselle[index]),
+                  subtitle: activeGlow(_listGestionMensuel[index]),
                   isThreeLine: true,
                 ),
               ),

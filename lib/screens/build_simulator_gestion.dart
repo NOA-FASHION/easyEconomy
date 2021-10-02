@@ -3,18 +3,16 @@ import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-class BuildChargeFixe extends StatefulWidget {
-  // final String gestionId;
-  // BuildChargeFixe({required this.gestionId});
+class BuildSimulatorGestion extends StatefulWidget {
+  BuildSimulatorGestion({Key? key}) : super(key: key);
 
   @override
-  _BuildChargeFixeState createState() => _BuildChargeFixeState();
+  _BuildSimulatorGestionState createState() => _BuildSimulatorGestionState();
 }
 
-class _BuildChargeFixeState extends State<BuildChargeFixe> {
+class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
   Widget maxLetter(String word) {
     Widget longLetter;
 

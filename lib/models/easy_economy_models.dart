@@ -6,7 +6,7 @@ enum unity_Montant_universelle {
 }
 
 class EconomyDays {
-  DateTime date;
+  String date;
 
   EconomyDays({
     required this.date,
