@@ -81,11 +81,12 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
           elevation: 25.0,
           child: Container(
             decoration: BoxDecoration(
+                border: Border.all(color: Colors.white70),
                 borderRadius: BorderRadius.circular(10),
                 gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
-                    colors: [Colors.orange, Colors.blueAccent])),
+                    colors: [Colors.blueAccent, Colors.orange])),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -109,12 +110,21 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     elevation: 25.0,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        choixMontant(),
-                        style: TextStyle(fontSize: 13, color: Colors.white),
-                        textAlign: TextAlign.center,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white70),
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [Colors.orange, Colors.blueAccent])),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          choixMontant(),
+                          style: TextStyle(fontSize: 13, color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ), // text

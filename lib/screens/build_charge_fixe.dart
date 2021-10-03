@@ -92,7 +92,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
+          color: Colors.white54,
         ),
         child: Card(
           shape: RoundedRectangleBorder(
@@ -329,6 +329,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                 elevation: 20.0,
                 child: Container(
                   decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white70),
                       borderRadius: BorderRadius.circular(10),
                       gradient: LinearGradient(
                           begin: Alignment.centerLeft,
