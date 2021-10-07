@@ -251,7 +251,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
           child: Dismissible(
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
-                variable.removeMontantUniverselle(
+                variable.removeMontantPrevision(
                   index: index,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
@@ -260,7 +260,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
               }
 
               if (direction == DismissDirection.startToEnd) {
-                variable.removeMontantUniverselle(
+                variable.removeMontantPrevision(
                   index: index,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(

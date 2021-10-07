@@ -109,7 +109,7 @@ class EasyController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void resetListMontantPrevision() {
+  void resetListMontantPrevision() async {
     _listMontantPrevision = [];
     for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
       _listMontantPrevision.add(
@@ -120,6 +120,9 @@ class EasyController extends ChangeNotifier {
             nom: _listMontantUniverselle[i].nom),
       );
     }
+    await _saveMontantPrevision(remove: true);
+    _initEconomy();
+    notifyListeners();
   }
 
   Future<bool> _saveMontantUniverselle({bool? remove}) async {
