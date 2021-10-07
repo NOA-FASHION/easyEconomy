@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 
 class ScreenIndicatorMontant extends StatefulWidget {
   final String titre;
+  final bool simuOuchargeFixe;
   final IconData icones;
   final List<MontantUniverselle> listMontantUniverselle;
+  final List<MontantUniverselle> listMontantPrevision;
   const ScreenIndicatorMontant(
       {required this.titre,
+      required this.listMontantPrevision,
+      required this.simuOuchargeFixe,
       required this.icones,
       required this.listMontantUniverselle});
 
@@ -17,22 +21,42 @@ class ScreenIndicatorMontant extends StatefulWidget {
 class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
   String montantCharge() {
     double montants = 0;
-    for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
-      print(widget.listMontantUniverselle[i].unity.toString());
-      if (widget.listMontantUniverselle[i].unity.toString() ==
-          'unity_Montant_universelle.ChargeFixe') {
-        montants = montants + widget.listMontantUniverselle[i].montant;
+    if (!widget.simuOuchargeFixe) {
+      for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
+        print(widget.listMontantUniverselle[i].unity.toString());
+        if (widget.listMontantUniverselle[i].unity.toString() ==
+            'unity_Montant_universelle.ChargeFixe') {
+          montants = montants + widget.listMontantUniverselle[i].montant;
+        }
+      }
+    } else if (widget.simuOuchargeFixe) {
+      for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
+        print(widget.listMontantPrevision[i].unity.toString());
+        if (widget.listMontantPrevision[i].unity.toString() ==
+            'unity_Montant_universelle.ChargeFixe') {
+          montants = montants + widget.listMontantPrevision[i].montant;
+        }
       }
     }
+
     return montants.toString();
   }
 
   String montantRevenu() {
     double montants = 0;
-    for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
-      if (widget.listMontantUniverselle[i].unity.toString() ==
-          'unity_Montant_universelle.RevenuFixe') {
-        montants = montants + widget.listMontantUniverselle[i].montant;
+    if (!widget.simuOuchargeFixe) {
+      for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
+        if (widget.listMontantUniverselle[i].unity.toString() ==
+            'unity_Montant_universelle.RevenuFixe') {
+          montants = montants + widget.listMontantUniverselle[i].montant;
+        }
+      }
+    } else if (widget.simuOuchargeFixe) {
+      for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
+        if (widget.listMontantPrevision[i].unity.toString() ==
+            'unity_Montant_universelle.RevenuFixe') {
+          montants = montants + widget.listMontantPrevision[i].montant;
+        }
       }
     }
     return montants.toString();
@@ -40,14 +64,25 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
 
   String montantTotals() {
     double montant = 0;
-
-    for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
-      if (widget.listMontantUniverselle[i].unity.toString() ==
-          'unity_Montant_universelle.ChargeFixe') {
-        montant = montant - widget.listMontantUniverselle[i].montant;
-      } else if (widget.listMontantUniverselle[i].unity.toString() ==
-          'unity_Montant_universelle.RevenuFixe') {
-        montant = montant + widget.listMontantUniverselle[i].montant;
+    if (!widget.simuOuchargeFixe) {
+      for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
+        if (widget.listMontantUniverselle[i].unity.toString() ==
+            'unity_Montant_universelle.ChargeFixe') {
+          montant = montant - widget.listMontantUniverselle[i].montant;
+        } else if (widget.listMontantUniverselle[i].unity.toString() ==
+            'unity_Montant_universelle.RevenuFixe') {
+          montant = montant + widget.listMontantUniverselle[i].montant;
+        }
+      }
+    } else if (widget.simuOuchargeFixe) {
+      for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
+        if (widget.listMontantPrevision[i].unity.toString() ==
+            'unity_Montant_universelle.ChargeFixe') {
+          montant = montant - widget.listMontantPrevision[i].montant;
+        } else if (widget.listMontantPrevision[i].unity.toString() ==
+            'unity_Montant_universelle.RevenuFixe') {
+          montant = montant + widget.listMontantPrevision[i].montant;
+        }
       }
     }
 

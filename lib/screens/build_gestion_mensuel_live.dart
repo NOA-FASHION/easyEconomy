@@ -1,18 +1,26 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/gestion_mensuel_live.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-class BuildSimulatorGestion extends StatefulWidget {
-  BuildSimulatorGestion({Key? key}) : super(key: key);
+class BuildGestionMensuelLive extends StatefulWidget {
+  final String idGestionMontantUniverselle;
+  final int indexGestionMensuel;
+
+  BuildGestionMensuelLive(
+      {required this.idGestionMontantUniverselle,
+      required this.indexGestionMensuel});
 
   @override
-  _BuildSimulatorGestionState createState() => _BuildSimulatorGestionState();
+  _BuildGestionMensuelLiveState createState() =>
+      _BuildGestionMensuelLiveState();
 }
 
-class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
+class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
   Widget maxLetter(String word) {
     Widget longLetter;
 
@@ -90,7 +98,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
+          color: Colors.white54,
         ),
         child: Card(
           shape: RoundedRectangleBorder(
@@ -180,8 +188,8 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
-    List<MontantUniverselle> _listMontantUniverselle =
-        variable.getMontantPrevision();
+    List<MontantUniverselle> _listMontantUniverselle = variable
+        .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
 
     if (_listMontantUniverselle.isEmpty) {
       return Container(
@@ -202,8 +210,10 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
           child: Dismissible(
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
-                variable.removeMontantUniverselle(
-                  index: index,
+                variable.removeGestionMensuelleMontantUniv(
+                  indexGestionMensMontanUniv: index,
+                  idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
+                  indexGestionMensuel: widget.indexGestionMensuel,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
                     content: "Le produit a bien été supprimée",
@@ -211,8 +221,10 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
               }
 
               if (direction == DismissDirection.startToEnd) {
-                variable.removeMontantUniverselle(
-                  index: index,
+                variable.removeGestionMensuelleMontantUniv(
+                  indexGestionMensMontanUniv: index,
+                  idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
+                  indexGestionMensuel: widget.indexGestionMensuel,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
                     content: "Le produit a bien été supprimée",
@@ -301,6 +313,10 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
             key: Key(UniqueKey().toString()),
             child: Container(
               decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [Colors.orange, Colors.blueAccent]),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black,
@@ -316,57 +332,67 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                 color: Colors.transparent,
               ),
               child: Card(
+                color: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 elevation: 20.0,
-                child: ListTile(
-                  onTap: () async {
-                    // Navigator.push(
-                    //     context,
-                    //     PageTransition(
-                    //         type: PageTransitionType.bottomToTop,
-                    //         child: ChangeNotifierProvider.value(
-                    //             value: variable,
-                    //             child: ResultDays(
-                    //                 index, _productGagnantList[index].id))));
-                  },
-                  title: Container(
-                    child: Row(
-                      children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          elevation: 15.0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Titre".toUpperCase(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.purple),
-                                ),
-                                SizedBox(
-                                  width: 5.0,
-                                ),
-                                maxLetterTitre(_listMontantUniverselle[index]
-                                    .nom
-                                    .toUpperCase()),
-                              ],
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white70),
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [Colors.blueAccent, Colors.orange])),
+                  child: ListTile(
+                    onTap: () async {
+                      // Navigator.push(
+                      //     context,
+                      //     PageTransition(
+                      //         type: PageTransitionType.bottomToTop,
+                      //         child: ChangeNotifierProvider.value(
+                      //             value: variable,
+                      //             child: ResultDays(
+                      //                 index, _productGagnantList[index].id))));
+                    },
+                    title: Container(
+                      child: Row(
+                        children: [
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            elevation: 15.0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Titre".toUpperCase(),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.purple),
+                                  ),
+                                  SizedBox(
+                                    width: 5.0,
+                                  ),
+                                  maxLetterTitre(_listMontantUniverselle[index]
+                                      .nom
+                                      .toUpperCase()),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 5.0,
-                        ),
-                      ],
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                        ],
+                      ),
                     ),
+                    subtitle: activeGlow(_listMontantUniverselle[index]),
+                    isThreeLine: true,
                   ),
-                  subtitle: activeGlow(_listMontantUniverselle[index]),
-                  isThreeLine: true,
                 ),
               ),
             ),

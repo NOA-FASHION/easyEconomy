@@ -130,19 +130,50 @@ class _HomeState extends State<Home> {
                               borderRadius: BorderRadius.circular(30.0),
                             ),
                             elevation: 15.0,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.alarm_on,
-                                  color: Colors.white,
-                                  size: 45,
-                                ),
-                                SizedBox(
-                                  height: 15.0,
-                                ),
-                                Center(child: Text("Simulateur de gestion")),
-                              ],
+                            child: Container(
+                              margin: EdgeInsets.only(bottom: 15),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(right: 8),
+                                            child: IconButton(
+                                              onPressed: () {
+                                                variable
+                                                    .resetListMontantPrevision();
+                                              },
+                                              icon: Icon(
+                                                Icons.restart_alt,
+                                                color: Colors.white,
+                                                size: 45,
+                                              ),
+                                            ),
+                                          ),
+                                          Center(child: Text("Reset")),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 35.0,
+                                  ),
+                                  Icon(
+                                    Icons.alarm_on,
+                                    color: Colors.white,
+                                    size: 45,
+                                  ),
+                                  SizedBox(
+                                    height: 15.0,
+                                  ),
+                                  Center(child: Text("Simulateur de gestion")),
+                                ],
+                              ),
                             )),
                       ),
                     ),

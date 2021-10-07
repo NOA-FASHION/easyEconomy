@@ -22,11 +22,20 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
   late String nomRevenu;
   double montantCharge = 0;
   String unityChallenge = "RevenuFixe";
+  late bool simuOuchargeFixe;
+
+  void initState() {
+    super.initState();
+    simuOuchargeFixe = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
     List<MontantUniverselle> _listMontantUniverselle =
         variable.getMontantUniverselle();
+    List<MontantUniverselle> _listMontPrevision =
+        variable.getMontantPrevision();
     return Material(
       child: Scaffold(
         key: scaffoldkey,
@@ -65,19 +74,25 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               ScreenIndicatorMontant(
+                                simuOuchargeFixe: simuOuchargeFixe,
                                 titre: "Prévisons charges",
                                 icones: Icons.price_change_rounded,
                                 listMontantUniverselle: _listMontantUniverselle,
+                                listMontantPrevision: _listMontPrevision,
                               ),
                               ScreenIndicatorMontant(
+                                simuOuchargeFixe: simuOuchargeFixe,
                                 titre: "Prévisions revenus",
                                 icones: Icons.money,
                                 listMontantUniverselle: _listMontantUniverselle,
+                                listMontantPrevision: _listMontPrevision,
                               ),
                               ScreenIndicatorMontant(
+                                simuOuchargeFixe: simuOuchargeFixe,
                                 titre: "Solde prévisionnel",
                                 icones: Icons.preview,
                                 listMontantUniverselle: _listMontantUniverselle,
+                                listMontantPrevision: _listMontPrevision,
                               ),
                             ],
                           ),

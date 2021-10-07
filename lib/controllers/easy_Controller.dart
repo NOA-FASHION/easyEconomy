@@ -9,8 +9,10 @@ import 'package:intl/intl.dart';
 const String keyAcces = "gestionMensuel";
 const String keyAccesMontantUniverselle = "montantUniverselle";
 const String keyAccesEconomyDays = "EconomyDays";
+const String keyAccesMontantPrevision = "montantPrevision";
 List<GestionMensuel> _listGestionMensuel = [];
 List<MontantUniverselle> _listMontantUniverselle = [];
+List<MontantUniverselle> _listMontantPrevision = [];
 
 class EasyController extends ChangeNotifier {
   late double soldePrevisionel;
@@ -18,6 +20,7 @@ class EasyController extends ChangeNotifier {
   late SharedPreferences _localData;
   late SharedPreferences _localDataMontaUniverselle;
   late SharedPreferences _localDataEcononyDays;
+  late SharedPreferences _localDataMontantPrevision;
   late EconomyDays economyDays = EconomyDays(date: '');
   EasyController() {
     _initEconomy();
@@ -26,6 +29,8 @@ class EasyController extends ChangeNotifier {
   void _initEconomy() async {
     _localData = await SharedPreferences.getInstance();
     _localDataMontaUniverselle = await SharedPreferences.getInstance();
+    _localDataMontantPrevision = await SharedPreferences.getInstance();
+    _localDataEcononyDays = await SharedPreferences.getInstance();
 
     List<Map<String, dynamic>> _jsonDecodeList;
     final List<String>? _tempList = _localData.getStringList(keyAcces);
@@ -52,7 +57,20 @@ class EasyController extends ChangeNotifier {
           .map((challenge) => MontantUniverselle.fromJSON(challenge))
           .toList();
     }
-    // _initEconomyDays();
+    List<Map<String, dynamic>> _jsonDecodeListMontantPrevision;
+    final List<String>? _tempListMontantPrevision =
+        _localDataMontantPrevision.getStringList(keyAccesMontantPrevision);
+    if (_tempListMontantPrevision != null) {
+      _jsonDecodeListMontantPrevision = _tempListMontantPrevision
+          .map((montantPrevision) => jsonDecode(montantPrevision))
+          .toList()
+          .cast<Map<String, dynamic>>();
+
+      _listMontantPrevision = _jsonDecodeListMontantPrevision
+          .map((challenge) => MontantUniverselle.fromJSON(challenge))
+          .toList();
+    }
+    _initEconomyDays();
     starteconomyDays();
     notifyListeners();
   }
@@ -63,6 +81,10 @@ class EasyController extends ChangeNotifier {
 
   List<MontantUniverselle> getMontantUniverselle() {
     return _listMontantUniverselle;
+  }
+
+  List<MontantUniverselle> getMontantPrevision() {
+    return _listMontantPrevision;
   }
 
   List<MontantUniverselle> getGestionMontantUniverselle(String gestionId) {
@@ -79,11 +101,25 @@ class EasyController extends ChangeNotifier {
   void removeMontantUniverselle({
     required int index,
   }) async {
+    removeMontantPrevision(index: idmontantUniverselle(index));
     // await removeChallengelistId(index);
     _listMontantUniverselle.removeAt(index);
     await _saveMontantUniverselle(remove: true);
     _initEconomy();
     notifyListeners();
+  }
+
+  void resetListMontantPrevision() {
+    _listMontantPrevision = [];
+    for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
+      _listMontantPrevision.add(
+        MontantUniverselle(
+            unity: _listMontantUniverselle[i].unity,
+            id: _listMontantUniverselle[i].id,
+            montant: _listMontantUniverselle[i].montant,
+            nom: _listMontantUniverselle[i].nom),
+      );
+    }
   }
 
   Future<bool> _saveMontantUniverselle({bool? remove}) async {
@@ -102,6 +138,42 @@ class EasyController extends ChangeNotifier {
     return false;
   }
 
+  int idmontantUniverselle(int index) {
+    int index2 = 0;
+    for (var i = _listMontantPrevision.length - 1; i >= 0; i--) {
+      if (_listMontantUniverselle[index].id == _listMontantPrevision[i].id) {
+        index2 = i;
+      }
+    }
+    return index2;
+  }
+
+  void removeMontantPrevision({
+    required int index,
+  }) async {
+    // await removeChallengelistId(index);
+    _listMontantPrevision.removeAt(index);
+    await _saveMontantPrevision(remove: true);
+    _initEconomy();
+    notifyListeners();
+  }
+
+  Future<bool> _saveMontantPrevision({bool? remove}) async {
+    if (_listMontantPrevision.length < 1 && remove!) {
+      return _localDataMontantPrevision
+          .setStringList(keyAccesMontantPrevision, []);
+    }
+    if (_listMontantPrevision.isNotEmpty) {
+      List<String> _jsonList = _listMontantPrevision.map((challenge) {
+        return jsonEncode(challenge.toJson());
+      }).toList();
+      return _localDataMontantPrevision.setStringList(
+          keyAccesMontantPrevision, _jsonList);
+    }
+
+    return false;
+  }
+
   unity_Montant_universelle choixDesciptionEnum1(dynamic json) {
     unity_Montant_universelle unity = unity_Montant_universelle.ChargeFixe;
 
@@ -111,11 +183,11 @@ class EasyController extends ChangeNotifier {
     } else if (json == "RevenuFixe") {
       unity = unity_Montant_universelle.RevenuFixe;
       return unity;
-    } else if (json == "DepensePrevu") {
-      unity = unity_Montant_universelle.DepensePrevu;
+    } else if (json == "depensePonctuelle") {
+      unity = unity_Montant_universelle.depensePonctuelle;
       return unity;
-    } else if (json == "DepenseImprevu") {
-      unity = unity_Montant_universelle.DepenseImprevu;
+    } else if (json == "RevenuPonctuel") {
+      unity = unity_Montant_universelle.RevenuPonctuel;
       return unity;
     }
     return unity;
@@ -134,8 +206,28 @@ class EasyController extends ChangeNotifier {
           montant: montant,
           nom: nom),
     );
+    addMontantPrevision(id: id, montant: montant, nom: nom, unity: unity);
 
     await _saveMontantUniverselle();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  void addMontantPrevision({
+    required String nom,
+    required double montant,
+    required String id,
+    required String unity,
+  }) async {
+    _listMontantPrevision.add(
+      MontantUniverselle(
+          unity: choixDesciptionEnum1(unity),
+          id: id,
+          montant: montant,
+          nom: nom),
+    );
+
+    await _saveMontantPrevision();
     _initEconomy();
     notifyListeners();
   }
@@ -177,6 +269,22 @@ class EasyController extends ChangeNotifier {
     }
   }
 
+  void addGestionMensuelMontantUniv(
+      {required String nom,
+      required double montant,
+      required String id,
+      required String unity,
+      required int index}) async {
+    _listGestionMensuel[index].montantUniverselle.add(MontantUniverselle(
+        unity: choixDesciptionEnum1(unity),
+        id: id,
+        montant: montant,
+        nom: nom));
+    await _saveGestionMensuelle();
+    _initEconomyDays();
+    notifyListeners();
+  }
+
   void creatListGestionMensuel() async {
     DateTime today = new DateTime.now();
     if (economyDays.date != DateFormat('MMM').format(today)) {
@@ -195,6 +303,46 @@ class EasyController extends ChangeNotifier {
       _initEconomyDays();
       notifyListeners();
     }
+  }
+
+  void removeGestionMensuelle({
+    required int index,
+  }) async {
+    // await removeChallengelistId(index);
+    _listGestionMensuel.removeAt(index);
+    await _saveGestionMensuelle(remove: true);
+    _initEconomy();
+    notifyListeners();
+  }
+
+  void removeGestionMensuelleMontantUniv(
+      {required int indexGestionMensuel,
+      required int indexGestionMensMontanUniv,
+      required String idGestionMensMontanUniv}) async {
+    _listGestionMensuel[indexGestionMensuel]
+        .montantUniverselle
+        .removeAt(indexGestionMensMontanUniv);
+
+    await _saveGestionMensuelleMontantUniv(
+        remove: true, idGestionMensMontanUniv: idGestionMensMontanUniv);
+    _initEconomy();
+    notifyListeners();
+  }
+
+  Future<bool> _saveGestionMensuelleMontantUniv(
+      {required bool remove, required String idGestionMensMontanUniv}) async {
+    for (var i = _listGestionMensuel.length - 1; i >= 0; i--) {
+      if (_listGestionMensuel[i].idGestion == idGestionMensMontanUniv) {
+        if (_listGestionMensuel[i].montantUniverselle.length < 1 && remove) {
+          _listGestionMensuel[i].montantUniverselle = [];
+        }
+        List<String> _jsonList = _listGestionMensuel.map((gestion) {
+          return jsonEncode(gestion.toJson());
+        }).toList();
+        return _localData.setStringList(keyAcces, _jsonList);
+      }
+    }
+    return false;
   }
 
   Future<bool> _saveGestionMensuelle({bool? remove}) async {

@@ -36,7 +36,7 @@ class _GestionMensuelState extends State<GestionMensuel> {
                     gradient: LinearGradient(
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
-                        colors: <Color>[Colors.purple, Colors.blue])),
+                        colors: <Color>[Colors.orange, Colors.blueAccent])),
               ),
             ),
           ),

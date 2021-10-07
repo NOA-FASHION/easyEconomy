@@ -180,7 +180,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
           child: Dismissible(
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
-                variable.removeMontantUniverselle(
+                variable.removeGestionMensuelle(
                   index: index,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
@@ -189,7 +189,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
               }
 
               if (direction == DismissDirection.startToEnd) {
-                variable.removeMontantUniverselle(
+                variable.removeGestionMensuelle(
                   index: index,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
@@ -305,7 +305,11 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                         PageTransition(
                             type: PageTransitionType.bottomToTop,
                             child: ChangeNotifierProvider.value(
-                                value: variable, child: GestionMensuelLive())));
+                                value: variable,
+                                child: GestionMensuelLive(
+                                  idGestionMontantUniverselle:
+                                      _listGestionMensuel[index].idGestion, indexMontantUniverselle: index,
+                                ))));
                   },
                   title: Container(
                     child: Row(

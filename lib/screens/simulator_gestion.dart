@@ -15,18 +15,27 @@ class SimulatorGestion extends StatefulWidget {
 }
 
 class _SimulatorGestionState extends State<SimulatorGestion> {
-final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late PersistentBottomSheetController _bottomSheetController;
   late String nomCharge;
   late String nomRevenu;
+  late bool simuOuchargeFixe;
   double montantCharge = 0;
-  String unityChallenge = "RevenuFixe";
+  String unityChallenge = "depensePonctuelle";
+
+  void initState() {
+    super.initState();
+    simuOuchargeFixe = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
     List<MontantUniverselle> _listMontantUniverselle =
         variable.getMontantUniverselle();
+    List<MontantUniverselle> _listMontPrevision =
+        variable.getMontantPrevision();
     return Material(
       child: Scaffold(
         key: scaffoldkey,
@@ -34,7 +43,7 @@ final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
           preferredSize: Size.fromHeight(260.0),
           child: SafeArea(
             child: AppBar(
-              title: Text("Charge fixe mensuelle"),
+              title: Text("Simulation du budget prochain"),
               centerTitle: true,
               flexibleSpace: Column(
                 children: [
@@ -65,19 +74,25 @@ final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               ScreenIndicatorMontant(
+                                simuOuchargeFixe: simuOuchargeFixe,
                                 titre: "Prévisons charges",
                                 icones: Icons.price_change_rounded,
                                 listMontantUniverselle: _listMontantUniverselle,
+                                listMontantPrevision: _listMontPrevision,
                               ),
                               ScreenIndicatorMontant(
+                                simuOuchargeFixe: simuOuchargeFixe,
                                 titre: "Prévisions revenus",
                                 icones: Icons.money,
                                 listMontantUniverselle: _listMontantUniverselle,
+                                listMontantPrevision: _listMontPrevision,
                               ),
                               ScreenIndicatorMontant(
+                                simuOuchargeFixe: simuOuchargeFixe,
                                 titre: "Solde prévisionnel",
                                 icones: Icons.preview,
                                 listMontantUniverselle: _listMontantUniverselle,
+                                listMontantPrevision: _listMontPrevision,
                               ),
                             ],
                           ),
@@ -238,26 +253,26 @@ final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
                             },
                             items: <DropdownMenuItem<String>>[
                               DropdownMenuItem(
-                                value: "ChargeFixe",
+                                value: "depensePonctuelle",
                                 child: Row(
                                   children: [
                                     Icon(Icons.update,
                                         size: 30.0, color: Colors.red),
                                     SizedBox(width: 10),
-                                    Text("ChargeFixe",
+                                    Text("depensePonctuelle",
                                         style: TextStyle(color: Colors.red)),
                                   ],
                                 ),
                               ),
                               DropdownMenuItem(
-                                value: "RevenuFixe",
+                                value: "RevenuPonctuel",
                                 child: Row(
                                   children: [
                                     Icon(Icons.auto_fix_normal,
                                         size: 30.0, color: Colors.green),
                                     SizedBox(width: 10),
                                     Text(
-                                      "RevenuFixe",
+                                      "RevenuPonctuel",
                                       style: TextStyle(color: Colors.green),
                                     ),
                                   ],
@@ -287,7 +302,7 @@ final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
 
                                   Provider.of<EasyController>(context,
                                           listen: false)
-                                      .addMontanUniverselle(
+                                      .addMontantPrevision(
                                           id: nanoid(10),
                                           montant: montantCharge,
                                           nom: nomCharge,

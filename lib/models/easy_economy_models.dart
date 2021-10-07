@@ -1,8 +1,8 @@
 enum unity_Montant_universelle {
-  DepensePrevu,
+  depensePonctuelle,
   RevenuFixe,
   ChargeFixe,
-  DepenseImprevu,
+  RevenuPonctuel,
 }
 
 class EconomyDays {
@@ -22,15 +22,15 @@ class EconomyDays {
 }
 
 choixDesciptionEnum1(dynamic json) {
-  unity_Montant_universelle unity = unity_Montant_universelle.DepensePrevu;
-  if (json['unity'] == "unity_Montant_universelle.DepensePrevu") {
-    unity = unity_Montant_universelle.DepensePrevu;
+  unity_Montant_universelle unity = unity_Montant_universelle.depensePonctuelle;
+  if (json['unity'] == "unity_Montant_universelle.depensePonctuelle") {
+    unity = unity_Montant_universelle.depensePonctuelle;
   } else if (json['unity'] == "unity_Montant_universelle.RevenuFixe") {
     unity = unity_Montant_universelle.RevenuFixe;
   } else if (json['unity'] == "unity_Montant_universelle.ChargeFixe") {
     unity = unity_Montant_universelle.ChargeFixe;
-  } else if (json['unity'] == "unity_Montant_universelle.DepenseImprevu") {
-    unity = unity_Montant_universelle.DepenseImprevu;
+  } else if (json['unity'] == "unity_Montant_universelle.RevenuPonctuel") {
+    unity = unity_Montant_universelle.RevenuPonctuel;
   }
   return unity;
 }
