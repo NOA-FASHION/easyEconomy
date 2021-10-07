@@ -33,7 +33,9 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
       for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
         print(widget.listMontantPrevision[i].unity.toString());
         if (widget.listMontantPrevision[i].unity.toString() ==
-            'unity_Montant_universelle.ChargeFixe') {
+                'unity_Montant_universelle.ChargeFixe' ||
+            widget.listMontantPrevision[i].unity.toString() ==
+                'unity_Montant_universelle.depensePonctuelle') {
           montants = montants + widget.listMontantPrevision[i].montant;
         }
       }
@@ -54,7 +56,9 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
     } else if (widget.simuOuchargeFixe) {
       for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
         if (widget.listMontantPrevision[i].unity.toString() ==
-            'unity_Montant_universelle.RevenuFixe') {
+                'unity_Montant_universelle.RevenuFixe' ||
+            widget.listMontantPrevision[i].unity.toString() ==
+                'unity_Montant_universelle.RevenuPonctuel') {
           montants = montants + widget.listMontantPrevision[i].montant;
         }
       }
@@ -77,10 +81,14 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
     } else if (widget.simuOuchargeFixe) {
       for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
         if (widget.listMontantPrevision[i].unity.toString() ==
-            'unity_Montant_universelle.ChargeFixe') {
+                'unity_Montant_universelle.ChargeFixe' ||
+            widget.listMontantPrevision[i].unity.toString() ==
+                'unity_Montant_universelle.depensePonctuelle') {
           montant = montant - widget.listMontantPrevision[i].montant;
         } else if (widget.listMontantPrevision[i].unity.toString() ==
-            'unity_Montant_universelle.RevenuFixe') {
+                'unity_Montant_universelle.RevenuFixe' ||
+            widget.listMontantPrevision[i].unity.toString() ==
+                'unity_Montant_universelle.RevenuPonctuel') {
           montant = montant + widget.listMontantPrevision[i].montant;
         }
       }

@@ -15,6 +15,8 @@ class BuildGestionMensuel extends StatefulWidget {
 }
 
 class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
+
+  
   Widget maxLetter(String word) {
     Widget longLetter;
 

@@ -15,6 +15,61 @@ class BuildChargeFixe extends StatefulWidget {
 }
 
 class _BuildChargeFixeState extends State<BuildChargeFixe> {
+  Color colorsDescription(String description) {
+    Color colors = Colors.black;
+    if (description == "unity_Montant_universelle.ChargeFixe") {
+      colors = Colors.red.shade300;
+      return colors;
+    } else if (description == "unity_Montant_universelle.depensePonctuelle") {
+      colors = Colors.red.shade300;
+      return colors;
+    } else if (description == "unity_Montant_universelle.RevenuFixe") {
+      colors = Colors.green.shade300;
+      return colors;
+    } else if (description == "unity_Montant_universelle.RevenuPonctuel") {
+      colors = Colors.green.shade300;
+      return colors;
+    }
+    return colors;
+  }
+
+  Widget iconDataJoin(String resultat) {
+    Widget documentJoint = Icon(
+      Icons.block,
+      size: 30.0,
+    );
+    if (resultat == "unity_Montant_universelle.ChargeFixe") {
+      documentJoint = Icon(
+        Icons.all_out,
+        size: 30.0,
+        color: Colors.red,
+      );
+      return documentJoint;
+    } else if (resultat == "unity_Montant_universelle.depensePonctuelle") {
+      documentJoint = Icon(
+        Icons.schedule,
+        size: 30.0,
+        color: Colors.red,
+      );
+      return documentJoint;
+    } else if (resultat == "unity_Montant_universelle.RevenuFixe") {
+      documentJoint = Icon(
+        Icons.all_out,
+        size: 30.0,
+        color: Colors.green,
+      );
+      return documentJoint;
+    } else if (resultat == "unity_Montant_universelle.RevenuPonctuel") {
+      documentJoint = Icon(
+        Icons.schedule,
+        size: 30.0,
+        color: Colors.green,
+      );
+      return documentJoint;
+    }
+    return documentJoint;
+  }
+
   Widget maxLetter(String word) {
     Widget longLetter;
 
@@ -92,7 +147,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.white54,
+          color: colorsDescription(gestion.unity.toString()),
         ),
         child: Card(
           shape: RoundedRectangleBorder(
@@ -107,7 +162,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                 Column(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width / 1.3,
+                      width: MediaQuery.of(context).size.width / 1.45,
                       height: 25.0,
                       child: Row(
                         children: [
@@ -130,7 +185,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                       ),
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width / 1.3,
+                      width: MediaQuery.of(context).size.width / 1.45,
                       height: 30.0,
                       child: Row(
                         children: [
@@ -151,23 +206,17 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                     ),
                   ],
                 ),
-                // Card(
-                //   shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.circular(60.0),
-                //   ),
-                //   elevation: 15.0,
-                //   child: Container(
-                //     child: ClipRRect(
-                //       borderRadius: BorderRadius.circular(40.0),
-                //       child: Image(
-                //         width: MediaQuery.of(context).size.width / 6,
-                //         height: MediaQuery.of(context).size.height / 16,
-                //         image: NetworkImage(
-                //             "https://cdn.pixabay.com/photo/2017/10/12/20/15/photoshop-2845779_960_720.jpg"),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60.0),
+                  ),
+                  elevation: 15.0,
+                  child: Container(
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(40.0),
+                        child: iconDataJoin(gestion.unity.toString())),
+                  ),
+                ),
               ],
             ),
           ),
