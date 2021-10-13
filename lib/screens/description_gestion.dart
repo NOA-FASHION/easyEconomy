@@ -1,19 +1,27 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
+import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/build_description_gestion.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
 class DescriptionGestion extends StatefulWidget {
-  DescriptionGestion({Key? key}) : super(key: key);
+  final String idGestionMontantUniverselle;
+  final int indexGestionMensuel;
+  final int indexGestionMensuelMontantUniv;
+  DescriptionGestion(
+      {required this.idGestionMontantUniverselle,
+      required this.indexGestionMensuel,
+      required this.indexGestionMensuelMontantUniv});
 
   @override
   _DescriptionGestionState createState() => _DescriptionGestionState();
 }
 
 class _DescriptionGestionState extends State<DescriptionGestion> {
-  
   bool isSwitched = false;
   String unityPattern = "unity_challenge1.";
   late String idChallenge1;
@@ -29,7 +37,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
   late String _image;
   late String _video;
   late String wait = "assets/wait.json";
-   final picker = ImagePicker();
+  final picker = ImagePicker();
   late bool _visibility1 = true;
 
   Future getImageCamera() async {
@@ -74,8 +82,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     });
   }
 
-  
-
   void _changeVisibility(bool visibility) {
     setState(() {
       _visibility1 = visibility;
@@ -103,7 +109,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
   late final String something;
   late final int indexChallenge;
   late String dataJoin;
-  
+
   // _HomeTachesState(this.indexChallenge, this.something, this.animatedpadding);
   final GlobalKey<ScaffoldState> scaffoldkeyTache = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKeyTache = GlobalKey<FormState>();
@@ -121,8 +127,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     return percent1;
   }
 
-  
-
   Future<Null> delay(int milliseconds) {
     return new Future.delayed(new Duration(milliseconds: milliseconds));
   }
@@ -133,12 +137,11 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     unityChallenge = "evenement";
   }
 
-  Widget selectdropdown(
-      String resultat, List<ChallengeModel> _challengeList, dynamic context) {
+  Widget selectdropdown(String resultat) {
     Widget documentJoint = SizedBox(
       width: 1.0,
     );
-     if (resultat == "image") {
+    if (resultat == "image") {
       documentJoint = Column(
         children: [
           Offstage(
@@ -176,7 +179,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
         ],
       );
     } else if (resultat == "commentaire") {
- 
       documentJoint = SizedBox(
         width: 200.0,
         height: 300.0,
@@ -244,7 +246,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
           Text("€")
         ],
       );
-    }  else if (resultat == "echeancier") {
+    } else if (resultat == "echeancier") {
       documentJoint = Row(
         children: [
           Column(
@@ -323,9 +325,10 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
-    List<ChallengeModel> _challengesListget = variable.getChallenges();
+    List<MontantUniverselle> montantUniverselleAchat =
+        variable.getGestionMensuelAchat(widget.indexGestionMensuel);
     // isSwitched = _challengesListget[widget.indexChallenge].prelevementAutoBool;
-    
+
     return Scaffold(
       key: scaffoldkeyTache,
       appBar: PreferredSize(
@@ -333,9 +336,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
         child: SafeArea(
           child: AppBar(
             title: Text(something),
-            actions: [
-            
-            ],
+            actions: [],
             backgroundColor: Colors.blue,
             centerTitle: true,
             flexibleSpace: Container(
@@ -366,8 +367,9 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                     child: Column(
                                       children: [
                                         Text(
-                                          _challengesListget[indexChallenge]
-                                                  .coutTotal
+                                          montantUniverselleAchat[widget
+                                                      .indexGestionMensuelMontantUniv]
+                                                  .achatTotal
                                                   .toStringAsFixed(2) +
                                               "€",
                                           style: TextStyle(
@@ -375,7 +377,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                               color: Colors.black),
                                         ),
                                         Text(
-                                          "Total paiement",
+                                          "Achats",
                                           style: TextStyle(
                                               fontSize: 10,
                                               color: Colors.black),
@@ -391,8 +393,9 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                     child: Column(
                                       children: [
                                         Text(
-                                          _challengesListget[indexChallenge]
-                                                  .restePaiement
+                                          montantUniverselleAchat[widget
+                                                      .indexGestionMensuelMontantUniv]
+                                                  .previsionsTotal
                                                   .toStringAsFixed(2) +
                                               "€",
                                           style: TextStyle(
@@ -400,7 +403,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                               color: Colors.black),
                                         ),
                                         Text(
-                                          "Reste à payer",
+                                          "Prévisions",
                                           style: TextStyle(
                                               fontSize: 10,
                                               color: Colors.black),
@@ -446,13 +449,17 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
         enabled: true,
         direction: ShimmerDirection.fromLTRB(),
         child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Colors.purple, Colors.blue])),
-          child: 
-        ),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [Colors.purple, Colors.blue])),
+            child: BuildDescriptionGestion(
+              idGestionMontantUniverselle: widget.idGestionMontantUniverselle,
+              indexGestionMensuel: widget.indexGestionMensuel,
+              indexGestionMensuelMontantUniv:
+                  widget.indexGestionMensuelMontantUniv,
+            )),
       ),
       backgroundColor: Color(0xff414a4c),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -467,8 +474,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
   }
 
   FloatingActionButton buildBottomSheet() {
-    EasyController variable = Provider.of<EasyController>(context);
-    List<ChallengeModel> _challengesListget = variable.getChallenges();
     return FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Colors.orange[900],
@@ -486,7 +491,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                       padding: const EdgeInsets.all(10.0),
                       child: ListView(
                         children: [
-                          DropdownButtonFormField(
+                          DropdownButtonFormField<String>(
                             decoration: InputDecoration(
                                 focusedBorder: OutlineInputBorder(
                                     // borderSide: BorderSide(
@@ -509,8 +514,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                             onSaved: (value) {
                               updateController(value);
                             },
-                            items: <DropdownMenuItem>[
-                            
+                            items: <DropdownMenuItem<String>>[
                               DropdownMenuItem(
                                 value: "achat",
                                 child: Row(
@@ -543,7 +547,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                   ],
                                 ),
                               ),
-                             
                               DropdownMenuItem(
                                 value: "information",
                                 child: Row(
@@ -557,7 +560,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                   ],
                                 ),
                               ),
-                            
                               DropdownMenuItem(
                                 value: "echeancier",
                                 child: Row(
@@ -590,7 +592,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                   ],
                                 ),
                               ),
-                          
                               DropdownMenuItem(
                                 value: "image",
                                 child: Row(
@@ -607,7 +608,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                   ],
                                 ),
                               ),
-                             
                             ],
                           ),
                           SizedBox(
@@ -645,8 +645,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                           SizedBox(
                             height: 15.0,
                           ),
-                          selectdropdown(
-                              unityChallenge, _challengesListget, context),
+                          selectdropdown(unityChallenge),
                           Center(
                             child: IconButton(
                               iconSize: 60,
@@ -656,24 +655,23 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                 color: Colors.orange[900],
                               ),
                               onPressed: () {
-                               if (formKeyTache.currentState!
-                                    .validate()) {
+                                if (formKeyTache.currentState!.validate()) {
                                   formKeyTache.currentState!.save();
                                   setState(() {
-                                    Provider.of<EasyController>(context,
-                                            listen: false)
-                                        .addChallenge2(
-                                            prix: double.parse(prixProduit),
-                                            cout: double.parse(coutPaiment),
-                                            id: nanoid(10),
-                                            index: widget.indexChallenge,
-                                            animatedpadding: animatedpadding,
-                                            totalChallenge: '1',
-                                            idListChallenge: widget.id,
-                                            name: dataJoin,
-                                            description: unityChallenge,
-                                            tache: targetChallenge,
-                                            formation: formations);
+                                    // Provider.of<EasyController>(context,
+                                    //         listen: false)
+                                    //     .addChallenge2(
+                                    //         prix: double.parse(prixProduit),
+                                    //         cout: double.parse(coutPaiment),
+                                    //         id: nanoid(10),
+                                    //         index: widget.indexChallenge,
+                                    //         animatedpadding: animatedpadding,
+                                    //         totalChallenge: '1',
+                                    //         idListChallenge: widget.id,
+                                    //         name: dataJoin,
+                                    //         description: unityChallenge,
+                                    //         tache: targetChallenge,
+                                    //         formation: formations);
                                   });
                                   Navigator.pop(context);
                                 }

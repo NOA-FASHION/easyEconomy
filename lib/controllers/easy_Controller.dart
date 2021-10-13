@@ -79,6 +79,13 @@ class EasyController extends ChangeNotifier {
     return _listGestionMensuel;
   }
 
+  List<MontantUniverselle> getGestionMensuelAchat(int indexGestionMensuel) {
+    return _listGestionMensuel[indexGestionMensuel].montantUniverselle;
+  }
+   List<DesciprtionUniverselle> getGestionMensuelDescription(int indexGestionMensuel,int indexGestionMensuelMontantUniv) {
+    return _listGestionMensuel[indexGestionMensuel].montantUniverselle[indexGestionMensuelMontantUniv].descriptionUniverselle;
+  }
+
   List<MontantUniverselle> getMontantUniverselle() {
     return _listMontantUniverselle;
   }
@@ -130,7 +137,9 @@ class EasyController extends ChangeNotifier {
             montant: _listMontantUniverselle[i].montant,
             nom: _listMontantUniverselle[i].nom,
             descriptionUniverselle:
-                _listMontantUniverselle[i].descriptionUniverselle),
+                _listMontantUniverselle[i].descriptionUniverselle,
+            achatTotal: 0,
+            previsionsTotal: 0),
       );
     }
     await _saveMontantPrevision(remove: true);
@@ -221,7 +230,9 @@ class EasyController extends ChangeNotifier {
           id: id,
           montant: montant,
           nom: nom,
-          descriptionUniverselle: []),
+          descriptionUniverselle: [],
+          achatTotal: 0,
+          previsionsTotal: 0),
     );
     addMontantPrevision(id: id, montant: montant, nom: nom, unity: unity);
 
@@ -242,7 +253,9 @@ class EasyController extends ChangeNotifier {
           id: id,
           montant: montant,
           nom: nom,
-          descriptionUniverselle: []),
+          descriptionUniverselle: [],
+          achatTotal: 0,
+          previsionsTotal: 0),
     );
 
     await _saveMontantPrevision();
@@ -298,7 +311,9 @@ class EasyController extends ChangeNotifier {
         id: id,
         montant: montant,
         nom: nom,
-        descriptionUniverselle: []));
+        descriptionUniverselle: [],
+        achatTotal: 0,
+        previsionsTotal: 0));
     await _saveGestionMensuelle();
     _initEconomyDays();
     notifyListeners();
@@ -314,7 +329,9 @@ class EasyController extends ChangeNotifier {
             montant: _listMontantUniverselle[i].montant,
             nom: _listMontantUniverselle[i].nom,
             descriptionUniverselle:
-                _listMontantUniverselle[i].descriptionUniverselle),
+                _listMontantUniverselle[i].descriptionUniverselle,
+            achatTotal: 0,
+            previsionsTotal: 0),
       );
     }
     return listMontantPrevision1;
@@ -374,7 +391,13 @@ class EasyController extends ChangeNotifier {
                     .nom,
                 descriptionUniverselle: _listGestionMensuel[indexGestionMensuel]
                     .montantUniverselleLive[indexGestionMensMontanUniv]
-                    .descriptionUniverselle),
+                    .descriptionUniverselle,
+                achatTotal: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselleLive[indexGestionMensMontanUniv]
+                    .achatTotal,
+                previsionsTotal: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselleLive[indexGestionMensMontanUniv]
+                    .previsionsTotal),
           );
     }
 
@@ -410,7 +433,13 @@ class EasyController extends ChangeNotifier {
                     .nom,
                 descriptionUniverselle: _listGestionMensuel[indexGestionMensuel]
                     .montantUniverselle[indexGestionMensMontanUniv]
-                    .descriptionUniverselle),
+                    .descriptionUniverselle,
+                achatTotal: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselle[indexGestionMensMontanUniv]
+                    .achatTotal,
+                previsionsTotal: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselle[indexGestionMensMontanUniv]
+                    .previsionsTotal),
           );
     }
 

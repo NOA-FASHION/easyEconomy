@@ -1,5 +1,6 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/description_gestion.dart';
 import 'package:easyeconomy/screens/gestion_mensuel_live.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -370,14 +371,19 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                           colors: [Colors.blueAccent, Colors.orange])),
                   child: ListTile(
                     onTap: () async {
-                      // Navigator.push(
-                      //     context,
-                      //     PageTransition(
-                      //         type: PageTransitionType.bottomToTop,
-                      //         child: ChangeNotifierProvider.value(
-                      //             value: variable,
-                      //             child: ResultDays(
-                      //                 index, _productGagnantList[index].id))));
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              child: ChangeNotifierProvider.value(
+                                  value: variable,
+                                  child: DescriptionGestion(
+                                    idGestionMontantUniverselle:
+                                        _listMontantUniverselle[index].id,
+                                    indexGestionMensuel:
+                                        widget.indexGestionMensuel,
+                                    indexGestionMensuelMontantUniv: index,
+                                  ))));
                     },
                     title: Container(
                       child: Row(

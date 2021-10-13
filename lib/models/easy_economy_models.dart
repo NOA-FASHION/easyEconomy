@@ -63,7 +63,9 @@ choixDesciptionEnum1(dynamic json) {
 
 class DesciprtionUniverselle {
   double achat;
+  double previsions;
   double echeance;
+  double resteEcheance;
   String id;
   String index;
   String name;
@@ -72,6 +74,8 @@ class DesciprtionUniverselle {
   DesciprtionUniverselle(
       {required this.achat,
       required this.echeance,
+      required this.resteEcheance,
+      required this.previsions,
       required this.id,
       required this.name,
       required this.tache,
@@ -81,6 +85,8 @@ class DesciprtionUniverselle {
   DesciprtionUniverselle.fromJSON(Map<String, dynamic> json)
       : achat = json['achat'],
         echeance = json['echeance'],
+        resteEcheance = json['resteEcheance'],
+        previsions = json['previsions'],
         name = json['name'],
         id = json['id'],
         tache = json['tache'],
@@ -91,6 +97,8 @@ class DesciprtionUniverselle {
     return {
       "achat": achat,
       "echeance": echeance,
+      "resteEcheance": resteEcheance,
+      "previsions": previsions,
       "name": name,
       "id": id,
       "tache": tache,
@@ -101,6 +109,8 @@ class DesciprtionUniverselle {
 }
 
 class MontantUniverselle {
+  double achatTotal;
+  double previsionsTotal;
   String id;
   String nom;
   double montant;
@@ -111,6 +121,8 @@ class MontantUniverselle {
       {required this.id,
       required this.nom,
       required this.montant,
+      required this.achatTotal,
+      required this.previsionsTotal,
       required this.descriptionUniverselle,
       required this.unity});
   factory MontantUniverselle.fromJSON(Map<String, dynamic> json) =>
@@ -118,6 +130,8 @@ class MontantUniverselle {
           id: json['id'],
           nom: json['nom'],
           montant: json['montant'],
+          achatTotal: json['achatTotalnom'],
+          previsionsTotal: json['previsionsTotal'],
           descriptionUniverselle: List<DesciprtionUniverselle>.from(
               json["descriptionUniverselle"]
                   .map((x) => DesciprtionUniverselle.fromJSON(x))
@@ -128,6 +142,8 @@ class MontantUniverselle {
     return {
       "id": id,
       "nom": nom,
+      "achatTotal": achatTotal,
+      "previsionsTotal": previsionsTotal,
       "montant": montant,
       "descriptionUniverselle":
           List<dynamic>.from(descriptionUniverselle.map((x) => x.toJson())),
