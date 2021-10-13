@@ -98,6 +98,17 @@ class EasyController extends ChangeNotifier {
     return montanUniverselle;
   }
 
+  List<MontantUniverselle> getGestionMontantUniverselleLive(String gestionId) {
+    List<MontantUniverselle> montanUniverselle = [];
+    for (var i = _listGestionMensuel.length - 1; i >= 0; i--) {
+      if (_listGestionMensuel[i].idGestion == gestionId) {
+        montanUniverselle = _listGestionMensuel[i].montantUniverselleLive;
+      }
+    }
+
+    return montanUniverselle;
+  }
+
   void removeMontantUniverselle({
     required int index,
   }) async {
@@ -117,7 +128,9 @@ class EasyController extends ChangeNotifier {
             unity: _listMontantUniverselle[i].unity,
             id: _listMontantUniverselle[i].id,
             montant: _listMontantUniverselle[i].montant,
-            nom: _listMontantUniverselle[i].nom),
+            nom: _listMontantUniverselle[i].nom,
+            descriptionUniverselle:
+                _listMontantUniverselle[i].descriptionUniverselle),
       );
     }
     await _saveMontantPrevision(remove: true);
@@ -207,7 +220,8 @@ class EasyController extends ChangeNotifier {
           unity: choixDesciptionEnum1(unity),
           id: id,
           montant: montant,
-          nom: nom),
+          nom: nom,
+          descriptionUniverselle: []),
     );
     addMontantPrevision(id: id, montant: montant, nom: nom, unity: unity);
 
@@ -227,7 +241,8 @@ class EasyController extends ChangeNotifier {
           unity: choixDesciptionEnum1(unity),
           id: id,
           montant: montant,
-          nom: nom),
+          nom: nom,
+          descriptionUniverselle: []),
     );
 
     await _saveMontantPrevision();
@@ -282,24 +297,43 @@ class EasyController extends ChangeNotifier {
         unity: choixDesciptionEnum1(unity),
         id: id,
         montant: montant,
-        nom: nom));
+        nom: nom,
+        descriptionUniverselle: []));
     await _saveGestionMensuelle();
     _initEconomyDays();
     notifyListeners();
   }
 
+  List<MontantUniverselle> _ListGestionMensuelPrevision() {
+    List<MontantUniverselle> listMontantPrevision1 = [];
+    for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
+      listMontantPrevision1.add(
+        MontantUniverselle(
+            unity: _listMontantUniverselle[i].unity,
+            id: _listMontantUniverselle[i].id,
+            montant: _listMontantUniverselle[i].montant,
+            nom: _listMontantUniverselle[i].nom,
+            descriptionUniverselle:
+                _listMontantUniverselle[i].descriptionUniverselle),
+      );
+    }
+    return listMontantPrevision1;
+  }
+
   void creatListGestionMensuel() async {
     DateTime today = new DateTime.now();
-    if (economyDays.date != DateFormat('MMM').format(today)) {
+    String todays = DateFormat('MMM').format(today);
+    if (economyDays.date != todays) {
       print('date != econonydays');
       economyDays.date = DateFormat('MMM').format(today);
       _listGestionMensuel.add(
         GestionMensuel(
             idGestion: nanoid(10),
             mois: DateFormat('MMM').format(today),
-            montantUniverselle: [],
+            montantUniverselle: _ListGestionMensuelPrevision(),
             nom: 'Mois en cours',
-            tendance: ''),
+            tendance: '',
+            montantUniverselleLive: []),
       );
       await _saveEconomyDays();
       await _saveGestionMensuelle();
@@ -318,10 +352,68 @@ class EasyController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeGestionMensuelleMontantUniv(
-      {required int indexGestionMensuel,
+  void removeGestionMensuelleMontantUnivLive(
+      {required bool validation,
+      required int indexGestionMensuel,
       required int indexGestionMensMontanUniv,
       required String idGestionMensMontanUniv}) async {
+    if (validation) {
+      _listGestionMensuel[indexGestionMensuel].montantUniverselle.add(
+            MontantUniverselle(
+                unity: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselleLive[indexGestionMensMontanUniv]
+                    .unity,
+                id: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselleLive[indexGestionMensMontanUniv]
+                    .id,
+                montant: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselleLive[indexGestionMensMontanUniv]
+                    .montant,
+                nom: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselleLive[indexGestionMensMontanUniv]
+                    .nom,
+                descriptionUniverselle: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselleLive[indexGestionMensMontanUniv]
+                    .descriptionUniverselle),
+          );
+    }
+
+    _listGestionMensuel[indexGestionMensuel]
+        .montantUniverselleLive
+        .removeAt(indexGestionMensMontanUniv);
+
+    await _saveGestionMensuelleMontantUniv(
+        remove: true, idGestionMensMontanUniv: idGestionMensMontanUniv);
+    _initEconomy();
+    notifyListeners();
+  }
+
+  void removeGestionMensuelleMontantUniv(
+      {required bool validation,
+      required int indexGestionMensuel,
+      required int indexGestionMensMontanUniv,
+      required String idGestionMensMontanUniv}) async {
+    if (validation) {
+      _listGestionMensuel[indexGestionMensuel].montantUniverselleLive.add(
+            MontantUniverselle(
+                unity: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselle[indexGestionMensMontanUniv]
+                    .unity,
+                id: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselle[indexGestionMensMontanUniv]
+                    .id,
+                montant: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselle[indexGestionMensMontanUniv]
+                    .montant,
+                nom: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselle[indexGestionMensMontanUniv]
+                    .nom,
+                descriptionUniverselle: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselle[indexGestionMensMontanUniv]
+                    .descriptionUniverselle),
+          );
+    }
+
     _listGestionMensuel[indexGestionMensuel]
         .montantUniverselle
         .removeAt(indexGestionMensMontanUniv);

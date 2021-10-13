@@ -7,20 +7,20 @@ import 'package:marquee_text/marquee_text.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-class BuildGestionMensuelLive extends StatefulWidget {
+class BuildGestionMensuelResultats extends StatefulWidget {
   final String idGestionMontantUniverselle;
   final int indexGestionMensuel;
-
-  BuildGestionMensuelLive(
+  BuildGestionMensuelResultats(
       {required this.idGestionMontantUniverselle,
       required this.indexGestionMensuel});
 
   @override
-  _BuildGestionMensuelLiveState createState() =>
-      _BuildGestionMensuelLiveState();
+  _BuildGestionMensuelResultatsState createState() =>
+      _BuildGestionMensuelResultatsState();
 }
 
-class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
+class _BuildGestionMensuelResultatsState
+    extends State<BuildGestionMensuelResultats> {
   Color colorsDescription(String description) {
     Color colors = Colors.black;
     if (description == "unity_Montant_universelle.ChargeFixe") {
@@ -238,7 +238,7 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
     List<MontantUniverselle> _listMontantUniverselle = variable
-        .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
+        .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
 
     if (_listMontantUniverselle.isEmpty) {
       return Container(
