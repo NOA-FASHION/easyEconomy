@@ -72,7 +72,7 @@ class EasyController extends ChangeNotifier {
           .toList();
     }
     _initEconomyDays();
-    starteconomyDays();
+    // starteconomyDays();
     notifyListeners();
   }
 
@@ -303,9 +303,12 @@ class EasyController extends ChangeNotifier {
   }
 
   void starteconomyDays() async {
+    print('economydays:' + economyDays.date);
     DateTime today = new DateTime.now();
-    if (economyDays.date.isEmpty) {
-      economyDays.date = DateFormat('MMM').format(today);
+    String todays = DateFormat('MMM').format(today);
+    if (economyDays.date.isEmpty || economyDays.date != todays) {
+      print('create gestionMensuel');
+      economyDays.date = todays;
       _listGestionMensuel.add(
         GestionMensuel(
             idGestion: nanoid(10),
@@ -318,10 +321,10 @@ class EasyController extends ChangeNotifier {
 
       await _saveGestionMensuelle();
       await _saveEconomyDays();
-      _initEconomyDays();
-      notifyListeners();
+      // _initEconomyDays();
+      // notifyListeners();
     }
-    creatListGestionMensuel();
+    // creatListGestionMensuel();
   }
 
   Future<bool> _saveEconomyDays() async {
@@ -341,11 +344,13 @@ class EasyController extends ChangeNotifier {
     Map<String, dynamic> _jsonDecodeEconomyDays;
     final String? _tempListChallenge =
         _localDataEcononyDays.getString(keyAccesEconomyDays);
+
     if (_tempListChallenge != null) {
+      print('economy:' + economyDays.date);
       _jsonDecodeEconomyDays = jsonDecode(_tempListChallenge);
       economyDays = EconomyDays.fromJSON(_jsonDecodeEconomyDays);
-      print(economyDays.date);
     }
+    starteconomyDays();
   }
 
   void addGestionMensuelMontantUniv(
@@ -402,8 +407,8 @@ class EasyController extends ChangeNotifier {
       );
       await _saveEconomyDays();
       await _saveGestionMensuelle();
-      _initEconomyDays();
-      notifyListeners();
+      // _initEconomyDays();
+      // notifyListeners();
     }
   }
 

@@ -15,8 +15,6 @@ class BuildGestionMensuel extends StatefulWidget {
 }
 
 class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
-
-  
   Widget maxLetter(String word) {
     Widget longLetter;
 
@@ -141,7 +139,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                             width: 5.0,
                           ),
                           Text(
-                            gestion.tendance,
+                            gestion.mois,
                           ),
                         ],
                       ),
@@ -310,7 +308,8 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                                 value: variable,
                                 child: GestionMensuelLive(
                                   idGestionMontantUniverselle:
-                                      _listGestionMensuel[index].idGestion, indexMontantUniverselle: index,
+                                      _listGestionMensuel[index].idGestion,
+                                  indexMontantUniverselle: index,
                                 ))));
                   },
                   title: Container(
