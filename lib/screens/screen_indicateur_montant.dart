@@ -100,11 +100,14 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
   String choixMontant() {
     String montant = '0';
 
-    if (widget.titre == "Solde prévisionnel") {
+    if (widget.titre == "Solde prévisionnel" ||
+        widget.titre == "Solde validé") {
       montant = montantTotals();
-    } else if (widget.titre == "Prévisions revenus") {
+    } else if (widget.titre == "Prévisions revenus" ||
+        widget.titre == "Revenus Validés") {
       montant = montantRevenu();
-    } else if (widget.titre == "Prévisons charges") {
+    } else if (widget.titre == "Prévisons charges" ||
+        widget.titre == "Charges validées") {
       montant = montantCharge();
     }
 

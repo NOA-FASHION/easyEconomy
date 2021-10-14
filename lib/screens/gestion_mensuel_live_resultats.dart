@@ -40,9 +40,9 @@ class _GestionMensuelLiveResultatsState
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
     List<MontantUniverselle> _listMontantUniverselle = variable
-        .getGestionMensuelMontantUnivLive(widget.indexMontantUniverselle);
-    List<MontantUniverselle> _listMontPrevision =
-        variable.getMontantPrevision();
+        .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
+    List<MontantUniverselle> _listMontantUniverselleLive = variable
+        .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
     return Material(
       child: Scaffold(
         key: scaffoldkey,
@@ -82,24 +82,27 @@ class _GestionMensuelLiveResultatsState
                             children: [
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévisons charges",
+                                titre: "Charges validées",
                                 icones: Icons.price_change_rounded,
                                 listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
+                                listMontantPrevision:
+                                    _listMontantUniverselleLive,
                               ),
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévisions revenus",
+                                titre: "Revenus Validés",
                                 icones: Icons.money,
                                 listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
+                                listMontantPrevision:
+                                    _listMontantUniverselleLive,
                               ),
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Solde prévisionnel",
+                                titre: "Solde validé",
                                 icones: Icons.preview,
                                 listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
+                                listMontantPrevision:
+                                    _listMontantUniverselleLive,
                               ),
                             ],
                           ),
