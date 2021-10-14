@@ -2,6 +2,7 @@ import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_gestion_mensuel_live.dart';
 import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
+import 'package:easyeconomy/screens/screen_indicator_montant_gestionMensuel_live.dart';
 import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';
@@ -37,14 +38,14 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
     List<MontantUniverselle> _listMontantUniverselle =
-        variable.getMontantUniverselle();
-    List<MontantUniverselle> _listMontPrevision =
-        variable.getMontantPrevision();
+        variable.getGestionMensuelAchat(widget.indexMontantUniverselle);
+    List<MontantUniverselle> _listMontantUniverselleLive = variable
+        .getGestionMensuelMontantUnivLive(widget.indexMontantUniverselle);
     return Material(
       child: Scaffold(
         key: scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(260.0),
+          preferredSize: Size.fromHeight(337.0),
           child: SafeArea(
             child: AppBar(
               title: Text("Gestion du budget du mois de"),
@@ -77,26 +78,29 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
+                              ScreenIndicatorMontantGestionLive(
                                 titre: "Prévisons charges",
                                 icones: Icons.price_change_rounded,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
+                                gestionListMontantUniverselle:
+                                    _listMontantUniverselle,
+                                gestionListMontantUniverselleLive:
+                                    _listMontantUniverselleLive, titre1: 'Charges live',
                               ),
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
+                              ScreenIndicatorMontantGestionLive(
                                 titre: "Prévisions revenus",
                                 icones: Icons.money,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
+                                gestionListMontantUniverselle:
+                                    _listMontantUniverselle,
+                                gestionListMontantUniverselleLive:
+                                    _listMontantUniverselleLive,titre1: 'Revenus live',
                               ),
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
+                              ScreenIndicatorMontantGestionLive(
                                 titre: "Solde prévisionnel",
                                 icones: Icons.preview,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
+                                gestionListMontantUniverselle:
+                                    _listMontantUniverselle,
+                                gestionListMontantUniverselleLive:
+                                    _listMontantUniverselleLive,titre1: 'Solde Live',
                               ),
                             ],
                           ),
@@ -127,7 +131,8 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                     end: Alignment.centerRight,
                     colors: [Colors.orange, Colors.blueAccent])),
             child: BuildGestionMensuelLive(
-              idGestionMontantUniverselle: widget.idGestionMontantUniverselle, indexGestionMensuel: widget.indexMontantUniverselle,
+              idGestionMontantUniverselle: widget.idGestionMontantUniverselle,
+              indexGestionMensuel: widget.indexMontantUniverselle,
             ),
           ),
         ),

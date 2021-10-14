@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -111,8 +115,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
     return longLetter;
   }
 
-  Widget formationEdit(
-      EasyController provider, Challengemodel2 item, String description) {
+  Widget formationEdit(EasyController provider, String description) {
     Widget fomationEdit = SizedBox(
       width: 5.0,
     );
@@ -213,7 +216,8 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
   Widget build(BuildContext context) {
     EasyController providerType = Provider.of<EasyController>(context);
     List<DesciprtionUniverselle> ListDesription =
-        providerType.getGestionMensuelDescription( widget.indexGestionMensuel,widget.indexGestionMensuelMontantUniv);
+        providerType.getGestionMensuelDescription(
+            widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
 
     // final Challengecontroller provider =
     //     Provider.of<Challengecontroller>(context);
@@ -235,7 +239,6 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
           child: Dismissible(
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
-               
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
                     content: "La tâche a bien été validé",
                     lotties: 'assets/challenge.json'));
@@ -271,7 +274,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
             },
             confirmDismiss: (direction) async {
               if (direction == DismissDirection.startToEnd) {
-                final bool resultat = await showDialog<bool>(
+                final bool? resultat = await showDialog<bool>(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
@@ -344,176 +347,38 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                 elevation: 20.0,
                 child: ListTile(
                   onTap: () async {
-                    if (item.description
-                            .toString()
-                            .replaceAll(unityPattern, "") ==
-                        "video") {
-                      print(item.name);
-                      if (!await File(item.name).exists()) {
-                        final pickedFile =
-                            await picker.getVideo(source: ImageSource.gallery);
-                        item.name = pickedFile.path;
-                        setState(() {
-                          if (pickedFile != null) {
-                            item.name = pickedFile.path;
-                          } else {
-                            print('No image selected.');
-                          }
-                        });
-                        return;
-                      }
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              child: ChangeNotifierProvider.value(
-                                  value: providerType,
-                                  child: VideoPlayerScreen(
-                                      nameChallenge: item.name))));
- 
-                    } else if (item.description
-                            .toString()
-                            .replaceAll(unityPattern, "") ==
-                        "image") {
-                      if (!await File(item.name).exists()) {
-                        final pickedFile =
-                            await picker.getImage(source: ImageSource.gallery);
-                        item.name = pickedFile.path;
-                        setState(() {
-                          if (pickedFile != null) {
-                            item.name = pickedFile.path;
-                          } else {
-                            print('No image selected.');
-                          }
-                        });
-                        return;
-                      }
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              child: ChangeNotifierProvider.value(
-                                  value: providerType,
-                                  child:
-                                      PlayPicture(nameChallenge: item.name))));
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (context) => ChangeNotifierProvider.value(
-                      //         value: providerType,
-                      //         child: PlayPicture(nameChallenge: item.name))));
-                    } else if (item.description
-                            .toString()
-                            .replaceAll(unityPattern, "") ==
-                        "url") {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              child: ChangeNotifierProvider.value(
-                                  value: providerType,
-                                  child: PlayUrl(nameChallenge: item.name))));
-
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (context) => ChangeNotifierProvider.value(
-                      //         value: providerType,
-                      //         child: PlayUrl(nameChallenge: item.name))));
-                    } else if (item.description
-                            .toString()
-                            .replaceAll(unityPattern, "") ==
-                        "adresse") {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              child: ChangeNotifierProvider.value(
-                                  value: providerType,
-                                  child: AdressMap(adresse: item.name))));
-
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (context) => ChangeNotifierProvider.value(
-                      //         value: providerType,
-                      //         child: AdressMap(adresse: item.name))));
-                    } else if (item.description
+                    if (ListDesription[index]
+                            .description
                             .toString()
                             .replaceAll(unityPattern, "") ==
                         "commentaire") {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              child: ChangeNotifierProvider.value(
-                                  value: providerType,
-                                  child: PlayCommentaire(
-                                      nameChallenge: item.name))));
+                      // Navigator.push(
+                      //     context,
+                      //     PageTransition(
+                      //         type: PageTransitionType.bottomToTop,
+                      //         child: ChangeNotifierProvider.value(
+                      //             value: providerType,
+                      //             child: PlayCommentaire(
+                      //                 nameChallenge: item.name))));
 
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (context) => ChangeNotifierProvider.value(
-                      //         value: providerType,
-                      //         child:
-                      //             PlayCommentaire(nameChallenge: item.name))));
-                    } else if (item.description
+                    } else if (ListDesription[index]
+                            .description
                             .toString()
                             .replaceAll(unityPattern, "") ==
-                        "youtube") {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              child: ChangeNotifierProvider.value(
-                                  value: providerType,
-                                  child: PlayYoutubeScreen(
-                                      nameChallenge: item.name))));
+                        "paiement") {
+                      // Navigator.push(
+                      //     context,
+                      //     PageTransition(
+                      //         type: PageTransitionType.bottomToTop,
+                      //         child: ChangeNotifierProvider.value(
+                      //             value: providerType,
+                      //             child: Home(
+                      //               returnRaccourci: false,
+                      //               id: widget.id,
+                      //               idChallenge1: item.id,
+                      //               namechallenge: item.tache,
+                      //             ))));
 
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (context) => ChangeNotifierProvider.value(
-                      //         value: providerType,
-                      //         child: PlayYoutubeScreen(
-                      //             nameChallenge: item.name))));
-                    } else if (item.description
-                                .toString()
-                                .replaceAll(unityPattern, "") ==
-                            "evenement" ||
-                        item.description
-                                .toString()
-                                .replaceAll(unityPattern, "") ==
-                            "information" ||
-                        item.description
-                                .toString()
-                                .replaceAll(unityPattern, "") ==
-                            "tache" ||
-                        item.description
-                                .toString()
-                                .replaceAll(unityPattern, "") ==
-                            "projet" ||
-                        item.description
-                                .toString()
-                                .replaceAll(unityPattern, "") ==
-                            "mission" ||
-                        item.description
-                                .toString()
-                                .replaceAll(unityPattern, "") ==
-                            "paiement") {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              child: ChangeNotifierProvider.value(
-                                  value: providerType,
-                                  child: Home(
-                                    returnRaccourci: false,
-                                    id: widget.id,
-                                    idChallenge1: item.id,
-                                    namechallenge: item.tache,
-                                  ))));
-
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (context) => ChangeNotifierProvider.value(
-                      //         value: providerType,
-                      //         child: Home(
-                      //           returnRaccourci: false,
-                      //           id: widget.id,
-                      //           idChallenge1: item.id,
-                      //           namechallenge: item.tache,
-                      //         ))));
                     }
                   },
                   title: Container(
@@ -537,21 +402,16 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                                 SizedBox(
                                   width: 5.0,
                                 ),
-                                Text(item.index),
+                                Text(ListDesription[index].name),
                               ],
                             ),
                           ),
                         ),
-                        formationEdit(
-                            providerType,
-                            item,
-                            item.description
-                                .toString()
-                                .replaceAll(unityPattern, "")),
+
                         SizedBox(
                           width: 5.0,
                         ),
-                        prixCout(item.prix, item.cout)
+                        // prixCout(item.prix, item.cout)
                       ],
                     ),
                   ),
@@ -581,28 +441,35 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        modifDescription(item.description
+                                        modifDescription(ListDesription[index]
+                                            .description
                                             .toString()
                                             .replaceAll(unityPattern, "")),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: colorsDescription(item
-                                                .description
-                                                .toString()
-                                                .replaceAll(unityPattern, ""))),
+                                            color: colorsDescription(
+                                                ListDesription[index]
+                                                    .description
+                                                    .toString()
+                                                    .replaceAll(
+                                                        unityPattern, ""))),
                                       ),
                                       SizedBox(
                                         width: 2.0,
                                       ),
                                       maxLetter(
-                                          item.tache.toString(),
-                                          item.description
+                                          ListDesription[index]
+                                              .tache
+                                              .toString(),
+                                          ListDesription[index]
+                                              .description
                                               .toString()
                                               .replaceAll(unityPattern, "")),
                                       SizedBox(
                                         width: 2.0,
                                       ),
-                                      iconDataJoin(item.description
+                                      iconDataJoin(ListDesription[index]
+                                          .description
                                           .toString()
                                           .replaceAll(unityPattern, "")),
                                     ],
@@ -630,36 +497,36 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
-                                Container(
-                                  height: 30.0,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      maxLetter(
-                                          item.formation.chapitre,
-                                          item.description
-                                              .toString()
-                                              .replaceAll(unityPattern, "")),
-                                      SizedBox(
-                                        width: 5.0,
-                                      ),
-                                      maxLetter(
-                                          item.formation.duree,
-                                          item.description
-                                              .toString()
-                                              .replaceAll(unityPattern, "")),
-                                      SizedBox(
-                                        width: 5.0,
-                                      ),
-                                      maxLetter(
-                                          item.formation.theoriePratique,
-                                          item.description
-                                              .toString()
-                                              .replaceAll(unityPattern, "")),
-                                    ],
-                                  ),
-                                ),
+                                // Container(
+                                //   height: 30.0,
+                                //   child: Row(
+                                //     mainAxisAlignment:
+                                //         MainAxisAlignment.spaceBetween,
+                                //     children: [
+                                //       maxLetter(
+                                //           item.formation.chapitre,
+                                //           item.description
+                                //               .toString()
+                                //               .replaceAll(unityPattern, "")),
+                                //       SizedBox(
+                                //         width: 5.0,
+                                //       ),
+                                //       maxLetter(
+                                //           item.formation.duree,
+                                //           item.description
+                                //               .toString()
+                                //               .replaceAll(unityPattern, "")),
+                                //       SizedBox(
+                                //         width: 5.0,
+                                //       ),
+                                //       maxLetter(
+                                //           item.formation.theoriePratique,
+                                //           item.description
+                                //               .toString()
+                                //               .replaceAll(unityPattern, "")),
+                                //     ],
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -674,19 +541,11 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
           ),
         );
       },
-      onDragFinish: (before, after) {
-        Challengemodel2 data = _challengesList[before];
-        _challengesList.removeAt(before);
-        _challengesList.insert(after, data);
-        providerType.save();
-        providerType.deplacelistSAve(widget.indexChallenge, widget.id);
-      },
-      canBeDraggedTo: (one, two) => true,
-      dragElevation: 8.0,
     );
   }
 
-  SnackBar _buildSnackBar({@required String content, String lotties}) {
+  SnackBar _buildSnackBar(
+      {@required String? content, required String lotties}) {
     return SnackBar(
       backgroundColor: Colors.white,
       content: Container(
@@ -695,7 +554,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
           children: [
             Lottie.asset(lotties, width: 60),
             Text(
-              content,
+              content!,
               style: TextStyle(color: Colors.purple),
               textAlign: TextAlign.center,
             ),

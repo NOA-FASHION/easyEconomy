@@ -82,8 +82,14 @@ class EasyController extends ChangeNotifier {
   List<MontantUniverselle> getGestionMensuelAchat(int indexGestionMensuel) {
     return _listGestionMensuel[indexGestionMensuel].montantUniverselle;
   }
-   List<DesciprtionUniverselle> getGestionMensuelDescription(int indexGestionMensuel,int indexGestionMensuelMontantUniv) {
-    return _listGestionMensuel[indexGestionMensuel].montantUniverselle[indexGestionMensuelMontantUniv].descriptionUniverselle;
+ List<MontantUniverselle> getGestionMensuelMontantUnivLive(int indexGestionMensuel) {
+    return _listGestionMensuel[indexGestionMensuel].montantUniverselleLive;
+  }
+  List<DesciprtionUniverselle> getGestionMensuelDescription(
+      int indexGestionMensuel, int indexGestionMensuelMontantUniv) {
+    return _listGestionMensuel[indexGestionMensuel]
+        .montantUniverselle[indexGestionMensuelMontantUniv]
+        .descriptionUniverselle;
   }
 
   List<MontantUniverselle> getMontantUniverselle() {
@@ -267,9 +273,20 @@ class EasyController extends ChangeNotifier {
     DateTime today = new DateTime.now();
 
     if (economyDays.date.isEmpty) {
-      print('date vide');
       economyDays.date = DateFormat('MMM').format(today);
-      print(economyDays.date);
+      print('date != econonydays');
+      economyDays.date = DateFormat('MMM').format(today);
+      _listGestionMensuel.add(
+        GestionMensuel(
+            idGestion: nanoid(10),
+            mois: DateFormat('MMM').format(today),
+            montantUniverselle: _ListGestionMensuelPrevision(),
+            nom: 'Mois en cours',
+            tendance: '',
+            montantUniverselleLive: []),
+      );
+
+      await _saveGestionMensuelle();
       await _saveEconomyDays();
       _initEconomyDays();
       notifyListeners();
