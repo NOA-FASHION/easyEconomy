@@ -130,7 +130,7 @@ class MontantUniverselle {
           id: json['id'],
           nom: json['nom'],
           montant: json['montant'],
-          achatTotal: json['achatTotalnom'],
+          achatTotal: json['achatTotal'],
           previsionsTotal: json['previsionsTotal'],
           descriptionUniverselle: List<DesciprtionUniverselle>.from(
               json["descriptionUniverselle"]

@@ -13,6 +13,7 @@ const String keyAccesMontantPrevision = "montantPrevision";
 List<GestionMensuel> _listGestionMensuel = [];
 List<MontantUniverselle> _listMontantUniverselle = [];
 List<MontantUniverselle> _listMontantPrevision = [];
+late EconomyDays economyDays = EconomyDays(date: '');
 
 class EasyController extends ChangeNotifier {
   late double soldePrevisionel;
@@ -21,7 +22,7 @@ class EasyController extends ChangeNotifier {
   late SharedPreferences _localDataMontaUniverselle;
   late SharedPreferences _localDataEcononyDays;
   late SharedPreferences _localDataMontantPrevision;
-  late EconomyDays economyDays = EconomyDays(date: '');
+
   EasyController() {
     _initEconomy();
   }
@@ -303,10 +304,7 @@ class EasyController extends ChangeNotifier {
 
   void starteconomyDays() async {
     DateTime today = new DateTime.now();
-
     if (economyDays.date.isEmpty) {
-      economyDays.date = DateFormat('MMM').format(today);
-      print('date != econonydays');
       economyDays.date = DateFormat('MMM').format(today);
       _listGestionMensuel.add(
         GestionMensuel(
@@ -327,7 +325,7 @@ class EasyController extends ChangeNotifier {
   }
 
   Future<bool> _saveEconomyDays() async {
-    if (economyDays.date.isEmpty) {
+    if (economyDays.date.isNotEmpty) {
       print("enregistrement ok");
       Map mapday = economyDays.toJson();
       String _jsonDay = jsonEncode(mapday);
@@ -346,6 +344,7 @@ class EasyController extends ChangeNotifier {
     if (_tempListChallenge != null) {
       _jsonDecodeEconomyDays = jsonDecode(_tempListChallenge);
       economyDays = EconomyDays.fromJSON(_jsonDecodeEconomyDays);
+      print(economyDays.date);
     }
   }
 

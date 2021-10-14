@@ -52,39 +52,64 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
           child: SafeArea(
             child: AppBar(
               actions: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    InkWell(
-                      splashColor: Colors.white,
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                child: ChangeNotifierProvider.value(
-                                    value: variable,
-                                    child: GestionMensuelLiveResultats(
-                                      idGestionMontantUniverselle:
-                                          widget.idGestionMontantUniverselle,
-                                      indexMontantUniverselle:
-                                          widget.indexMontantUniverselle,
-                                    ))));
-                      },
-                      child: Icon(
-                        Icons.money,
-                        size: 20,
-                        color: Colors.blue,
-                      ),
-                    ), // icon
-                    Text(
-                      "Offre",
-                      style: TextStyle(fontSize: 10, color: Colors.blue),
-                    ), // text
-                  ],
+                // IconButton(
+                //   icon: const Icon(
+                //     Icons.money,
+                //     size: 20,
+                //     color: Colors.blue,
+                //   ),
+                //   tooltip: 'Open shopping cart',
+                //   onPressed: () {
+                //     Navigator.push(
+                //         context,
+                //         PageTransition(
+                //             type: PageTransitionType.bottomToTop,
+                //             child: ChangeNotifierProvider.value(
+                //                 value: variable,
+                //                 child: GestionMensuelLiveResultats(
+                //                   idGestionMontantUniverselle:
+                //                       widget.idGestionMontantUniverselle,
+                //                   indexMontantUniverselle:
+                //                       widget.indexMontantUniverselle,
+                //                 ))));
+                //   },
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 27, top: 17),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      InkWell(
+                        splashColor: Colors.white,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.bottomToTop,
+                                  child: ChangeNotifierProvider.value(
+                                      value: variable,
+                                      child: GestionMensuelLiveResultats(
+                                        idGestionMontantUniverselle:
+                                            widget.idGestionMontantUniverselle,
+                                        indexMontantUniverselle:
+                                            widget.indexMontantUniverselle,
+                                      ))));
+                        },
+                        child: Icon(
+                          Icons.backpack,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                      ), // icon
+                      Text(
+                        "transaction",
+                        style: TextStyle(fontSize: 10, color: Colors.white),
+                      ), // text
+                    ],
+                  ),
                 ),
               ],
-              title: Text("Gestion du budget du mois de"),
+              title: Text("Mois en cours"),
               centerTitle: true,
               flexibleSpace: Column(
                 children: [

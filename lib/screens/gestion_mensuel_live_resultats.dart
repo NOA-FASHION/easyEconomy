@@ -49,7 +49,7 @@ class _GestionMensuelLiveResultatsState
           preferredSize: Size.fromHeight(260.0),
           child: SafeArea(
             child: AppBar(
-              title: Text("Gestion du budget du mois de"),
+              title: Text("Transactions validées"),
               centerTitle: true,
               flexibleSpace: Column(
                 children: [
