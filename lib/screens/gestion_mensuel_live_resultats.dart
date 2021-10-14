@@ -1,6 +1,7 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_gestion_mensuel_live.dart';
+import 'package:easyeconomy/screens/build_gestion_mensuel_resultats.dart';
 import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
@@ -38,8 +39,8 @@ class _GestionMensuelLiveResultatsState
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
-    List<MontantUniverselle> _listMontantUniverselle =
-        variable.getMontantUniverselle();
+    List<MontantUniverselle> _listMontantUniverselle = variable
+        .getGestionMensuelMontantUnivLive(widget.indexMontantUniverselle);
     List<MontantUniverselle> _listMontPrevision =
         variable.getMontantPrevision();
     return Material(
@@ -128,7 +129,7 @@ class _GestionMensuelLiveResultatsState
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     colors: [Colors.orange, Colors.blueAccent])),
-            child: BuildGestionMensuelLive(
+            child: BuildGestionMensuelResultats(
               idGestionMontantUniverselle: widget.idGestionMontantUniverselle,
               indexGestionMensuel: widget.indexMontantUniverselle,
             ),

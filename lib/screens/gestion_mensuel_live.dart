@@ -40,10 +40,10 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
-    List<MontantUniverselle> _listMontantUniverselle =
-        variable.getGestionMensuelAchat(widget.indexMontantUniverselle);
+    List<MontantUniverselle> _listMontantUniverselle = variable
+        .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
     List<MontantUniverselle> _listMontantUniverselleLive = variable
-        .getGestionMensuelMontantUnivLive(widget.indexMontantUniverselle);
+        .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
     return Material(
       child: Scaffold(
         key: scaffoldkey,
@@ -52,28 +52,6 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
           child: SafeArea(
             child: AppBar(
               actions: [
-                // IconButton(
-                //   icon: const Icon(
-                //     Icons.money,
-                //     size: 20,
-                //     color: Colors.blue,
-                //   ),
-                //   tooltip: 'Open shopping cart',
-                //   onPressed: () {
-                //     Navigator.push(
-                //         context,
-                //         PageTransition(
-                //             type: PageTransitionType.bottomToTop,
-                //             child: ChangeNotifierProvider.value(
-                //                 value: variable,
-                //                 child: GestionMensuelLiveResultats(
-                //                   idGestionMontantUniverselle:
-                //                       widget.idGestionMontantUniverselle,
-                //                   indexMontantUniverselle:
-                //                       widget.indexMontantUniverselle,
-                //                 ))));
-                //   },
-                // ),
                 Padding(
                   padding: const EdgeInsets.only(right: 27, top: 17),
                   child: Column(
@@ -140,7 +118,9 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               ScreenIndicatorMontantGestionLive(
-                                titre: "Prévisons charges",
+                                titre: _listMontantUniverselleLive.length > 0
+                                    ? 'Charges restantes'
+                                    : "Prévisons charges",
                                 icones: Icons.price_change_rounded,
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
@@ -149,7 +129,9 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                 titre1: 'Charges live',
                               ),
                               ScreenIndicatorMontantGestionLive(
-                                titre: "Prévisions revenus",
+                                titre: _listMontantUniverselleLive.length > 0
+                                    ? 'revenus restants'
+                                    : "Prévisions revenus",
                                 icones: Icons.money,
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
@@ -158,13 +140,15 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                 titre1: 'Revenus live',
                               ),
                               ScreenIndicatorMontantGestionLive(
-                                titre: "Solde prévisionnel",
+                                titre: _listMontantUniverselleLive.length > 0
+                                    ? 'Soldes restants'
+                                    : "Prévisions Soldes",
                                 icones: Icons.preview,
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:
                                     _listMontantUniverselleLive,
-                                titre1: 'Solde Live',
+                                titre1: 'Soldes Live',
                               ),
                             ],
                           ),

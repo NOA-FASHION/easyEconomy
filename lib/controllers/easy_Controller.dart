@@ -129,8 +129,7 @@ class EasyController extends ChangeNotifier {
   void removeMontantUniverselle({
     required int index,
   }) async {
-    removeMontantPrevision(index: idmontantUniverselle(index));
-    // await removeChallengelistId(index);
+    // removeMontantPrevision(index: idmontantUniverselle(index));
     _listMontantUniverselle.removeAt(index);
     await _saveMontantUniverselle(remove: true);
     _initEconomy();

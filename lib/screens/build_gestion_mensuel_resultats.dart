@@ -259,7 +259,7 @@ class _BuildGestionMensuelResultatsState
           child: Dismissible(
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
-                variable.removeGestionMensuelleMontantUniv(
+                variable.removeGestionMensuelleMontantUnivLive(
                   indexGestionMensMontanUniv: index,
                   idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
                   indexGestionMensuel: widget.indexGestionMensuel,
@@ -271,7 +271,7 @@ class _BuildGestionMensuelResultatsState
               }
 
               if (direction == DismissDirection.startToEnd) {
-                variable.removeGestionMensuelleMontantUniv(
+                variable.removeGestionMensuelleMontantUnivLive(
                   indexGestionMensMontanUniv: index,
                   idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
                   indexGestionMensuel: widget.indexGestionMensuel,

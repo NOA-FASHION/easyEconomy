@@ -131,12 +131,15 @@ class _ScreenIndicatorMontantGestionLiveState
   String choixMontant() {
     String montant = '0';
 
-    if (widget.titre == "Solde prévisionnel") {
-      montant = montantTotalsLive();
-    } else if (widget.titre == "Prévisions revenus") {
-      montant = montantRevenuLive();
-    } else if (widget.titre == "Prévisons charges") {
-      montant = montantChargeLive();
+    if (widget.titre == "Prévisions Soldes" ||
+        widget.titre == 'Soldes restants') {
+      montant = montantTotals();
+    } else if (widget.titre == "Prévisions revenus" ||
+        widget.titre == 'revenus restants') {
+      montant = montantRevenu();
+    } else if (widget.titre == "Prévisons charges" ||
+        widget.titre == "Charges restantes") {
+      montant = montantCharge();
     }
 
     return montant;
@@ -145,12 +148,12 @@ class _ScreenIndicatorMontantGestionLiveState
   String choixMontantLive() {
     String montant = '0';
 
-    if (widget.titre == "Solde Live") {
-      montant = montantTotals();
-    } else if (widget.titre == "Revenus live") {
-      montant = montantRevenu();
-    } else if (widget.titre == "Charges live") {
-      montant = montantCharge();
+    if (widget.titre1 == "Soldes Live") {
+      montant = montantTotalsLive();
+    } else if (widget.titre1 == "Revenus live") {
+      montant = montantRevenuLive();
+    } else if (widget.titre1 == "Charges live") {
+      montant = montantChargeLive();
     }
 
     return montant;
