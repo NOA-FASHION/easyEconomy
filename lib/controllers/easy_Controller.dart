@@ -82,9 +82,12 @@ class EasyController extends ChangeNotifier {
   List<MontantUniverselle> getGestionMensuelAchat(int indexGestionMensuel) {
     return _listGestionMensuel[indexGestionMensuel].montantUniverselle;
   }
- List<MontantUniverselle> getGestionMensuelMontantUnivLive(int indexGestionMensuel) {
+
+  List<MontantUniverselle> getGestionMensuelMontantUnivLive(
+      int indexGestionMensuel) {
     return _listGestionMensuel[indexGestionMensuel].montantUniverselleLive;
   }
+
   List<DesciprtionUniverselle> getGestionMensuelDescription(
       int indexGestionMensuel, int indexGestionMensuelMontantUniv) {
     return _listGestionMensuel[indexGestionMensuel]
@@ -241,10 +244,39 @@ class EasyController extends ChangeNotifier {
           previsionsTotal: 0),
     );
     addMontantPrevision(id: id, montant: montant, nom: nom, unity: unity);
+    addMontantGestion(id: id, montant: montant, nom: nom, unity: unity);
 
     await _saveMontantUniverselle();
     _initEconomy();
     notifyListeners();
+  }
+
+  void addMontantGestion({
+    required String nom,
+    required double montant,
+    required String id,
+    required String unity,
+  }) async {
+    DateTime today = new DateTime.now();
+    for (var i = _listGestionMensuel.length - 1; i >= 0; i--) {
+      if (_listGestionMensuel[i].mois == DateFormat('MMM').format(today)) {
+        _listGestionMensuel[i].montantUniverselle
+          ..add(
+            MontantUniverselle(
+                unity: choixDesciptionEnum1(unity),
+                id: id,
+                montant: montant,
+                nom: nom,
+                descriptionUniverselle: [],
+                achatTotal: 0,
+                previsionsTotal: 0),
+          );
+        await _saveGestionMensuelle();
+        _initEconomyDays();
+        notifyListeners();
+        return;
+      }
+    }
   }
 
   void addMontantPrevision({

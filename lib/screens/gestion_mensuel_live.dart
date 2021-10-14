@@ -5,8 +5,11 @@ import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 import 'package:easyeconomy/screens/screen_indicator_montant_gestionMensuel_live.dart';
 import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
+
+import 'gestion_mensuel_live_resultats.dart';
 
 class GestionMensuelLive extends StatefulWidget {
   final String idGestionMontantUniverselle;
@@ -48,6 +51,39 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
           preferredSize: Size.fromHeight(337.0),
           child: SafeArea(
             child: AppBar(
+              actions: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    InkWell(
+                      splashColor: Colors.white,
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                type: PageTransitionType.bottomToTop,
+                                child: ChangeNotifierProvider.value(
+                                    value: variable,
+                                    child: GestionMensuelLiveResultats(
+                                      idGestionMontantUniverselle:
+                                          widget.idGestionMontantUniverselle,
+                                      indexMontantUniverselle:
+                                          widget.indexMontantUniverselle,
+                                    ))));
+                      },
+                      child: Icon(
+                        Icons.money,
+                        size: 20,
+                        color: Colors.blue,
+                      ),
+                    ), // icon
+                    Text(
+                      "Offre",
+                      style: TextStyle(fontSize: 10, color: Colors.blue),
+                    ), // text
+                  ],
+                ),
+              ],
               title: Text("Gestion du budget du mois de"),
               centerTitle: true,
               flexibleSpace: Column(
@@ -84,7 +120,8 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:
-                                    _listMontantUniverselleLive, titre1: 'Charges live',
+                                    _listMontantUniverselleLive,
+                                titre1: 'Charges live',
                               ),
                               ScreenIndicatorMontantGestionLive(
                                 titre: "Prévisions revenus",
@@ -92,7 +129,8 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:
-                                    _listMontantUniverselleLive,titre1: 'Revenus live',
+                                    _listMontantUniverselleLive,
+                                titre1: 'Revenus live',
                               ),
                               ScreenIndicatorMontantGestionLive(
                                 titre: "Solde prévisionnel",
@@ -100,7 +138,8 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:
-                                    _listMontantUniverselleLive,titre1: 'Solde Live',
+                                    _listMontantUniverselleLive,
+                                titre1: 'Solde Live',
                               ),
                             ],
                           ),
