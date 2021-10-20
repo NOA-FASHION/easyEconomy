@@ -115,6 +115,70 @@ class EasyController extends ChangeNotifier {
     return montanUniverselle;
   }
 
+  unity_description choixDesciptionEnum(dynamic json) {
+    unity_description unity = unity_description.tache;
+
+    if (json == "tache") {
+      unity = unity_description.tache;
+      return unity;
+    } else if (json == "commentaire") {
+      unity = unity_description.commentaire;
+      return unity;
+    } else if (json == "image") {
+      unity = unity_description.image;
+      return unity;
+    } else if (json == "achat") {
+      unity = unity_description.achat;
+      return unity;
+    } else if (json == "echeancier") {
+      unity = unity_description.echeancier;
+      return unity;
+    } else if (json == "information") {
+      unity = unity_description.information;
+      return unity;
+    }
+    return unity;
+  }
+
+  // List<DesciprtionUniverselle> getDescriptionUniv(
+  //     {required int indexGestionMensuel,
+  //     required int indexGestionMensuelMontantUniv}) {
+  //   return _listGestionMensuel[indexGestionMensuel]
+  //       .montantUniverselle[indexGestionMensuelMontantUniv]
+  //       .descriptionUniverselle;
+  // }
+
+  addDescriptionGestion(
+      {required double achat,
+      required double previsions,
+      required double echeance,
+      required double nombreEcheance,
+      required String id,
+      required String adresseImage,
+      required String name,
+      required String commentaire,
+      required int indexGestionMensuel,
+      required int indexGestionMensuelMontantUniv,
+      required String description}) async {
+    _listGestionMensuel[indexGestionMensuel]
+        .montantUniverselle[indexGestionMensuelMontantUniv]
+        .descriptionUniverselle
+        .add(DesciprtionUniverselle(
+            achat: achat,
+            adresseImage: adresseImage,
+            commentaire: commentaire,
+            description: choixDesciptionEnum(description),
+            echeance: echeance,
+            id: id,
+            name: name,
+            previsions: previsions,
+            nombreEcheance: nombreEcheance));
+    await _saveGestionMensuelle();
+    _initEconomyDays();
+    notifyListeners();
+    return;
+  }
+
   List<MontantUniverselle> getGestionMontantUniverselleLive(String gestionId) {
     List<MontantUniverselle> montanUniverselle = [];
     for (var i = _listGestionMensuel.length - 1; i >= 0; i--) {
@@ -461,6 +525,45 @@ class EasyController extends ChangeNotifier {
         remove: true, idGestionMensMontanUniv: idGestionMensMontanUniv);
     _initEconomy();
     notifyListeners();
+  }
+
+  void removeGestionDescriptionGestion(
+      {required int index,
+      required int indexGestionMensuel,
+      required int indexGestionMensMontanUniv,
+      required String idGestionMensMontanUniv}) async {
+    _listGestionMensuel[indexGestionMensuel]
+        .montantUniverselle[indexGestionMensMontanUniv]
+        .descriptionUniverselle
+        .removeAt(index);
+
+    await _saveDescriptionGestion(
+      remove: true,
+      indexGestionMensuel: indexGestionMensuel,
+      indexGestionMensuelMontantUniv: indexGestionMensMontanUniv,
+    );
+    _initEconomy();
+    notifyListeners();
+  }
+
+  Future<bool> _saveDescriptionGestion(
+      {required bool remove,
+      required int indexGestionMensuel,
+      required int indexGestionMensuelMontantUniv}) async {
+    if (_listGestionMensuel[indexGestionMensuel]
+                .montantUniverselle[indexGestionMensuelMontantUniv]
+                .descriptionUniverselle
+                .length <
+            1 &&
+        remove) {
+      _listGestionMensuel[indexGestionMensuel]
+          .montantUniverselle[indexGestionMensuelMontantUniv]
+          .descriptionUniverselle = [];
+    }
+    List<String> _jsonList = _listGestionMensuel.map((gestion) {
+      return jsonEncode(gestion.toJson());
+    }).toList();
+    return _localData.setStringList(keyAcces, _jsonList);
   }
 
   void removeGestionMensuelleMontantUniv(

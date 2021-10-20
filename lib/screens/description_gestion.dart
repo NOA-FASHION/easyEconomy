@@ -24,18 +24,18 @@ class DescriptionGestion extends StatefulWidget {
 class _DescriptionGestionState extends State<DescriptionGestion> {
   bool isSwitched = false;
   String unityPattern = "unity_challenge1.";
-  late String idChallenge1;
-  late String nombreEchenace;
-  late String nomAdresse;
-  late String villeAdresse;
-  late String adresse;
-  late String telephone;
-  late String paysAdresse;
-  late String prixProduit;
-  late String coutPaiment;
+  // late String idChallenge1;
+  String nombreEchenace = '0';
+  // late String nomAdresse;
+  // late String villeAdresse;
+  // late String adresse;
+  // late String telephone;
+  // late String paysAdresse;
+  String prixProduit = '0';
+  String coutPaiment = '0';
   late List<String> docPaths;
   late String _image;
-  late String _video;
+
   late String wait = "assets/wait.json";
   final picker = ImagePicker();
   late bool _visibility1 = true;
@@ -106,7 +106,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
   late bool idChalEcheanceAutoBool1;
 
   late final bool animatedpadding;
-  late final String something;
+  // late final String something;
   late final int indexChallenge;
   late String dataJoin;
 
@@ -114,12 +114,13 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
   final GlobalKey<ScaffoldState> scaffoldkeyTache = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKeyTache = GlobalKey<FormState>();
   late PersistentBottomSheetController _bottomSheetController;
-  String unityChallenge = "evenement";
+  String unityChallenge = "information";
   late String targetChallenge;
-  late String totalChallengeEnCours;
+  // late String totalChallengeEnCours;
   int totaChallengeEnCours1 = 0;
   double percentok = 0;
-  String percentokString = "0";
+  String commentaire = '';
+  // String percentokString = "0";
   double percentage(String percent) {
     var percent1;
 
@@ -129,12 +130,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
 
   Future<Null> delay(int milliseconds) {
     return new Future.delayed(new Duration(milliseconds: milliseconds));
-  }
-
-  retour() async {
-    await delay(500);
-    Navigator.pop(context);
-    unityChallenge = "evenement";
   }
 
   Widget selectdropdown(String resultat) {
@@ -178,6 +173,12 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
           ),
         ],
       );
+    } else if (resultat == "tache" || resultat == "information") {
+      nombreEchenace = '0';
+      coutPaiment = "0";
+      prixProduit = "0";
+      commentaire = "value!";
+      _image = '';
     } else if (resultat == "commentaire") {
       documentJoint = SizedBox(
         width: 200.0,
@@ -186,9 +187,10 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
           textCapitalization: TextCapitalization.sentences,
           maxLines: 30,
           onSaved: (value) {
+            nombreEchenace = '0';
             coutPaiment = "0";
             prixProduit = "0";
-            dataJoin = value!;
+            commentaire = value!;
           },
           validator: (value) {
             if (value!.isEmpty) {
@@ -217,8 +219,9 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
             width: 100,
             child: TextFormField(
               onSaved: (value) {
+                commentaire = "";
                 coutPaiment = "0";
-
+                nombreEchenace = '0';
                 prixProduit = value!;
               },
               validator: (value) {
@@ -255,6 +258,8 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                 width: 120,
                 child: TextFormField(
                   onSaved: (value) {
+                    commentaire = "";
+                    prixProduit = '0';
                     prixProduit = "0";
                     coutPaiment = value!;
                   },
@@ -313,7 +318,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
               ),
             ],
           ),
-          Text("€")
         ],
       );
     }
@@ -335,7 +339,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
         preferredSize: Size.fromHeight(100.0),
         child: SafeArea(
           child: AppBar(
-            title: Text(something),
+            title: Text('data'),
             actions: [],
             backgroundColor: Colors.blue,
             centerTitle: true,
@@ -346,86 +350,8 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  idChallengePaimentBool1
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Card(
-                              color: Colors.transparent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              elevation: 25.0,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    padding: EdgeInsets.all(4),
-                                    margin: EdgeInsets.only(right: 7),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          montantUniverselleAchat[widget
-                                                      .indexGestionMensuelMontantUniv]
-                                                  .achatTotal
-                                                  .toStringAsFixed(2) +
-                                              "€",
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black),
-                                        ),
-                                        Text(
-                                          "Achats",
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    padding: EdgeInsets.all(4),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          montantUniverselleAchat[widget
-                                                      .indexGestionMensuelMontantUniv]
-                                                  .previsionsTotal
-                                                  .toStringAsFixed(2) +
-                                              "€",
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black),
-                                        ),
-                                        Text(
-                                          "Prévisions",
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ), // icon
-                            // text
-                          ],
-                        )
-                      : SizedBox(width: 10),
-                  idChallengeBool1
-                      // _challengesListget[widget.indexChallenge].prixTotalBool
-                      ? SizedBox(width: 90)
-                      : SizedBox(width: 1),
                   Container(
-                    margin: idChallengeEcheanceBool1
-                        ? EdgeInsets.only(right: 25)
-                        : EdgeInsets.only(right: 0),
+                    margin: EdgeInsets.only(right: 0),
                     child: Image.asset(
                       'assets/logo.png',
                       width: 55,
@@ -437,7 +363,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                   gradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                      colors: <Color>[Colors.purple, Colors.blue])),
+                      colors: <Color>[Colors.orange, Colors.blueAccent])),
             ),
           ),
         ),
@@ -453,7 +379,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                 gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
-                    colors: [Colors.purple, Colors.blue])),
+                    colors: <Color>[Colors.orange, Colors.blueAccent])),
             child: BuildDescriptionGestion(
               idGestionMontantUniverselle: widget.idGestionMontantUniverselle,
               indexGestionMensuel: widget.indexGestionMensuel,
@@ -658,20 +584,24 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                 if (formKeyTache.currentState!.validate()) {
                                   formKeyTache.currentState!.save();
                                   setState(() {
-                                    // Provider.of<EasyController>(context,
-                                    //         listen: false)
-                                    //     .addChallenge2(
-                                    //         prix: double.parse(prixProduit),
-                                    //         cout: double.parse(coutPaiment),
-                                    //         id: nanoid(10),
-                                    //         index: widget.indexChallenge,
-                                    //         animatedpadding: animatedpadding,
-                                    //         totalChallenge: '1',
-                                    //         idListChallenge: widget.id,
-                                    //         name: dataJoin,
-                                    //         description: unityChallenge,
-                                    //         tache: targetChallenge,
-                                    //         formation: formations);
+                                    Provider.of<EasyController>(context,
+                                            listen: false)
+                                        .addDescriptionGestion(
+                                            achat: 0,
+                                            adresseImage: _image,
+                                            commentaire: commentaire,
+                                            description: unityChallenge,
+                                            echeance: double.parse(coutPaiment),
+                                            nombreEcheance:
+                                                double.parse(nombreEchenace),
+                                            id: nanoid(10),
+                                            indexGestionMensuel:
+                                                widget.indexGestionMensuel,
+                                            indexGestionMensuelMontantUniv: widget
+                                                .indexGestionMensuelMontantUniv,
+                                            name: targetChallenge,
+                                            previsions:
+                                                double.parse(prixProduit));
                                   });
                                   Navigator.pop(context);
                                 }

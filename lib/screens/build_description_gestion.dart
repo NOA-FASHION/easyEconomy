@@ -36,7 +36,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
   var documentJoint;
 
   String modifDescription(String description) {
-    String modifDecription1 = "Évènement";
+    String modifDecription1 = "Tâche";
 
     if (description == "achat") {
       modifDecription1 = "Achat";
@@ -47,11 +47,14 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
     } else if (description == "image") {
       modifDecription1 = "Image";
       return modifDecription1;
-    } else if (description == "paiement") {
-      modifDecription1 = "Paiement";
+    } else if (description == "information") {
+      modifDecription1 = "Information";
       return modifDecription1;
     } else if (description == "echeancier") {
       modifDecription1 = "Échéancier";
+      return modifDecription1;
+    } else if (description == "tache") {
+      modifDecription1 = "Tâche";
       return modifDecription1;
     }
 
@@ -77,6 +80,31 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
       return colors;
     }
     return colors;
+  }
+
+  Widget echeancierWidget(String description,
+      List<DesciprtionUniverselle> listdescript, int index) {
+    Widget echeancierWidgets = SizedBox(
+      width: 5.0,
+    );
+    if (description == "echeancier") {
+      echeancierWidgets = Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text("Nombre d'échéances " +
+              listdescript[index].nombreEcheance.toString()),
+          SizedBox(
+            width: 2.0,
+          ),
+          Text("Montant échéance " + listdescript[index].echeance.toString()),
+          SizedBox(
+            width: 2.0,
+          ),
+        ],
+      );
+    }
+
+    return echeancierWidgets;
   }
 
   Widget maxLetter(String word, String comment) {
@@ -119,7 +147,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
     Widget fomationEdit = SizedBox(
       width: 5.0,
     );
-    if (description == "paiement" || description == "echeancier") {
+    if (description == "echeancier") {
       fomationEdit = IconButton(
         alignment: Alignment.topRight,
         icon: Icon(
@@ -199,6 +227,29 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
         size: 30.0,
         color: Colors.cyan,
       );
+    } else if (resultat == "information") {
+      documentJoint = Icon(
+        Icons.info,
+        size: 30.0,
+        color: Colors.yellow,
+      );
+    } else if (resultat == "tache") {
+      documentJoint = Icon(
+        Icons.task,
+        size: 30.0,
+        color: Colors.blue,
+      );
+    } else if (resultat == "echeancier") {
+      documentJoint = Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(60.0),
+        ),
+        elevation: 15.0,
+        child: Container(
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Lottie.asset('assets/bankOut.json', height: 90))),
+      );
     }
 
     return documentJoint;
@@ -210,7 +261,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
     super.dispose();
   }
 
-  String unityPattern = "unity_challenge1.";
+  String unityPattern = "unity_description.";
 
   @override
   Widget build(BuildContext context) {
@@ -225,7 +276,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
       return Container(
         alignment: Alignment.center,
         child: Text(
-          "Pas de mission en cours.",
+          "Pas de descrion en cours.",
           style: TextStyle(color: Colors.orange[600], fontSize: 18.0),
           textAlign: TextAlign.center,
         ),
@@ -242,34 +293,24 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
                     content: "La tâche a bien été validé",
                     lotties: 'assets/challenge.json'));
-                // providerType.remove2(
-                //     unitChallenge: item.description
-                //         .toString()
-                //         .replaceAll(unityPattern, ""),
-                //     cout: item.cout,
-                //     prix: item.prix,
-                //     id: item.id,
-                //     indexSave: widget.indexChallenge,
-                //     validate: true,
-                //     index: int.parse(item.index),
-                //     idChallenge: widget.id);
+                providerType.removeGestionDescriptionGestion(
+                    idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
+                    index: index,
+                    indexGestionMensMontanUniv:
+                        widget.indexGestionMensuelMontantUniv,
+                    indexGestionMensuel: widget.indexGestionMensuel);
               }
 
               if (direction == DismissDirection.startToEnd) {
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
                     content: "La mission a bien ete supprime",
                     lotties: 'assets/trash.json'));
-                // providerType.remove2(
-                //     unitChallenge: item.description
-                //         .toString()
-                //         .replaceAll(unityPattern, ""),
-                //     cout: item.cout,
-                //     prix: item.prix,
-                //     id: item.id,
-                //     indexSave: widget.indexChallenge,
-                //     validate: false,
-                //     index: int.parse(item.index),
-                //     idChallenge: widget.id);
+                providerType.removeGestionDescriptionGestion(
+                    idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
+                    index: index,
+                    indexGestionMensMontanUniv:
+                        widget.indexGestionMensuelMontantUniv,
+                    indexGestionMensuel: widget.indexGestionMensuel);
               }
             },
             confirmDismiss: (direction) async {
@@ -365,7 +406,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                             .description
                             .toString()
                             .replaceAll(unityPattern, "") ==
-                        "paiement") {
+                        "image") {
                       // Navigator.push(
                       //     context,
                       //     PageTransition(
@@ -435,36 +476,60 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                             child: Column(
                               children: [
                                 Container(
-                                  height: 30.0,
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        modifDescription(ListDesription[index]
-                                            .description
-                                            .toString()
-                                            .replaceAll(unityPattern, "")),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: colorsDescription(
-                                                ListDesription[index]
-                                                    .description
-                                                    .toString()
-                                                    .replaceAll(
-                                                        unityPattern, ""))),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Nom ' +
+                                                    modifDescription(
+                                                        ListDesription[index]
+                                                            .description
+                                                            .toString()
+                                                            .replaceAll(
+                                                                unityPattern,
+                                                                "")),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: colorsDescription(
+                                                        ListDesription[index]
+                                                            .description
+                                                            .toString()
+                                                            .replaceAll(
+                                                                unityPattern,
+                                                                ""))),
+                                              ),
+                                              SizedBox(
+                                                width: 9.0,
+                                              ),
+                                              maxLetter(
+                                                  ListDesription[index]
+                                                      .name
+                                                      .toString(),
+                                                  ListDesription[index]
+                                                      .description
+                                                      .toString()
+                                                      .replaceAll(
+                                                          unityPattern, "")),
+                                            ],
+                                          ),
+                                          echeancierWidget(
+                                              ListDesription[index]
+                                                  .description
+                                                  .toString()
+                                                  .replaceAll(unityPattern, ""),
+                                              ListDesription,
+                                              index),
+                                        ],
                                       ),
-                                      SizedBox(
-                                        width: 2.0,
-                                      ),
-                                      maxLetter(
-                                          ListDesription[index]
-                                              .tache
-                                              .toString(),
-                                          ListDesription[index]
-                                              .description
-                                              .toString()
-                                              .replaceAll(unityPattern, "")),
                                       SizedBox(
                                         width: 2.0,
                                       ),

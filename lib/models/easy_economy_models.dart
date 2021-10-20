@@ -9,26 +9,9 @@ enum unity_description {
   tache,
   commentaire,
   image,
-  url,
+  achat,
   echeancier,
   information
-}
-choixDesciptionEnum(dynamic json) {
-  unity_description unity = unity_description.tache;
-  if (json['description'] == "unity_description.tache") {
-    unity = unity_description.tache;
-  } else if (json['description'] == "unity_description.commentaire") {
-    unity = unity_description.commentaire;
-  } else if (json['description'] == "unity_description.image") {
-    unity = unity_description.image;
-  } else if (json['description'] == "unity_description.url") {
-    unity = unity_description.url;
-  } else if (json['description'] == "unity_description.echeancier") {
-    unity = unity_description.echeancier;
-  } else if (json['description'] == "unity_description.information") {
-    unity = unity_description.information;
-  }
-  return unity;
 }
 
 class EconomyDays {
@@ -61,48 +44,66 @@ choixDesciptionEnum1(dynamic json) {
   return unity;
 }
 
+choixDesciptionEnum(dynamic json) {
+  unity_description unity = unity_description.tache;
+  if (json['description'] == "unity_description.tache") {
+    unity = unity_description.tache;
+  } else if (json['description'] == "unity_description.commentaire") {
+    unity = unity_description.commentaire;
+  } else if (json['description'] == "unity_description.image") {
+    unity = unity_description.image;
+  } else if (json['description'] == "unity_description.achat") {
+    unity = unity_description.achat;
+  } else if (json['description'] == "unity_description.echeancier") {
+    unity = unity_description.echeancier;
+  } else if (json['description'] == "unity_description.information") {
+    unity = unity_description.information;
+  }
+  return unity;
+}
+
 class DesciprtionUniverselle {
   double achat;
   double previsions;
   double echeance;
-  double resteEcheance;
+  double nombreEcheance;
   String id;
-  String index;
+  String adresseImage;
   String name;
-  final String tache;
+  String commentaire;
   final unity_description description;
   DesciprtionUniverselle(
       {required this.achat,
       required this.echeance,
-      required this.resteEcheance,
+      required this.nombreEcheance,
       required this.previsions,
       required this.id,
       required this.name,
-      required this.tache,
+      required this.adresseImage,
       required this.description,
-      required this.index});
+      required this.commentaire});
 
   DesciprtionUniverselle.fromJSON(Map<String, dynamic> json)
       : achat = json['achat'],
         echeance = json['echeance'],
-        resteEcheance = json['resteEcheance'],
+        nombreEcheance = json['nombreEcheance'],
         previsions = json['previsions'],
         name = json['name'],
         id = json['id'],
-        tache = json['tache'],
-        index = json['index'],
+        adresseImage = json['adresseImage'],
+        commentaire = json['commentaire'],
         description = choixDesciptionEnum(json);
 
   Map<String, dynamic> toJson() {
     return {
       "achat": achat,
       "echeance": echeance,
-      "resteEcheance": resteEcheance,
+      "nombreEcheance": nombreEcheance,
       "previsions": previsions,
       "name": name,
       "id": id,
-      "tache": tache,
-      "index": index,
+      "adresseImage": adresseImage,
+      "commentaire": commentaire,
       "description": description.toString()
     };
   }
