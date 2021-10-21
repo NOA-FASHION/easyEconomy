@@ -1,6 +1,7 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_description_gestion.dart';
+import 'package:easyeconomy/screens/screen_achat.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
@@ -336,34 +337,40 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     return Scaffold(
       key: scaffoldkeyTache,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.0),
+        preferredSize: Size.fromHeight(230.0),
         child: SafeArea(
           child: AppBar(
-            title: Text('data'),
-            actions: [],
-            backgroundColor: Colors.blue,
+            title: Text("Data"),
             centerTitle: true,
-            flexibleSpace: Container(
-              padding: EdgeInsets.only(top: 40.0),
-              alignment: Alignment.center,
-              height: 130,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 0),
-                    child: Image.asset(
-                      'assets/logo.png',
-                      width: 55,
-                    ),
+            flexibleSpace: Column(
+              children: [
+                Container(
+                  height: 90,
+                  padding: EdgeInsets.only(top: 40.0),
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    'assets/logo.png',
+                    width: 55,
+                    height: 130,
                   ),
-                ],
-              ),
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: <Color>[Colors.orange, Colors.blueAccent])),
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: <Color>[Colors.orange, Colors.blueAccent])),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 10.0),
+                  alignment: Alignment.center,
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0), child: ScreenAchat()),
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: <Color>[Colors.orange, Colors.blueAccent])),
+                ),
+              ],
             ),
           ),
         ),

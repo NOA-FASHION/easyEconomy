@@ -91,15 +91,14 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
       echeancierWidgets = Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Nombre d'échéances " +
+          Text("Nombre d'échéances  " +
               listdescript[index].nombreEcheance.toString()),
           SizedBox(
-            width: 2.0,
+            height: 4.0,
           ),
-          Text("Montant échéance " + listdescript[index].echeance.toString()),
-          SizedBox(
-            width: 2.0,
-          ),
+          Text("Montant échéance  " +
+              listdescript[index].echeance.toString() +
+              "€"),
         ],
       );
     }
@@ -248,7 +247,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
         child: Container(
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Lottie.asset('assets/bankOut.json', height: 90))),
+                child: Lottie.asset('assets/bankOut.json', height: 75))),
       );
     }
 
@@ -484,42 +483,54 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Nom ' +
-                                                    modifDescription(
-                                                        ListDesription[index]
-                                                            .description
-                                                            .toString()
-                                                            .replaceAll(
-                                                                unityPattern,
-                                                                "")),
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: colorsDescription(
-                                                        ListDesription[index]
-                                                            .description
-                                                            .toString()
-                                                            .replaceAll(
-                                                                unityPattern,
-                                                                ""))),
-                                              ),
-                                              SizedBox(
-                                                width: 9.0,
-                                              ),
-                                              maxLetter(
-                                                  ListDesription[index]
-                                                      .name
-                                                      .toString(),
-                                                  ListDesription[index]
-                                                      .description
-                                                      .toString()
-                                                      .replaceAll(
-                                                          unityPattern, "")),
-                                            ],
+                                          Container(
+                                            height: 50,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                2.4,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.white,
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  modifDescription(
+                                                      ListDesription[index]
+                                                          .description
+                                                          .toString()
+                                                          .replaceAll(
+                                                              unityPattern,
+                                                              "")),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: colorsDescription(
+                                                          ListDesription[index]
+                                                              .description
+                                                              .toString()
+                                                              .replaceAll(
+                                                                  unityPattern,
+                                                                  ""))),
+                                                ),
+                                                SizedBox(
+                                                  width: 9.0,
+                                                ),
+                                                maxLetter(
+                                                    ListDesription[index]
+                                                        .name
+                                                        .toString(),
+                                                    ListDesription[index]
+                                                        .description
+                                                        .toString()
+                                                        .replaceAll(
+                                                            unityPattern, "")),
+                                              ],
+                                            ),
                                           ),
                                           echeancierWidget(
                                               ListDesription[index]
