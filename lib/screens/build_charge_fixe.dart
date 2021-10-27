@@ -1,5 +1,6 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/charge_fixe_description.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
@@ -386,14 +387,15 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                           colors: [Colors.blueAccent, Colors.orange])),
                   child: ListTile(
                     onTap: () async {
-                      // Navigator.push(
-                      //     context,
-                      //     PageTransition(
-                      //         type: PageTransitionType.bottomToTop,
-                      //         child: ChangeNotifierProvider.value(
-                      //             value: variable,
-                      //             child: ResultDays(
-                      //                 index, _productGagnantList[index].id))));
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              child: ChangeNotifierProvider.value(
+                                  value: variable,
+                                  child: ChargeFixeDescription(
+                                    indexChargeFixe: index,
+                                  ))));
                     },
                     title: Container(
                       child: Row(
