@@ -96,6 +96,12 @@ class EasyController extends ChangeNotifier {
         .descriptionUniverselle;
   }
 
+  List<DesciprtionUniverselle> getMontantUnivDescription(
+      int indexMontantUnvDescript) {
+    return _listMontantUniverselle[indexMontantUnvDescript]
+        .descriptionUniverselle;
+  }
+
   List<MontantUniverselle> getMontantUniverselle() {
     return _listMontantUniverselle;
   }
@@ -147,6 +153,66 @@ class EasyController extends ChangeNotifier {
   //       .montantUniverselle[indexGestionMensuelMontantUniv]
   //       .descriptionUniverselle;
   // }
+  addDescriptionMontaUniv(
+      {required double achat,
+      required double previsions,
+      required double echeance,
+      required double nombreEcheance,
+      required String id,
+      required String adresseImage,
+      required String name,
+      required String commentaire,
+      required int indexChargeFixe,
+      required String description}) async {
+    _listMontantUniverselle[indexChargeFixe].descriptionUniverselle.add(
+        DesciprtionUniverselle(
+            achat: achat,
+            adresseImage: adresseImage,
+            commentaire: commentaire,
+            description: choixDesciptionEnum(description),
+            echeance: echeance,
+            id: id,
+            name: name,
+            previsions: previsions,
+            nombreEcheance: nombreEcheance));
+    await _saveMontantUniverselle();
+    _initEconomy();
+    notifyListeners();
+    return;
+  }
+
+  void removeDescriptionMontaUniv(
+      {required int index,
+      required int indexChargeFixe,
+      }) async {
+    _listMontantUniverselle[indexChargeFixe]
+        .descriptionUniverselle
+        .removeAt(index);
+
+    await _saveDescriptionMontaUniv(
+      remove: true,
+      indexChargeFixe: indexChargeFixe,
+      index: index,
+    );
+    _initEconomy();
+    notifyListeners();
+  }
+
+  Future<bool> _saveDescriptionMontaUniv(
+      {required bool remove,
+      required int indexChargeFixe,
+      required int index}) async {
+    if (_listMontantUniverselle[indexChargeFixe].descriptionUniverselle.length <
+            1 &&
+        remove) {
+      _listMontantUniverselle[indexChargeFixe].descriptionUniverselle = [];
+    }
+    List<String> _jsonList = _listMontantUniverselle.map((challenge) {
+      return jsonEncode(challenge.toJson());
+    }).toList();
+    return _localDataMontaUniverselle.setStringList(
+        keyAccesMontantUniverselle, _jsonList);
+  }
 
   addDescriptionGestion(
       {required double achat,
@@ -664,39 +730,8 @@ class EasyController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // echeancePasse(int indexGestion, int indexGestionLive,
-  //     String idGestionMontantUniverselle) async {
-  //   echeancePasseMontanUnive(
-  //       idGestionMontantUniverselle, indexGestion, indexGestionLive);
-  //   for (var i = _listGestionMensuel[indexGestion]
-  //               .montantUniverselle[indexGestionLive]
-  //               .descriptionUniverselle
-  //               .length -
-  //           1;
-  //       i >= 0;
-  //       i--) {
-  //     if (_listGestionMensuel[indexGestion]
-  //             .montantUniverselle[indexGestionLive]
-  //             .descriptionUniverselle[i]
-  //             .echeance >
-  //         0) {
-  //       _listGestionMensuel[indexGestion]
-  //           .montantUniverselle[indexGestionLive]
-  //           .descriptionUniverselle[i]
-  //           .nombreEcheance = _listGestionMensuel[indexGestion]
-  //               .montantUniverselle[indexGestionLive]
-  //               .descriptionUniverselle[i]
-  //               .nombreEcheance -
-  //           1;
-  //     }
-  //   }
-  //   await _saveGestionMensuelle();
-  //   _initEconomyDays();
-  //   notifyListeners();
-  // }
-
-  achatTotal(String idGestionMensMontantUnv, int indexGestion,
-      int indexGestionLive, int indexgestiondescription) {
+  achatTotals(String idGestionMensMontantUnv, int indexGestion,
+      int indexGestionLive, int indexgestiondescription) async {
     _listGestionMensuel[indexGestion]
             .montantUniverselle[indexGestionLive]
             .achatTotal =
@@ -704,6 +739,10 @@ class EasyController extends ChangeNotifier {
             .montantUniverselle[indexGestionLive]
             .descriptionUniverselle[indexgestiondescription]
             .achat;
+    await _saveGestionMensuelleMontantUniv(
+        remove: true, idGestionMensMontanUniv: idGestionMensMontantUnv);
+    _initEconomy();
+    notifyListeners();
   }
 
   echeanceNoPasseMontanUniveValid(MontantUniverselle montantUniverselle) {
@@ -731,51 +770,4 @@ class EasyController extends ChangeNotifier {
     _initEconomy();
     notifyListeners();
   }
-
-  // preEcheanceNoPasse(int indexGestion, int indexGestionLive,
-  //     String idGestionMontantUniverselle) async {
-  //   for (var i =
-  //           _listGestionMensuel[indexGestion].montantUniverselle.length - 1;
-  //       i >= 0;
-  //       i--) {
-  //     if (_listGestionMensuel[indexGestion]
-  //             .montantUniverselleLive[indexGestionLive]
-  //             .id ==
-  //         _listGestionMensuel[indexGestion].montantUniverselle[i].id) {
-  //       echeanceNoPasse(indexGestion,i,idGestionMontantUniverselle);
-  //     }
-  //     return;
-  //   }
-  // }
-
-  // echeanceNoPasse(int indexGestion, int indexGestionLive,
-  //     String idGestionMontantUniverselle) async {
-  //   echeanceNoPasseMontanUnive(
-  //       idGestionMontantUniverselle, indexGestion, indexGestionLive);
-  //   for (var i = _listGestionMensuel[indexGestion]
-  //               .montantUniverselle[indexGestionLive]
-  //               .descriptionUniverselle
-  //               .length -
-  //           1;
-  //       i >= 0;
-  //       i--) {
-  //     if (_listGestionMensuel[indexGestion]
-  //             .montantUniverselle[indexGestionLive]
-  //             .descriptionUniverselle[i]
-  //             .echeance >
-  //         0) {
-  //       _listGestionMensuel[indexGestion]
-  //           .montantUniverselle[indexGestionLive]
-  //           .descriptionUniverselle[i]
-  //           .nombreEcheance = _listGestionMensuel[indexGestion]
-  //               .montantUniverselle[indexGestionLive]
-  //               .descriptionUniverselle[i]
-  //               .nombreEcheance +
-  //           1;
-  //     }
-  //   }
-  //   await _saveGestionMensuelle();
-  //   _initEconomyDays();
-  //   notifyListeners();
-  // }
 }

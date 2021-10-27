@@ -1,30 +1,23 @@
-import 'dart:io';
-
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-class BuildDescriptionGestion extends StatefulWidget {
-  final String idGestionMontantUniverselle;
-  final int indexGestionMensuel;
-  final int indexGestionMensuelMontantUniv;
-  BuildDescriptionGestion(
-      {required this.idGestionMontantUniverselle,
-      required this.indexGestionMensuel,
-      required this.indexGestionMensuelMontantUniv});
+class BuildChargeFixeDescription extends StatefulWidget {
+  final int indexChargeFixe;
+  BuildChargeFixeDescription({required this.indexChargeFixe, Key? key})
+      : super(key: key);
 
   @override
-  _BuildDescriptionGestionState createState() =>
-      _BuildDescriptionGestionState();
+  _BuildChargeFixeDescriptionState createState() =>
+      _BuildChargeFixeDescriptionState();
 }
 
-class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
+class _BuildChargeFixeDescriptionState
+    extends State<BuildChargeFixeDescription> {
   FocusNode myFocusNode = FocusNode();
   TextEditingController textEditingControllerAnimated =
       new TextEditingController();
@@ -377,13 +370,12 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
   @override
   Widget build(BuildContext context) {
     EasyController providerType = Provider.of<EasyController>(context);
-    List<DesciprtionUniverselle> ListDesription =
-        providerType.getGestionMensuelDescription(
-            widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
+    List<DesciprtionUniverselle> listDesription =
+        providerType.getMontantUnivDescription(widget.indexChargeFixe);
 
     // final Challengecontroller provider =
     //     Provider.of<Challengecontroller>(context);
-    if (ListDesription.isEmpty) {
+    if (listDesription.isEmpty) {
       return Container(
         alignment: Alignment.center,
         child: Text(
@@ -394,7 +386,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
       );
     }
     return ListView.builder(
-      itemCount: ListDesription.length,
+      itemCount: listDesription.length,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 3.0, left: 8.0, right: 8.0),
@@ -404,29 +396,17 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
                     content: "La tâche a bien été validé",
                     lotties: 'assets/challenge.json'));
-                providerType.achatTotals(
-                    widget.idGestionMontantUniverselle,
-                    widget.indexGestionMensuel,
-                    widget.indexGestionMensuelMontantUniv,
-                    index);
-                providerType.removeGestionDescriptionGestion(
-                    idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
-                    index: index,
-                    indexGestionMensMontanUniv:
-                        widget.indexGestionMensuelMontantUniv,
-                    indexGestionMensuel: widget.indexGestionMensuel);
+
+                providerType.removeDescriptionMontaUniv(
+                    index: index, indexChargeFixe: widget.indexChargeFixe);
               }
 
               if (direction == DismissDirection.startToEnd) {
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
                     content: "La mission a bien ete supprime",
                     lotties: 'assets/trash.json'));
-                providerType.removeGestionDescriptionGestion(
-                    idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
-                    index: index,
-                    indexGestionMensMontanUniv:
-                        widget.indexGestionMensuelMontantUniv,
-                    indexGestionMensuel: widget.indexGestionMensuel);
+                providerType.removeDescriptionMontaUniv(
+                    index: index, indexChargeFixe: widget.indexChargeFixe);
               }
             },
             confirmDismiss: (direction) async {
@@ -504,7 +484,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                 elevation: 20.0,
                 child: ListTile(
                   onTap: () async {
-                    if (ListDesription[index]
+                    if (listDesription[index]
                             .description
                             .toString()
                             .replaceAll(unityPattern, "") ==
@@ -518,7 +498,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                       //             child: PlayCommentaire(
                       //                 nameChallenge: item.name))));
 
-                    } else if (ListDesription[index]
+                    } else if (listDesription[index]
                             .description
                             .toString()
                             .replaceAll(unityPattern, "") ==
@@ -559,7 +539,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                                 SizedBox(
                                   width: 5.0,
                                 ),
-                                Text(ListDesription[index].name),
+                                Text(listDesription[index].name),
                               ],
                             ),
                           ),
@@ -573,7 +553,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                     ),
                   ),
                   subtitle:
-                      activeGlow(ListDesription[index], index, ListDesription),
+                      activeGlow(listDesription[index], index, listDesription),
                   isThreeLine: true,
                 ),
               ),
