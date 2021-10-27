@@ -43,6 +43,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
           preferredSize: Size.fromHeight(260.0),
           child: SafeArea(
             child: AppBar(
+              elevation: 0,
               title: Text("Charge fixe mensuelle"),
               centerTitle: true,
               flexibleSpace: Column(

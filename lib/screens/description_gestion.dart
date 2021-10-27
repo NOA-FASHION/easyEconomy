@@ -577,22 +577,22 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                   ],
                                 ),
                               ),
-                              DropdownMenuItem(
-                                value: "echeancier",
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.payment,
-                                        size: 30.0, color: Colors.yellow),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      "Échéancier",
-                                      style: TextStyle(
-                                        color: Colors.yellow,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              // DropdownMenuItem(
+                              //   value: "echeancier",
+                              //   child: Row(
+                              //     children: [
+                              //       Icon(Icons.payment,
+                              //           size: 30.0, color: Colors.yellow),
+                              //       SizedBox(width: 10),
+                              //       Text(
+                              //         "Échéancier",
+                              //         style: TextStyle(
+                              //           color: Colors.yellow,
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
                               DropdownMenuItem(
                                 value: "commentaire",
                                 child: Row(

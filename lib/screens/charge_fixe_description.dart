@@ -408,9 +408,10 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
     return Scaffold(
       key: scaffoldkeyTache,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(230.0),
+        preferredSize: Size.fromHeight(90.0),
         child: SafeArea(
           child: AppBar(
+            elevation: 0,
             title: Text("Data"),
             centerTitle: true,
             flexibleSpace: Column(
@@ -430,22 +431,22 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                           end: Alignment.centerRight,
                           colors: <Color>[Colors.orange, Colors.blueAccent])),
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: 10.0),
-                  alignment: Alignment.center,
-                  child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ScreenAchat(
-                        listDesription: listDesription,
-                        montantUniv:
-                            montantUniverselleAchats[widget.indexChargeFixe],
-                      )),
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: <Color>[Colors.orange, Colors.blueAccent])),
-                ),
+                // Container(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   alignment: Alignment.center,
+                //   child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: ScreenAchat(
+                //         listDesription: listDesription,
+                //         montantUniv:
+                //             montantUniverselleAchats[widget.indexChargeFixe],
+                //       )),
+                //   decoration: BoxDecoration(
+                //       gradient: LinearGradient(
+                //           begin: Alignment.centerLeft,
+                //           end: Alignment.centerRight,
+                //           colors: <Color>[Colors.orange, Colors.blueAccent])),
+                // ),
               ],
             ),
           ),
@@ -463,7 +464,9 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     colors: <Color>[Colors.orange, Colors.blueAccent])),
-            child: BuildChargeFixeDescription(indexChargeFixe: widget.indexChargeFixe,)),
+            child: BuildChargeFixeDescription(
+              indexChargeFixe: widget.indexChargeFixe,
+            )),
       ),
       backgroundColor: Color(0xff414a4c),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -522,22 +525,22 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                               updateController(value);
                             },
                             items: <DropdownMenuItem<String>>[
-                              DropdownMenuItem(
-                                value: "achat",
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.shopping_cart,
-                                        size: 30.0, color: Colors.cyan),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      "Achat",
-                                      style: TextStyle(
-                                        color: Colors.cyan,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              // DropdownMenuItem(
+                              //   value: "achat",
+                              //   child: Row(
+                              //     children: [
+                              //       Icon(Icons.shopping_cart,
+                              //           size: 30.0, color: Colors.cyan),
+                              //       SizedBox(width: 10),
+                              //       Text(
+                              //         "Achat",
+                              //         style: TextStyle(
+                              //           color: Colors.cyan,
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
                               DropdownMenuItem(
                                 value: "tache",
                                 child: Row(
