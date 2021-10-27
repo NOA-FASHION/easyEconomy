@@ -38,6 +38,7 @@ dependencies:
   intl: ^0.17.0
   image_picker: ^0.8.4+2
   flip_card: ^0.5.0
+  top_snackbar_flutter: ^1.0.1
 
 dev_dependencies:
   flutter_test:

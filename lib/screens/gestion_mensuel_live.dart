@@ -37,6 +37,8 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
     simuOuchargeFixe = true;
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);

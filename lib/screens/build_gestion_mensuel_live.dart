@@ -260,12 +260,17 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
           child: Dismissible(
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
+                variable.echeancePasseMontanUnive(
+                    widget.idGestionMontantUniverselle,
+                    index,
+                    widget.indexGestionMensuel);
                 variable.removeGestionMensuelleMontantUniv(
                   indexGestionMensMontanUniv: index,
                   idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
                   indexGestionMensuel: widget.indexGestionMensuel,
                   validation: true,
                 );
+
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
                     content: "La transaction à été  valider",
                     lotties: 'assets/challenge.json'));

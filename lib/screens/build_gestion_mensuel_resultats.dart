@@ -259,12 +259,17 @@ class _BuildGestionMensuelResultatsState
           child: Dismissible(
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
+                variable.echeanceNoPasseMontanUnive(
+                    widget.idGestionMontantUniverselle,
+                    index,
+                    widget.indexGestionMensuel);
                 variable.removeGestionMensuelleMontantUnivLive(
                   indexGestionMensMontanUniv: index,
                   idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
                   indexGestionMensuel: widget.indexGestionMensuel,
                   validation: true,
                 );
+
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
                     content: "La transaction à été  valider",
                     lotties: 'assets/challenge.json'));

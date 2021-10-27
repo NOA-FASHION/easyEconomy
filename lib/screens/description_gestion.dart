@@ -8,6 +8,8 @@ import 'package:lottie/lottie.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class DescriptionGestion extends StatefulWidget {
   final String idGestionMontantUniverselle;
@@ -60,6 +62,79 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
         print('No image selected.');
       }
     });
+  }
+
+  void interditAchat(
+      List<MontantUniverselle> _montantUniverselleAchat, dynamic context) {
+    for (var i = _montantUniverselleAchat[widget.indexGestionMensuelMontantUniv]
+                .descriptionUniverselle
+                .length -
+            1;
+        i >= 0;
+        i--) {
+      if (_montantUniverselleAchat[widget.indexGestionMensuelMontantUniv]
+              .descriptionUniverselle[i]
+              .previsions >
+          0) {
+        showTopSnackBar(
+          context,
+          CustomSnackBar.success(
+            backgroundColor: Colors.blue,
+            icon: Icon(
+              Icons.delete,
+              size: 30,
+              color: Colors.white,
+            ),
+            message:
+                "vous ne pouvez pas mélanger un achat avec une information ordinaire.",
+          ),
+        );
+        retour();
+        return;
+      }
+    }
+  }
+
+  void interditecheance(
+      List<MontantUniverselle> _montantUniverselleAchat, dynamic context) {
+    for (var i = _montantUniverselleAchat[widget.indexGestionMensuelMontantUniv]
+                .descriptionUniverselle
+                .length -
+            1;
+        i >= 0;
+        i--) {
+      if (_montantUniverselleAchat[widget.indexGestionMensuelMontantUniv]
+              .descriptionUniverselle[i]
+              .echeance >
+          0) {
+        showTopSnackBar(
+          context,
+          CustomSnackBar.success(
+            backgroundColor: Colors.blue,
+            icon: Icon(
+              Icons.delete,
+              size: 30,
+              color: Colors.white,
+            ),
+            message:
+                "vous ne pouvez pas mélanger une échéance avec une information ordinaire.",
+          ),
+        );
+        retour();
+        return;
+      }
+      return;
+    }
+  }
+
+  Future<Null> delay(int milliseconds) {
+    return new Future.delayed(new Duration(milliseconds: milliseconds));
+  }
+
+  retour() async {
+    await delay(500);
+    Navigator.pop(context);
+    unityChallenge = "information";
   }
 
   Future getImageGallery() async {
@@ -129,11 +204,8 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     return percent1;
   }
 
-  Future<Null> delay(int milliseconds) {
-    return new Future.delayed(new Duration(milliseconds: milliseconds));
-  }
-
-  Widget selectdropdown(String resultat) {
+  Widget selectdropdown(String resultat,
+      List<MontantUniverselle> montantUniverselleAchat, dynamic context) {
     Widget documentJoint = SizedBox(
       width: 1.0,
     );
@@ -214,6 +286,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
         ),
       );
     } else if (resultat == "achat") {
+      interditecheance(montantUniverselleAchat, context);
       documentJoint = Row(
         children: [
           Container(
@@ -251,6 +324,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
         ],
       );
     } else if (resultat == "echeancier") {
+      interditAchat(montantUniverselleAchat, context);
       documentJoint = Row(
         children: [
           Column(
@@ -329,10 +403,12 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
   @override
   @override
   Widget build(BuildContext context) {
-    EasyController variable = Provider.of<EasyController>(context);
-    List<MontantUniverselle> montantUniverselleAchat =
-        variable.getGestionMensuelAchat(widget.indexGestionMensuel);
-    // isSwitched = _challengesListget[widget.indexChallenge].prelevementAutoBool;
+    EasyController providerType = Provider.of<EasyController>(context);
+    List<DesciprtionUniverselle> listDesription =
+        providerType.getGestionMensuelDescription(
+            widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
+    List<MontantUniverselle> montantUniverselleAchats =
+        providerType.getGestionMensuelAchat(widget.indexGestionMensuel);
 
     return Scaffold(
       key: scaffoldkeyTache,
@@ -363,7 +439,12 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                   padding: EdgeInsets.only(top: 10.0),
                   alignment: Alignment.center,
                   child: Padding(
-                      padding: const EdgeInsets.all(8.0), child: ScreenAchat()),
+                      padding: const EdgeInsets.all(8.0),
+                      child: ScreenAchat(
+                        listDesription: listDesription,
+                        montantUniv: montantUniverselleAchats[
+                            widget.indexGestionMensuelMontantUniv],
+                      )),
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                           begin: Alignment.centerLeft,
@@ -407,6 +488,9 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
   }
 
   FloatingActionButton buildBottomSheet() {
+    EasyController variable = Provider.of<EasyController>(context);
+    List<MontantUniverselle> montantUniverselleAchat =
+        variable.getGestionMensuelAchat(widget.indexGestionMensuel);
     return FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Colors.orange[900],
@@ -578,7 +662,8 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                           SizedBox(
                             height: 15.0,
                           ),
-                          selectdropdown(unityChallenge),
+                          selectdropdown(
+                              unityChallenge, montantUniverselleAchat, context),
                           Center(
                             child: IconButton(
                               iconSize: 60,

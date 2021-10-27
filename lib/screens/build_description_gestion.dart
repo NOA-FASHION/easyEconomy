@@ -88,18 +88,38 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
       width: 5.0,
     );
     if (description == "echeancier") {
-      echeancierWidgets = Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("Nombre d'échéances  " +
-              listdescript[index].nombreEcheance.toString()),
-          SizedBox(
-            height: 4.0,
-          ),
-          Text("Montant échéance  " +
-              listdescript[index].echeance.toString() +
-              "€"),
-        ],
+      echeancierWidgets = Container(
+        width: MediaQuery.of(context).size.width / 1.8,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width / 1.8,
+              child: Text("Nombre d'échéances " +
+                  listdescript[index].nombreEcheance.toString()),
+            ),
+            SizedBox(
+              height: 4.0,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.8,
+              child: Text("Montant échéance " +
+                  listdescript[index].echeance.toString() +
+                  "€"),
+            ),
+            SizedBox(
+              height: 4.0,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.8,
+              child: Text("Echéance en cours " +
+                  (listdescript[index].echeance *
+                          listdescript[index].nombreEcheance)
+                      .toString() +
+                  "€"),
+            ),
+          ],
+        ),
       );
     }
 
@@ -201,6 +221,98 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
     return prixCout1;
   }
 
+  Widget activeGlow(DesciprtionUniverselle description, int index,
+      List<DesciprtionUniverselle> listDescription) {
+    Widget glow = Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.white70),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          elevation: 15.0,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.8,
+                      height: 25.0,
+                      child: Row(
+                        children: [
+                          Text(
+                            modifDescription(description.description
+                                .toString()
+                                .replaceAll(unityPattern, "")),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: colorsDescription(description.description
+                                    .toString()
+                                    .replaceAll(unityPattern, ""))),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          maxLetter(
+                              description.name.toString(),
+                              description.description
+                                  .toString()
+                                  .replaceAll(unityPattern, "")),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5.0,
+                    ),
+                    echeancierWidget(
+                        description.description
+                            .toString()
+                            .replaceAll(unityPattern, ""),
+                        listDescription,
+                        index),
+                    // Container(
+                    //   width: MediaQuery.of(context).size.width / 1.8,
+                    //   height: 30.0,
+                    //   child: Row(
+                    //     children: [
+                    //       Text(
+                    //         "prix du produit",
+                    //         style: TextStyle(
+                    //             fontWeight: FontWeight.bold,
+                    //             color: Colors.blue),
+                    //       ),
+                    //       SizedBox(
+                    //         width: 12.0,
+                    //       ),
+                    //       Text(
+                    //         "product.prixVente.toString()",
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                  ],
+                ),
+                iconDataJoin(description.description
+                    .toString()
+                    .replaceAll(unityPattern, "")),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+    return glow;
+  }
+
   Widget iconDataJoin(String resultat) {
     Widget documentJoint = Icon(
       Icons.block,
@@ -247,7 +359,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
         child: Container(
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Lottie.asset('assets/bankOut.json', height: 75))),
+                child: Lottie.asset('assets/bankOut.json', height: 65))),
       );
     }
 
@@ -292,6 +404,11 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
                     content: "La tâche a bien été validé",
                     lotties: 'assets/challenge.json'));
+                providerType.achatTotal(
+                    widget.idGestionMontantUniverselle,
+                    widget.indexGestionMensuel,
+                    widget.indexGestionMensuelMontantUniv,
+                    index);
                 providerType.removeGestionDescriptionGestion(
                     idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
                     index: index,
@@ -455,161 +572,8 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                       ],
                     ),
                   ),
-                  subtitle: FlipCard(
-                    flipOnTouch: formation,
-                    direction: FlipDirection.HORIZONTAL, // default
-                    front: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        elevation: 20.0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Container(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Container(
-                                            height: 50,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2.4,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: Colors.white,
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  modifDescription(
-                                                      ListDesription[index]
-                                                          .description
-                                                          .toString()
-                                                          .replaceAll(
-                                                              unityPattern,
-                                                              "")),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: colorsDescription(
-                                                          ListDesription[index]
-                                                              .description
-                                                              .toString()
-                                                              .replaceAll(
-                                                                  unityPattern,
-                                                                  ""))),
-                                                ),
-                                                SizedBox(
-                                                  width: 9.0,
-                                                ),
-                                                maxLetter(
-                                                    ListDesription[index]
-                                                        .name
-                                                        .toString(),
-                                                    ListDesription[index]
-                                                        .description
-                                                        .toString()
-                                                        .replaceAll(
-                                                            unityPattern, "")),
-                                              ],
-                                            ),
-                                          ),
-                                          echeancierWidget(
-                                              ListDesription[index]
-                                                  .description
-                                                  .toString()
-                                                  .replaceAll(unityPattern, ""),
-                                              ListDesription,
-                                              index),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        width: 2.0,
-                                      ),
-                                      iconDataJoin(ListDesription[index]
-                                          .description
-                                          .toString()
-                                          .replaceAll(unityPattern, "")),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    back: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        elevation: 20.0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                // Container(
-                                //   height: 30.0,
-                                //   child: Row(
-                                //     mainAxisAlignment:
-                                //         MainAxisAlignment.spaceBetween,
-                                //     children: [
-                                //       maxLetter(
-                                //           item.formation.chapitre,
-                                //           item.description
-                                //               .toString()
-                                //               .replaceAll(unityPattern, "")),
-                                //       SizedBox(
-                                //         width: 5.0,
-                                //       ),
-                                //       maxLetter(
-                                //           item.formation.duree,
-                                //           item.description
-                                //               .toString()
-                                //               .replaceAll(unityPattern, "")),
-                                //       SizedBox(
-                                //         width: 5.0,
-                                //       ),
-                                //       maxLetter(
-                                //           item.formation.theoriePratique,
-                                //           item.description
-                                //               .toString()
-                                //               .replaceAll(unityPattern, "")),
-                                //     ],
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  subtitle:
+                      activeGlow(ListDesription[index], index, ListDesription),
                   isThreeLine: true,
                 ),
               ),

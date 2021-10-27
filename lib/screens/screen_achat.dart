@@ -1,13 +1,27 @@
+import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:flutter/material.dart';
 
 class ScreenAchat extends StatefulWidget {
-  ScreenAchat({Key? key}) : super(key: key);
+  final MontantUniverselle montantUniv;
+  final List<DesciprtionUniverselle> listDesription;
+  ScreenAchat(
+      {required this.montantUniv, required this.listDesription, Key? key})
+      : super(key: key);
 
   @override
   _ScreenAchatState createState() => _ScreenAchatState();
 }
 
 class _ScreenAchatState extends State<ScreenAchat> {
+  double totalPrevision() {
+    
+    double totalPrev = 0;
+    for (var i = widget.listDesription.length - 1; i >= 0; i--) {
+      totalPrev = totalPrev + widget.listDesription[i].achat;
+    }
+    return totalPrev;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,7 +73,7 @@ class _ScreenAchatState extends State<ScreenAchat> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "100",
+                              widget.montantUniv.achatTotal.toString(),
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white),
                               textAlign: TextAlign.center,
@@ -101,7 +115,7 @@ class _ScreenAchatState extends State<ScreenAchat> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "100",
+                              totalPrevision().toString(),
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white),
                               textAlign: TextAlign.center,

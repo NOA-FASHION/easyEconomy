@@ -637,4 +637,145 @@ class EasyController extends ChangeNotifier {
 
     return false;
   }
+
+  echeancePasseMontanUniveValid(MontantUniverselle montantUniverselle) {
+    for (var i = montantUniverselle.descriptionUniverselle.length - 1;
+        i >= 0;
+        i--) {
+      if (montantUniverselle.descriptionUniverselle[i].echeance > 0) {
+        montantUniverselle.descriptionUniverselle[i].nombreEcheance =
+            montantUniverselle.descriptionUniverselle[i].nombreEcheance - 1;
+      }
+    }
+  }
+
+  echeancePasseMontanUnive(String idGestionMensMontantUnv, int indexGestion,
+      int indexGestionLive) async {
+    for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
+      if (_listMontantUniverselle[i].id ==
+          _listGestionMensuel[indexGestion]
+              .montantUniverselle[indexGestionLive]
+              .id) {
+        echeancePasseMontanUniveValid(_listMontantUniverselle[i]);
+      }
+    }
+    await _saveMontantUniverselle();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  // echeancePasse(int indexGestion, int indexGestionLive,
+  //     String idGestionMontantUniverselle) async {
+  //   echeancePasseMontanUnive(
+  //       idGestionMontantUniverselle, indexGestion, indexGestionLive);
+  //   for (var i = _listGestionMensuel[indexGestion]
+  //               .montantUniverselle[indexGestionLive]
+  //               .descriptionUniverselle
+  //               .length -
+  //           1;
+  //       i >= 0;
+  //       i--) {
+  //     if (_listGestionMensuel[indexGestion]
+  //             .montantUniverselle[indexGestionLive]
+  //             .descriptionUniverselle[i]
+  //             .echeance >
+  //         0) {
+  //       _listGestionMensuel[indexGestion]
+  //           .montantUniverselle[indexGestionLive]
+  //           .descriptionUniverselle[i]
+  //           .nombreEcheance = _listGestionMensuel[indexGestion]
+  //               .montantUniverselle[indexGestionLive]
+  //               .descriptionUniverselle[i]
+  //               .nombreEcheance -
+  //           1;
+  //     }
+  //   }
+  //   await _saveGestionMensuelle();
+  //   _initEconomyDays();
+  //   notifyListeners();
+  // }
+
+  achatTotal(String idGestionMensMontantUnv, int indexGestion,
+      int indexGestionLive, int indexgestiondescription) {
+    _listGestionMensuel[indexGestion]
+            .montantUniverselle[indexGestionLive]
+            .achatTotal =
+        _listGestionMensuel[indexGestion]
+            .montantUniverselle[indexGestionLive]
+            .descriptionUniverselle[indexgestiondescription]
+            .achat;
+  }
+
+  echeanceNoPasseMontanUniveValid(MontantUniverselle montantUniverselle) {
+    for (var i = montantUniverselle.descriptionUniverselle.length - 1;
+        i >= 0;
+        i--) {
+      if (montantUniverselle.descriptionUniverselle[i].echeance > 0) {
+        montantUniverselle.descriptionUniverselle[i].nombreEcheance =
+            montantUniverselle.descriptionUniverselle[i].nombreEcheance + 1;
+      }
+    }
+  }
+
+  echeanceNoPasseMontanUnive(String idGestionMensMontantUnv, int indexGestion,
+      int indexGestionLive) async {
+    for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
+      if (_listMontantUniverselle[i].id ==
+          _listGestionMensuel[indexGestion]
+              .montantUniverselle[indexGestionLive]
+              .id) {
+        echeanceNoPasseMontanUniveValid(_listMontantUniverselle[i]);
+      }
+    }
+    await _saveMontantUniverselle();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  // preEcheanceNoPasse(int indexGestion, int indexGestionLive,
+  //     String idGestionMontantUniverselle) async {
+  //   for (var i =
+  //           _listGestionMensuel[indexGestion].montantUniverselle.length - 1;
+  //       i >= 0;
+  //       i--) {
+  //     if (_listGestionMensuel[indexGestion]
+  //             .montantUniverselleLive[indexGestionLive]
+  //             .id ==
+  //         _listGestionMensuel[indexGestion].montantUniverselle[i].id) {
+  //       echeanceNoPasse(indexGestion,i,idGestionMontantUniverselle);
+  //     }
+  //     return;
+  //   }
+  // }
+
+  // echeanceNoPasse(int indexGestion, int indexGestionLive,
+  //     String idGestionMontantUniverselle) async {
+  //   echeanceNoPasseMontanUnive(
+  //       idGestionMontantUniverselle, indexGestion, indexGestionLive);
+  //   for (var i = _listGestionMensuel[indexGestion]
+  //               .montantUniverselle[indexGestionLive]
+  //               .descriptionUniverselle
+  //               .length -
+  //           1;
+  //       i >= 0;
+  //       i--) {
+  //     if (_listGestionMensuel[indexGestion]
+  //             .montantUniverselle[indexGestionLive]
+  //             .descriptionUniverselle[i]
+  //             .echeance >
+  //         0) {
+  //       _listGestionMensuel[indexGestion]
+  //           .montantUniverselle[indexGestionLive]
+  //           .descriptionUniverselle[i]
+  //           .nombreEcheance = _listGestionMensuel[indexGestion]
+  //               .montantUniverselle[indexGestionLive]
+  //               .descriptionUniverselle[i]
+  //               .nombreEcheance +
+  //           1;
+  //     }
+  //   }
+  //   await _saveGestionMensuelle();
+  //   _initEconomyDays();
+  //   notifyListeners();
+  // }
 }
