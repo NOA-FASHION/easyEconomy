@@ -181,10 +181,10 @@ class EasyController extends ChangeNotifier {
     return;
   }
 
-  void removeDescriptionMontaUniv(
-      {required int index,
-      required int indexChargeFixe,
-      }) async {
+  void removeDescriptionMontaUniv({
+    required int index,
+    required int indexChargeFixe,
+  }) async {
     _listMontantUniverselle[indexChargeFixe]
         .descriptionUniverselle
         .removeAt(index);
@@ -704,13 +704,19 @@ class EasyController extends ChangeNotifier {
     return false;
   }
 
-  echeancePasseMontanUniveValid(MontantUniverselle montantUniverselle) {
-    for (var i = montantUniverselle.descriptionUniverselle.length - 1;
+  echeancePasseMontanUniveValid(int index) {
+    for (var i =
+            _listMontantUniverselle[index].descriptionUniverselle.length - 1;
         i >= 0;
         i--) {
-      if (montantUniverselle.descriptionUniverselle[i].echeance > 0) {
-        montantUniverselle.descriptionUniverselle[i].nombreEcheance =
-            montantUniverselle.descriptionUniverselle[i].nombreEcheance - 1;
+      if (_listMontantUniverselle[index].descriptionUniverselle[i].echeance >
+          0) {
+        _listMontantUniverselle[index]
+            .descriptionUniverselle[i]
+            .nombreEcheance = _listMontantUniverselle[index]
+                .descriptionUniverselle[i]
+                .nombreEcheance -
+            1;
       }
     }
   }
@@ -722,7 +728,7 @@ class EasyController extends ChangeNotifier {
           _listGestionMensuel[indexGestion]
               .montantUniverselle[indexGestionLive]
               .id) {
-        echeancePasseMontanUniveValid(_listMontantUniverselle[i]);
+        echeancePasseMontanUniveValid(i);
       }
     }
     await _saveMontantUniverselle();
@@ -745,13 +751,19 @@ class EasyController extends ChangeNotifier {
     notifyListeners();
   }
 
-  echeanceNoPasseMontanUniveValid(MontantUniverselle montantUniverselle) {
-    for (var i = montantUniverselle.descriptionUniverselle.length - 1;
+  echeanceNoPasseMontanUniveValid(int index) {
+    for (var i =
+            _listMontantUniverselle[index].descriptionUniverselle.length - 1;
         i >= 0;
         i--) {
-      if (montantUniverselle.descriptionUniverselle[i].echeance > 0) {
-        montantUniverselle.descriptionUniverselle[i].nombreEcheance =
-            montantUniverselle.descriptionUniverselle[i].nombreEcheance + 1;
+      if (_listMontantUniverselle[index].descriptionUniverselle[i].echeance >
+          0) {
+        _listMontantUniverselle[index]
+            .descriptionUniverselle[i]
+            .nombreEcheance = _listMontantUniverselle[index]
+                .descriptionUniverselle[i]
+                .nombreEcheance +
+            1;
       }
     }
   }
@@ -763,7 +775,7 @@ class EasyController extends ChangeNotifier {
           _listGestionMensuel[indexGestion]
               .montantUniverselle[indexGestionLive]
               .id) {
-        echeanceNoPasseMontanUniveValid(_listMontantUniverselle[i]);
+        echeanceNoPasseMontanUniveValid(i);
       }
     }
     await _saveMontantUniverselle();
