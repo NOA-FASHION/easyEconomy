@@ -166,7 +166,6 @@ class EasyController extends ChangeNotifier {
       required String description}) async {
     _listMontantUniverselle[indexChargeFixe].descriptionUniverselle.add(
         DesciprtionUniverselle(
-            achat: achat,
             adresseImage: adresseImage,
             commentaire: commentaire,
             description: choixDesciptionEnum(description),
@@ -230,7 +229,6 @@ class EasyController extends ChangeNotifier {
         .montantUniverselle[indexGestionMensuelMontantUniv]
         .descriptionUniverselle
         .add(DesciprtionUniverselle(
-            achat: achat,
             adresseImage: adresseImage,
             commentaire: commentaire,
             description: choixDesciptionEnum(description),
@@ -277,7 +275,7 @@ class EasyController extends ChangeNotifier {
             nom: _listMontantUniverselle[i].nom,
             descriptionUniverselle:
                 _listMontantUniverselle[i].descriptionUniverselle,
-            achatTotal: 0,
+            achat: [],
             previsionsTotal: 0),
       );
     }
@@ -370,7 +368,7 @@ class EasyController extends ChangeNotifier {
           montant: montant,
           nom: nom,
           descriptionUniverselle: [],
-          achatTotal: 0,
+          achat: [],
           previsionsTotal: 0),
     );
     addMontantPrevision(id: id, montant: montant, nom: nom, unity: unity);
@@ -398,7 +396,7 @@ class EasyController extends ChangeNotifier {
                 montant: montant,
                 nom: nom,
                 descriptionUniverselle: [],
-                achatTotal: 0,
+                achat: [],
                 previsionsTotal: 0),
           );
         await _saveGestionMensuelle();
@@ -422,7 +420,7 @@ class EasyController extends ChangeNotifier {
           montant: montant,
           nom: nom,
           descriptionUniverselle: [],
-          achatTotal: 0,
+          achat: [],
           previsionsTotal: 0),
     );
 
@@ -494,7 +492,7 @@ class EasyController extends ChangeNotifier {
         montant: montant,
         nom: nom,
         descriptionUniverselle: [],
-        achatTotal: 0,
+        achat: [],
         previsionsTotal: 0));
     await _saveGestionMensuelle();
     _initEconomyDays();
@@ -512,7 +510,7 @@ class EasyController extends ChangeNotifier {
             nom: _listMontantUniverselle[i].nom,
             descriptionUniverselle:
                 _listMontantUniverselle[i].descriptionUniverselle,
-            achatTotal: 0,
+            achat: [],
             previsionsTotal: 0),
       );
     }
@@ -574,9 +572,9 @@ class EasyController extends ChangeNotifier {
                 descriptionUniverselle: _listGestionMensuel[indexGestionMensuel]
                     .montantUniverselleLive[indexGestionMensMontanUniv]
                     .descriptionUniverselle,
-                achatTotal: _listGestionMensuel[indexGestionMensuel]
+                achat: _listGestionMensuel[indexGestionMensuel]
                     .montantUniverselleLive[indexGestionMensMontanUniv]
-                    .achatTotal,
+                    .achat,
                 previsionsTotal: _listGestionMensuel[indexGestionMensuel]
                     .montantUniverselleLive[indexGestionMensMontanUniv]
                     .previsionsTotal),
@@ -655,9 +653,9 @@ class EasyController extends ChangeNotifier {
                 descriptionUniverselle: _listGestionMensuel[indexGestionMensuel]
                     .montantUniverselle[indexGestionMensMontanUniv]
                     .descriptionUniverselle,
-                achatTotal: _listGestionMensuel[indexGestionMensuel]
+                achat: _listGestionMensuel[indexGestionMensuel]
                     .montantUniverselle[indexGestionMensMontanUniv]
-                    .achatTotal,
+                    .achat,
                 previsionsTotal: _listGestionMensuel[indexGestionMensuel]
                     .montantUniverselle[indexGestionMensMontanUniv]
                     .previsionsTotal),
@@ -741,7 +739,6 @@ class EasyController extends ChangeNotifier {
       int indexGestionLive, int indexgestiondescription) async {
     _listGestionMensuel[indexGestion]
         .montantUniverselle[indexGestionLive]
-        .descriptionUniverselle[indexgestiondescription]
         .achat
         .add(_listGestionMensuel[indexGestion]
             .montantUniverselle[indexGestionLive]

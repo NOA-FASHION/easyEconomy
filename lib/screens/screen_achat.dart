@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class ScreenAchat extends StatefulWidget {
   final List<DesciprtionUniverselle> listDesription;
-  ScreenAchat({required this.listDesription, Key? key}) : super(key: key);
+  final List<double> achat;
+  ScreenAchat({required this.achat, required this.listDesription, Key? key})
+      : super(key: key);
 
   @override
   _ScreenAchatState createState() => _ScreenAchatState();
@@ -15,14 +17,13 @@ class _ScreenAchatState extends State<ScreenAchat> {
     double totalPrev = 0;
     for (var i = widget.listDesription.length - 1; i >= 0; i--) {
       totalPrev = totalPrev + widget.listDesription[i].previsions;
-      totalAchat(i);
     }
     return totalPrev;
   }
 
-  totalAchat(int index) {
-    for (var i = widget.listDesription[index].achat.length - 1; i >= 0; i--) {
-      totalAchats = totalAchats + widget.listDesription[index].achat[i];
+  totalAchat() {
+    for (var i = widget.achat.length - 1; i >= 0; i--) {
+      totalAchats = totalAchats + widget.achat[i];
     }
   }
 
