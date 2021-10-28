@@ -672,7 +672,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                                     Provider.of<EasyController>(context,
                                             listen: false)
                                         .addDescriptionMontaUniv(
-                                            achat: 0,
+                                            achat: [],
                                             adresseImage: _image,
                                             commentaire: commentaire,
                                             description: unityChallenge,

@@ -261,8 +261,8 @@ class _BuildGestionMensuelResultatsState
               if (direction == DismissDirection.endToStart) {
                 variable.echeanceNoPasseMontanUnive(
                     widget.idGestionMontantUniverselle,
-                    index,
-                    widget.indexGestionMensuel);
+                    widget.indexGestionMensuel,
+                    index);
                 variable.removeGestionMensuelleMontantUnivLive(
                   indexGestionMensMontanUniv: index,
                   idGestionMensMontanUniv: widget.idGestionMontantUniverselle,

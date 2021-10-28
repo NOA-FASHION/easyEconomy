@@ -63,7 +63,7 @@ choixDesciptionEnum(dynamic json) {
 }
 
 class DesciprtionUniverselle {
-  double achat;
+  List<double> achat;
   double previsions;
   double echeance;
   double nombreEcheance;
@@ -83,20 +83,21 @@ class DesciprtionUniverselle {
       required this.description,
       required this.commentaire});
 
-  DesciprtionUniverselle.fromJSON(Map<String, dynamic> json)
-      : achat = json['achat'],
-        echeance = json['echeance'],
-        nombreEcheance = json['nombreEcheance'],
-        previsions = json['previsions'],
-        name = json['name'],
-        id = json['id'],
-        adresseImage = json['adresseImage'],
-        commentaire = json['commentaire'],
-        description = choixDesciptionEnum(json);
+  factory DesciprtionUniverselle.fromJSON(Map<String, dynamic> json) =>
+      DesciprtionUniverselle(
+          echeance: json['echeance'],
+          nombreEcheance: json['nombreEcheance'],
+          previsions: json['previsions'],
+          name: json['name'],
+          id: json['id'],
+          adresseImage: json['adresseImage'],
+          commentaire: json['commentaire'],
+          description: choixDesciptionEnum(json),
+          achat: List<double>.from(json["achat"].map((x) => x)));
 
   Map<String, dynamic> toJson() {
     return {
-      "achat": achat,
+      "achat": List<dynamic>.from(achat.map((x) => x)),
       "echeance": echeance,
       "nombreEcheance": nombreEcheance,
       "previsions": previsions,

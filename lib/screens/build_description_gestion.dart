@@ -121,6 +121,20 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
           ],
         ),
       );
+    } else if (description == "achat") {
+      echeancierWidgets = Container(
+        width: MediaQuery.of(context).size.width / 1.8,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width / 1.8,
+              child: Text(
+                  "Prix " + listdescript[index].previsions.toString() + "€"),
+            ),
+          ],
+        ),
+      );
     }
 
     return echeancierWidgets;

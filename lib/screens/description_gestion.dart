@@ -407,9 +407,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     List<DesciprtionUniverselle> listDesription =
         providerType.getGestionMensuelDescription(
             widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
-    List<MontantUniverselle> montantUniverselleAchats =
-        providerType.getGestionMensuelAchat(widget.indexGestionMensuel);
-
     return Scaffold(
       key: scaffoldkeyTache,
       appBar: PreferredSize(
@@ -442,8 +439,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                       padding: const EdgeInsets.all(8.0),
                       child: ScreenAchat(
                         listDesription: listDesription,
-                        montantUniv: montantUniverselleAchats[
-                            widget.indexGestionMensuelMontantUniv],
                       )),
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -679,7 +674,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                     Provider.of<EasyController>(context,
                                             listen: false)
                                         .addDescriptionGestion(
-                                            achat: 0,
+                                            achat: [],
                                             adresseImage: _image,
                                             commentaire: commentaire,
                                             description: unityChallenge,

@@ -154,7 +154,7 @@ class EasyController extends ChangeNotifier {
   //       .descriptionUniverselle;
   // }
   addDescriptionMontaUniv(
-      {required double achat,
+      {required List<double> achat,
       required double previsions,
       required double echeance,
       required double nombreEcheance,
@@ -215,7 +215,7 @@ class EasyController extends ChangeNotifier {
   }
 
   addDescriptionGestion(
-      {required double achat,
+      {required List<double> achat,
       required double previsions,
       required double echeance,
       required double nombreEcheance,
@@ -711,6 +711,7 @@ class EasyController extends ChangeNotifier {
         i--) {
       if (_listMontantUniverselle[index].descriptionUniverselle[i].echeance >
           0) {
+        print("montant echeance ok");
         _listMontantUniverselle[index]
             .descriptionUniverselle[i]
             .nombreEcheance = _listMontantUniverselle[index]
@@ -739,14 +740,15 @@ class EasyController extends ChangeNotifier {
   achatTotals(String idGestionMensMontantUnv, int indexGestion,
       int indexGestionLive, int indexgestiondescription) async {
     _listGestionMensuel[indexGestion]
-            .montantUniverselle[indexGestionLive]
-            .achatTotal =
-        _listGestionMensuel[indexGestion]
+        .montantUniverselle[indexGestionLive]
+        .descriptionUniverselle[indexgestiondescription]
+        .achat
+        .add(_listGestionMensuel[indexGestion]
             .montantUniverselle[indexGestionLive]
             .descriptionUniverselle[indexgestiondescription]
-            .achat;
-    await _saveGestionMensuelleMontantUniv(
-        remove: true, idGestionMensMontanUniv: idGestionMensMontantUnv);
+            .echeance);
+
+    await _saveGestionMensuelle();
     _initEconomy();
     notifyListeners();
   }
@@ -773,7 +775,7 @@ class EasyController extends ChangeNotifier {
     for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
       if (_listMontantUniverselle[i].id ==
           _listGestionMensuel[indexGestion]
-              .montantUniverselle[indexGestionLive]
+              .montantUniverselleLive[indexGestionLive]
               .id) {
         echeanceNoPasseMontanUniveValid(i);
       }
