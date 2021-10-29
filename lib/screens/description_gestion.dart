@@ -407,8 +407,9 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     List<DesciprtionUniverselle> listDesription =
         providerType.getGestionMensuelDescription(
             widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
-    List<MontantUniverselle> _listMontantUniverselle = providerType
-        .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
+    List<double> _GestionMensListAchat =
+        providerType.getGestionMensuelListAchat(
+            widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
     return Scaffold(
       key: scaffoldkeyTache,
       appBar: PreferredSize(
@@ -441,9 +442,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                       padding: const EdgeInsets.all(8.0),
                       child: ScreenAchat(
                         listDesription: listDesription,
-                        achat: _listMontantUniverselle[
-                                widget.indexGestionMensuelMontantUniv]
-                            .achat,
+                        achat: _GestionMensListAchat,
                       )),
                   decoration: BoxDecoration(
                       gradient: LinearGradient(

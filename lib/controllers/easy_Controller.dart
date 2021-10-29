@@ -84,6 +84,13 @@ class EasyController extends ChangeNotifier {
     return _listGestionMensuel[indexGestionMensuel].montantUniverselle;
   }
 
+  List<double> getGestionMensuelListAchat(
+      int indexGestionMensuel, int indexGestionMensuelMontantUniv) {
+    return _listGestionMensuel[indexGestionMensuel]
+        .montantUniverselle[indexGestionMensuelMontantUniv]
+        .achat;
+  }
+
   List<MontantUniverselle> getGestionMensuelMontantUnivLive(
       int indexGestionMensuel) {
     return _listGestionMensuel[indexGestionMensuel].montantUniverselleLive;

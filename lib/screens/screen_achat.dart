@@ -22,8 +22,10 @@ class _ScreenAchatState extends State<ScreenAchat> {
   }
 
   totalAchat() {
-    for (var i = widget.achat.length - 1; i >= 0; i--) {
-      totalAchats = totalAchats + widget.achat[i];
+    if (widget.achat.length > 0) {
+      for (var i = widget.achat.length - 1; i >= 0; i--) {
+        totalAchats = totalAchats + widget.achat[i];
+      }
     }
   }
 
