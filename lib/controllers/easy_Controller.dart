@@ -750,8 +750,10 @@ class EasyController extends ChangeNotifier {
         .add(_listGestionMensuel[indexGestion]
             .montantUniverselle[indexGestionLive]
             .descriptionUniverselle[indexgestiondescription]
-            .echeance);
-
+            .previsions);
+    print(_listGestionMensuel[indexGestion]
+        .montantUniverselle[indexGestionLive]
+        .achat);
     await _saveGestionMensuelle();
     _initEconomy();
     notifyListeners();

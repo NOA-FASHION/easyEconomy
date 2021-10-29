@@ -12,7 +12,6 @@ class ScreenAchat extends StatefulWidget {
 }
 
 class _ScreenAchatState extends State<ScreenAchat> {
-  double totalAchats = 0;
   double totalPrevision() {
     double totalPrev = 0;
     for (var i = widget.listDesription.length - 1; i >= 0; i--) {
@@ -21,12 +20,14 @@ class _ScreenAchatState extends State<ScreenAchat> {
     return totalPrev;
   }
 
-  totalAchat() {
+  double totalAchat() {
+    double totalAchats = 0;
     if (widget.achat.length > 0) {
       for (var i = widget.achat.length - 1; i >= 0; i--) {
         totalAchats = totalAchats + widget.achat[i];
       }
     }
+    return totalAchats;
   }
 
   @override
@@ -80,7 +81,7 @@ class _ScreenAchatState extends State<ScreenAchat> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              totalAchats.toString(),
+                              totalAchat().toString(),
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white),
                               textAlign: TextAlign.center,
