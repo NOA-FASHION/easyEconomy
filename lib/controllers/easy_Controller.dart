@@ -220,6 +220,91 @@ class EasyController extends ChangeNotifier {
         keyAccesMontantUniverselle, _jsonList);
   }
 
+  double totalPrevision(
+      int indexGestionMensuel, int indexGestionMensuelMontantUniv) {
+    double totalPrev = 0;
+    for (var i = _listGestionMensuel[indexGestionMensuel]
+                .montantUniverselle[indexGestionMensuelMontantUniv]
+                .descriptionUniverselle
+                .length -
+            1;
+        i >= 0;
+        i--) {
+      totalPrev = totalPrev +
+          _listGestionMensuel[indexGestionMensuel]
+              .montantUniverselle[indexGestionMensuelMontantUniv]
+              .descriptionUniverselle[i]
+              .previsions;
+    }
+    return totalPrev;
+  }
+
+  double totalAchat(
+      int indexGestionMensuel, int indexGestionMensuelMontantUniv) {
+    double totalAchats = 0;
+    if (_listGestionMensuel[indexGestionMensuel]
+            .montantUniverselle[indexGestionMensuelMontantUniv]
+            .achat
+            .length >
+        0) {
+      for (var i = _listGestionMensuel[indexGestionMensuel]
+                  .montantUniverselle[indexGestionMensuelMontantUniv]
+                  .achat
+                  .length -
+              1;
+          i >= 0;
+          i--) {
+        totalAchats = totalAchats +
+            _listGestionMensuel[indexGestionMensuel]
+                .montantUniverselle[indexGestionMensuelMontantUniv]
+                .achat[i];
+      }
+    }
+    return totalAchats;
+  }
+
+  montantPrevision(
+      int indexGestionMensuel, int indexGestionMensuelMontantUniv) {
+    for (var i = _listGestionMensuel[indexGestionMensuel]
+                .montantUniverselle[indexGestionMensuelMontantUniv]
+                .descriptionUniverselle
+                .length -
+            1;
+        i >= 0;
+        i--) {
+      if (_listGestionMensuel[indexGestionMensuel]
+              .montantUniverselle[indexGestionMensuelMontantUniv]
+              .descriptionUniverselle[i]
+              .previsions >
+          0) {
+        _listGestionMensuel[indexGestionMensuel]
+                .montantUniverselle[indexGestionMensuelMontantUniv]
+                .montant =
+            totalPrevision(indexGestionMensuel, indexGestionMensuelMontantUniv);
+      }
+    }
+  }
+
+  montantAchat(int indexGestionMensuel, int indexGestionMensuelMontantUniv) {
+    for (var i = _listGestionMensuel[indexGestionMensuel]
+                .montantUniverselle[indexGestionMensuelMontantUniv]
+                .achat
+                .length -
+            1;
+        i >= 0;
+        i--) {
+      if (_listGestionMensuel[indexGestionMensuel]
+              .montantUniverselle[indexGestionMensuelMontantUniv]
+              .achat[i] >
+          0) {
+        _listGestionMensuel[indexGestionMensuel]
+                .montantUniverselle[indexGestionMensuelMontantUniv]
+                .montant =
+            totalAchat(indexGestionMensuel, indexGestionMensuelMontantUniv);
+      }
+    }
+  }
+
   addDescriptionGestion(
       {required List<double> achat,
       required double previsions,
@@ -244,6 +329,7 @@ class EasyController extends ChangeNotifier {
             name: name,
             previsions: previsions,
             nombreEcheance: nombreEcheance));
+    montantPrevision(indexGestionMensuel, indexGestionMensuelMontantUniv);
     await _saveGestionMensuelle();
     _initEconomyDays();
     notifyListeners();
@@ -751,9 +837,7 @@ class EasyController extends ChangeNotifier {
             .montantUniverselle[indexGestionLive]
             .descriptionUniverselle[indexgestiondescription]
             .previsions);
-    print(_listGestionMensuel[indexGestion]
-        .montantUniverselle[indexGestionLive]
-        .achat);
+    montantAchat(indexGestionLive, indexgestiondescription);
     await _saveGestionMensuelle();
     _initEconomy();
     notifyListeners();

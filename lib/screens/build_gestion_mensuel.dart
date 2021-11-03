@@ -4,6 +4,7 @@ import 'package:easyeconomy/screens/gestion_mensuel_live.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
+import 'package:multi_charts/multi_charts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,59 @@ class BuildGestionMensuel extends StatefulWidget {
 }
 
 class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
+  double montantChargeLive(
+      List<MontantUniverselle> gestionListMontantUniverselleLive) {
+    double montants = 0;
+
+    for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
+      print(gestionListMontantUniverselleLive[i].unity.toString());
+      if (gestionListMontantUniverselleLive[i].unity.toString() ==
+              'unity_Montant_universelle.ChargeFixe' ||
+          gestionListMontantUniverselleLive[i].unity.toString() ==
+              'unity_Montant_universelle.depensePonctuelle') {
+        montants = montants + gestionListMontantUniverselleLive[i].montant;
+      }
+    }
+
+    return montants;
+  }
+
+  double montantRevenuLive(
+      List<MontantUniverselle> gestionListMontantUniverselleLive) {
+    double montants = 0;
+
+    for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
+      if (gestionListMontantUniverselleLive[i].unity.toString() ==
+              'unity_Montant_universelle.RevenuFixe' ||
+          gestionListMontantUniverselleLive[i].unity.toString() ==
+              'unity_Montant_universelle.RevenuPonctuel') {
+        montants = montants + gestionListMontantUniverselleLive[i].montant;
+      }
+    }
+    return montants;
+  }
+
+  double montantTotalsLive(
+      List<MontantUniverselle> gestionListMontantUniverselleLive) {
+    double montant = 0;
+
+    for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
+      if (gestionListMontantUniverselleLive[i].unity.toString() ==
+              'unity_Montant_universelle.ChargeFixe' ||
+          gestionListMontantUniverselleLive[i].unity.toString() ==
+              'unity_Montant_universelle.depensePonctuelle') {
+        montant = montant - gestionListMontantUniverselleLive[i].montant;
+      } else if (gestionListMontantUniverselleLive[i].unity.toString() ==
+              'unity_Montant_universelle.RevenuFixe' ||
+          gestionListMontantUniverselleLive[i].unity.toString() ==
+              'unity_Montant_universelle.RevenuPonctuel') {
+        montant = montant + gestionListMontantUniverselleLive[i].montant;
+      }
+    }
+
+    return montant;
+  }
+
   Widget maxLetter(String word) {
     Widget longLetter;
 
@@ -107,44 +161,84 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                 Column(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width / 1.3,
+                      width: MediaQuery.of(context).size.width / 1.8,
                       height: 25.0,
                       child: Row(
                         children: [
                           Text(
-                            "Mois",
+                            "Charge",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
+                                fontWeight: FontWeight.bold, color: Colors.red),
                           ),
                           SizedBox(
-                            width: 5.0,
+                            width: 8.0,
                           ),
-                          maxLetter(gestion.mois),
+                          maxLetter(
+                              montantChargeLive(gestion.montantUniverselleLive)
+                                  .toStringAsFixed(2)),
                         ],
                       ),
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width / 1.3,
+                      width: MediaQuery.of(context).size.width / 1.8,
                       height: 30.0,
                       child: Row(
                         children: [
                           Text(
-                            "Montant",
+                            "Revenu",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.blue),
                           ),
                           SizedBox(
-                            width: 5.0,
+                            width: 6.0,
                           ),
                           Text(
-                            gestion.mois,
+                            montantRevenuLive(gestion.montantUniverselleLive)
+                                .toStringAsFixed(2),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.8,
+                      height: 30.0,
+                      child: Row(
+                        children: [
+                          Text(
+                            "Solde",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.greenAccent),
+                          ),
+                          SizedBox(
+                            width: 18.0,
+                          ),
+                          Text(
+                            montantTotalsLive(gestion.montantUniverselleLive)
+                                .toStringAsFixed(2),
                           ),
                         ],
                       ),
                     ),
                   ],
+                ),
+                PieChart(
+                  textScaleFactor: 0.0,
+                  maxWidth: MediaQuery.of(context).size.width / 4.3,
+                  maxHeight: MediaQuery.of(context).size.height / 14,
+                  values: [
+                    (montantTotalsLive(gestion.montantUniverselleLive) /
+                            montantRevenuLive(gestion.montantUniverselleLive)) *
+                        100.roundToDouble(),
+                    (montantChargeLive(gestion.montantUniverselleLive) /
+                            montantRevenuLive(gestion.montantUniverselleLive)) *
+                        100.roundToDouble()
+                  ],
+                  labels: ['Marge', 'frais'],
+                  sliceFillColors: [Colors.greenAccent, Colors.red],
+                  animationDuration: Duration(milliseconds: 1500),
+                  showLegend: false,
                 ),
               ],
             ),
@@ -325,7 +419,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                             child: Row(
                               children: [
                                 Text(
-                                  "Titre".toUpperCase(),
+                                  "Mois".toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.purple),
@@ -334,7 +428,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                                   width: 5.0,
                                 ),
                                 maxLetterTitre(_listGestionMensuel[index]
-                                    .nom
+                                    .mois
                                     .toUpperCase()),
                               ],
                             ),
