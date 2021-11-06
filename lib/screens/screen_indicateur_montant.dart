@@ -41,7 +41,7 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
       }
     }
 
-    return montants.toString();
+    return montants.toStringAsFixed(2);
   }
 
   String montantRevenu() {
@@ -63,7 +63,7 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
         }
       }
     }
-    return montants.toString();
+    return montants.toStringAsFixed(2);
   }
 
   String montantTotals() {
@@ -94,7 +94,7 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
       }
     }
 
-    return montant.toString();
+    return montant.toStringAsFixed(2);
   }
 
   String choixMontant() {

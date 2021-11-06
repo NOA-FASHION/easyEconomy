@@ -34,7 +34,7 @@ class _ScreenIndicatorMontantGestionLiveState
         montants = montants + widget.gestionListMontantUniverselle[i].montant;
       }
     }
-    return montants.toString();
+    return montants.toStringAsFixed(2);
   }
 
   String montantChargeLive() {
@@ -53,7 +53,7 @@ class _ScreenIndicatorMontantGestionLiveState
       }
     }
 
-    return montants.toString();
+    return montants.toStringAsFixed(2);
   }
 
   String montantRevenu() {
@@ -67,7 +67,7 @@ class _ScreenIndicatorMontantGestionLiveState
       }
     }
 
-    return montants.toString();
+    return montants.toStringAsFixed(2);
   }
 
   String montantRevenuLive() {
@@ -84,7 +84,7 @@ class _ScreenIndicatorMontantGestionLiveState
             montants + widget.gestionListMontantUniverselleLive[i].montant;
       }
     }
-    return montants.toString();
+    return montants.toStringAsFixed(2);
   }
 
   String montantTotals() {
@@ -103,7 +103,7 @@ class _ScreenIndicatorMontantGestionLiveState
       }
     }
 
-    return montant.toString();
+    return montant.toStringAsFixed(2);
   }
 
   String montantTotalsLive() {
@@ -125,7 +125,7 @@ class _ScreenIndicatorMontantGestionLiveState
       }
     }
 
-    return montant.toString();
+    return montant.toStringAsFixed(2);
   }
 
   String choixMontant() {

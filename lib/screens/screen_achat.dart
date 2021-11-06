@@ -81,7 +81,7 @@ class _ScreenAchatState extends State<ScreenAchat> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              totalAchat().toString(),
+                              totalAchat().toStringAsFixed(2),
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white),
                               textAlign: TextAlign.center,
@@ -123,7 +123,7 @@ class _ScreenAchatState extends State<ScreenAchat> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              totalPrevision().toString(),
+                              totalPrevision().toStringAsFixed(2),
                               style:
                                   TextStyle(fontSize: 13, color: Colors.white),
                               textAlign: TextAlign.center,
