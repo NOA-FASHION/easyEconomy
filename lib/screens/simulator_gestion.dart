@@ -211,7 +211,19 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
     983571,
     60746,
     62683,
-    59080
+    59080,
+    983709,
+    59068,
+    59068,
+    62600,
+    62566,
+    59004,
+    60780,
+    983518,
+    58859,
+    58840,
+    62333,
+    60391
   ];
   void initState() {
     super.initState();
@@ -406,18 +418,18 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                       child: ListView(
                         padding: EdgeInsets.all(10.0),
                         children: [
-                          IconButton(
-                            alignment: Alignment.topRight,
-                            icon: Icon(
-                              Icons.cancel,
-                              color: Colors.black,
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
+                          // IconButton(
+                          //   alignment: Alignment.topRight,
+                          //   icon: Icon(
+                          //     Icons.cancel,
+                          //     color: Colors.black,
+                          //   ),
+                          //   onPressed: () {
+                          //     Navigator.pop(context);
+                          //   },
+                          // ),
                           SizedBox(
-                            height: 15.0,
+                            height: 5.0,
                           ),
                           TextFormField(
                             textCapitalization: TextCapitalization.sentences,

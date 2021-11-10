@@ -412,7 +412,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
         child: SafeArea(
           child: AppBar(
             elevation: 0,
-            title: Text("Data"),
+            title: Text("Documentation"),
             centerTitle: true,
             flexibleSpace: Column(
               children: [
@@ -431,22 +431,6 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                           end: Alignment.centerRight,
                           colors: <Color>[Colors.orange, Colors.blueAccent])),
                 ),
-                // Container(
-                //   padding: EdgeInsets.only(top: 10.0),
-                //   alignment: Alignment.center,
-                //   child: Padding(
-                //       padding: const EdgeInsets.all(8.0),
-                //       child: ScreenAchat(
-                //         listDesription: listDesription,
-                //         montantUniv:
-                //             montantUniverselleAchats[widget.indexChargeFixe],
-                //       )),
-                //   decoration: BoxDecoration(
-                //       gradient: LinearGradient(
-                //           begin: Alignment.centerLeft,
-                //           end: Alignment.centerRight,
-                //           colors: <Color>[Colors.orange, Colors.blueAccent])),
-                // ),
               ],
             ),
           ),

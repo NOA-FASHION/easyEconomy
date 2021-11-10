@@ -82,12 +82,12 @@ class _BuildChargeFixeDescriptionState
     );
     if (description == "echeancier") {
       echeancierWidgets = Container(
-        width: MediaQuery.of(context).size.width / 1.8,
+        width: MediaQuery.of(context).size.width / 1.7,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width: MediaQuery.of(context).size.width / 1.8,
+              width: MediaQuery.of(context).size.width / 1.7,
               child: Text("Nombre d'échéances " +
                   listdescript[index].nombreEcheance.toString()),
             ),
@@ -95,7 +95,7 @@ class _BuildChargeFixeDescriptionState
               height: 4.0,
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 1.8,
+              width: MediaQuery.of(context).size.width / 1.7,
               child: Text("Montant échéance " +
                   listdescript[index].echeance.toString() +
                   "€"),
@@ -104,7 +104,7 @@ class _BuildChargeFixeDescriptionState
               height: 4.0,
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 1.8,
+              width: MediaQuery.of(context).size.width / 1.7,
               child: Text("Echéance en cours " +
                   (listdescript[index].echeance *
                           listdescript[index].nombreEcheance)
@@ -237,7 +237,7 @@ class _BuildChargeFixeDescriptionState
                 Column(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width / 1.8,
+                      width: MediaQuery.of(context).size.width / 1.65,
                       height: 25.0,
                       child: Row(
                         children: [
@@ -271,26 +271,6 @@ class _BuildChargeFixeDescriptionState
                             .replaceAll(unityPattern, ""),
                         listDescription,
                         index),
-                    // Container(
-                    //   width: MediaQuery.of(context).size.width / 1.8,
-                    //   height: 30.0,
-                    //   child: Row(
-                    //     children: [
-                    //       Text(
-                    //         "prix du produit",
-                    //         style: TextStyle(
-                    //             fontWeight: FontWeight.bold,
-                    //             color: Colors.blue),
-                    //       ),
-                    //       SizedBox(
-                    //         width: 12.0,
-                    //       ),
-                    //       Text(
-                    //         "product.prixVente.toString()",
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
                   ],
                 ),
                 iconDataJoin(description.description
@@ -352,7 +332,7 @@ class _BuildChargeFixeDescriptionState
         child: Container(
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Lottie.asset('assets/bankOut.json', height: 65))),
+                child: Lottie.asset('assets/bankOut.json', height: 50))),
       );
     }
 
@@ -531,7 +511,7 @@ class _BuildChargeFixeDescriptionState
                             child: Row(
                               children: [
                                 Text(
-                                  "Etape".toUpperCase(),
+                                  "Document".toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.purple),
@@ -539,7 +519,7 @@ class _BuildChargeFixeDescriptionState
                                 SizedBox(
                                   width: 5.0,
                                 ),
-                                Text(listDesription[index].name),
+                                Text((index + 1).toString()),
                               ],
                             ),
                           ),

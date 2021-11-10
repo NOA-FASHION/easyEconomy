@@ -416,7 +416,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
         preferredSize: Size.fromHeight(230.0),
         child: SafeArea(
           child: AppBar(
-            title: Text("Data"),
+            title: Text("Documentation"),
             centerTitle: true,
             flexibleSpace: Column(
               children: [

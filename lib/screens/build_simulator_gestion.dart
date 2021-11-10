@@ -212,8 +212,11 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                   child: Container(
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(40.0),
-                        child: Icon(IconData(gestion.icones,
-                            fontFamily: 'MaterialIcons'))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Icon(IconData(gestion.icones,
+                              fontFamily: 'MaterialIcons')),
+                        )),
                   ),
                 ),
               ],

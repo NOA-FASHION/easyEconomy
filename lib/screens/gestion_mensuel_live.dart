@@ -219,7 +219,18 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
     983571,
     60746,
     62683,
-    59080
+    59080,
+    983709,
+    59068,
+    62600,
+    62566,
+    59004,
+    60780,
+    983518,
+    58859,
+    58840,
+    62333,
+    60391
   ];
 
   void initState() {
@@ -393,7 +404,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                               ),
                               ScreenIndicatorMontantGestionLive(
                                 titre: _listMontantUniverselleLive.length > 0
-                                    ? 'Soldes restants'
+                                    ? 'Transactions restants'
                                     : "Prévisions Soldes",
                                 icones: Icons.preview,
                                 gestionListMontantUniverselle:
@@ -466,18 +477,18 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                       child: ListView(
                         padding: EdgeInsets.all(10.0),
                         children: [
-                          IconButton(
-                            alignment: Alignment.topRight,
-                            icon: Icon(
-                              Icons.cancel,
-                              color: Colors.black,
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
+                          // IconButton(
+                          //   alignment: Alignment.topRight,
+                          //   icon: Icon(
+                          //     Icons.cancel,
+                          //     color: Colors.black,
+                          //   ),
+                          //   onPressed: () {
+                          //     Navigator.pop(context);
+                          //   },
+                          // ),
                           SizedBox(
-                            height: 15.0,
+                            height: 5.0,
                           ),
                           TextFormField(
                             textCapitalization: TextCapitalization.sentences,

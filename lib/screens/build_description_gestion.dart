@@ -258,7 +258,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                 Column(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width / 1.8,
+                      width: MediaQuery.of(context).size.width / 1.4,
                       height: 25.0,
                       child: Row(
                         children: [
@@ -292,26 +292,6 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                             .replaceAll(unityPattern, ""),
                         listDescription,
                         index),
-                    // Container(
-                    //   width: MediaQuery.of(context).size.width / 1.8,
-                    //   height: 30.0,
-                    //   child: Row(
-                    //     children: [
-                    //       Text(
-                    //         "prix du produit",
-                    //         style: TextStyle(
-                    //             fontWeight: FontWeight.bold,
-                    //             color: Colors.blue),
-                    //       ),
-                    //       SizedBox(
-                    //         width: 12.0,
-                    //       ),
-                    //       Text(
-                    //         "product.prixVente.toString()",
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
                   ],
                 ),
                 iconDataJoin(description.description

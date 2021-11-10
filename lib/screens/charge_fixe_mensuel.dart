@@ -21,7 +21,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
   late PersistentBottomSheetController _bottomSheetController;
   late String nomCharge;
   late String nomRevenu;
-  
+
   double montantCharge = 0;
   String unityChallenge = "RevenuFixe";
   late bool simuOuchargeFixe;
@@ -30,9 +30,11 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
     super.initState();
     simuOuchargeFixe = false;
   }
-int iconData = 57403;
+
+  int iconData = 57403;
   final List<int> icons = [
     57403,
+    983709,
     57399,
     57400,
     59195,
@@ -216,7 +218,16 @@ int iconData = 57403;
     983571,
     60746,
     62683,
-    59080
+    59080,
+    62600,
+    62566,
+    59004,
+    60780,
+    983518,
+    58859,
+    58840,
+    62333,
+    60391
   ];
 
   Widget formfieldDropDown() {
@@ -520,18 +531,18 @@ int iconData = 57403;
                       child: ListView(
                         padding: EdgeInsets.all(10.0),
                         children: [
-                          IconButton(
-                            alignment: Alignment.topRight,
-                            icon: Icon(
-                              Icons.cancel,
-                              color: Colors.black,
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
+                          // IconButton(
+                          //   alignment: Alignment.topRight,
+                          //   icon: Icon(
+                          //     Icons.cancel,
+                          //     color: Colors.black,
+                          //   ),
+                          //   onPressed: () {
+                          //     Navigator.pop(context);
+                          //   },
+                          // ),
                           SizedBox(
-                            height: 15.0,
+                            height: 5.0,
                           ),
                           formfieldDropDown(),
                           Center(child: Text("Icone de description")),

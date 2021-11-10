@@ -133,7 +133,7 @@ class _ScreenIndicatorMontantGestionLiveState
     String montant = '0';
 
     if (widget.titre == "Prévisions Soldes" ||
-        widget.titre == 'Soldes restants') {
+        widget.titre == 'Transactions restants') {
       montant = montantTotals().toStringAsFixed(2);
     } else if (widget.titre == "Prévisions revenus" ||
         widget.titre == 'revenus restants') {
@@ -163,7 +163,7 @@ class _ScreenIndicatorMontantGestionLiveState
   String soldeLive() {
     double montant = 0;
 
-    montant = montantTotals() - montantTotalsLive();
+    montant = montantTotals() + montantTotalsLive();
 
     return montant.toStringAsFixed(2);
   }
@@ -308,7 +308,7 @@ class _ScreenIndicatorMontantGestionLiveState
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        widget.titre,
+                        "Prévision de Solde",
                         style: TextStyle(fontSize: 13, color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -344,14 +344,6 @@ class _ScreenIndicatorMontantGestionLiveState
                       ),
                     ),
 
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        widget.titre1,
-                        style: TextStyle(fontSize: 13, color: Colors.white),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
                     // text
                   ],
                 ),

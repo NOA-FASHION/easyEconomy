@@ -1,7 +1,6 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/description_gestion.dart';
-import 'package:easyeconomy/screens/gestion_mensuel_live.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
@@ -221,8 +220,11 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                   child: Container(
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(40.0),
-                        child: Icon(IconData(gestion.icones,
-                            fontFamily: 'MaterialIcons'))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Icon(IconData(gestion.icones,
+                              fontFamily: 'MaterialIcons')),
+                        )),
                   ),
                 ),
               ],
