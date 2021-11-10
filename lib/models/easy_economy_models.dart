@@ -110,7 +110,7 @@ class DesciprtionUniverselle {
 }
 
 class MontantUniverselle {
-  IconData icones;
+  int icones;
   List<double> achat;
   double previsionsTotal;
   String id;

@@ -449,7 +449,7 @@ class EasyController extends ChangeNotifier {
   }
 
   void addMontanUniverselle({
-    required IconData icones,
+    required int icones,
     required String nom,
     required double montant,
     required String id,
@@ -477,7 +477,7 @@ class EasyController extends ChangeNotifier {
   }
 
   void addMontantGestion({
-    required IconData icones,
+    required int icones,
     required String nom,
     required double montant,
     required String id,
@@ -507,7 +507,7 @@ class EasyController extends ChangeNotifier {
   }
 
   void addMontantPrevision({
-    required IconData icones,
+    required int icones,
     required String nom,
     required double montant,
     required String id,
@@ -582,7 +582,7 @@ class EasyController extends ChangeNotifier {
   }
 
   void addGestionMensuelMontantUniv(
-      {required IconData icones,
+      {required int icones,
       required String nom,
       required double montant,
       required String id,

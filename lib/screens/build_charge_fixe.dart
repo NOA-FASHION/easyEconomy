@@ -37,33 +37,33 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
   Widget iconDataJoin(String resultat) {
     Widget documentJoint = Icon(
       Icons.block,
-      size: 30.0,
+      size: 20.0,
     );
     if (resultat == "unity_Montant_universelle.ChargeFixe") {
       documentJoint = Icon(
         Icons.all_out,
-        size: 30.0,
+        size: 20.0,
         color: Colors.red,
       );
       return documentJoint;
     } else if (resultat == "unity_Montant_universelle.depensePonctuelle") {
       documentJoint = Icon(
         Icons.schedule,
-        size: 30.0,
+        size: 20.0,
         color: Colors.red,
       );
       return documentJoint;
     } else if (resultat == "unity_Montant_universelle.RevenuFixe") {
       documentJoint = Icon(
         Icons.all_out,
-        size: 30.0,
+        size: 20.0,
         color: Colors.green,
       );
       return documentJoint;
     } else if (resultat == "unity_Montant_universelle.RevenuPonctuel") {
       documentJoint = Icon(
         Icons.schedule,
-        size: 30.0,
+        size: 20.0,
         color: Colors.green,
       );
       return documentJoint;
@@ -215,7 +215,8 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                   child: Container(
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(40.0),
-                        child: Icon(gestion.icones)),
+                        child: Icon(IconData(gestion.icones,
+                            fontFamily: 'MaterialIcons'))),
                   ),
                 ),
               ],
@@ -400,37 +401,45 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                     title: Container(
                       child: Row(
                         children: [
-                          Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            elevation: 15.0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Titre".toUpperCase(),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.purple),
-                                  ),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  maxLetterTitre(_listMontantUniverselle[index]
-                                      .nom
-                                      .toUpperCase()),
-                                  iconDataJoin((_listMontantUniverselle[index]
-                                      .unity
-                                      .toString()))
-                                ],
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1.3,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              elevation: 15.0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Titre".toUpperCase(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.purple),
+                                    ),
+                                    SizedBox(
+                                      width: 5.0,
+                                    ),
+                                    maxLetterTitre(
+                                        _listMontantUniverselle[index]
+                                            .nom
+                                            .toUpperCase()),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                           SizedBox(
-                            width: 5.0,
+                            width: 16.0,
                           ),
+                          Row(
+                            children: [
+                              iconDataJoin((_listMontantUniverselle[index]
+                                  .unity
+                                  .toString())),
+                            ],
+                          )
                         ],
                       ),
                     ),
