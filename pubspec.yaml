@@ -37,9 +37,11 @@ dependencies:
   nanoid: ^1.0.0
   intl: ^0.17.0
   image_picker: ^0.8.4+2
-  flip_card: ^0.5.0
+  flip_card: ^0.6.0
   top_snackbar_flutter: ^1.0.1
   multi_charts: ^0.3.0
+  accordion: ^2.1.1
+  
 
 dev_dependencies:
   flutter_test:

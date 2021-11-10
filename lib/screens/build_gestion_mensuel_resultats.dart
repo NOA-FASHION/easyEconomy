@@ -220,7 +220,7 @@ class _BuildGestionMensuelResultatsState
                   child: Container(
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(40.0),
-                        child: iconDataJoin(gestion.unity.toString())),
+                        child: Icon(gestion.icones)),
                   ),
                 ),
               ],
@@ -408,6 +408,9 @@ class _BuildGestionMensuelResultatsState
                                   maxLetterTitre(_listMontantUniverselle[index]
                                       .nom
                                       .toUpperCase()),
+                                  iconDataJoin((_listMontantUniverselle[index]
+                                      .unity
+                                      .toString()))
                                 ],
                               ),
                             ),

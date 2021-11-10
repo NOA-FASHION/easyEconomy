@@ -221,7 +221,7 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                   child: Container(
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(40.0),
-                        child: iconDataJoin(gestion.unity.toString())),
+                        child: Icon(gestion.icones)),
                   ),
                 ),
               ],
@@ -414,6 +414,9 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                                   maxLetterTitre(_listMontantUniverselle[index]
                                       .nom
                                       .toUpperCase()),
+                                  iconDataJoin((_listMontantUniverselle[index]
+                                      .unity
+                                      .toString()))
                                 ],
                               ),
                             ),

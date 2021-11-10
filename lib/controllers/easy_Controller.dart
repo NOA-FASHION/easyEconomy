@@ -368,7 +368,8 @@ class EasyController extends ChangeNotifier {
             descriptionUniverselle:
                 _listMontantUniverselle[i].descriptionUniverselle,
             achat: [],
-            previsionsTotal: 0),
+            previsionsTotal: 0,
+            icones: _listMontantUniverselle[i].icones),
       );
     }
     await _saveMontantPrevision(remove: true);
@@ -448,6 +449,7 @@ class EasyController extends ChangeNotifier {
   }
 
   void addMontanUniverselle({
+    required IconData icones,
     required String nom,
     required double montant,
     required String id,
@@ -461,10 +463,13 @@ class EasyController extends ChangeNotifier {
           nom: nom,
           descriptionUniverselle: [],
           achat: [],
-          previsionsTotal: 0),
+          previsionsTotal: 0,
+          icones: icones),
     );
-    addMontantPrevision(id: id, montant: montant, nom: nom, unity: unity);
-    addMontantGestion(id: id, montant: montant, nom: nom, unity: unity);
+    addMontantPrevision(
+        id: id, montant: montant, nom: nom, unity: unity, icones: icones);
+    addMontantGestion(
+        id: id, montant: montant, nom: nom, unity: unity, icones: icones);
 
     await _saveMontantUniverselle();
     _initEconomy();
@@ -472,6 +477,7 @@ class EasyController extends ChangeNotifier {
   }
 
   void addMontantGestion({
+    required IconData icones,
     required String nom,
     required double montant,
     required String id,
@@ -489,7 +495,8 @@ class EasyController extends ChangeNotifier {
                 nom: nom,
                 descriptionUniverselle: [],
                 achat: [],
-                previsionsTotal: 0),
+                previsionsTotal: 0,
+                icones: icones),
           );
         await _saveGestionMensuelle();
         _initEconomyDays();
@@ -500,6 +507,7 @@ class EasyController extends ChangeNotifier {
   }
 
   void addMontantPrevision({
+    required IconData icones,
     required String nom,
     required double montant,
     required String id,
@@ -513,7 +521,8 @@ class EasyController extends ChangeNotifier {
           nom: nom,
           descriptionUniverselle: [],
           achat: [],
-          previsionsTotal: 0),
+          previsionsTotal: 0,
+          icones: icones),
     );
 
     await _saveMontantPrevision();
@@ -573,7 +582,8 @@ class EasyController extends ChangeNotifier {
   }
 
   void addGestionMensuelMontantUniv(
-      {required String nom,
+      {required IconData icones,
+      required String nom,
       required double montant,
       required String id,
       required String unity,
@@ -585,7 +595,8 @@ class EasyController extends ChangeNotifier {
         nom: nom,
         descriptionUniverselle: [],
         achat: [],
-        previsionsTotal: 0));
+        previsionsTotal: 0,
+        icones: icones));
     await _saveGestionMensuelle();
     _initEconomyDays();
     notifyListeners();
@@ -603,7 +614,8 @@ class EasyController extends ChangeNotifier {
             descriptionUniverselle:
                 _listMontantUniverselle[i].descriptionUniverselle,
             achat: [],
-            previsionsTotal: 0),
+            previsionsTotal: 0,
+            icones: _listMontantUniverselle[i].icones),
       );
     }
     return listMontantPrevision1;
@@ -669,7 +681,10 @@ class EasyController extends ChangeNotifier {
                     .achat,
                 previsionsTotal: _listGestionMensuel[indexGestionMensuel]
                     .montantUniverselleLive[indexGestionMensMontanUniv]
-                    .previsionsTotal),
+                    .previsionsTotal,
+                icones: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselleLive[indexGestionMensMontanUniv]
+                    .icones),
           );
     }
 
@@ -750,7 +765,10 @@ class EasyController extends ChangeNotifier {
                     .achat,
                 previsionsTotal: _listGestionMensuel[indexGestionMensuel]
                     .montantUniverselle[indexGestionMensMontanUniv]
-                    .previsionsTotal),
+                    .previsionsTotal,
+                icones: _listGestionMensuel[indexGestionMensuel]
+                    .montantUniverselle[indexGestionMensMontanUniv]
+                    .icones),
           );
     }
 

@@ -1,3 +1,4 @@
+import 'package:accordion/accordion.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_charge_fixe.dart';
@@ -23,10 +24,312 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
   double montantCharge = 0;
   String unityChallenge = "RevenuFixe";
   late bool simuOuchargeFixe;
-
+  late IconData icones = Icons.info;
   void initState() {
     super.initState();
     simuOuchargeFixe = false;
+  }
+
+  final List<IconData> icons = [
+    Icons.access_time_outlined,
+    Icons.accessibility,
+    Icons.account_balance,
+    Icons.accessible_rounded,
+    Icons.account_balance_wallet_outlined,
+    Icons.account_box_rounded,
+    Icons.account_tree_outlined,
+    Icons.add_a_photo_rounded,
+    Icons.add_alert,
+    Icons.add_box_outlined,
+    Icons.add_business_rounded,
+    Icons.add_call,
+    Icons.add_location,
+    Icons.add_photo_alternate_outlined,
+    Icons.add_shopping_cart,
+    Icons.add_to_drive_sharp,
+    Icons.add_to_queue_rounded,
+    Icons.agriculture_sharp,
+    Icons.airline_seat_flat_outlined,
+    Icons.airplane_ticket,
+    Icons.airplanemode_active,
+    Icons.airport_shuttle_rounded,
+    Icons.apartment_sharp,
+    Icons.approval,
+    Icons.architecture,
+    Icons.archive_rounded,
+    Icons.arrow_drop_down_circle_outlined,
+    Icons.article,
+    Icons.assistant_rounded,
+    Icons.atm,
+    Icons.attach_email_outlined,
+    Icons.audiotrack_sharp,
+    Icons.backup_rounded,
+    Icons.bathroom,
+    Icons.battery_charging_full,
+    Icons.blender_sharp,
+    Icons.book_outlined,
+    Icons.build_outlined,
+    Icons.bungalow_outlined,
+    Icons.business,
+    Icons.business_center_outlined,
+    Icons.cake_rounded,
+    Icons.call_to_action,
+    Icons.car_rental,
+    Icons.car_repair_sharp,
+    Icons.card_giftcard_sharp,
+    Icons.carpenter_sharp,
+    Icons.charging_station_rounded,
+    Icons.checkroom,
+    Icons.child_friendly,
+    Icons.coffee_outlined,
+    Icons.commute_outlined,
+    Icons.bed_rounded,
+    Icons.connected_tv_rounded,
+    Icons.construction,
+    Icons.credit_card_rounded,
+    Icons.deck_sharp,
+    Icons.delivery_dining,
+    Icons.devices_outlined,
+    Icons.dining,
+    Icons.directions_bike,
+    Icons.directions_boat,
+    Icons.directions_railway_outlined,
+    Icons.directions_run_rounded,
+    Icons.disc_full_sharp,
+    Icons.dns_sharp,
+    Icons.downhill_skiing_outlined,
+    Icons.download,
+    Icons.drafts_outlined,
+    Icons.drive_eta_sharp,
+    Icons.dry_cleaning_rounded,
+    Icons.eco,
+    Icons.electric_bike,
+    Icons.electric_scooter_sharp,
+    Icons.elevator,
+    Icons.emoji_events_sharp,
+    Icons.emoji_food_beverage_outlined,
+    Icons.emoji_objects,
+    Icons.engineering,
+    Icons.equalizer,
+    Icons.euro,
+    Icons.event_seat_sharp,
+    Icons.extension,
+    Icons.fact_check,
+    Icons.food_bank,
+    Icons.free_breakfast,
+    Icons.garage,
+    Icons.gite,
+    Icons.golf_course,
+    Icons.gps_fixed,
+    Icons.handyman_sharp,
+    Icons.headset,
+    Icons.health_and_safety,
+    Icons.home_rounded,
+    Icons.kayaking_sharp,
+    Icons.laptop_windows_sharp,
+    Icons.liquor_rounded,
+    Icons.local_gas_station_sharp,
+    Icons.local_grocery_store_outlined,
+    Icons.local_movies_outlined,
+    Icons.local_pizza,
+    Icons.local_shipping_outlined,
+    Icons.local_taxi,
+    Icons.luggage,
+    Icons.map_sharp,
+    Icons.monetization_on_rounded,
+    Icons.outdoor_grill_outlined,
+    Icons.park_rounded,
+    Icons.payments_rounded,
+    Icons.payment,
+    Icons.phone_android,
+    Icons.pie_chart,
+    Icons.plumbing_rounded,
+    Icons.point_of_sale_sharp,
+    Icons.print,
+    Icons.receipt_long_outlined,
+    Icons.sailing,
+    Icons.school_rounded,
+    Icons.sd_card_rounded,
+    Icons.settings,
+    Icons.sports_football,
+    Icons.sports_esports_rounded,
+    Icons.sports_motorsports_rounded,
+    Icons.store_sharp,
+    Icons.vpn_key,
+    Icons.youtube_searched_for,
+    Icons.yard_rounded,
+    Icons.verified
+  ];
+
+  Widget formfieldDropDown() {
+    return Column(
+      children: [
+        TextFormField(
+          textCapitalization: TextCapitalization.sentences,
+          onSaved: (value) {
+            nomCharge = value!;
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Merci d'entrer un nom ";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              labelText: "Nom",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
+        TextFormField(
+          textCapitalization: TextCapitalization.sentences,
+          onSaved: (value) {
+            montantCharge = double.parse(value!);
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Merci d'entrer un montant ";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              labelText: "Montant",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
+        DropdownButtonFormField<String>(
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+          value: unityChallenge,
+          onChanged: (value) {
+            updateController(value);
+          },
+          onSaved: (value) {
+            updateController(value);
+          },
+          items: <DropdownMenuItem<String>>[
+            DropdownMenuItem(
+              value: "ChargeFixe",
+              child: Row(
+                children: [
+                  Icon(Icons.update, size: 30.0, color: Colors.red),
+                  SizedBox(width: 10),
+                  Text("ChargeFixe", style: TextStyle(color: Colors.red)),
+                ],
+              ),
+            ),
+            DropdownMenuItem(
+              value: "RevenuFixe",
+              child: Row(
+                children: [
+                  Icon(Icons.auto_fix_normal, size: 30.0, color: Colors.green),
+                  SizedBox(width: 10),
+                  Text(
+                    "RevenuFixe",
+                    style: TextStyle(color: Colors.green),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
+      ],
+    );
+  }
+
+  Widget gridIcon() {
+    return Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.white70),
+            borderRadius: BorderRadius.circular(10),
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Colors.blueAccent, Colors.orange])),
+        height: 400,
+        child: Scrollbar(
+          thickness: 3,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 1.0),
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: icons.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 0.9,
+                        crossAxisCount: 6,
+                        crossAxisSpacing: 1.0,
+                        mainAxisSpacing: 1.0),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        elevation: 0.2,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            IconButton(
+                              onPressed: () {
+                                _bottomSheetController.setState!(() {
+                                  icones = icons[index];
+                                });
+                              },
+                              icon: Icon(
+                                icons[index],
+                                size: 25,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 
   @override
@@ -169,125 +472,23 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                           SizedBox(
                             height: 15.0,
                           ),
-                          TextFormField(
-                            textCapitalization: TextCapitalization.sentences,
-                            onSaved: (value) {
-                              nomCharge = value!;
-                            },
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Merci d'entrer un nom ";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 2.0, color: Colors.blueAccent),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 1.0, color: Colors.blueAccent),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                labelText: "Nom",
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15.0))),
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          TextFormField(
-                            textCapitalization: TextCapitalization.sentences,
-                            onSaved: (value) {
-                              montantCharge = double.parse(value!);
-                            },
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Merci d'entrer un montant ";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 2.0, color: Colors.blueAccent),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 1.0, color: Colors.blueAccent),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                labelText: "Montant",
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15.0))),
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          DropdownButtonFormField<String>(
-                            decoration: InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 2.0, color: Colors.blueAccent),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 1.0, color: Colors.blueAccent),
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15.0))),
-                            value: unityChallenge,
-                            onChanged: (value) {
-                              updateController(value);
-                            },
-                            onSaved: (value) {
-                              updateController(value);
-                            },
-                            items: <DropdownMenuItem<String>>[
-                              DropdownMenuItem(
-                                value: "ChargeFixe",
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.update,
-                                        size: 30.0, color: Colors.red),
-                                    SizedBox(width: 10),
-                                    Text("ChargeFixe",
-                                        style: TextStyle(color: Colors.red)),
-                                  ],
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: "RevenuFixe",
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.auto_fix_normal,
-                                        size: 30.0, color: Colors.green),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      "RevenuFixe",
-                                      style: TextStyle(color: Colors.green),
-                                    ),
-                                  ],
-                                ),
+                          formfieldDropDown(),
+                          Center(child: Text("Icone de description")),
+                          Icon(icones, size: 50.0, color: Colors.red),
+                          Accordion(
+                            maxOpenSections: 1,
+                            leftIcon:
+                                Icon(Icons.description, color: Colors.white),
+                            children: [
+                              AccordionSection(
+                                isOpen: false,
+                                header: Text("Choisir une icone",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 17)),
+                                content: gridIcon(),
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          // selectdropdown(
-                          //     unityChallenge,
-                          //     Provider.of<Challengecontroller>(context)
-                          //         .getChallenges()),
                           Center(
                             child: IconButton(
                               iconSize: 60,
@@ -307,7 +508,8 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                                           id: nanoid(10),
                                           montant: montantCharge,
                                           nom: nomCharge,
-                                          unity: unityChallenge);
+                                          unity: unityChallenge,
+                                          icones: icones);
 
                                   Navigator.pop(context);
                                 }

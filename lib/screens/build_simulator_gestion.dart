@@ -212,7 +212,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                   child: Container(
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(40.0),
-                        child: iconDataJoin(gestion.unity.toString())),
+                        child: Icon(gestion.icones)),
                   ),
                 ),
               ],
@@ -404,6 +404,9 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                                 maxLetterTitre(_listMontantUniverselle[index]
                                     .nom
                                     .toUpperCase()),
+                                iconDataJoin((_listMontantUniverselle[index]
+                                    .unity
+                                    .toString()))
                               ],
                             ),
                           ),

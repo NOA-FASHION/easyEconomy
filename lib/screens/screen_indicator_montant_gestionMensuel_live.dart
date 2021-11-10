@@ -1,4 +1,5 @@
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 
 class ScreenIndicatorMontantGestionLive extends StatefulWidget {
@@ -23,7 +24,7 @@ class ScreenIndicatorMontantGestionLive extends StatefulWidget {
 
 class _ScreenIndicatorMontantGestionLiveState
     extends State<ScreenIndicatorMontantGestionLive> {
-  String montantCharge() {
+  double montantCharge() {
     double montants = 0;
 
     for (var i = widget.gestionListMontantUniverselle.length - 1; i >= 0; i--) {
@@ -34,10 +35,10 @@ class _ScreenIndicatorMontantGestionLiveState
         montants = montants + widget.gestionListMontantUniverselle[i].montant;
       }
     }
-    return montants.toStringAsFixed(2);
+    return montants;
   }
 
-  String montantChargeLive() {
+  double montantChargeLive() {
     double montants = 0;
 
     for (var i = widget.gestionListMontantUniverselleLive.length - 1;
@@ -53,10 +54,10 @@ class _ScreenIndicatorMontantGestionLiveState
       }
     }
 
-    return montants.toStringAsFixed(2);
+    return montants;
   }
 
-  String montantRevenu() {
+  double montantRevenu() {
     double montants = 0;
     for (var i = widget.gestionListMontantUniverselle.length - 1; i >= 0; i--) {
       if (widget.gestionListMontantUniverselle[i].unity.toString() ==
@@ -67,10 +68,10 @@ class _ScreenIndicatorMontantGestionLiveState
       }
     }
 
-    return montants.toStringAsFixed(2);
+    return montants;
   }
 
-  String montantRevenuLive() {
+  double montantRevenuLive() {
     double montants = 0;
 
     for (var i = widget.gestionListMontantUniverselleLive.length - 1;
@@ -84,10 +85,10 @@ class _ScreenIndicatorMontantGestionLiveState
             montants + widget.gestionListMontantUniverselleLive[i].montant;
       }
     }
-    return montants.toStringAsFixed(2);
+    return montants;
   }
 
-  String montantTotals() {
+  double montantTotals() {
     double montant = 0;
     for (var i = widget.gestionListMontantUniverselle.length - 1; i >= 0; i--) {
       if (widget.gestionListMontantUniverselle[i].unity.toString() ==
@@ -103,10 +104,10 @@ class _ScreenIndicatorMontantGestionLiveState
       }
     }
 
-    return montant.toStringAsFixed(2);
+    return montant;
   }
 
-  String montantTotalsLive() {
+  double montantTotalsLive() {
     double montant = 0;
 
     for (var i = widget.gestionListMontantUniverselleLive.length - 1;
@@ -125,7 +126,7 @@ class _ScreenIndicatorMontantGestionLiveState
       }
     }
 
-    return montant.toStringAsFixed(2);
+    return montant;
   }
 
   String choixMontant() {
@@ -133,13 +134,13 @@ class _ScreenIndicatorMontantGestionLiveState
 
     if (widget.titre == "Prévisions Soldes" ||
         widget.titre == 'Soldes restants') {
-      montant = montantTotals();
+      montant = montantTotals().toStringAsFixed(2);
     } else if (widget.titre == "Prévisions revenus" ||
         widget.titre == 'revenus restants') {
-      montant = montantRevenu();
+      montant = montantRevenu().toStringAsFixed(2);
     } else if (widget.titre == "Prévisons charges" ||
         widget.titre == "Charges restantes") {
-      montant = montantCharge();
+      montant = montantCharge().toStringAsFixed(2);
     }
 
     return montant;
@@ -149,115 +150,214 @@ class _ScreenIndicatorMontantGestionLiveState
     String montant = '0';
 
     if (widget.titre1 == "Soldes Live") {
-      montant = montantTotalsLive();
+      montant = montantTotalsLive().toStringAsFixed(2);
     } else if (widget.titre1 == "Revenus live") {
-      montant = montantRevenuLive();
+      montant = montantRevenuLive().toStringAsFixed(2);
     } else if (widget.titre1 == "Charges live") {
-      montant = montantChargeLive();
+      montant = montantChargeLive().toStringAsFixed(2);
     }
 
     return montant;
   }
 
+  String soldeLive() {
+    double montant = 0;
+
+    montant = montantTotals() - montantTotalsLive();
+
+    return montant.toStringAsFixed(2);
+  }
+
+  bool flipCardTest() {
+    bool flip = true;
+    if (montantTotalsLive() > 0 && widget.titre1 == "Soldes Live") {
+      flip = true;
+    } else {
+      flip = false;
+    }
+    return flip;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width / 3.2,
-      height: 220,
-      child: Card(
-          color: Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          elevation: 25.0,
-          child: Container(
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.white70),
-                borderRadius: BorderRadius.circular(10),
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.blueAccent, Colors.orange])),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  // icon
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      widget.titre,
-                      style: TextStyle(fontSize: 13, color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Card(
-                    color: Colors.orange,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    elevation: 25.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white70),
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [Colors.orange, Colors.blueAccent])),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          choixMontant(),
-                          style: TextStyle(fontSize: 13, color: Colors.white),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Icon(
-                    widget.icones,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  Card(
-                    color: Colors.orange,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    elevation: 25.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white70),
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [Colors.orange, Colors.blueAccent])),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          choixMontantLive(),
-                          style: TextStyle(fontSize: 13, color: Colors.white),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      widget.titre1,
-                      style: TextStyle(fontSize: 13, color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  // text
-                ],
-              ),
+    return FlipCard(
+      flipOnTouch: flipCardTest(),
+      fill: Fill
+          .fillBack, // Fill the back side of the card to make in the same size as the front.
+      direction: FlipDirection.HORIZONTAL, // default
+      front: Container(
+        width: MediaQuery.of(context).size.width / 3.2,
+        height: 220,
+        child: Card(
+            color: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
             ),
-          )),
+            elevation: 25.0,
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white70),
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [Colors.blueAccent, Colors.orange])),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    // icon
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.titre,
+                        style: TextStyle(fontSize: 13, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Card(
+                      color: Colors.orange,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      elevation: 25.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white70),
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [Colors.orange, Colors.blueAccent])),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            choixMontant(),
+                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      widget.icones,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                    Card(
+                      color: Colors.orange,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      elevation: 25.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white70),
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [Colors.orange, Colors.blueAccent])),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            choixMontantLive(),
+                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.titre1,
+                        style: TextStyle(fontSize: 13, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    // text
+                  ],
+                ),
+              ),
+            )),
+      ),
+      back: Container(
+        width: MediaQuery.of(context).size.width / 3.2,
+        height: 220,
+        child: Card(
+            color: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            elevation: 25.0,
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white70),
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [Colors.blueAccent, Colors.orange])),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    // icon
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.titre,
+                        style: TextStyle(fontSize: 13, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+
+                    Icon(
+                      widget.icones,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                    Card(
+                      color: Colors.orange,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      elevation: 25.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white70),
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [Colors.orange, Colors.blueAccent])),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            soldeLive(),
+                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.titre1,
+                        style: TextStyle(fontSize: 13, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    // text
+                  ],
+                ),
+              ),
+            )),
+      ),
     );
   }
 }

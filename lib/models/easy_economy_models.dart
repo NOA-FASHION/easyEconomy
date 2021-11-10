@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum unity_Montant_universelle {
   depensePonctuelle,
   RevenuFixe,
@@ -108,6 +110,7 @@ class DesciprtionUniverselle {
 }
 
 class MontantUniverselle {
+  IconData icones;
   List<double> achat;
   double previsionsTotal;
   String id;
@@ -117,7 +120,8 @@ class MontantUniverselle {
   List<DesciprtionUniverselle> descriptionUniverselle;
 
   MontantUniverselle(
-      {required this.achat,
+      {required this.icones,
+      required this.achat,
       required this.id,
       required this.nom,
       required this.montant,
@@ -126,6 +130,7 @@ class MontantUniverselle {
       required this.unity});
   factory MontantUniverselle.fromJSON(Map<String, dynamic> json) =>
       MontantUniverselle(
+          icones: json['icones'],
           id: json['id'],
           nom: json['nom'],
           montant: json['montant'],
@@ -141,6 +146,7 @@ class MontantUniverselle {
     return {
       "achat": List<dynamic>.from(achat.map((x) => x)),
       "id": id,
+      "icones": icones,
       "nom": nom,
       "previsionsTotal": previsionsTotal,
       "montant": montant,
