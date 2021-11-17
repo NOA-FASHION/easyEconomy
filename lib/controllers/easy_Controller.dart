@@ -891,4 +891,28 @@ class EasyController extends ChangeNotifier {
     _initEconomy();
     notifyListeners();
   }
+
+  void addformationPrix(
+      {required String montant,
+      required int indexGestion,
+      }) async {
+    for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
+      _listMontantUniverselle[indexGestion].montant = double.parse(montant);
+    }
+    await _saveMontantUniverselle();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  void addformationTitre(
+      {required String nom,
+      required int indexGestion,
+      }) async {
+    for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
+      _listMontantUniverselle[indexGestion].nom = nom;
+    }
+    await _saveMontantUniverselle();
+    _initEconomy();
+    notifyListeners();
+  }
 }
