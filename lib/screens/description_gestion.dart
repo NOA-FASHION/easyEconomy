@@ -413,7 +413,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     return Scaffold(
       key: scaffoldkeyTache,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(230.0),
+        preferredSize: Size.fromHeight(280.0),
         child: SafeArea(
           child: AppBar(
             title: Text("Documentation"),
@@ -421,7 +421,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
             flexibleSpace: Column(
               children: [
                 Container(
-                  height: 90,
+                  height: 140,
                   padding: EdgeInsets.only(top: 20.0),
                   alignment: Alignment.center,
                   child: Image.asset(

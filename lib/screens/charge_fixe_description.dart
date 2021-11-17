@@ -417,7 +417,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
             flexibleSpace: Column(
               children: [
                 Container(
-                  height: 90,
+                  height: 140,
                   padding: EdgeInsets.only(top: 20.0),
                   alignment: Alignment.center,
                   child: Image.asset(

@@ -311,7 +311,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
       child: Scaffold(
         key: scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(337.0),
+          preferredSize: Size.fromHeight(387.0),
           child: SafeArea(
             child: AppBar(
               actions: [
@@ -355,7 +355,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
               flexibleSpace: Column(
                 children: [
                   Container(
-                    height: 90,
+                    height: 140,
                     padding: EdgeInsets.only(top: 20.0),
                     alignment: Alignment.center,
                     child: Image.asset(

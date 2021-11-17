@@ -415,7 +415,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
       child: Scaffold(
         key: scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(260.0),
+          preferredSize: Size.fromHeight(310.0),
           child: SafeArea(
             child: AppBar(
               elevation: 0,
@@ -424,8 +424,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
               flexibleSpace: Column(
                 children: [
                   Container(
-                    height: 94,
-                    padding: EdgeInsets.only(top: 20.0),
+                    padding: EdgeInsets.only(top: 10.0),
                     alignment: Alignment.center,
                     child: Image.asset(
                       'assets/logo.png',
@@ -439,7 +438,6 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                             colors: <Color>[Colors.orange, Colors.blueAccent])),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 10.0),
                     alignment: Alignment.center,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
