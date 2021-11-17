@@ -408,7 +408,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
     return Scaffold(
       key: scaffoldkeyTache,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(90.0),
+        preferredSize: Size.fromHeight(140.0),
         child: SafeArea(
           child: AppBar(
             elevation: 0,
@@ -418,12 +418,12 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
               children: [
                 Container(
                   height: 90,
-                  padding: EdgeInsets.only(top: 40.0),
+                  padding: EdgeInsets.only(top: 20.0),
                   alignment: Alignment.center,
                   child: Image.asset(
                     'assets/logo.png',
-                    width: 55,
-                    height: 130,
+                    width: 140,
+                    height: 140,
                   ),
                   decoration: BoxDecoration(
                       gradient: LinearGradient(

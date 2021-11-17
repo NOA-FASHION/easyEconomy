@@ -312,12 +312,12 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                 children: [
                   Container(
                     height: 90,
-                    padding: EdgeInsets.only(top: 40.0),
+                    padding: EdgeInsets.only(top: 20.0),
                     alignment: Alignment.center,
                     child: Image.asset(
                       'assets/logo.png',
-                      width: 55,
-                      height: 130,
+                      width: 140,
+                      height: 140,
                     ),
                     decoration: BoxDecoration(
                         gradient: LinearGradient(

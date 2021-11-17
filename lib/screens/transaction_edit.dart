@@ -22,19 +22,19 @@ class _FormationEditState extends State<FormationEdit> {
     final EasyController provider = Provider.of<EasyController>(context);
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.0),
+        preferredSize: Size.fromHeight(140.0),
         child: SafeArea(
           child: AppBar(
             centerTitle: true,
             flexibleSpace: Container(
-              padding: EdgeInsets.only(right: 30.0),
+              padding: EdgeInsets.only(right: 20.0),
               alignment: Alignment.centerRight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(
                     'assets/logo.png',
-                    width: 60,
+                    width: 140,
                   ),
                 ],
               ),
