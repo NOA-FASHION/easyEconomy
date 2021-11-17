@@ -1,6 +1,7 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/charge_fixe_description.dart';
+import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
@@ -405,6 +406,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                       child: Row(
                         children: [
                           Container(
+                            height: 35,
                             width: MediaQuery.of(context).size.width / 1.3,
                             child: Card(
                               shape: RoundedRectangleBorder(
@@ -414,6 +416,8 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     Text(
                                       "Titre".toUpperCase(),
@@ -428,6 +432,30 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                         _listMontantUniverselle[index]
                                             .nom
                                             .toUpperCase()),
+                                    SizedBox(
+                                      width: 5.0,
+                                    ),
+                                    IconButton(
+                                      padding: EdgeInsets.all(0),
+                                      iconSize: 20,
+                                      icon: Icon(Icons.edit),
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                type: PageTransitionType
+                                                    .bottomToTop,
+                                                child: ChangeNotifierProvider
+                                                    .value(
+                                                        value: variable,
+                                                        child: TransactionEdit(
+                                                          indexGestion: index,
+                                                          item:
+                                                              _listMontantUniverselle[
+                                                                  index],
+                                                        ))));
+                                      },
+                                    )
                                   ],
                                 ),
                               ),

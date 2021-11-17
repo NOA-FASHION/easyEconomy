@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-  advance_text_field:
-    dependency: "direct main"
-    description:
-      name: advance_text_field
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.5"
   archive:
     dependency: transitive
     description:

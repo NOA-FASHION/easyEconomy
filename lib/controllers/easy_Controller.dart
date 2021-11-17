@@ -892,10 +892,10 @@ class EasyController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addformationPrix(
-      {required String montant,
-      required int indexGestion,
-      }) async {
+  void changePrix({
+    required String montant,
+    required int indexGestion,
+  }) async {
     for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
       _listMontantUniverselle[indexGestion].montant = double.parse(montant);
     }
@@ -904,12 +904,24 @@ class EasyController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addformationTitre(
-      {required String nom,
-      required int indexGestion,
-      }) async {
+  void changeTitre({
+    required String nom,
+    required int indexGestion,
+  }) async {
     for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
       _listMontantUniverselle[indexGestion].nom = nom;
+    }
+    await _saveMontantUniverselle();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  void changeIcons({
+    required int icons,
+    required int indexGestion,
+  }) async {
+    for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
+      _listMontantUniverselle[indexGestion].icones = icons;
     }
     await _saveMontantUniverselle();
     _initEconomy();
