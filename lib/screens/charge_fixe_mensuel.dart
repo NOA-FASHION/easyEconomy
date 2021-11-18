@@ -570,8 +570,6 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
                                   formKey.currentState!.save();
-                                  {}
-
                                   Provider.of<EasyController>(context,
                                           listen: false)
                                       .addMontanUniverselle(

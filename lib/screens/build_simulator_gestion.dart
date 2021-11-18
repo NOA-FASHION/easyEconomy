@@ -14,6 +14,7 @@ class BuildSimulatorGestion extends StatefulWidget {
 }
 
 class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late String valueText;
   late String valueText2;
   Color colorsDescription(String description) {
@@ -34,7 +35,67 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
     return colors;
   }
 
-  TextEditingController _textFieldController = TextEditingController();
+  Widget formfieldDropDown() {
+    return Column(
+      children: [
+        TextFormField(
+          textCapitalization: TextCapitalization.sentences,
+          onSaved: (value) {
+            setState(() {
+              valueText = value!;
+            });
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Merci d'entrer un nouveau titre ";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              labelText: "Modifier titre",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
+        TextFormField(
+          textCapitalization: TextCapitalization.sentences,
+          onSaved: (value) {
+            setState(() {
+              valueText2 = value!;
+            });
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Merci d'entrer un nouveau prix ";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              labelText: "Modifier prix",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+        ),
+      ],
+    );
+  }
 
   Future<void> _displayTextInputDialog(BuildContext context, int index,
       MontantUniverselle item, EasyController variable, int icon) async {
@@ -44,70 +105,29 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
           return AlertDialog(
             scrollable: true,
             title: Text('Modification'),
-            content: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              height: 450,
-              width: double.maxFinite,
-              child: ListView(
-                children: [
-                  TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        valueText = value;
-                      });
-                    },
-                    controller: _textFieldController,
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        labelText: "Modifier titre",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0))),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        valueText2 = value;
-                      });
-                    },
-                    controller: _textFieldController,
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        labelText: "Modifier prix",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0))),
-                  ),
-                  ChangeNotifierProvider.value(
-                    value: variable,
-                    child: TransactionEdit(
-                      icon: icon,
-                      indexGestion: index,
-                      item: item,
-                    ),
-                  )
-                ],
+            content: Form(
+              key: formKey,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                height: 450,
+                width: double.maxFinite,
+                child: ListView(
+                  children: [
+                    formfieldDropDown(),
+                    ChangeNotifierProvider.value(
+                      value: variable,
+                      child: TransactionEdit(
+                        icon: icon,
+                        indexGestion: index,
+                        item: item,
+                        typeMontantUniv: 'simulator',
+                        indexGestionMensuel: 0,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             actions: <Widget>[
@@ -122,18 +142,20 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
               ),
               IconButton(
                 onPressed: () {
-                  setState(() {
-                    // codeDialog = valueText;
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
                     if (valueText.isNotEmpty) {
-                      variable.changeTitre(indexGestion: index, nom: valueText);
+                      variable.changeTitreSimulation(
+                          indexGestion: index, nom: valueText);
                     }
                     if (valueText.isNotEmpty) {
-                      variable.changePrix(
+                      variable.changePrixSimulation(
                           indexGestion: index, montant: valueText2);
                     }
 
                     Navigator.pop(context);
-                  });
+                  }
+             
                 },
                 icon: Icon(Icons.check),
                 iconSize: 35,

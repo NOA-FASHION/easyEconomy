@@ -19,6 +19,7 @@ class BuildChargeFixe extends StatefulWidget {
 }
 
 class _BuildChargeFixeState extends State<BuildChargeFixe> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late String codeDialog;
   late String valueText;
   late String valueText2;
@@ -40,7 +41,67 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
     return colors;
   }
 
-  TextEditingController _textFieldController = TextEditingController();
+  Widget formfieldDropDown() {
+    return Column(
+      children: [
+        TextFormField(
+          textCapitalization: TextCapitalization.sentences,
+          onSaved: (value) {
+            setState(() {
+              valueText = value!;
+            });
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Merci d'entrer un nouveau titre ";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              labelText: "Modifier titre",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
+        TextFormField(
+          textCapitalization: TextCapitalization.sentences,
+          onSaved: (value) {
+            setState(() {
+              valueText2 = value!;
+            });
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Merci d'entrer un nouveau prix ";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              labelText: "Modifier prix",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+        ),
+      ],
+    );
+  }
 
   Future<void> _displayTextInputDialog(BuildContext context, int index,
       MontantUniverselle item, EasyController variable, int icon) async {
@@ -58,59 +119,15 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
               width: double.maxFinite,
               child: ListView(
                 children: [
-                  TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        valueText = value;
-                      });
-                    },
-                    controller: _textFieldController,
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        labelText: "Modifier titre",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0))),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        valueText2 = value;
-                      });
-                    },
-                    controller: _textFieldController,
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        labelText: "Modifier prix",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0))),
-                  ),
+                  formfieldDropDown(),
                   ChangeNotifierProvider.value(
                     value: variable,
                     child: TransactionEdit(
                       icon: icon,
                       indexGestion: index,
                       item: item,
+                      typeMontantUniv: 'chargeFixe',
+                      indexGestionMensuel: 0,
                     ),
                   )
                 ],
@@ -128,8 +145,8 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
               ),
               IconButton(
                 onPressed: () {
-                  setState(() {
-                    codeDialog = valueText;
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
                     if (valueText.isNotEmpty) {
                       variable.changeTitre(indexGestion: index, nom: valueText);
                     }
@@ -139,7 +156,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                     }
 
                     Navigator.pop(context);
-                  });
+                  }
                 },
                 icon: Icon(Icons.check),
                 iconSize: 35,

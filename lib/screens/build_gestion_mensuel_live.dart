@@ -22,6 +22,9 @@ class BuildGestionMensuelLive extends StatefulWidget {
 }
 
 class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
+  late String valueText;
+  late String valueText2;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Color colorsDescription(String description) {
     Color colors = Colors.black;
     if (description == "unity_Montant_universelle.ChargeFixe") {
@@ -40,12 +43,70 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
     return colors;
   }
 
-  TextEditingController _textFieldController = TextEditingController();
+  Widget formfieldDropDown() {
+    return Column(
+      children: [
+        TextFormField(
+          textCapitalization: TextCapitalization.sentences,
+          onSaved: (value) {
+            setState(() {
+              valueText = value!;
+            });
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Merci d'entrer un nouveau titre ";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              labelText: "Modifier titre",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
+        TextFormField(
+          textCapitalization: TextCapitalization.sentences,
+          onSaved: (value) {
+            setState(() {
+              valueText2 = value!;
+            });
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Merci d'entrer un nouveau prix ";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              labelText: "Modifier prix",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+        ),
+      ],
+    );
+  }
 
   Future<void> _displayTextInputDialog(BuildContext context, int index,
       MontantUniverselle item, EasyController variable, int icon) async {
-    late String valueText;
-    late String valueText2;
     return showDialog(
         context: context,
         builder: (context) {
@@ -60,59 +121,15 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
               width: double.maxFinite,
               child: ListView(
                 children: [
-                  TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        valueText = value;
-                      });
-                    },
-                    controller: _textFieldController,
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        labelText: "Modifier titre",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0))),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        valueText2 = value;
-                      });
-                    },
-                    controller: _textFieldController,
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1.0, color: Colors.blueAccent),
-                            borderRadius: BorderRadius.circular(15.0)),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        labelText: "Modifier prix",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0))),
-                  ),
+                  formfieldDropDown(),
                   ChangeNotifierProvider.value(
                     value: variable,
                     child: TransactionEdit(
                       icon: icon,
                       indexGestion: index,
                       item: item,
+                      indexGestionMensuel: widget.indexGestionMensuel,
+                      typeMontantUniv: '',
                     ),
                   )
                 ],
@@ -130,18 +147,23 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
               ),
               IconButton(
                 onPressed: () {
-                  setState(() {
-                    // codeDialog = valueText;
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
                     if (valueText.isNotEmpty) {
-                      variable.changeTitre(indexGestion: index, nom: valueText);
+                      variable.changeTitreGestionMensuel(
+                          indexGestion: index,
+                          nom: valueText,
+                          indexGestionMensuel: widget.indexGestionMensuel);
                     }
                     if (valueText.isNotEmpty) {
-                      variable.changePrix(
-                          indexGestion: index, montant: valueText2);
+                      variable.changePrixGestionMensuel(
+                          indexGestion: index,
+                          montant: valueText2,
+                          indexGestionMensuel: widget.indexGestionMensuel);
                     }
 
                     Navigator.pop(context);
-                  });
+                  }
                 },
                 icon: Icon(Icons.check),
                 iconSize: 35,

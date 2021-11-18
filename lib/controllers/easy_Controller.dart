@@ -927,4 +927,100 @@ class EasyController extends ChangeNotifier {
     _initEconomy();
     notifyListeners();
   }
+
+  void changePrixSimulation({
+    required String montant,
+    required int indexGestion,
+  }) async {
+    for (var i = _listMontantPrevision.length - 1; i >= 0; i--) {
+      _listMontantPrevision[indexGestion].montant = double.parse(montant);
+    }
+    await _saveMontantPrevision();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  void changeTitreSimulation({
+    required String nom,
+    required int indexGestion,
+  }) async {
+    for (var i = _listMontantPrevision.length - 1; i >= 0; i--) {
+      _listMontantPrevision[indexGestion].nom = nom;
+    }
+    await _saveMontantPrevision();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  void changeIconsSimulation({
+    required int icons,
+    required int indexGestion,
+  }) async {
+    for (var i = _listMontantPrevision.length - 1; i >= 0; i--) {
+      _listMontantPrevision[indexGestion].icones = icons;
+    }
+    await _saveMontantPrevision();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  void changePrixGestionMensuel({
+    required String montant,
+    required int indexGestionMensuel,
+    required int indexGestion,
+  }) async {
+    for (var i = _listGestionMensuel[indexGestionMensuel]
+                .montantUniverselleLive
+                .length -
+            1;
+        i >= 0;
+        i--) {
+      _listGestionMensuel[indexGestionMensuel]
+          .montantUniverselleLive[indexGestion]
+          .montant = double.parse(montant);
+    }
+    await _saveMontantPrevision();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  void changeTitreGestionMensuel({
+    required String nom,
+    required int indexGestionMensuel,
+    required int indexGestion,
+  }) async {
+    for (var i = _listGestionMensuel[indexGestionMensuel]
+                .montantUniverselleLive
+                .length -
+            1;
+        i >= 0;
+        i--) {
+      _listGestionMensuel[indexGestionMensuel]
+          .montantUniverselleLive[indexGestion]
+          .nom = nom;
+    }
+    await _saveMontantPrevision();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  void changeIconsGestionMensuel({
+    required int icons,
+    required int indexGestionMensuel,
+    required int indexGestion,
+  }) async {
+    for (var i = _listGestionMensuel[indexGestionMensuel]
+                .montantUniverselleLive
+                .length -
+            1;
+        i >= 0;
+        i--) {
+      _listGestionMensuel[indexGestionMensuel]
+          .montantUniverselleLive[indexGestion]
+          .icones = icons;
+    }
+    await _saveMontantPrevision();
+    _initEconomy();
+    notifyListeners();
+  }
 }

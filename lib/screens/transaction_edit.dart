@@ -8,11 +8,15 @@ import 'package:provider/provider.dart';
 class TransactionEdit extends StatefulWidget {
   final MontantUniverselle item;
   final int indexGestion;
+  final int indexGestionMensuel;
   final int icon;
+  final String typeMontantUniv;
 
   TransactionEdit(
       {Key? key,
       required this.indexGestion,
+      required this.indexGestionMensuel,
+      required this.typeMontantUniv,
       required this.item,
       required this.icon})
       : super(key: key);
@@ -66,9 +70,22 @@ class _TransactionEditState extends State<TransactionEdit> {
                               onPressed: () {
                                 iconData = GlobalConstant.icons[index];
                                 icon1 = GlobalConstant.icons[index];
-                                provider.changeIcons(
-                                    indexGestion: widget.indexGestion,
-                                    icons: GlobalConstant.icons[index]);
+                                if (widget.typeMontantUniv == "simulator") {
+                                  provider.changeIconsSimulation(
+                                      indexGestion: widget.indexGestion,
+                                      icons: GlobalConstant.icons[index]);
+                                } else if (widget.typeMontantUniv ==
+                                    "chargeFixe") {
+                                  provider.changeIcons(
+                                      indexGestion: widget.indexGestion,
+                                      icons: GlobalConstant.icons[index]);
+                                } else {
+                                  provider.changeIconsGestionMensuel(
+                                      indexGestion: widget.indexGestion,
+                                      icons: GlobalConstant.icons[index],
+                                      indexGestionMensuel:
+                                          widget.indexGestionMensuel);
+                                }
                               },
                               icon: Icon(
                                 IconData(GlobalConstant.icons[index],
