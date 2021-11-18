@@ -19,18 +19,18 @@ class _GestionMensuelState extends State<GestionMensuel> {
       child: Scaffold(
         key: scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(140.0),
+          preferredSize: Size.fromHeight(120.0),
           child: SafeArea(
             child: AppBar(
               title: Text('Mois de gestion'),
               centerTitle: true,
               flexibleSpace: Container(
-                padding: EdgeInsets.only(top: 20.0),
+                padding: EdgeInsets.only(top: 30.0),
                 alignment: Alignment.center,
                 child: Image.asset(
-                  'assets/logo.png',
-                  width: 140,
-                  height: 140,
+                  'assets/logo1.png',
+                  width: 120,
+                  height: 120,
                 ),
                 decoration: BoxDecoration(
                     gradient: LinearGradient(

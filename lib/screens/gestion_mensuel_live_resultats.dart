@@ -47,7 +47,7 @@ class _GestionMensuelLiveResultatsState
       child: Scaffold(
         key: scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(310.0),
+          preferredSize: Size.fromHeight(277.0),
           child: SafeArea(
             child: AppBar(
               title: Text("Transactions validées"),
@@ -55,13 +55,13 @@ class _GestionMensuelLiveResultatsState
               flexibleSpace: Column(
                 children: [
                   Container(
-                    height: 140,
-                    padding: EdgeInsets.only(top: 20.0),
+                    height: 110,
+                    padding: EdgeInsets.only(top: 30.0),
                     alignment: Alignment.center,
                     child: Image.asset(
-                      'assets/logo.png',
-                      width: 140,
-                      height: 140,
+                      'assets/logo1.png',
+                      width: 110,
+                      height: 110,
                     ),
                     decoration: BoxDecoration(
                         gradient: LinearGradient(

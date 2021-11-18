@@ -303,7 +303,7 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
       child: Scaffold(
         key: scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(310.0),
+          preferredSize: Size.fromHeight(287.0),
           child: SafeArea(
             child: AppBar(
               title: Text("Simulation du budget prochain"),
@@ -311,13 +311,13 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
               flexibleSpace: Column(
                 children: [
                   Container(
-                    height: 140,
-                    padding: EdgeInsets.only(top: 20.0),
+                    height: 120,
+                    padding: EdgeInsets.only(top: 30.0),
                     alignment: Alignment.center,
                     child: Image.asset(
-                      'assets/logo.png',
-                      width: 140,
-                      height: 140,
+                      'assets/logo1.png',
+                      width: 120,
+                      height: 120,
                     ),
                     decoration: BoxDecoration(
                         gradient: LinearGradient(

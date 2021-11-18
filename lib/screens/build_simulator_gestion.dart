@@ -1,5 +1,6 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
@@ -13,6 +14,8 @@ class BuildSimulatorGestion extends StatefulWidget {
 }
 
 class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
+  late String valueText;
+  late String valueText2;
   Color colorsDescription(String description) {
     Color colors = Colors.black;
     if (description == "unity_Montant_universelle.ChargeFixe") {
@@ -29,6 +32,115 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
       return colors;
     }
     return colors;
+  }
+
+  TextEditingController _textFieldController = TextEditingController();
+
+  Future<void> _displayTextInputDialog(BuildContext context, int index,
+      MontantUniverselle item, EasyController variable, int icon) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            scrollable: true,
+            title: Text('Modification'),
+            content: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              height: 450,
+              width: double.maxFinite,
+              child: ListView(
+                children: [
+                  TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        valueText = value;
+                      });
+                    },
+                    controller: _textFieldController,
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2.0, color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(15.0)),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1.0, color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(15.0)),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        labelText: "Modifier titre",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15.0))),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        valueText2 = value;
+                      });
+                    },
+                    controller: _textFieldController,
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2.0, color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(15.0)),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1.0, color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(15.0)),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        labelText: "Modifier prix",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15.0))),
+                  ),
+                  ChangeNotifierProvider.value(
+                    value: variable,
+                    child: TransactionEdit(
+                      icon: icon,
+                      indexGestion: index,
+                      item: item,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+                icon: Icon(Icons.cancel),
+                iconSize: 35,
+              ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    // codeDialog = valueText;
+                    if (valueText.isNotEmpty) {
+                      variable.changeTitre(indexGestion: index, nom: valueText);
+                    }
+                    if (valueText.isNotEmpty) {
+                      variable.changePrix(
+                          indexGestion: index, montant: valueText2);
+                    }
+
+                    Navigator.pop(context);
+                  });
+                },
+                icon: Icon(Icons.check),
+                iconSize: 35,
+              ),
+            ],
+          );
+        });
   }
 
   Widget iconDataJoin(String resultat) {
@@ -388,6 +500,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                     child: Row(
                       children: [
                         Container(
+                          height: 35,
                           width: MediaQuery.of(context).size.width / 1.3,
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -397,6 +510,8 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                             child: Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
                                     "Titre".toUpperCase(),
@@ -410,6 +525,23 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                                   maxLetterTitre(_listMontantUniverselle[index]
                                       .nom
                                       .toUpperCase()),
+                                  SizedBox(
+                                    width: 5.0,
+                                  ),
+                                  IconButton(
+                                    padding: EdgeInsets.all(0),
+                                    iconSize: 20,
+                                    icon: Icon(Icons.edit),
+                                    onPressed: () {
+                                      _displayTextInputDialog(
+                                          context,
+                                          index,
+                                          _listMontantUniverselle[index],
+                                          variable,
+                                          _listMontantUniverselle[index]
+                                              .icones);
+                                    },
+                                  )
                                 ],
                               ),
                             ),

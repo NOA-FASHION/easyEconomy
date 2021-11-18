@@ -22,17 +22,18 @@ class _HomeState extends State<Home> {
     return Material(
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(140.0),
+          preferredSize: Size.fromHeight(130.0),
           child: SafeArea(
             child: AppBar(
+              title: Text('EASYECONOMY'),
               centerTitle: true,
               flexibleSpace: Container(
-                padding: EdgeInsets.only(top: 20.0),
+                padding: EdgeInsets.only(top: 30.0),
                 alignment: Alignment.center,
                 child: Image.asset(
-                  'assets/logo.png',
-                  width: 140,
-                  height: 140,
+                  'assets/logo1.png',
+                  width: 120,
+                  height: 120,
                 ),
                 decoration: BoxDecoration(
                     gradient: LinearGradient(

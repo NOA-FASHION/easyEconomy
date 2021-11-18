@@ -1,6 +1,8 @@
+import 'package:accordion/accordion.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/charge_fixe_description.dart';
+import 'package:easyeconomy/screens/constant.dart';
 import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -17,6 +19,9 @@ class BuildChargeFixe extends StatefulWidget {
 }
 
 class _BuildChargeFixeState extends State<BuildChargeFixe> {
+  late String codeDialog;
+  late String valueText;
+  late String valueText2;
   Color colorsDescription(String description) {
     Color colors = Colors.black;
     if (description == "unity_Montant_universelle.ChargeFixe") {
@@ -33,6 +38,115 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
       return colors;
     }
     return colors;
+  }
+
+  TextEditingController _textFieldController = TextEditingController();
+
+  Future<void> _displayTextInputDialog(BuildContext context, int index,
+      MontantUniverselle item, EasyController variable, int icon) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            scrollable: true,
+            title: Text('Modification'),
+            content: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              height: 450,
+              width: double.maxFinite,
+              child: ListView(
+                children: [
+                  TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        valueText = value;
+                      });
+                    },
+                    controller: _textFieldController,
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2.0, color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(15.0)),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1.0, color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(15.0)),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        labelText: "Modifier titre",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15.0))),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        valueText2 = value;
+                      });
+                    },
+                    controller: _textFieldController,
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 2.0, color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(15.0)),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1.0, color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(15.0)),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        labelText: "Modifier prix",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15.0))),
+                  ),
+                  ChangeNotifierProvider.value(
+                    value: variable,
+                    child: TransactionEdit(
+                      icon: icon,
+                      indexGestion: index,
+                      item: item,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+                icon: Icon(Icons.cancel),
+                iconSize: 35,
+              ),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    codeDialog = valueText;
+                    if (valueText.isNotEmpty) {
+                      variable.changeTitre(indexGestion: index, nom: valueText);
+                    }
+                    if (valueText.isNotEmpty) {
+                      variable.changePrix(
+                          indexGestion: index, montant: valueText2);
+                    }
+
+                    Navigator.pop(context);
+                  });
+                },
+                icon: Icon(Icons.check),
+                iconSize: 35,
+              ),
+            ],
+          );
+        });
   }
 
   Widget iconDataJoin(String resultat) {
@@ -440,20 +554,13 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                       iconSize: 20,
                                       icon: Icon(Icons.edit),
                                       onPressed: () {
-                                        Navigator.push(
+                                        _displayTextInputDialog(
                                             context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .bottomToTop,
-                                                child: ChangeNotifierProvider
-                                                    .value(
-                                                        value: variable,
-                                                        child: TransactionEdit(
-                                                          indexGestion: index,
-                                                          item:
-                                                              _listMontantUniverselle[
-                                                                  index],
-                                                        ))));
+                                            index,
+                                            _listMontantUniverselle[index],
+                                            variable,
+                                            _listMontantUniverselle[index]
+                                                .icones);
                                       },
                                     )
                                   ],
