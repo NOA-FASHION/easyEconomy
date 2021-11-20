@@ -114,6 +114,23 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
     return montant;
   }
 
+  Color choixColors() {
+    Color montant = Colors.white;
+
+    if (widget.titre == "Solde prévisionnel" ||
+        widget.titre == "Solde validé") {
+      montant = Colors.white;
+    } else if (widget.titre == "Prévisions revenus" ||
+        widget.titre == "Revenus Validés") {
+      montant = Colors.green.shade900;
+    } else if (widget.titre == "Prévisons charges" ||
+        widget.titre == "Charges validées") {
+      montant = Colors.red.shade900;
+    }
+
+    return montant;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -140,13 +157,16 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
                   Icon(
                     widget.icones,
                     size: 30,
-                    color: Colors.white,
+                    color: choixColors(),
                   ), // icon
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       widget.titre,
-                      style: TextStyle(fontSize: 13, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 13,
+                          color: choixColors(),
+                          fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -168,7 +188,10 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           choixMontant(),
-                          style: TextStyle(fontSize: 13, color: Colors.white),
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: choixColors(),
+                              fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
                       ),

@@ -155,7 +155,6 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
 
                     Navigator.pop(context);
                   }
-             
                 },
                 icon: Icon(Icons.check),
                 iconSize: 35,
@@ -331,7 +330,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                             width: 5.0,
                           ),
                           Text(
-                            gestion.montant.toString(),
+                            gestion.montant.toStringAsFixed(2) + " €",
                           ),
                         ],
                       ),
@@ -348,8 +347,11 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                         borderRadius: BorderRadius.circular(40.0),
                         child: Padding(
                           padding: const EdgeInsets.all(3.0),
-                          child: Icon(IconData(gestion.icones,
-                              fontFamily: 'MaterialIcons')),
+                          child: Icon(
+                            IconData(gestion.icones,
+                                fontFamily: 'MaterialIcons'),
+                            color: colorsDescription(gestion.unity.toString()),
+                          ),
                         )),
                   ),
                 ),
@@ -538,8 +540,12 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                                   Text(
                                     "Titre".toUpperCase(),
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.purple),
+                                      fontWeight: FontWeight.bold,
+                                      color: colorsDescription(
+                                          _listMontantUniverselle[index]
+                                              .unity
+                                              .toString()),
+                                    ),
                                   ),
                                   SizedBox(
                                     width: 5.0,
@@ -553,7 +559,13 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                                   IconButton(
                                     padding: EdgeInsets.all(0),
                                     iconSize: 20,
-                                    icon: Icon(Icons.edit),
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: colorsDescription(
+                                          _listMontantUniverselle[index]
+                                              .unity
+                                              .toString()),
+                                    ),
                                     onPressed: () {
                                       _displayTextInputDialog(
                                           context,

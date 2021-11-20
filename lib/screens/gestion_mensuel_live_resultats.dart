@@ -50,7 +50,8 @@ class _GestionMensuelLiveResultatsState
           preferredSize: Size.fromHeight(277.0),
           child: SafeArea(
             child: AppBar(
-              title: Text("Transactions validées"),
+              title: Text("Transactions validées",
+                  style: TextStyle(color: Colors.black)),
               centerTitle: true,
               flexibleSpace: Column(
                 children: [

@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
           preferredSize: Size.fromHeight(130.0),
           child: SafeArea(
             child: AppBar(
-              title: Text('EASYECONOMY'),
+              title: Text('EASYECONOMY', style: TextStyle(color: Colors.black)),
               centerTitle: true,
               flexibleSpace: Container(
                 padding: EdgeInsets.only(top: 30.0),

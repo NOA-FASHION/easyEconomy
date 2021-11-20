@@ -96,7 +96,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
             Container(
               width: MediaQuery.of(context).size.width / 1.8,
               child: Text("Nombre d'échéances " +
-                  listdescript[index].nombreEcheance.toString()),
+                  listdescript[index].nombreEcheance.toStringAsFixed(0)),
             ),
             SizedBox(
               height: 4.0,
@@ -104,7 +104,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
             Container(
               width: MediaQuery.of(context).size.width / 1.8,
               child: Text("Montant échéance " +
-                  listdescript[index].echeance.toString() +
+                  listdescript[index].echeance.toStringAsFixed(2) +
                   "€"),
             ),
             SizedBox(
@@ -115,7 +115,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
               child: Text("Echéance en cours " +
                   (listdescript[index].echeance *
                           listdescript[index].nombreEcheance)
-                      .toString() +
+                      .toStringAsFixed(2) +
                   "€"),
             ),
           ],
@@ -129,8 +129,9 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width / 1.8,
-              child: Text(
-                  "Prix " + listdescript[index].previsions.toString() + "€"),
+              child: Text("Prix " +
+                  listdescript[index].previsions.toStringAsFixed(2) +
+                  "€"),
             ),
           ],
         ),

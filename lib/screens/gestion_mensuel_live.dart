@@ -337,20 +337,21 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                       ))));
                         },
                         child: Icon(
-                          Icons.backpack,
+                          Icons.settings,
                           size: 20,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ), // icon
                       Text(
                         "transaction",
-                        style: TextStyle(fontSize: 10, color: Colors.white),
+                        style: TextStyle(fontSize: 10, color: Colors.black),
                       ), // text
                     ],
                   ),
                 ),
               ],
-              title: Text("Mois en cours"),
+              title:
+                  Text("Mois en cours", style: TextStyle(color: Colors.black)),
               centerTitle: true,
               flexibleSpace: Column(
                 children: [

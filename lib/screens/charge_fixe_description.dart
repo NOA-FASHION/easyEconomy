@@ -412,7 +412,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
         child: SafeArea(
           child: AppBar(
             elevation: 0,
-            title: Text("Documentation"),
+            title: Text("Documentation", style: TextStyle(color: Colors.black)),
             centerTitle: true,
             flexibleSpace: Column(
               children: [

@@ -332,7 +332,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                             width: 5.0,
                           ),
                           Text(
-                            gestion.montant.toString(),
+                            gestion.montant.toStringAsFixed(2) + " €",
                           ),
                         ],
                       ),
@@ -349,8 +349,11 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                         borderRadius: BorderRadius.circular(40.0),
                         child: Padding(
                           padding: const EdgeInsets.all(3.0),
-                          child: Icon(IconData(gestion.icones,
-                              fontFamily: 'MaterialIcons')),
+                          child: Icon(
+                            IconData(gestion.icones,
+                                fontFamily: 'MaterialIcons'),
+                            color: colorsDescription(gestion.unity.toString()),
+                          ),
                         )),
                   ),
                 ),
@@ -508,19 +511,13 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                 color: Colors.transparent,
               ),
               child: Card(
-                color: Colors.transparent,
+                color: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 elevation: 20.0,
                 child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white70),
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Colors.blueAccent, Colors.orange])),
+                  decoration: BoxDecoration(),
                   child: ListTile(
                     onTap: () async {
                       Navigator.push(
@@ -553,8 +550,12 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                     Text(
                                       "Titre".toUpperCase(),
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.purple),
+                                        fontWeight: FontWeight.bold,
+                                        color: colorsDescription(
+                                            _listMontantUniverselle[index]
+                                                .unity
+                                                .toString()),
+                                      ),
                                     ),
                                     SizedBox(
                                       width: 5.0,
@@ -569,7 +570,13 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                     IconButton(
                                       padding: EdgeInsets.all(0),
                                       iconSize: 20,
-                                      icon: Icon(Icons.edit),
+                                      icon: Icon(
+                                        Icons.edit,
+                                        color: colorsDescription(
+                                            _listMontantUniverselle[index]
+                                                .unity
+                                                .toString()),
+                                      ),
                                       onPressed: () {
                                         _displayTextInputDialog(
                                             context,

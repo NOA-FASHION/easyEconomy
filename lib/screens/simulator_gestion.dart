@@ -306,7 +306,8 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
           preferredSize: Size.fromHeight(287.0),
           child: SafeArea(
             child: AppBar(
-              title: Text("Simulation du budget prochain"),
+              title: Text("Simulation du budget prochain",
+                  style: TextStyle(color: Colors.black)),
               centerTitle: true,
               flexibleSpace: Column(
                 children: [

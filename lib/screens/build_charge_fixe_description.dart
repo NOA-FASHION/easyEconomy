@@ -89,7 +89,7 @@ class _BuildChargeFixeDescriptionState
             Container(
               width: MediaQuery.of(context).size.width / 1.7,
               child: Text("Nombre d'échéances " +
-                  listdescript[index].nombreEcheance.toString()),
+                  listdescript[index].nombreEcheance.toStringAsFixed(0)),
             ),
             SizedBox(
               height: 4.0,
@@ -97,7 +97,7 @@ class _BuildChargeFixeDescriptionState
             Container(
               width: MediaQuery.of(context).size.width / 1.7,
               child: Text("Montant échéance " +
-                  listdescript[index].echeance.toString() +
+                  listdescript[index].echeance.toStringAsFixed(2) +
                   "€"),
             ),
             SizedBox(
@@ -108,7 +108,7 @@ class _BuildChargeFixeDescriptionState
               child: Text("Echéance en cours " +
                   (listdescript[index].echeance *
                           listdescript[index].nombreEcheance)
-                      .toString() +
+                      .toStringAsFixed(2) +
                   "€"),
             ),
           ],

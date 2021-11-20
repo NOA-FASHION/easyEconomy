@@ -160,6 +160,26 @@ class _ScreenIndicatorMontantGestionLiveState
     return montant;
   }
 
+  Color choixColors() {
+    Color montant = Colors.white;
+
+    if (widget.titre == "Prévisions Soldes" ||
+        widget.titre == 'Transactions restants' ||
+        widget.titre1 == "Soldes Live") {
+      montant = Colors.white;
+    } else if (widget.titre == "Prévisions revenus" ||
+        widget.titre == 'revenus restants' ||
+        widget.titre1 == "Revenus live") {
+      montant = Colors.green.shade900;
+    } else if (widget.titre == "Prévisons charges" ||
+        widget.titre == "Charges restantes" ||
+        widget.titre1 == "Charges live") {
+      montant = Colors.red.shade900;
+    }
+
+    return montant;
+  }
+
   String soldeLive() {
     double montant = 0;
 
@@ -211,7 +231,7 @@ class _ScreenIndicatorMontantGestionLiveState
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         widget.titre,
-                        style: TextStyle(fontSize: 13, color: Colors.white),
+                        style: TextStyle(fontSize: 13, color: choixColors()),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -233,7 +253,8 @@ class _ScreenIndicatorMontantGestionLiveState
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             choixMontant(),
-                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            style:
+                                TextStyle(fontSize: 13, color: choixColors()),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -242,7 +263,7 @@ class _ScreenIndicatorMontantGestionLiveState
                     Icon(
                       widget.icones,
                       size: 30,
-                      color: Colors.white,
+                      color: choixColors(),
                     ),
                     Card(
                       color: Colors.orange,
@@ -262,7 +283,8 @@ class _ScreenIndicatorMontantGestionLiveState
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             choixMontantLive(),
-                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            style:
+                                TextStyle(fontSize: 13, color: choixColors()),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -273,7 +295,7 @@ class _ScreenIndicatorMontantGestionLiveState
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         widget.titre1,
-                        style: TextStyle(fontSize: 13, color: Colors.white),
+                        style: TextStyle(fontSize: 13, color: choixColors()),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -309,7 +331,7 @@ class _ScreenIndicatorMontantGestionLiveState
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         "Prévision de Solde",
-                        style: TextStyle(fontSize: 13, color: Colors.white),
+                        style: TextStyle(fontSize: 13, color: choixColors()),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -317,7 +339,7 @@ class _ScreenIndicatorMontantGestionLiveState
                     Icon(
                       widget.icones,
                       size: 30,
-                      color: Colors.white,
+                      color: choixColors(),
                     ),
                     Card(
                       color: Colors.orange,
@@ -337,7 +359,8 @@ class _ScreenIndicatorMontantGestionLiveState
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             soldeLive(),
-                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            style:
+                                TextStyle(fontSize: 13, color: choixColors()),
                             textAlign: TextAlign.center,
                           ),
                         ),

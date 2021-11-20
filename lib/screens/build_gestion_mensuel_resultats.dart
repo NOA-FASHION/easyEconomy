@@ -205,7 +205,7 @@ class _BuildGestionMensuelResultatsState
                             width: 5.0,
                           ),
                           Text(
-                            gestion.montant.toString(),
+                            gestion.montant.toStringAsFixed(2) + " €",
                           ),
                         ],
                       ),
@@ -222,8 +222,11 @@ class _BuildGestionMensuelResultatsState
                         borderRadius: BorderRadius.circular(40.0),
                         child: Padding(
                           padding: const EdgeInsets.all(3.0),
-                          child: Icon(IconData(gestion.icones,
-                              fontFamily: 'MaterialIcons')),
+                          child: Icon(
+                            IconData(gestion.icones,
+                                fontFamily: 'MaterialIcons'),
+                            color: colorsDescription(gestion.unity.toString()),
+                          ),
                         )),
                   ),
                 ),
@@ -405,8 +408,12 @@ class _BuildGestionMensuelResultatsState
                                     Text(
                                       "Titre".toUpperCase(),
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.purple),
+                                        fontWeight: FontWeight.bold,
+                                        color: colorsDescription(
+                                            _listMontantUniverselle[index]
+                                                .unity
+                                                .toString()),
+                                      ),
                                     ),
                                     SizedBox(
                                       width: 5.0,

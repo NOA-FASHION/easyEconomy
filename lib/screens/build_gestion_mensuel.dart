@@ -175,7 +175,8 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                           ),
                           maxLetter(
                               montantChargeLive(gestion.montantUniverselleLive)
-                                  .toStringAsFixed(2)),
+                                      .toStringAsFixed(2) +
+                                  " €"),
                         ],
                       ),
                     ),
@@ -195,7 +196,8 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                           ),
                           Text(
                             montantRevenuLive(gestion.montantUniverselleLive)
-                                .toStringAsFixed(2),
+                                    .toStringAsFixed(2) +
+                                " €",
                           ),
                         ],
                       ),
@@ -216,7 +218,8 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                           ),
                           Text(
                             montantTotalsLive(gestion.montantUniverselleLive)
-                                .toStringAsFixed(2),
+                                    .toStringAsFixed(2) +
+                                " €",
                           ),
                         ],
                       ),

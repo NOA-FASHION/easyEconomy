@@ -22,7 +22,8 @@ class _GestionMensuelState extends State<GestionMensuel> {
           preferredSize: Size.fromHeight(120.0),
           child: SafeArea(
             child: AppBar(
-              title: Text('Mois de gestion'),
+              title: Text('Mois de gestion',
+                  style: TextStyle(color: Colors.black)),
               centerTitle: true,
               flexibleSpace: Container(
                 padding: EdgeInsets.only(top: 30.0),
