@@ -413,7 +413,10 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     return Scaffold(
       key: scaffoldkeyTache,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(280.0),
+        preferredSize:
+            (listDesription.length > 0 || _GestionMensListAchat.length > 0)
+                ? Size.fromHeight(246.0)
+                : Size.fromHeight(111.0),
         child: SafeArea(
           child: AppBar(
             title: Text("Documentation", style: TextStyle(color: Colors.black)),
@@ -421,13 +424,13 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
             flexibleSpace: Column(
               children: [
                 Container(
-                  height: 140,
-                  padding: EdgeInsets.only(top: 20.0),
+                  height: 110,
+                  padding: EdgeInsets.only(top: 30.0),
                   alignment: Alignment.center,
                   child: Image.asset(
-                    'assets/logo.png',
-                    width: 140,
-                    height: 140,
+                    'assets/logo1.png',
+                    width: 110,
+                    height: 110,
                   ),
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -435,21 +438,26 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                           end: Alignment.centerRight,
                           colors: <Color>[Colors.orange, Colors.blueAccent])),
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: 10.0),
-                  alignment: Alignment.center,
-                  child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ScreenAchat(
-                        listDesription: listDesription,
-                        achat: _GestionMensListAchat,
-                      )),
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: <Color>[Colors.orange, Colors.blueAccent])),
-                ),
+                (listDesription.length > 0 || _GestionMensListAchat.length > 0)
+                    ? Container(
+                        padding: EdgeInsets.only(top: 10.0),
+                        alignment: Alignment.center,
+                        child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ScreenAchat(
+                              listDesription: listDesription,
+                              achat: _GestionMensListAchat,
+                            )),
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: <Color>[
+                              Colors.orange,
+                              Colors.blueAccent
+                            ])),
+                      )
+                    : SizedBox(height: 1),
               ],
             ),
           ),

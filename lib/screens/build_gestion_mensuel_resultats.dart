@@ -24,16 +24,16 @@ class _BuildGestionMensuelResultatsState
   Color colorsDescription(String description) {
     Color colors = Colors.black;
     if (description == "unity_Montant_universelle.ChargeFixe") {
-      colors = Colors.red.shade300;
+      colors = Colors.red.shade900;
       return colors;
     } else if (description == "unity_Montant_universelle.depensePonctuelle") {
-      colors = Colors.red.shade300;
+      colors = Colors.red.shade900;
       return colors;
     } else if (description == "unity_Montant_universelle.RevenuFixe") {
-      colors = Colors.green.shade300;
+      colors = Colors.green.shade900;
       return colors;
     } else if (description == "unity_Montant_universelle.RevenuPonctuel") {
-      colors = Colors.green.shade300;
+      colors = Colors.green.shade900;
       return colors;
     }
     return colors;
@@ -48,28 +48,28 @@ class _BuildGestionMensuelResultatsState
       documentJoint = Icon(
         Icons.all_out,
         size: 20.0,
-        color: Colors.red,
+        color: Colors.red.shade900,
       );
       return documentJoint;
     } else if (resultat == "unity_Montant_universelle.depensePonctuelle") {
       documentJoint = Icon(
         Icons.schedule,
         size: 20.0,
-        color: Colors.red,
+        color: Colors.red.shade900,
       );
       return documentJoint;
     } else if (resultat == "unity_Montant_universelle.RevenuFixe") {
       documentJoint = Icon(
         Icons.all_out,
         size: 20.0,
-        color: Colors.green,
+        color: Colors.green.shade900,
       );
       return documentJoint;
     } else if (resultat == "unity_Montant_universelle.RevenuPonctuel") {
       documentJoint = Icon(
         Icons.schedule,
         size: 20.0,
-        color: Colors.green,
+        color: Colors.green.shade900,
       );
       return documentJoint;
     }

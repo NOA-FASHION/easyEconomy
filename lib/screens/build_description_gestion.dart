@@ -95,28 +95,50 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width / 1.8,
-              child: Text("Nombre d'échéances " +
-                  listdescript[index].nombreEcheance.toStringAsFixed(0)),
+              child: Row(
+                children: [
+                  Text(
+                    "Nombre d'échéances ",
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                  Text(listdescript[index].nombreEcheance.toStringAsFixed(0)),
+                ],
+              ),
             ),
             SizedBox(
               height: 4.0,
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 1.8,
-              child: Text("Montant échéance " +
-                  listdescript[index].echeance.toStringAsFixed(2) +
-                  "€"),
+              width: MediaQuery.of(context).size.width / 1.7,
+              child: Row(
+                children: [
+                  Text("Montant échéance ",
+                      style: TextStyle(color: Colors.blue)),
+                  SizedBox(
+                    width: 15.0,
+                  ),
+                  Text(listdescript[index].echeance.toStringAsFixed(2) + "€"),
+                ],
+              ),
             ),
             SizedBox(
               height: 4.0,
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 1.8,
-              child: Text("Echéance en cours " +
-                  (listdescript[index].echeance *
-                          listdescript[index].nombreEcheance)
-                      .toStringAsFixed(2) +
-                  "€"),
+              width: MediaQuery.of(context).size.width / 1.7,
+              child: Row(
+                children: [
+                  Text("Echéance en cours ",
+                      style: TextStyle(color: Colors.blue)),
+                  SizedBox(
+                    width: 15.0,
+                  ),
+                  Text((listdescript[index].echeance *
+                              listdescript[index].nombreEcheance)
+                          .toStringAsFixed(2) +
+                      "€"),
+                ],
+              ),
             ),
           ],
         ),
