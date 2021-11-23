@@ -385,7 +385,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                 titre: _listMontantUniverselleLive.length > 0
                                     ? 'Charges restantes'
                                     : "Prévisons charges",
-                                icones: Icons.price_change_rounded,
+                                icones: Icons.arrow_circle_up,
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:
@@ -396,7 +396,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                 titre: _listMontantUniverselleLive.length > 0
                                     ? 'revenus restants'
                                     : "Prévisions revenus",
-                                icones: Icons.money,
+                                icones: Icons.arrow_circle_down,
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:
@@ -407,7 +407,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                 titre: _listMontantUniverselleLive.length > 0
                                     ? 'Transactions restants'
                                     : "Prévisions Soldes",
-                                icones: Icons.preview,
+                                icones: Icons.calculate_outlined,
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:

@@ -84,7 +84,7 @@ class _GestionMensuelLiveResultatsState
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
                                 titre: "Charges validées",
-                                icones: Icons.price_change_rounded,
+                                icones: Icons.arrow_circle_up,
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision:
                                     _listMontantUniverselleLive,
@@ -92,7 +92,7 @@ class _GestionMensuelLiveResultatsState
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
                                 titre: "Revenus Validés",
-                                icones: Icons.money,
+                                icones: Icons.arrow_circle_down,
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision:
                                     _listMontantUniverselleLive,
@@ -100,7 +100,7 @@ class _GestionMensuelLiveResultatsState
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
                                 titre: "Solde validé",
-                                icones: Icons.preview,
+                                icones: Icons.calculate_outlined,
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision:
                                     _listMontantUniverselleLive,

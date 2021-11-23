@@ -231,7 +231,10 @@ class _ScreenIndicatorMontantGestionLiveState
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         widget.titre,
-                        style: TextStyle(fontSize: 13, color: choixColors()),
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: choixColors(),
+                            fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -253,8 +256,10 @@ class _ScreenIndicatorMontantGestionLiveState
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             choixMontant(),
-                            style:
-                                TextStyle(fontSize: 13, color: choixColors()),
+                            style: TextStyle(
+                                fontSize: 13,
+                                color: choixColors(),
+                                fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -283,8 +288,10 @@ class _ScreenIndicatorMontantGestionLiveState
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             choixMontantLive(),
-                            style:
-                                TextStyle(fontSize: 13, color: choixColors()),
+                            style: TextStyle(
+                                fontSize: 13,
+                                color: choixColors(),
+                                fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -295,7 +302,10 @@ class _ScreenIndicatorMontantGestionLiveState
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         widget.titre1,
-                        style: TextStyle(fontSize: 13, color: choixColors()),
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: choixColors(),
+                            fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -331,7 +341,10 @@ class _ScreenIndicatorMontantGestionLiveState
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         "Prévision de Solde",
-                        style: TextStyle(fontSize: 13, color: choixColors()),
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: choixColors(),
+                            fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -359,8 +372,10 @@ class _ScreenIndicatorMontantGestionLiveState
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             soldeLive(),
-                            style:
-                                TextStyle(fontSize: 13, color: choixColors()),
+                            style: TextStyle(
+                                fontSize: 13,
+                                color: choixColors(),
+                                fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                           ),
                         ),
