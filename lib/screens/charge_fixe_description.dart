@@ -286,7 +286,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
       documentJoint = Row(
         children: [
           Container(
-            width: 100,
+            width: 130,
             child: TextFormField(
               controller: controller,
               onSaved: (value) {
@@ -325,9 +325,10 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
       documentJoint = Row(
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                width: 120,
+                width: 160,
                 child: TextFormField(
                   controller: controller1,
                   onSaved: (value) {
@@ -362,14 +363,14 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                 height: 7.0,
               ),
               Container(
-                width: 200,
+                width: 160,
                 child: TextFormField(
                   onSaved: (value) {
                     nombreEchenace = value!;
                   },
                   validator: (value) {
                     if (!isNumericUsingRegularExpression(value!)) {
-                      return "Nombre d'échéance";
+                      return "Nb d'échéance";
                     }
                     return null;
                   },
@@ -384,7 +385,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                           borderRadius: BorderRadius.circular(15.0)),
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      labelText: "Nombre d'échéance",
+                      labelText: "Nb d'échéance",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0))),
                 ),

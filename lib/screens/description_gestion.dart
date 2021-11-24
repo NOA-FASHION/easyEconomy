@@ -295,7 +295,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
       documentJoint = Row(
         children: [
           Container(
-            width: 100,
+            width: 130,
             child: TextFormField(
               controller: controller,
               onSaved: (value) {
