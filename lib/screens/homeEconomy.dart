@@ -91,14 +91,16 @@ class _HomeState extends State<Home> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  Icons.monetization_on,
+                                  Icons.approval,
                                   color: Colors.white,
                                   size: 45,
                                 ),
                                 SizedBox(
                                   height: 15.0,
                                 ),
-                                Center(child: Text("Charge fixe mensuelle")),
+                                Center(
+                                    child: Text(
+                                        "Charge et revenu fixe mensuelle")),
                               ],
                             )),
                       ),
@@ -164,7 +166,7 @@ class _HomeState extends State<Home> {
                                     height: 35.0,
                                   ),
                                   Icon(
-                                    Icons.alarm_on,
+                                    Icons.calculate,
                                     color: Colors.white,
                                     size: 45,
                                   ),
@@ -207,7 +209,7 @@ class _HomeState extends State<Home> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  Icons.dashboard,
+                                  Icons.calendar_view_day,
                                   color: Colors.white,
                                   size: 45,
                                 ),

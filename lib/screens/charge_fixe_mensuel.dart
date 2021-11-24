@@ -1,4 +1,6 @@
 import 'package:accordion/accordion.dart';
+import 'package:currency_textfield/currency_textfield.dart';
+
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_charge_fixe.dart';
@@ -22,7 +24,8 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
   late PersistentBottomSheetController _bottomSheetController;
   late String nomCharge;
   late String nomRevenu;
-
+  var controller = CurrencyTextFieldController(
+      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
   double montantCharge = 0;
   String unityChallenge = "RevenuFixe";
   late bool simuOuchargeFixe;
@@ -65,6 +68,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
           height: 15.0,
         ),
         TextFormField(
+          controller: controller,
           textCapitalization: TextCapitalization.sentences,
           onSaved: (value) {
             montantCharge = double.parse(value!);
@@ -334,16 +338,6 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                       child: ListView(
                         padding: EdgeInsets.all(10.0),
                         children: [
-                          // IconButton(
-                          //   alignment: Alignment.topRight,
-                          //   icon: Icon(
-                          //     Icons.cancel,
-                          //     color: Colors.black,
-                          //   ),
-                          //   onPressed: () {
-                          //     Navigator.pop(context);
-                          //   },
-                          // ),
                           SizedBox(
                             height: 5.0,
                           ),
