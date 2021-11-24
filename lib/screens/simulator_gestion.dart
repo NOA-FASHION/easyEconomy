@@ -261,7 +261,7 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                             controller: controller,
                             textCapitalization: TextCapitalization.sentences,
                             onSaved: (value) {
-                              montantCharge = double.parse(value!);
+                              montantCharge = controller.doubleValue;
                             },
                             validator: (value) {
                               if (value!.isEmpty) {

@@ -293,7 +293,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                 commentaire = "";
                 coutPaiment = "0";
                 nombreEchenace = '0';
-                prixProduit = value!;
+                prixProduit = controller.doubleValue.toString();
               },
               validator: (value) {
                 if (!isNumericUsingRegularExpression(value!)) {
@@ -335,7 +335,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                     commentaire = "";
                     prixProduit = '0';
                     prixProduit = "0";
-                    coutPaiment = value!;
+                    coutPaiment = controller1.doubleValue.toString();
                   },
                   validator: (value) {
                     if (!isNumericUsingRegularExpression(value!)) {

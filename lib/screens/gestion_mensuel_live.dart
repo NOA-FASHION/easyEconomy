@@ -320,7 +320,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                             controller: controller,
                             textCapitalization: TextCapitalization.sentences,
                             onSaved: (value) {
-                              montantCharge = double.parse(value!);
+                              montantCharge = controller.doubleValue;
                             },
                             validator: (value) {
                               if (value!.isEmpty) {

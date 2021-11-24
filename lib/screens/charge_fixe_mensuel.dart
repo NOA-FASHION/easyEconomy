@@ -71,7 +71,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
           controller: controller,
           textCapitalization: TextCapitalization.sentences,
           onSaved: (value) {
-            montantCharge = double.parse(value!);
+            montantCharge = controller.doubleValue;
           },
           validator: (value) {
             if (value!.isEmpty) {

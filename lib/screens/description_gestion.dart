@@ -302,7 +302,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                 commentaire = "";
                 coutPaiment = "0";
                 nombreEchenace = '0';
-                prixProduit = value!;
+                prixProduit = controller.doubleValue.toString();
               },
               validator: (value) {
                 if (!isNumericUsingRegularExpression(value!)) {
@@ -343,7 +343,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                     commentaire = "";
                     prixProduit = '0';
                     prixProduit = "0";
-                    coutPaiment = value!;
+                    coutPaiment = controller1.doubleValue.toString();
                   },
                   validator: (value) {
                     if (!isNumericUsingRegularExpression(value!)) {
