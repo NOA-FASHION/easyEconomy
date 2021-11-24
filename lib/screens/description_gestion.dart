@@ -1,3 +1,4 @@
+import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_description_gestion.dart';
@@ -25,6 +26,10 @@ class DescriptionGestion extends StatefulWidget {
 }
 
 class _DescriptionGestionState extends State<DescriptionGestion> {
+  var controller = CurrencyTextFieldController(
+      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
+  var controller1 = CurrencyTextFieldController(
+      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
   bool isSwitched = false;
   String unityPattern = "unity_challenge1.";
   // late String idChallenge1;
@@ -292,6 +297,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
           Container(
             width: 100,
             child: TextFormField(
+              controller: controller,
               onSaved: (value) {
                 commentaire = "";
                 coutPaiment = "0";
@@ -332,6 +338,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
               Container(
                 width: 120,
                 child: TextFormField(
+                  controller: controller1,
                   onSaved: (value) {
                     commentaire = "";
                     prixProduit = '0';

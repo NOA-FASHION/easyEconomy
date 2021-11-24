@@ -1,3 +1,4 @@
+import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_charge_fixe_description.dart';
@@ -25,11 +26,10 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
   String unityPattern = "unity_challenge1.";
   // late String idChallenge1;
   String nombreEchenace = '0';
-  // late String nomAdresse;
-  // late String villeAdresse;
-  // late String adresse;
-  // late String telephone;
-  // late String paysAdresse;
+  var controller = CurrencyTextFieldController(
+      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
+  var controller1 = CurrencyTextFieldController(
+      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
   String prixProduit = '0';
   String coutPaiment = '0';
   late List<String> docPaths;
@@ -288,6 +288,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
           Container(
             width: 100,
             child: TextFormField(
+              controller: controller,
               onSaved: (value) {
                 commentaire = "";
                 coutPaiment = "0";
@@ -328,6 +329,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
               Container(
                 width: 120,
                 child: TextFormField(
+                  controller: controller1,
                   onSaved: (value) {
                     commentaire = "";
                     prixProduit = '0';
