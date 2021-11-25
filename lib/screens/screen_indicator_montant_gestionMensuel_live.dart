@@ -255,7 +255,7 @@ class _ScreenIndicatorMontantGestionLiveState
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            choixMontant(),
+                            choixMontant() + " €",
                             style: TextStyle(
                                 fontSize: 13,
                                 color: choixColors(),
@@ -287,7 +287,7 @@ class _ScreenIndicatorMontantGestionLiveState
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            choixMontantLive(),
+                            choixMontantLive() + " €",
                             style: TextStyle(
                                 fontSize: 13,
                                 color: choixColors(),
@@ -371,7 +371,7 @@ class _ScreenIndicatorMontantGestionLiveState
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            soldeLive(),
+                            soldeLive() + " €",
                             style: TextStyle(
                                 fontSize: 13,
                                 color: choixColors(),
