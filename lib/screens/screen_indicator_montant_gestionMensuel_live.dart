@@ -132,7 +132,7 @@ class _ScreenIndicatorMontantGestionLiveState
   String choixMontant() {
     String montant = '0';
 
-    if (widget.titre == "Prévision solde" ||
+    if (widget.titre == "Prévision  solde" ||
         widget.titre == 'Transactions restantes') {
       montant = montantTotals().toStringAsFixed(2);
     } else if (widget.titre == "Prévisions revenus" ||
@@ -149,7 +149,7 @@ class _ScreenIndicatorMontantGestionLiveState
   String choixMontantLive() {
     String montant = '0';
 
-    if (widget.titre1 == "Solde  validé") {
+    if (widget.titre1 == "Solde         validé") {
       montant = montantTotalsLive().toStringAsFixed(2);
     } else if (widget.titre1 == "Revenus validés") {
       montant = montantRevenuLive().toStringAsFixed(2);
@@ -163,9 +163,9 @@ class _ScreenIndicatorMontantGestionLiveState
   Color choixColors() {
     Color montant = Colors.white;
 
-    if (widget.titre == "Prévision solde" ||
+    if (widget.titre == "Prévision  solde" ||
         widget.titre == 'Transactions restantes' ||
-        widget.titre1 == "Solde  validé") {
+        widget.titre1 == "Solde         validé") {
       montant = Colors.white;
     } else if (widget.titre == "Prévisions revenus" ||
         widget.titre == 'revenus restants' ||
@@ -190,7 +190,7 @@ class _ScreenIndicatorMontantGestionLiveState
 
   bool flipCardTest() {
     bool flip = true;
-    if (montantTotalsLive() > 0 && widget.titre1 == "Solde  validé") {
+    if (montantTotalsLive() > 0 && widget.titre1 == "Solde         validé") {
       flip = true;
     } else {
       flip = false;
@@ -207,7 +207,7 @@ class _ScreenIndicatorMontantGestionLiveState
       direction: FlipDirection.HORIZONTAL, // default
       front: Container(
         width: MediaQuery.of(context).size.width / 3.2,
-        height: 220,
+        height: 230,
         child: Card(
             color: Colors.transparent,
             shape: RoundedRectangleBorder(
@@ -340,7 +340,7 @@ class _ScreenIndicatorMontantGestionLiveState
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Prévision Solde",
+                        "Prévision  solde",
                         style: TextStyle(
                             fontSize: 13,
                             color: choixColors(),

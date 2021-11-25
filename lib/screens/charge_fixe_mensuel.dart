@@ -272,7 +272,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                               ),
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévision solde",
+                                titre: "Prévision  solde",
                                 icones: Icons.calculate_outlined,
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision: _listMontPrevision,

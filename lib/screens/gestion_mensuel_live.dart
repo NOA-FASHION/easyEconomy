@@ -117,7 +117,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
       child: Scaffold(
         key: scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(357.0),
+          preferredSize: Size.fromHeight(366.0),
           child: SafeArea(
             child: AppBar(
               actions: [
@@ -212,13 +212,13 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                               ScreenIndicatorMontantGestionLive(
                                 titre: _listMontantUniverselleLive.length > 0
                                     ? 'Transactions restantes'
-                                    : "Prévision solde",
+                                    : "Prévision  solde",
                                 icones: Icons.calculate_outlined,
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:
                                     _listMontantUniverselleLive,
-                                titre1: 'Solde  validé',
+                                titre1: 'Solde         validé',
                               ),
                             ],
                           ),
