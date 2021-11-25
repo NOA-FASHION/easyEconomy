@@ -159,7 +159,7 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                               ),
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Solde prévisionnel",
+                                titre: "Prévisions solde",
                                 icones: Icons.calculate_outlined,
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision: _listMontPrevision,

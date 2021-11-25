@@ -196,7 +196,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:
                                     _listMontantUniverselleLive,
-                                titre1: 'Charges live',
+                                titre1: 'Charges validées',
                               ),
                               ScreenIndicatorMontantGestionLive(
                                 titre: _listMontantUniverselleLive.length > 0
@@ -207,18 +207,18 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:
                                     _listMontantUniverselleLive,
-                                titre1: 'Revenus live',
+                                titre1: 'Revenus validés',
                               ),
                               ScreenIndicatorMontantGestionLive(
                                 titre: _listMontantUniverselleLive.length > 0
-                                    ? 'Transactions restants'
-                                    : "Prévisions Soldes",
+                                    ? 'Transactions restantes'
+                                    : "Prévision solde",
                                 icones: Icons.calculate_outlined,
                                 gestionListMontantUniverselle:
                                     _listMontantUniverselle,
                                 gestionListMontantUniverselleLive:
                                     _listMontantUniverselleLive,
-                                titre1: 'Soldes Live',
+                                titre1: 'Solde  validé',
                               ),
                             ],
                           ),

@@ -98,7 +98,7 @@ class _GestionMensuelLiveResultatsState
                               ),
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Solde validé",
+                                titre: "Solde  validé",
                                 icones: Icons.calculate_outlined,
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision:

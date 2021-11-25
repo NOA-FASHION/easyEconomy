@@ -100,8 +100,8 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
   String choixMontant() {
     String montant = '0';
 
-    if (widget.titre == "Solde prévisionnel" ||
-        widget.titre == "Solde validé") {
+    if (widget.titre == "Prévisions solde" ||
+        widget.titre == "Solde  validé") {
       montant = montantTotals();
     } else if (widget.titre == "Prévisions revenus" ||
         widget.titre == "Revenus Validés") {
@@ -117,8 +117,8 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
   Color choixColors() {
     Color montant = Colors.white;
 
-    if (widget.titre == "Solde prévisionnel" ||
-        widget.titre == "Solde validé") {
+    if (widget.titre == "Prévisions solde" ||
+        widget.titre == "Solde  validé") {
       montant = Colors.white;
     } else if (widget.titre == "Prévisions revenus" ||
         widget.titre == "Revenus Validés") {

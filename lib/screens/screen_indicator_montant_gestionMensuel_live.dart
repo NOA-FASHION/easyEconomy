@@ -132,8 +132,8 @@ class _ScreenIndicatorMontantGestionLiveState
   String choixMontant() {
     String montant = '0';
 
-    if (widget.titre == "Prévisions Soldes" ||
-        widget.titre == 'Transactions restants') {
+    if (widget.titre == "Prévision solde" ||
+        widget.titre == 'Transactions restantes') {
       montant = montantTotals().toStringAsFixed(2);
     } else if (widget.titre == "Prévisions revenus" ||
         widget.titre == 'revenus restants') {
@@ -149,11 +149,11 @@ class _ScreenIndicatorMontantGestionLiveState
   String choixMontantLive() {
     String montant = '0';
 
-    if (widget.titre1 == "Soldes Live") {
+    if (widget.titre1 == "Solde  validé") {
       montant = montantTotalsLive().toStringAsFixed(2);
-    } else if (widget.titre1 == "Revenus live") {
+    } else if (widget.titre1 == "Revenus validés") {
       montant = montantRevenuLive().toStringAsFixed(2);
-    } else if (widget.titre1 == "Charges live") {
+    } else if (widget.titre1 == "Charges validées") {
       montant = montantChargeLive().toStringAsFixed(2);
     }
 
@@ -163,17 +163,17 @@ class _ScreenIndicatorMontantGestionLiveState
   Color choixColors() {
     Color montant = Colors.white;
 
-    if (widget.titre == "Prévisions Soldes" ||
-        widget.titre == 'Transactions restants' ||
-        widget.titre1 == "Soldes Live") {
+    if (widget.titre == "Prévision solde" ||
+        widget.titre == 'Transactions restantes' ||
+        widget.titre1 == "Solde  validé") {
       montant = Colors.white;
     } else if (widget.titre == "Prévisions revenus" ||
         widget.titre == 'revenus restants' ||
-        widget.titre1 == "Revenus live") {
+        widget.titre1 == "Revenus validés") {
       montant = Colors.green.shade900;
     } else if (widget.titre == "Prévisons charges" ||
         widget.titre == "Charges restantes" ||
-        widget.titre1 == "Charges live") {
+        widget.titre1 == "Charges validées") {
       montant = Colors.red.shade900;
     }
 
@@ -190,7 +190,7 @@ class _ScreenIndicatorMontantGestionLiveState
 
   bool flipCardTest() {
     bool flip = true;
-    if (montantTotalsLive() > 0 && widget.titre1 == "Soldes Live") {
+    if (montantTotalsLive() > 0 && widget.titre1 == "Solde  validé") {
       flip = true;
     } else {
       flip = false;
@@ -340,7 +340,7 @@ class _ScreenIndicatorMontantGestionLiveState
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Prévision de Solde",
+                        "Prévision Solde",
                         style: TextStyle(
                             fontSize: 13,
                             color: choixColors(),
