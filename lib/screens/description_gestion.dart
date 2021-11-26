@@ -305,7 +305,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                 prixProduit = controller.doubleValue.toString();
               },
               validator: (value) {
-                if (!isNumericUsingRegularExpression(value!)) {
+                if (value!.isEmpty) {
                   return "Rentrer un prix";
                 }
                 return null;
@@ -346,8 +346,8 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                     coutPaiment = controller1.doubleValue.toString();
                   },
                   validator: (value) {
-                    if (!isNumericUsingRegularExpression(value!)) {
-                      return "Montant d'une échéance";
+                    if (value!.isEmpty) {
+                      return "Rentrer un prix";
                     }
                     return null;
                   },

@@ -296,7 +296,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                 prixProduit = controller.doubleValue.toString();
               },
               validator: (value) {
-                if (!isNumericUsingRegularExpression(value!)) {
+                if (value!.isEmpty) {
                   return "Rentrer un prix";
                 }
                 return null;
@@ -338,7 +338,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                     coutPaiment = controller1.doubleValue.toString();
                   },
                   validator: (value) {
-                    if (!isNumericUsingRegularExpression(value!)) {
+                    if (value!.isEmpty) {
                       return "Montant d'une échéance";
                     }
                     return null;

@@ -1,3 +1,4 @@
+import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/description_gestion.dart';
@@ -24,6 +25,8 @@ class BuildGestionMensuelLive extends StatefulWidget {
 class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
   late String valueText;
   late String valueText2;
+  var controller = CurrencyTextFieldController(
+      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Color colorsDescription(String description) {
     Color colors = Colors.black;
@@ -76,10 +79,11 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
           height: 15.0,
         ),
         TextFormField(
+          controller: controller,
           textCapitalization: TextCapitalization.sentences,
           onSaved: (value) {
             setState(() {
-              valueText2 = value!;
+              valueText2 = controller.doubleValue.toString();
             });
           },
           validator: (value) {
