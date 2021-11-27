@@ -228,7 +228,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
             child: AppBar(
               elevation: 0,
               title: Text("Charges fixes mensuelles",
-                  style: TextStyle(color: Colors.black)),
+                  style: TextStyle(color: Colors.black, fontSize: 17)),
               centerTitle: true,
               flexibleSpace: Column(
                 children: [
@@ -237,7 +237,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                     alignment: Alignment.center,
                     child: Image.asset(
                       'assets/logo1.png',
-                      width: 100,
+                      width: 80,
                       height: 100,
                     ),
                     decoration: BoxDecoration(
@@ -330,7 +330,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
             (context) {
               return Container(
                   alignment: Alignment.center,
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.9,
                   child: Form(
                     key: formKey,
                     child: Padding(

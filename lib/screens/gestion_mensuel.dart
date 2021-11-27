@@ -23,15 +23,15 @@ class _GestionMensuelState extends State<GestionMensuel> {
           child: SafeArea(
             child: AppBar(
               title: Text('Mois de gestion',
-                  style: TextStyle(color: Colors.black)),
+                  style: TextStyle(color: Colors.black, fontSize: 17)),
               centerTitle: true,
               flexibleSpace: Container(
                 padding: EdgeInsets.only(top: 30.0),
                 alignment: Alignment.center,
                 child: Image.asset(
                   'assets/logo1.png',
-                  width: 120,
-                  height: 120,
+                  width: 70,
+                  height: 90,
                 ),
                 decoration: BoxDecoration(
                     gradient: LinearGradient(

@@ -113,7 +113,7 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
           child: SafeArea(
             child: AppBar(
               title: Text("Simulation du budget prochain",
-                  style: TextStyle(color: Colors.black)),
+                  style: TextStyle(color: Colors.black, fontSize: 17)),
               centerTitle: true,
               flexibleSpace: Column(
                 children: [
@@ -123,7 +123,7 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                     alignment: Alignment.center,
                     child: Image.asset(
                       'assets/logo1.png',
-                      width: 120,
+                      width: 80,
                       height: 120,
                     ),
                     decoration: BoxDecoration(
@@ -217,7 +217,7 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
             (context) {
               return Container(
                   alignment: Alignment.center,
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.9,
                   child: Form(
                     key: formKey,
                     child: Padding(

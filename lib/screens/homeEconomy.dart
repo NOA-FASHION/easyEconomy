@@ -25,14 +25,15 @@ class _HomeState extends State<Home> {
           preferredSize: Size.fromHeight(130.0),
           child: SafeArea(
             child: AppBar(
-              title: Text('EASYECONOMY', style: TextStyle(color: Colors.black)),
+              title: Text('EASYECONOMY',
+                  style: TextStyle(color: Colors.black, fontSize: 18)),
               centerTitle: true,
               flexibleSpace: Container(
                 padding: EdgeInsets.only(top: 30.0),
                 alignment: Alignment.center,
                 child: Image.asset(
                   'assets/logo1.png',
-                  width: 120,
+                  width: 80,
                   height: 120,
                 ),
                 decoration: BoxDecoration(

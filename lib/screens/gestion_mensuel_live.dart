@@ -117,7 +117,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
       child: Scaffold(
         key: scaffoldkey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(366.0),
+          preferredSize: Size.fromHeight(343.0),
           child: SafeArea(
             child: AppBar(
               actions: [
@@ -156,19 +156,19 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                   ),
                 ),
               ],
-              title:
-                  Text("Mois en cours", style: TextStyle(color: Colors.black)),
+              title: Text("Mois en cours",
+                  style: TextStyle(color: Colors.black, fontSize: 17)),
               centerTitle: true,
               flexibleSpace: Column(
                 children: [
                   Container(
-                    height: 110,
-                    padding: EdgeInsets.only(top: 30.0),
+                    height: 100,
+                    padding: EdgeInsets.only(top: 27.0),
                     alignment: Alignment.center,
                     child: Image.asset(
                       'assets/logo1.png',
                       width: 110,
-                      height: 110,
+                      height: 90,
                     ),
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -177,7 +177,6 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                             colors: <Color>[Colors.orange, Colors.blueAccent])),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 10.0),
                     alignment: Alignment.center,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -276,7 +275,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
             (context) {
               return Container(
                   alignment: Alignment.center,
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.9,
                   child: Form(
                     key: formKey,
                     child: Padding(

@@ -415,7 +415,8 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
         child: SafeArea(
           child: AppBar(
             elevation: 0,
-            title: Text("Documentation", style: TextStyle(color: Colors.black)),
+            title: Text("Documentation",
+                style: TextStyle(color: Colors.black, fontSize: 17)),
             centerTitle: true,
             flexibleSpace: Column(
               children: [
@@ -425,7 +426,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                   alignment: Alignment.center,
                   child: Image.asset(
                     'assets/logo1.png',
-                    width: 110,
+                    width: 80,
                     height: 110,
                   ),
                   decoration: BoxDecoration(
@@ -478,7 +479,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
           _image = "";
           _bottomSheetController =
               scaffoldkeyTache.currentState!.showBottomSheet(
-            (context) {
+            (BuildContext context) {
               return Container(
                   alignment: Alignment.center,
                   height: MediaQuery.of(context).size.height * 0.5,
@@ -512,22 +513,6 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                               updateController(value);
                             },
                             items: <DropdownMenuItem<String>>[
-                              // DropdownMenuItem(
-                              //   value: "achat",
-                              //   child: Row(
-                              //     children: [
-                              //       Icon(Icons.shopping_cart,
-                              //           size: 30.0, color: Colors.cyan),
-                              //       SizedBox(width: 10),
-                              //       Text(
-                              //         "Achat",
-                              //         style: TextStyle(
-                              //           color: Colors.cyan,
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
                               DropdownMenuItem(
                                 value: "tache",
                                 child: Row(

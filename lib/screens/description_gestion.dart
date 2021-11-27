@@ -426,7 +426,8 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                 : Size.fromHeight(111.0),
         child: SafeArea(
           child: AppBar(
-            title: Text("Documentation", style: TextStyle(color: Colors.black)),
+            title: Text("Documentation",
+                style: TextStyle(color: Colors.black, fontSize: 17)),
             centerTitle: true,
             flexibleSpace: Column(
               children: [
@@ -436,7 +437,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                   alignment: Alignment.center,
                   child: Image.asset(
                     'assets/logo1.png',
-                    width: 110,
+                    width: 80,
                     height: 110,
                   ),
                   decoration: BoxDecoration(

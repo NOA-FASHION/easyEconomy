@@ -207,7 +207,7 @@ class _ScreenIndicatorMontantGestionLiveState
       direction: FlipDirection.HORIZONTAL, // default
       front: Container(
         width: MediaQuery.of(context).size.width / 3.2,
-        height: 230,
+        height: 227,
         child: Card(
             color: Colors.transparent,
             shape: RoundedRectangleBorder(
