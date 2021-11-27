@@ -438,7 +438,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                   child: Image.asset(
                     'assets/logo1.png',
                     width: 80,
-                    height: 110,
+                    height: 80,
                   ),
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
