@@ -1,9 +1,12 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/play_commentaires.dart';
+import 'package:easyeconomy/screens/play_images.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class BuildChargeFixeDescription extends StatefulWidget {
@@ -491,33 +494,31 @@ class _BuildChargeFixeDescriptionState
                             .toString()
                             .replaceAll(unityPattern, "") ==
                         "commentaire") {
-                      // Navigator.push(
-                      //     context,
-                      //     PageTransition(
-                      //         type: PageTransitionType.bottomToTop,
-                      //         child: ChangeNotifierProvider.value(
-                      //             value: providerType,
-                      //             child: PlayCommentaire(
-                      //                 nameChallenge: item.name))));
-
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              child: ChangeNotifierProvider.value(
+                                  value: providerType,
+                                  child: PlayCommentaire(
+                                    commentaire:
+                                        listDesription[index].commentaire,
+                                  ))));
                     } else if (listDesription[index]
                             .description
                             .toString()
                             .replaceAll(unityPattern, "") ==
                         "image") {
-                      // Navigator.push(
-                      //     context,
-                      //     PageTransition(
-                      //         type: PageTransitionType.bottomToTop,
-                      //         child: ChangeNotifierProvider.value(
-                      //             value: providerType,
-                      //             child: Home(
-                      //               returnRaccourci: false,
-                      //               id: widget.id,
-                      //               idChallenge1: item.id,
-                      //               namechallenge: item.tache,
-                      //             ))));
-
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              child: ChangeNotifierProvider.value(
+                                  value: providerType,
+                                  child: PlayPicture(
+                                    patchPicture:
+                                        listDesription[index].adresseImage,
+                                  ))));
                     }
                   },
                   title: Container(
