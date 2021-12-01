@@ -11,21 +11,21 @@ class PlayPicture extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.0),
+        preferredSize: Size.fromHeight(111.0),
         child: SafeArea(
           child: AppBar(
             title: Text("Images"),
             centerTitle: true,
             flexibleSpace: Container(
-              height: 130,
-              padding: EdgeInsets.only(top: 40.0, right: 30.0),
+              height: 110,
+              padding: EdgeInsets.only(top: 30.0),
               alignment: Alignment.centerRight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(
                     'assets/logo.png',
-                    width: 60,
+                    width: 80,
                   ),
                 ],
               ),
@@ -33,7 +33,7 @@ class PlayPicture extends StatelessWidget {
                   gradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                      colors: <Color>[Colors.purple, Colors.blue])),
+                       colors: <Color>[Colors.orange, Colors.blueAccent])),
             ),
           ),
         ),

@@ -11,19 +11,20 @@ class PlayCommentaire extends StatelessWidget {
     var mediaQueryData = MediaQuery.of(context);
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.0),
+        preferredSize: Size.fromHeight(111.0),
         child: SafeArea(
           child: AppBar(
             centerTitle: true,
             flexibleSpace: Container(
-              padding: EdgeInsets.only(right: 30.0),
+              height: 110.0,
+              padding: EdgeInsets.only(top: 30.0),
               alignment: Alignment.centerRight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(
                     'assets/logo.png',
-                    width: 60,
+                    width: 90,
                   ),
                 ],
               ),
@@ -31,7 +32,7 @@ class PlayCommentaire extends StatelessWidget {
                   gradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                      colors: <Color>[Colors.purple, Colors.blue])),
+                      colors: <Color>[Colors.orange, Colors.blueAccent])),
             ),
           ),
         ),
