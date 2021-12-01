@@ -281,7 +281,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                 Column(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width / 1.4,
+                      width: MediaQuery.of(context).size.width / 1.65,
                       height: 25.0,
                       child: Row(
                         children: [
@@ -376,7 +376,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
         child: Container(
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Lottie.asset('assets/bankOut.json', height: 65))),
+                child: Lottie.asset('assets/bankOut.json', height: 50))),
       );
     }
 
@@ -568,7 +568,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                             child: Row(
                               children: [
                                 Text(
-                                  "Etape".toUpperCase(),
+                                  "Document".toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.purple),
