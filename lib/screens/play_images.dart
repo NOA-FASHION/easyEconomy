@@ -24,7 +24,7 @@ class PlayPicture extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(
-                    'assets/logo.png',
+                    'assets/logo1.png',
                     width: 80,
                   ),
                 ],
@@ -33,7 +33,7 @@ class PlayPicture extends StatelessWidget {
                   gradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                       colors: <Color>[Colors.orange, Colors.blueAccent])),
+                      colors: <Color>[Colors.orange, Colors.blueAccent])),
             ),
           ),
         ),

@@ -23,8 +23,8 @@ class PlayCommentaire extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(
-                    'assets/logo.png',
-                    width: 90,
+                    'assets/logo1.png',
+                    width: 80,
                   ),
                 ],
               ),
