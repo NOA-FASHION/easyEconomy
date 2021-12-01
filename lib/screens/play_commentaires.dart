@@ -14,6 +14,8 @@ class PlayCommentaire extends StatelessWidget {
         preferredSize: Size.fromHeight(111.0),
         child: SafeArea(
           child: AppBar(
+            title: Text("Commentaires",
+                style: TextStyle(color: Colors.black, fontSize: 17)),
             centerTitle: true,
             flexibleSpace: Container(
               height: 110.0,

@@ -14,7 +14,8 @@ class PlayPicture extends StatelessWidget {
         preferredSize: Size.fromHeight(111.0),
         child: SafeArea(
           child: AppBar(
-            title: Text("Images"),
+            title: Text("Images",
+                style: TextStyle(color: Colors.black, fontSize: 17)),
             centerTitle: true,
             flexibleSpace: Container(
               height: 110,
