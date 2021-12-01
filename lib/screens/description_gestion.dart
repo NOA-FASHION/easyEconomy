@@ -100,6 +100,15 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     }
   }
 
+  bool achatValid(List<DesciprtionUniverselle> listDesription) {
+    for (var i = listDesription.length - 1; i >= 0; i--) {
+      if (listDesription[i].previsions > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   void interditecheance(
       List<MontantUniverselle> _montantUniverselleAchat, dynamic context) {
     for (var i = _montantUniverselleAchat[widget.indexGestionMensuelMontantUniv]
@@ -421,7 +430,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
       key: scaffoldkeyTache,
       appBar: PreferredSize(
         preferredSize:
-            (listDesription.length > 0 || _GestionMensListAchat.length > 0)
+            (achatValid(listDesription) || _GestionMensListAchat.length > 0)
                 ? Size.fromHeight(246.0)
                 : Size.fromHeight(111.0),
         child: SafeArea(
@@ -446,7 +455,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                           end: Alignment.centerRight,
                           colors: <Color>[Colors.orange, Colors.blueAccent])),
                 ),
-                (listDesription.length > 0 || _GestionMensListAchat.length > 0)
+                (achatValid(listDesription) || _GestionMensListAchat.length > 0)
                     ? Container(
                         padding: EdgeInsets.only(top: 10.0),
                         alignment: Alignment.center,

@@ -854,7 +854,7 @@ class EasyController extends ChangeNotifier {
             .montantUniverselle[indexGestionLive]
             .descriptionUniverselle[indexgestiondescription]
             .previsions);
-    montantAchat(indexGestionLive, indexgestiondescription);
+    montantAchat(indexGestion, indexGestionLive);
     await _saveGestionMensuelle();
     _initEconomy();
     notifyListeners();
