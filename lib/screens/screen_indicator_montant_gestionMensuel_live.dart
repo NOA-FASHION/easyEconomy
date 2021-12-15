@@ -1,6 +1,7 @@
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:multi_charts/multi_charts.dart';
 
 class ScreenIndicatorMontantGestionLive extends StatefulWidget {
   final String titre;
@@ -180,12 +181,12 @@ class _ScreenIndicatorMontantGestionLiveState
     return montant;
   }
 
-  String soldeLive() {
+  double soldeLive() {
     double montant = 0;
 
     montant = montantTotals() + montantTotalsLive();
 
-    return montant.toStringAsFixed(2);
+    return montant;
   }
 
   bool flipCardTest() {
@@ -201,7 +202,7 @@ class _ScreenIndicatorMontantGestionLiveState
   @override
   Widget build(BuildContext context) {
     return FlipCard(
-      flipOnTouch: flipCardTest(),
+      flipOnTouch: true,
       fill: Fill
           .fillBack, // Fill the back side of the card to make in the same size as the front.
       direction: FlipDirection.HORIZONTAL, // default
@@ -348,12 +349,6 @@ class _ScreenIndicatorMontantGestionLiveState
                         textAlign: TextAlign.center,
                       ),
                     ),
-
-                    Icon(
-                      widget.icones,
-                      size: 30,
-                      color: choixColors(),
-                    ),
                     Card(
                       color: Colors.orange,
                       shape: RoundedRectangleBorder(
@@ -371,7 +366,7 @@ class _ScreenIndicatorMontantGestionLiveState
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            soldeLive() + " €",
+                            soldeLive().toStringAsFixed(2) + " €",
                             style: TextStyle(
                                 fontSize: 13,
                                 color: choixColors(),
@@ -379,6 +374,29 @@ class _ScreenIndicatorMontantGestionLiveState
                             textAlign: TextAlign.center,
                           ),
                         ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 13,
+                    ),
+                    Container(
+                      width: 100,
+                      child: PieChart(
+                        textScaleFactor: 0.0,
+                        maxWidth: 100,
+                        maxHeight: 100,
+                        values: [
+                          (soldeLive() /
+                              (montantRevenuLive() + montantRevenu()) *
+                              100.roundToDouble()),
+                          ((montantChargeLive() + montantCharge()) /
+                              (montantRevenuLive() + montantRevenu()) *
+                              100.roundToDouble())
+                        ],
+                        labels: ['Marge', 'frais'],
+                        sliceFillColors: [Colors.greenAccent, Colors.red],
+                        animationDuration: Duration(milliseconds: 1500),
+                        showLegend: false,
                       ),
                     ),
 
