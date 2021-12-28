@@ -381,23 +381,28 @@ class _ScreenIndicatorMontantGestionLiveState
                     ),
                     Container(
                       width: 100,
-                      child: PieChart(
-                        textScaleFactor: 0.0,
-                        maxWidth: 100,
-                        maxHeight: 100,
-                        values: [
-                          (soldeLive() /
-                              (montantRevenuLive() + montantRevenu()) *
-                              100.roundToDouble()),
-                          ((montantChargeLive() + montantCharge()) /
-                              (montantRevenuLive() + montantRevenu()) *
-                              100.roundToDouble())
-                        ],
-                        labels: ['Marge', 'frais'],
-                        sliceFillColors: [Colors.greenAccent, Colors.red],
-                        animationDuration: Duration(milliseconds: 1500),
-                        showLegend: false,
+                      child: Icon(
+                        Icons.settings_display,
+                        size: 30,
+                        color: choixColors(),
                       ),
+                      // child: PieChart(
+                      //   textScaleFactor: 0.0,
+                      //   maxWidth: 100,
+                      //   maxHeight: 100,
+                      //   values: [
+                      //     (soldeLive() /
+                      //         (montantRevenuLive() + montantRevenu()) *
+                      //         100.roundToDouble()),
+                      //     ((montantChargeLive() + montantCharge()) /
+                      //         (montantRevenuLive() + montantRevenu()) *
+                      //         100.roundToDouble())
+                      //   ],
+                      //   labels: ['Marge', 'frais'],
+                      //   sliceFillColors: [Colors.greenAccent, Colors.red],
+                      //   animationDuration: Duration(milliseconds: 1500),
+                      //   showLegend: false,
+                      // ),
                     ),
 
                     // text
