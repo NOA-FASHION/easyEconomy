@@ -1,12 +1,14 @@
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:multi_charts/multi_charts.dart';
 
 class ScreenIndicatorMontantGestionLive extends StatefulWidget {
   final String titre;
   final String titre1;
   final IconData icones;
+
   final List<MontantUniverselle> gestionListMontantUniverselle;
   final List<MontantUniverselle> gestionListMontantUniverselleLive;
   ScreenIndicatorMontantGestionLive(
@@ -25,6 +27,7 @@ class ScreenIndicatorMontantGestionLive extends StatefulWidget {
 
 class _ScreenIndicatorMontantGestionLiveState
     extends State<ScreenIndicatorMontantGestionLive> {
+  bool baterry = true;
   double montantCharge() {
     double montants = 0;
 
@@ -185,6 +188,16 @@ class _ScreenIndicatorMontantGestionLiveState
     double montant = 0;
 
     montant = montantTotals() + montantTotalsLive();
+
+    if (montant > 0) {
+      setState(() {
+        baterry = true;
+      });
+    } else {
+      setState(() {
+        baterry = false;
+      });
+    }
 
     return montant;
   }
@@ -369,7 +382,9 @@ class _ScreenIndicatorMontantGestionLiveState
                             soldeLive().toStringAsFixed(2) + " €",
                             style: TextStyle(
                                 fontSize: 13,
-                                color: choixColors(),
+                                color: baterry
+                                    ? Colors.green.shade900
+                                    : Colors.red.shade900,
                                 fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                           ),
@@ -381,11 +396,9 @@ class _ScreenIndicatorMontantGestionLiveState
                     ),
                     Container(
                       width: 100,
-                      child: Icon(
-                        Icons.settings_display,
-                        size: 30,
-                        color: choixColors(),
-                      ),
+                      child: baterry
+                          ? Lottie.asset('assets/hight.json')
+                          : Lottie.asset('assets/low.json'),
                       // child: PieChart(
                       //   textScaleFactor: 0.0,
                       //   maxWidth: 100,
@@ -404,8 +417,6 @@ class _ScreenIndicatorMontantGestionLiveState
                       //   showLegend: false,
                       // ),
                     ),
-
-                    // text
                   ],
                 ),
               ),
