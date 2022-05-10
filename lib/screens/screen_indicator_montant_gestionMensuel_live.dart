@@ -2,7 +2,6 @@ import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:multi_charts/multi_charts.dart';
 
 class ScreenIndicatorMontantGestionLive extends StatefulWidget {
   final String titre;
@@ -399,23 +398,6 @@ class _ScreenIndicatorMontantGestionLiveState
                       child: baterry
                           ? Lottie.asset('assets/hight.json')
                           : Lottie.asset('assets/low.json'),
-                      // child: PieChart(
-                      //   textScaleFactor: 0.0,
-                      //   maxWidth: 100,
-                      //   maxHeight: 100,
-                      //   values: [
-                      //     (soldeLive() /
-                      //         (montantRevenuLive() + montantRevenu()) *
-                      //         100.roundToDouble()),
-                      //     ((montantChargeLive() + montantCharge()) /
-                      //         (montantRevenuLive() + montantRevenu()) *
-                      //         100.roundToDouble())
-                      //   ],
-                      //   labels: ['Marge', 'frais'],
-                      //   sliceFillColors: [Colors.greenAccent, Colors.red],
-                      //   animationDuration: Duration(milliseconds: 1500),
-                      //   showLegend: false,
-                      // ),
                     ),
                   ],
                 ),

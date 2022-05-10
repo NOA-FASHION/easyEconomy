@@ -217,7 +217,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
         width: MediaQuery.of(context).size.width / 2.9,
         color: Colors.transparent,
         child: MarqueeText(
-          text: word,
+          text: TextSpan(text: word),
           style: TextStyle(
             color: Colors.black,
           ),
@@ -241,7 +241,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
         width: MediaQuery.of(context).size.width / 2.4,
         color: Colors.transparent,
         child: MarqueeText(
-          text: word,
+          text:TextSpan(text: word),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black,
@@ -255,7 +255,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
         width: MediaQuery.of(context).size.width / 2,
         color: Colors.transparent,
         child: MarqueeText(
-          text: word,
+          text: TextSpan(text: word),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black,
