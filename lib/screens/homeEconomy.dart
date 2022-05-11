@@ -1,4 +1,5 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
+import 'package:easyeconomy/screens/screenTest.dart';
 import 'package:easyeconomy/screens/simulator_gestion.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -15,9 +16,18 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
+  AnimationController? animationController;
+  @override
+  void dispose() {
+    animationController?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 600), vsync: this);
     EasyController variable = Provider.of<EasyController>(context);
     return Material(
       child: Scaffold(
@@ -218,6 +228,58 @@ class _HomeState extends State<Home> {
                                   height: 15.0,
                                 ),
                                 Center(child: Text("Gestion mensuelle")),
+                              ],
+                            )),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                type: PageTransitionType.bottomToTop,
+                                child: ChangeNotifierProvider.value(
+                                  value: variable,
+                                  child: TestScreen(
+                                    animation: Tween<double>(
+                                            begin: 0.0, end: 1.0)
+                                        .animate(CurvedAnimation(
+                                            parent: animationController!,
+                                            curve: Interval((1 / 9) * 1, 1.0,
+                                                curve: Curves.fastOutSlowIn))),
+                                    animationController: animationController!,
+                                  ),
+                                )));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [Colors.blueAccent, Colors.orange])),
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        height: 210,
+                        child: Card(
+                            color: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            elevation: 15.0,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.calendar_view_day,
+                                  color: Colors.white,
+                                  size: 45,
+                                ),
+                                SizedBox(
+                                  height: 15.0,
+                                ),
+                                Center(child: Text("test")),
                               ],
                             )),
                       ),
