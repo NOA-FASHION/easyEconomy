@@ -218,116 +218,116 @@ class _TestScreenState extends State<TestScreen> {
         ));
   }
 
-  Widget header(
-      List<MontantUniverselle> _listMontantUniverselle,
-      List<MontantUniverselle> _listMontPrevision,
-      double montantChargesDouble,
-      double montantRevenuDouble,
-      double montantTotalsDouble) {
-    Widget headers = Container(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 70.0, right: 10, left: 10),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Card(
-                    color: Colors.transparent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    elevation: 25.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          " Charge Fixe".toUpperCase(),
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 110,
-                    height: 110,
-                    child: PieChart(
-                      textScaleFactor: 0.0,
-                      values: [
-                        (montantChargesDouble / montantRevenuDouble) * 100,
-                        (montantTotalsDouble / montantRevenuDouble) * 100
-                      ],
-                      labels: ['Marge', 'frais'],
-                      sliceFillColors: [
-                        Colors.red,
-                        Colors.blue,
-                      ],
-                      animationDuration: Duration(milliseconds: 1500),
-                      showLegend: false,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ScreenIndicatorMontant(
-                    simuOuchargeFixe: simuOuchargeFixe,
-                    titre: "Charges",
-                    icones: Icons.arrow_circle_up,
-                    listMontantUniverselle: _listMontantUniverselle,
-                    listMontantPrevision: _listMontPrevision,
-                    montantCharge: montantChargesDouble.toStringAsFixed(2),
-                    montantRevenu: montantRevenuDouble.toStringAsFixed(2),
-                    montantTotals: montantTotalsDouble.toStringAsFixed(2),
-                  ),
-                  ScreenIndicatorMontant(
-                    simuOuchargeFixe: simuOuchargeFixe,
-                    titre: "Revenus",
-                    icones: Icons.arrow_circle_down,
-                    listMontantUniverselle: _listMontantUniverselle,
-                    listMontantPrevision: _listMontPrevision,
-                    montantCharge: montantChargesDouble.toStringAsFixed(2),
-                    montantRevenu: montantRevenuDouble.toStringAsFixed(2),
-                    montantTotals: montantTotalsDouble.toStringAsFixed(2),
-                  ),
-                  ScreenIndicatorMontant(
-                    simuOuchargeFixe: simuOuchargeFixe,
-                    titre: "Solde",
-                    icones: Icons.calculate_outlined,
-                    listMontantUniverselle: _listMontantUniverselle,
-                    listMontantPrevision: _listMontPrevision,
-                    montantCharge: montantChargesDouble.toStringAsFixed(2),
-                    montantRevenu: montantRevenuDouble.toStringAsFixed(2),
-                    montantTotals: montantTotalsDouble.toStringAsFixed(2),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: <Color>[Colors.orange, Colors.blueAccent])),
-    );
-    return headers;
-  }
+  // Widget header(
+  //     List<MontantUniverselle> _listMontantUniverselle,
+  //     List<MontantUniverselle> _listMontPrevision,
+  //     double montantChargesDouble,
+  //     double montantRevenuDouble,
+  //     double montantTotalsDouble) {
+  //   Widget headers = Container(
+  //     alignment: Alignment.center,
+  //     child: Padding(
+  //       padding: const EdgeInsets.only(top: 70.0, right: 10, left: 10),
+  //       child: Container(
+  //         decoration: BoxDecoration(
+  //           color: Colors.white,
+  //           borderRadius: BorderRadius.circular(30),
+  //         ),
+  //         child: Column(
+  //           children: [
+  //             Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //               children: [
+  //                 Card(
+  //                   color: Colors.transparent,
+  //                   shape: RoundedRectangleBorder(
+  //                     borderRadius: BorderRadius.circular(5.0),
+  //                   ),
+  //                   elevation: 25.0,
+  //                   child: Container(
+  //                     decoration: BoxDecoration(
+  //                         borderRadius: BorderRadius.circular(10),
+  //                         color: Colors.white),
+  //                     child: Padding(
+  //                       padding: const EdgeInsets.all(8.0),
+  //                       child: Text(
+  //                         " Charge Fixe".toUpperCase(),
+  //                         style: TextStyle(
+  //                             fontSize: 20,
+  //                             color: Colors.black,
+  //                             fontWeight: FontWeight.bold),
+  //                         textAlign: TextAlign.center,
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ),
+  //                 Container(
+  //                   width: 110,
+  //                   height: 110,
+  //                   child: PieChart(
+  //                     textScaleFactor: 0.0,
+  //                     values: [
+  //                       (montantChargesDouble / montantRevenuDouble) * 100,
+  //                       (montantTotalsDouble / montantRevenuDouble) * 100
+  //                     ],
+  //                     labels: ['Marge', 'frais'],
+  //                     sliceFillColors: [
+  //                       Colors.red,
+  //                       Colors.blue,
+  //                     ],
+  //                     animationDuration: Duration(milliseconds: 1500),
+  //                     showLegend: false,
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //             Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //               children: [
+  //                 ScreenIndicatorMontant(
+  //                   simuOuchargeFixe: simuOuchargeFixe,
+  //                   titre: "Charges",
+  //                   icones: Icons.arrow_circle_up,
+  //                   listMontantUniverselle: _listMontantUniverselle,
+  //                   listMontantPrevision: _listMontPrevision,
+  //                   montantCharge: montantChargesDouble.toStringAsFixed(2),
+  //                   montantRevenu: montantRevenuDouble.toStringAsFixed(2),
+  //                   montantTotals: montantTotalsDouble.toStringAsFixed(2),
+  //                 ),
+  //                 ScreenIndicatorMontant(
+  //                   simuOuchargeFixe: simuOuchargeFixe,
+  //                   titre: "Revenus",
+  //                   icones: Icons.arrow_circle_down,
+  //                   listMontantUniverselle: _listMontantUniverselle,
+  //                   listMontantPrevision: _listMontPrevision,
+  //                   montantCharge: montantChargesDouble.toStringAsFixed(2),
+  //                   montantRevenu: montantRevenuDouble.toStringAsFixed(2),
+  //                   montantTotals: montantTotalsDouble.toStringAsFixed(2),
+  //                 ),
+  //                 ScreenIndicatorMontant(
+  //                   simuOuchargeFixe: simuOuchargeFixe,
+  //                   titre: "Solde",
+  //                   icones: Icons.calculate_outlined,
+  //                   listMontantUniverselle: _listMontantUniverselle,
+  //                   listMontantPrevision: _listMontPrevision,
+  //                   montantCharge: montantChargesDouble.toStringAsFixed(2),
+  //                   montantRevenu: montantRevenuDouble.toStringAsFixed(2),
+  //                   montantTotals: montantTotalsDouble.toStringAsFixed(2),
+  //                 ),
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //     decoration: BoxDecoration(
+  //         gradient: LinearGradient(
+  //             begin: Alignment.centerLeft,
+  //             end: Alignment.centerRight,
+  //             colors: <Color>[Colors.orange, Colors.blueAccent])),
+  //   );
+  //   return headers;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -365,12 +365,13 @@ class _TestScreenState extends State<TestScreen> {
                 child: BuildTest(),
               ),
             ],
-            headerWidget: header(
+            headerWidget: CalculMontant().header(
                 _listMontantUniverselle,
                 _listMontPrevision,
                 montantChargessString,
                 montantRevenuString,
-                montantTotalsString),
+                montantTotalsString,
+                simuOuchargeFixe),
             title: Text("CHARGE FIXE"),
           ),
         ),

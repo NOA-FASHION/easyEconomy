@@ -1,6 +1,7 @@
 import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -275,99 +276,99 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
     return longLetter;
   }
 
-  Widget activeGlow(MontantUniverselle gestion) {
-    Widget glow = Padding(
-      padding: const EdgeInsets.all(1.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: colorsDescription(gestion.unity.toString()),
-        ),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          elevation: 15.0,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.45,
-                      height: 25.0,
-                      child: Row(
-                        children: [
-                          Text(
-                            "Type de montant",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
-                          ),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          maxLetter(
-                            gestion.unity
-                                .toString()
-                                .replaceAll(unityPattern, "")
-                                .toUpperCase(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.45,
-                      height: 30.0,
-                      child: Row(
-                        children: [
-                          Text(
-                            "Montant",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
-                          ),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          Text(
-                            gestion.montant.toStringAsFixed(2) + " €",
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60.0),
-                  ),
-                  elevation: 15.0,
-                  child: Container(
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(40.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Icon(
-                            IconData(gestion.icones,
-                                fontFamily: 'MaterialIcons'),
-                            color: colorsDescription(gestion.unity.toString()),
-                          ),
-                        )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+  // Widget activeGlow(MontantUniverselle gestion) {
+  //   Widget glow = Padding(
+  //     padding: const EdgeInsets.all(1.0),
+  //     child: Container(
+  //       width: MediaQuery.of(context).size.width,
+  //       decoration: BoxDecoration(
+  //         borderRadius: BorderRadius.circular(20),
+  //         color: colorsDescription(gestion.unity.toString()),
+  //       ),
+  //       child: Card(
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(15.0),
+  //         ),
+  //         elevation: 15.0,
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(8.0),
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //             children: [
+  //               Column(
+  //                 children: [
+  //                   Container(
+  //                     width: MediaQuery.of(context).size.width / 1.45,
+  //                     height: 25.0,
+  //                     child: Row(
+  //                       children: [
+  //                         Text(
+  //                           "Type de montant",
+  //                           style: TextStyle(
+  //                               fontWeight: FontWeight.bold,
+  //                               color: Colors.blue),
+  //                         ),
+  //                         SizedBox(
+  //                           width: 5.0,
+  //                         ),
+  //                         maxLetter(
+  //                           gestion.unity
+  //                               .toString()
+  //                               .replaceAll(unityPattern, "")
+  //                               .toUpperCase(),
+  //                         ),
+  //                       ],
+  //                     ),
+  //                   ),
+  //                   Container(
+  //                     width: MediaQuery.of(context).size.width / 1.45,
+  //                     height: 30.0,
+  //                     child: Row(
+  //                       children: [
+  //                         Text(
+  //                           "Montant",
+  //                           style: TextStyle(
+  //                               fontWeight: FontWeight.bold,
+  //                               color: Colors.blue),
+  //                         ),
+  //                         SizedBox(
+  //                           width: 5.0,
+  //                         ),
+  //                         Text(
+  //                           gestion.montant.toStringAsFixed(2) + " €",
+  //                         ),
+  //                       ],
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //               Card(
+  //                 shape: RoundedRectangleBorder(
+  //                   borderRadius: BorderRadius.circular(60.0),
+  //                 ),
+  //                 elevation: 15.0,
+  //                 child: Container(
+  //                   child: ClipRRect(
+  //                       borderRadius: BorderRadius.circular(40.0),
+  //                       child: Padding(
+  //                         padding: const EdgeInsets.all(3.0),
+  //                         child: Icon(
+  //                           IconData(gestion.icones,
+  //                               fontFamily: 'MaterialIcons'),
+  //                           color: colorsDescription(gestion.unity.toString()),
+  //                         ),
+  //                       )),
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
 
-    return glow;
-  }
+  //   return glow;
+  // }
 
   String unityPattern = "unity_Montant_universelle.";
   @override
@@ -388,6 +389,9 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
     }
 
     return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.only(top: 20),
+      shrinkWrap: true,
       itemCount: _listMontantUniverselle.length,
       itemBuilder: (context, index) {
         return Padding(
@@ -524,76 +528,8 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                     //             child: ResultDays(
                     //                 index, _productGagnantList[index].id))));
                   },
-                  title: Container(
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 35,
-                          width: MediaQuery.of(context).size.width / 1.3,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            elevation: 15.0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    "Titre".toUpperCase(),
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: colorsDescription(
-                                          _listMontantUniverselle[index]
-                                              .unity
-                                              .toString()),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  maxLetterTitre(_listMontantUniverselle[index]
-                                      .nom
-                                      .toUpperCase()),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  IconButton(
-                                    padding: EdgeInsets.all(0),
-                                    iconSize: 20,
-                                    icon: Icon(
-                                      Icons.edit,
-                                      color: colorsDescription(
-                                          _listMontantUniverselle[index]
-                                              .unity
-                                              .toString()),
-                                    ),
-                                    onPressed: () {
-                                      _displayTextInputDialog(
-                                          context,
-                                          index,
-                                          _listMontantUniverselle[index],
-                                          variable,
-                                          _listMontantUniverselle[index]
-                                              .icones);
-                                    },
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 16.0,
-                        ),
-                        iconDataJoin(
-                            (_listMontantUniverselle[index].unity.toString()))
-                      ],
-                    ),
-                  ),
-                  subtitle: activeGlow(_listMontantUniverselle[index]),
+                  subtitle: CalculMontant()
+                      .activeGlow(_listMontantUniverselle[index], context),
                   isThreeLine: true,
                 ),
               ),

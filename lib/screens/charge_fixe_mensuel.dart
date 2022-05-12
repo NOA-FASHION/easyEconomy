@@ -1,8 +1,10 @@
 import 'package:accordion/accordion.dart';
 import 'package:currency_textfield/currency_textfield.dart';
+import 'package:draggable_home/draggable_home.dart';
 
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/buildTest.dart';
 import 'package:easyeconomy/screens/build_charge_fixe.dart';
 import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/constant.dart';
@@ -220,129 +222,43 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
         variable.getMontantUniverselle();
     List<MontantUniverselle> _listMontPrevision =
         variable.getMontantPrevision();
+
+    double montantChargessString = CalculMontant().montantCharges(
+        _listMontantUniverselle, _listMontPrevision, simuOuchargeFixe);
+    double montantRevenuString = CalculMontant().montantRevenu(
+        _listMontantUniverselle, _listMontPrevision, simuOuchargeFixe);
+    double montantTotalsString = CalculMontant().montantTotals(
+        _listMontantUniverselle, _listMontPrevision, simuOuchargeFixe);
     return Material(
       child: Scaffold(
         key: scaffoldkey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(287.0),
-          child: SafeArea(
-            child: AppBar(
-              elevation: 0,
-              title: Text("Charges fixes mensuelles",
-                  style: TextStyle(color: Colors.black, fontSize: 17)),
-              centerTitle: true,
-              flexibleSpace: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 30.0),
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      'assets/logo1.png',
-                      width: 80,
-                      height: 100,
-                    ),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: <Color>[Colors.orange, Colors.blueAccent])),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévisons charges",
-                                icones: Icons.arrow_circle_up,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
-                                montantCharge: CalculMontant().montantCharges(
-                                    _listMontantUniverselle,
-                                    _listMontPrevision,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantRevenu: CalculMontant().montantRevenu(
-                                    _listMontantUniverselle,
-                                    _listMontPrevision,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantTotals: CalculMontant().montantTotals(
-                                    _listMontantUniverselle,
-                                    _listMontPrevision,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                              ),
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévisions revenus",
-                                icones: Icons.arrow_circle_down,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
-                                montantCharge: CalculMontant().montantCharges(
-                                    _listMontantUniverselle,
-                                    _listMontPrevision,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantRevenu: CalculMontant().montantRevenu(
-                                    _listMontantUniverselle,
-                                    _listMontPrevision,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantTotals: CalculMontant().montantTotals(
-                                    _listMontantUniverselle,
-                                    _listMontPrevision,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                              ),
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévision  solde",
-                                icones: Icons.calculate_outlined,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
-                                montantCharge: CalculMontant().montantCharges(
-                                    _listMontantUniverselle,
-                                    _listMontPrevision,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantRevenu: CalculMontant().montantRevenu(
-                                    _listMontantUniverselle,
-                                    _listMontPrevision,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantTotals: CalculMontant().montantTotals(
-                                    _listMontantUniverselle,
-                                    _listMontPrevision,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: <Color>[Colors.orange, Colors.blueAccent])),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
         body: Shimmer(
           duration: Duration(seconds: 3),
           interval: Duration(seconds: 5),
           color: Colors.white,
           enabled: true,
           direction: ShimmerDirection.fromLTRB(),
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.orange, Colors.blueAccent])),
-            child: BuildChargeFixe(),
+          child: DraggableHome(
+            backgroundColor: Colors.transparent,
+            appBarColor: Colors.orange,
+            body: [
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.orange, Colors.blueAccent])),
+                child: BuildChargeFixe(),
+              ),
+            ],
+            headerWidget: CalculMontant().header(
+                _listMontantUniverselle,
+                _listMontPrevision,
+                montantChargessString,
+                montantRevenuString,
+                montantTotalsString,
+                simuOuchargeFixe),
+            title: Text("CHARGE FIXE"),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

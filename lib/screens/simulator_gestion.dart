@@ -1,11 +1,13 @@
 import 'package:accordion/accordion.dart';
 import 'package:currency_textfield/currency_textfield.dart';
+import 'package:draggable_home/draggable_home.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+
 import 'package:easyeconomy/screens/build_simulator_gestion.dart';
 import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/constant.dart';
-import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
+
 import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';
@@ -106,130 +108,42 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
         variable.getMontantUniverselle();
     List<MontantUniverselle> _listMontPrevision =
         variable.getMontantPrevision();
+    double montantChargessString = CalculMontant().montantCharges(
+        _listMontantUniverselle, _listMontPrevision, simuOuchargeFixe);
+    double montantRevenuString = CalculMontant().montantRevenu(
+        _listMontantUniverselle, _listMontPrevision, simuOuchargeFixe);
+    double montantTotalsString = CalculMontant().montantTotals(
+        _listMontantUniverselle, _listMontPrevision, simuOuchargeFixe);
     return Material(
       child: Scaffold(
         key: scaffoldkey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(287.0),
-          child: SafeArea(
-            child: AppBar(
-              title: Text("Simulation du budget prochain",
-                  style: TextStyle(color: Colors.black, fontSize: 17)),
-              centerTitle: true,
-              flexibleSpace: Column(
-                children: [
-                  Container(
-                    height: 120,
-                    padding: EdgeInsets.only(top: 30.0),
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      'assets/logo1.png',
-                      width: 80,
-                      height: 120,
-                    ),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: <Color>[Colors.orange, Colors.blueAccent])),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 10.0),
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévisons charges",
-                                icones: Icons.arrow_circle_up,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
-                                montantCharge: CalculMontant()
-                                    .montantCharges(_listMontantUniverselle,
-                                        _listMontPrevision, simuOuchargeFixe)
-                                    .toStringAsFixed(2),
-                                montantRevenu: CalculMontant()
-                                    .montantRevenu(_listMontantUniverselle,
-                                        _listMontPrevision, simuOuchargeFixe)
-                                    .toStringAsFixed(2),
-                                montantTotals: CalculMontant()
-                                    .montantTotals(_listMontantUniverselle,
-                                        _listMontPrevision, simuOuchargeFixe)
-                                    .toStringAsFixed(2),
-                              ),
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévisions revenus",
-                                icones: Icons.arrow_circle_down,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
-                                montantCharge: CalculMontant()
-                                    .montantCharges(_listMontantUniverselle,
-                                        _listMontPrevision, simuOuchargeFixe)
-                                    .toStringAsFixed(2),
-                                montantRevenu: CalculMontant()
-                                    .montantRevenu(_listMontantUniverselle,
-                                        _listMontPrevision, simuOuchargeFixe)
-                                    .toStringAsFixed(2),
-                                montantTotals: CalculMontant()
-                                    .montantTotals(_listMontantUniverselle,
-                                        _listMontPrevision, simuOuchargeFixe)
-                                    .toStringAsFixed(2),
-                              ),
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévision  solde",
-                                icones: Icons.calculate_outlined,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
-                                montantCharge: CalculMontant()
-                                    .montantCharges(_listMontantUniverselle,
-                                        _listMontPrevision, simuOuchargeFixe)
-                                    .toStringAsFixed(2),
-                                montantRevenu: CalculMontant()
-                                    .montantRevenu(_listMontantUniverselle,
-                                        _listMontPrevision, simuOuchargeFixe)
-                                    .toStringAsFixed(2),
-                                montantTotals: CalculMontant()
-                                    .montantTotals(_listMontantUniverselle,
-                                        _listMontPrevision, simuOuchargeFixe)
-                                    .toStringAsFixed(2),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: <Color>[Colors.orange, Colors.blueAccent])),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
         body: Shimmer(
           duration: Duration(seconds: 3),
           interval: Duration(seconds: 5),
           color: Colors.white,
           enabled: true,
           direction: ShimmerDirection.fromLTRB(),
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.orange, Colors.blueAccent])),
-            child: BuildSimulatorGestion(),
+          child: DraggableHome(
+            backgroundColor: Colors.transparent,
+            appBarColor: Colors.orange,
+            body: [
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.orange, Colors.blueAccent])),
+                child: BuildSimulatorGestion(),
+              ),
+            ],
+            headerWidget: CalculMontant().header(
+                _listMontantUniverselle,
+                _listMontPrevision,
+                montantChargessString,
+                montantRevenuString,
+                montantTotalsString,
+                simuOuchargeFixe),
+            title: Text("SIMULATEUR"),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
