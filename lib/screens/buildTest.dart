@@ -309,7 +309,7 @@ class _BuildTestState extends State<BuildTest> {
                           ),
                           Card(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                              borderRadius: BorderRadius.circular(5.0),
                             ),
                             elevation: 5.0,
                             color: colorsDescription(gestion.unity.toString()),
@@ -320,7 +320,10 @@ class _BuildTestState extends State<BuildTest> {
                                     .toString()
                                     .replaceAll(unityPattern, "")
                                     .toUpperCase(),
-                                style: TextStyle(fontSize: 10),
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -396,10 +399,13 @@ class _BuildTestState extends State<BuildTest> {
     }
 
     return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.only(top: 20),
+      shrinkWrap: true,
       itemCount: _listMontantUniverselle.length,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.only(bottom: 3.0, left: 8.0, right: 8.0),
+          padding: const EdgeInsets.only(bottom: 10.0, left: 8.0, right: 8.0),
           child: Dismissible(
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {

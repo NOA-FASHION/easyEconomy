@@ -1,6 +1,7 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_gestion_mensuel_resultats.dart';
+import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 import 'package:flutter/material.dart';
 
@@ -87,6 +88,18 @@ class _GestionMensuelLiveResultatsState
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision:
                                     _listMontantUniverselleLive,
+                                montantCharge: CalculMontant().montantCharges(
+                                    _listMontantUniverselle,
+                                    _listMontantUniverselleLive,
+                                    simuOuchargeFixe).toStringAsFixed(2),
+                                montantRevenu: CalculMontant().montantRevenu(
+                                    _listMontantUniverselle,
+                                    _listMontantUniverselleLive,
+                                    simuOuchargeFixe).toStringAsFixed(2),
+                                montantTotals: CalculMontant().montantTotals(
+                                    _listMontantUniverselle,
+                                    _listMontantUniverselleLive,
+                                    simuOuchargeFixe).toStringAsFixed(2),
                               ),
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
@@ -95,6 +108,18 @@ class _GestionMensuelLiveResultatsState
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision:
                                     _listMontantUniverselleLive,
+                                montantCharge: CalculMontant().montantCharges(
+                                    _listMontantUniverselle,
+                                    _listMontantUniverselleLive,
+                                    simuOuchargeFixe).toStringAsFixed(2),
+                                montantRevenu: CalculMontant().montantRevenu(
+                                    _listMontantUniverselle,
+                                    _listMontantUniverselleLive,
+                                    simuOuchargeFixe).toStringAsFixed(2),
+                                montantTotals: CalculMontant().montantTotals(
+                                    _listMontantUniverselle,
+                                    _listMontantUniverselleLive,
+                                    simuOuchargeFixe).toStringAsFixed(2),
                               ),
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
@@ -103,6 +128,18 @@ class _GestionMensuelLiveResultatsState
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision:
                                     _listMontantUniverselleLive,
+                                montantCharge: CalculMontant().montantCharges(
+                                    _listMontantUniverselle,
+                                    _listMontantUniverselleLive,
+                                    simuOuchargeFixe).toStringAsFixed(2),
+                                montantRevenu: CalculMontant().montantRevenu(
+                                    _listMontantUniverselle,
+                                    _listMontantUniverselleLive,
+                                    simuOuchargeFixe).toStringAsFixed(2),
+                                montantTotals: CalculMontant().montantTotals(
+                                    _listMontantUniverselle,
+                                    _listMontantUniverselleLive,
+                                    simuOuchargeFixe).toStringAsFixed(2),
                               ),
                             ],
                           ),

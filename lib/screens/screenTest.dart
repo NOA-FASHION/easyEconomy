@@ -1,16 +1,20 @@
 import 'package:accordion/accordion.dart';
 import 'package:currency_textfield/currency_textfield.dart';
+import 'package:draggable_home/draggable_home.dart';
 
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/buildTest.dart';
-import 'package:easyeconomy/screens/build_charge_fixe.dart';
+import 'package:easyeconomy/screens/calcul_montant.dart';
+
 import 'package:easyeconomy/screens/constant.dart';
 import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 import 'package:flutter/material.dart';
+import 'package:multi_charts/multi_charts.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
+
 class TestScreen extends StatefulWidget {
   TestScreen({
     Key? key,
@@ -21,7 +25,7 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
- final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late PersistentBottomSheetController _bottomSheetController;
   late String nomCharge;
@@ -214,6 +218,117 @@ class _TestScreenState extends State<TestScreen> {
         ));
   }
 
+  Widget header(
+      List<MontantUniverselle> _listMontantUniverselle,
+      List<MontantUniverselle> _listMontPrevision,
+      double montantChargesDouble,
+      double montantRevenuDouble,
+      double montantTotalsDouble) {
+    Widget headers = Container(
+      alignment: Alignment.center,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 70.0, right: 10, left: 10),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Card(
+                    color: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    elevation: 25.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          " Charge Fixe".toUpperCase(),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 110,
+                    height: 110,
+                    child: PieChart(
+                      textScaleFactor: 0.0,
+                      values: [
+                        (montantChargesDouble / montantRevenuDouble) * 100,
+                        (montantTotalsDouble / montantRevenuDouble) * 100
+                      ],
+                      labels: ['Marge', 'frais'],
+                      sliceFillColors: [
+                        Colors.red,
+                        Colors.blue,
+                      ],
+                      animationDuration: Duration(milliseconds: 1500),
+                      showLegend: false,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ScreenIndicatorMontant(
+                    simuOuchargeFixe: simuOuchargeFixe,
+                    titre: "Charges",
+                    icones: Icons.arrow_circle_up,
+                    listMontantUniverselle: _listMontantUniverselle,
+                    listMontantPrevision: _listMontPrevision,
+                    montantCharge: montantChargesDouble.toStringAsFixed(2),
+                    montantRevenu: montantRevenuDouble.toStringAsFixed(2),
+                    montantTotals: montantTotalsDouble.toStringAsFixed(2),
+                  ),
+                  ScreenIndicatorMontant(
+                    simuOuchargeFixe: simuOuchargeFixe,
+                    titre: "Revenus",
+                    icones: Icons.arrow_circle_down,
+                    listMontantUniverselle: _listMontantUniverselle,
+                    listMontantPrevision: _listMontPrevision,
+                    montantCharge: montantChargesDouble.toStringAsFixed(2),
+                    montantRevenu: montantRevenuDouble.toStringAsFixed(2),
+                    montantTotals: montantTotalsDouble.toStringAsFixed(2),
+                  ),
+                  ScreenIndicatorMontant(
+                    simuOuchargeFixe: simuOuchargeFixe,
+                    titre: "Solde",
+                    icones: Icons.calculate_outlined,
+                    listMontantUniverselle: _listMontantUniverselle,
+                    listMontantPrevision: _listMontPrevision,
+                    montantCharge: montantChargesDouble.toStringAsFixed(2),
+                    montantRevenu: montantRevenuDouble.toStringAsFixed(2),
+                    montantTotals: montantTotalsDouble.toStringAsFixed(2),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: <Color>[Colors.orange, Colors.blueAccent])),
+    );
+    return headers;
+  }
+
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
@@ -221,93 +336,42 @@ class _TestScreenState extends State<TestScreen> {
         variable.getMontantUniverselle();
     List<MontantUniverselle> _listMontPrevision =
         variable.getMontantPrevision();
+
+    double montantChargessString = CalculMontant().montantCharges(
+        _listMontantUniverselle, _listMontPrevision, simuOuchargeFixe);
+    double montantRevenuString = CalculMontant().montantRevenu(
+        _listMontantUniverselle, _listMontPrevision, simuOuchargeFixe);
+    double montantTotalsString = CalculMontant().montantTotals(
+        _listMontantUniverselle, _listMontPrevision, simuOuchargeFixe);
     return Material(
       child: Scaffold(
         key: scaffoldkey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(287.0),
-          child: SafeArea(
-            child: AppBar(
-              elevation: 0,
-              title: Text("Charges fixes mensuelles",
-                  style: TextStyle(color: Colors.black, fontSize: 17)),
-              centerTitle: true,
-              flexibleSpace: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 30.0),
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      'assets/logo1.png',
-                      width: 80,
-                      height: 100,
-                    ),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: <Color>[Colors.orange, Colors.blueAccent])),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévisons charges",
-                                icones: Icons.arrow_circle_up,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
-                              ),
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévisions revenus",
-                                icones: Icons.arrow_circle_down,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
-                              ),
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Prévision  solde",
-                                icones: Icons.calculate_outlined,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision: _listMontPrevision,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: <Color>[Colors.orange, Colors.blueAccent])),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
         body: Shimmer(
           duration: Duration(seconds: 3),
           interval: Duration(seconds: 5),
           color: Colors.white,
           enabled: true,
           direction: ShimmerDirection.fromLTRB(),
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.orange, Colors.blueAccent])),
-            child: BuildTest(),
+          child: DraggableHome(
+            backgroundColor: Colors.transparent,
+            appBarColor: Colors.orange,
+            body: [
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.orange, Colors.blueAccent])),
+                child: BuildTest(),
+              ),
+            ],
+            headerWidget: header(
+                _listMontantUniverselle,
+                _listMontPrevision,
+                montantChargessString,
+                montantRevenuString,
+                montantTotalsString),
+            title: Text("CHARGE FIXE"),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

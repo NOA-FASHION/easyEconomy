@@ -2,6 +2,9 @@ import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:flutter/material.dart';
 
 class ScreenIndicatorMontant extends StatefulWidget {
+  final String montantTotals;
+  final String montantRevenu;
+  final String montantCharge;
   final String titre;
   final bool simuOuchargeFixe;
   final IconData icones;
@@ -12,7 +15,10 @@ class ScreenIndicatorMontant extends StatefulWidget {
       required this.listMontantPrevision,
       required this.simuOuchargeFixe,
       required this.icones,
-      required this.listMontantUniverselle});
+      required this.listMontantUniverselle,
+      required this.montantTotals,
+      required this.montantRevenu,
+      required this.montantCharge});
 
   @override
   _ScreenIndicatorMontantState createState() => _ScreenIndicatorMontantState();
@@ -100,15 +106,13 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
   String choixMontant() {
     String montant = '0';
 
-    if (widget.titre == "Prévision  solde" ||
-        widget.titre == "Solde         validé") {
-      montant = montantTotals();
-    } else if (widget.titre == "Prévisions revenus" ||
-        widget.titre == "Revenus Validés") {
-      montant = montantRevenu();
-    } else if (widget.titre == "Prévisons charges" ||
+    if (widget.titre == "Solde" || widget.titre == "Solde         validé") {
+      montant = widget.montantTotals;
+    } else if (widget.titre == "Revenus" || widget.titre == "Revenus Validés") {
+      montant = widget.montantRevenu;
+    } else if (widget.titre == "Charges" ||
         widget.titre == "Charges validées") {
-      montant = montantCharge();
+      montant = widget.montantCharge;
     }
 
     return montant;
@@ -117,12 +121,11 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
   Color choixColors() {
     Color montant = Colors.white;
 
-    if (widget.titre == "Prévision  solde" || widget.titre == "Solde  validé") {
-      montant = Colors.white;
-    } else if (widget.titre == "Prévisions revenus" ||
-        widget.titre == "Revenus Validés") {
+    if (widget.titre == "Solde" || widget.titre == "Solde  validé") {
+      montant = Colors.blue.shade900;
+    } else if (widget.titre == "Revenus" || widget.titre == "Revenus Validés") {
       montant = Colors.green.shade900;
-    } else if (widget.titre == "Prévisons charges" ||
+    } else if (widget.titre == "Charges" ||
         widget.titre == "Charges validées") {
       montant = Colors.red.shade900;
     }
@@ -133,8 +136,9 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 1),
       width: MediaQuery.of(context).size.width / 3.2,
-      height: 140,
+      height: 150,
       child: Card(
           color: Colors.transparent,
           shape: RoundedRectangleBorder(
@@ -143,12 +147,9 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
           elevation: 25.0,
           child: Container(
             decoration: BoxDecoration(
-                border: Border.all(color: Colors.white70),
-                borderRadius: BorderRadius.circular(10),
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.blueAccent, Colors.orange])),
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -177,12 +178,8 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
                     elevation: 25.0,
                     child: Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white70),
                           borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [Colors.orange, Colors.blueAccent])),
+                          color: Colors.white),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(

@@ -3,6 +3,7 @@ import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_simulator_gestion.dart';
+import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/constant.dart';
 import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 import 'package:flutter/material.dart';
@@ -149,6 +150,18 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                                 icones: Icons.arrow_circle_up,
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision: _listMontPrevision,
+                                montantCharge: CalculMontant()
+                                    .montantCharges(_listMontantUniverselle,
+                                        _listMontPrevision, simuOuchargeFixe)
+                                    .toStringAsFixed(2),
+                                montantRevenu: CalculMontant()
+                                    .montantRevenu(_listMontantUniverselle,
+                                        _listMontPrevision, simuOuchargeFixe)
+                                    .toStringAsFixed(2),
+                                montantTotals: CalculMontant()
+                                    .montantTotals(_listMontantUniverselle,
+                                        _listMontPrevision, simuOuchargeFixe)
+                                    .toStringAsFixed(2),
                               ),
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
@@ -156,6 +169,18 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                                 icones: Icons.arrow_circle_down,
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision: _listMontPrevision,
+                                montantCharge: CalculMontant()
+                                    .montantCharges(_listMontantUniverselle,
+                                        _listMontPrevision, simuOuchargeFixe)
+                                    .toStringAsFixed(2),
+                                montantRevenu: CalculMontant()
+                                    .montantRevenu(_listMontantUniverselle,
+                                        _listMontPrevision, simuOuchargeFixe)
+                                    .toStringAsFixed(2),
+                                montantTotals: CalculMontant()
+                                    .montantTotals(_listMontantUniverselle,
+                                        _listMontPrevision, simuOuchargeFixe)
+                                    .toStringAsFixed(2),
                               ),
                               ScreenIndicatorMontant(
                                 simuOuchargeFixe: simuOuchargeFixe,
@@ -163,6 +188,18 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                                 icones: Icons.calculate_outlined,
                                 listMontantUniverselle: _listMontantUniverselle,
                                 listMontantPrevision: _listMontPrevision,
+                                montantCharge: CalculMontant()
+                                    .montantCharges(_listMontantUniverselle,
+                                        _listMontPrevision, simuOuchargeFixe)
+                                    .toStringAsFixed(2),
+                                montantRevenu: CalculMontant()
+                                    .montantRevenu(_listMontantUniverselle,
+                                        _listMontPrevision, simuOuchargeFixe)
+                                    .toStringAsFixed(2),
+                                montantTotals: CalculMontant()
+                                    .montantTotals(_listMontantUniverselle,
+                                        _listMontPrevision, simuOuchargeFixe)
+                                    .toStringAsFixed(2),
                               ),
                             ],
                           ),
