@@ -10,15 +10,15 @@ import 'package:marquee_text/marquee_text.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-class BuildChargeFixe extends StatefulWidget {
+class BuildTest extends StatefulWidget {
   // final String gestionId;
-  // BuildChargeFixe({required this.gestionId});
+  // BuildTest({required this.gestionId});
 
   @override
-  _BuildChargeFixeState createState() => _BuildChargeFixeState();
+  _BuildTestState createState() => _BuildTestState();
 }
 
-class _BuildChargeFixeState extends State<BuildChargeFixe> {
+class _BuildTestState extends State<BuildTest> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late String codeDialog;
   late String valueText;
@@ -283,7 +283,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: colorsDescription(gestion.unity.toString()),
+          // color: colorsDescription(gestion.unity.toString()),
         ),
         child: Card(
           shape: RoundedRectangleBorder(
@@ -301,21 +301,28 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                       width: MediaQuery.of(context).size.width / 1.45,
                       height: 25.0,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Type de montant",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
-                          ),
+                          maxLetterTitre(gestion.nom.toUpperCase()),
                           SizedBox(
-                            width: 5.0,
+                            width: 15.0,
                           ),
-                          maxLetter(
-                            gestion.unity
-                                .toString()
-                                .replaceAll(unityPattern, "")
-                                .toUpperCase(),
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            elevation: 5.0,
+                            color: colorsDescription(gestion.unity.toString()),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: Text(
+                                gestion.unity
+                                    .toString()
+                                    .replaceAll(unityPattern, "")
+                                    .toUpperCase(),
+                                style: TextStyle(fontSize: 10),
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -522,6 +529,14 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                 child: Container(
                   decoration: BoxDecoration(),
                   child: ListTile(
+                    onLongPress: () {
+                      _displayTextInputDialog(
+                          context,
+                          index,
+                          _listMontantUniverselle[index],
+                          variable,
+                          _listMontantUniverselle[index].icones);
+                    },
                     onTap: () async {
                       Navigator.push(
                           context,
@@ -533,81 +548,81 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                     indexChargeFixe: index,
                                   ))));
                     },
-                    title: Container(
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 35,
-                            width: MediaQuery.of(context).size.width / 1.3,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              elevation: 15.0,
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(
-                                      "Titre".toUpperCase(),
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: colorsDescription(
-                                            _listMontantUniverselle[index]
-                                                .unity
-                                                .toString()),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 5.0,
-                                    ),
-                                    maxLetterTitre(
-                                        _listMontantUniverselle[index]
-                                            .nom
-                                            .toUpperCase()),
-                                    SizedBox(
-                                      width: 5.0,
-                                    ),
-                                    IconButton(
-                                      padding: EdgeInsets.all(0),
-                                      iconSize: 20,
-                                      icon: Icon(
-                                        Icons.edit,
-                                        color: colorsDescription(
-                                            _listMontantUniverselle[index]
-                                                .unity
-                                                .toString()),
-                                      ),
-                                      onPressed: () {
-                                        _displayTextInputDialog(
-                                            context,
-                                            index,
-                                            _listMontantUniverselle[index],
-                                            variable,
-                                            _listMontantUniverselle[index]
-                                                .icones);
-                                      },
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 16.0,
-                          ),
-                          Row(
-                            children: [
-                              iconDataJoin((_listMontantUniverselle[index]
-                                  .unity
-                                  .toString())),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
+                    // title: Container(
+                    //   child: Row(
+                    //     children: [
+                    //       Container(
+                    //         height: 35,
+                    //         width: MediaQuery.of(context).size.width / 1.3,
+                    //         child: Card(
+                    //           shape: RoundedRectangleBorder(
+                    //             borderRadius: BorderRadius.circular(5.0),
+                    //           ),
+                    //           elevation: 15.0,
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(4.0),
+                    //             child: Row(
+                    //               mainAxisAlignment:
+                    //                   MainAxisAlignment.spaceAround,
+                    //               children: [
+                    //                 Text(
+                    //                   "Titre".toUpperCase(),
+                    //                   style: TextStyle(
+                    //                     fontWeight: FontWeight.bold,
+                    //                     color: colorsDescription(
+                    //                         _listMontantUniverselle[index]
+                    //                             .unity
+                    //                             .toString()),
+                    //                   ),
+                    //                 ),
+                    //                 SizedBox(
+                    //                   width: 5.0,
+                    //                 ),
+                    //                 maxLetterTitre(
+                    //                     _listMontantUniverselle[index]
+                    //                         .nom
+                    //                         .toUpperCase()),
+                    //                 SizedBox(
+                    //                   width: 5.0,
+                    //                 ),
+                    //                 IconButton(
+                    //                   padding: EdgeInsets.all(0),
+                    //                   iconSize: 20,
+                    //                   icon: Icon(
+                    //                     Icons.edit,
+                    //                     color: colorsDescription(
+                    //                         _listMontantUniverselle[index]
+                    //                             .unity
+                    //                             .toString()),
+                    //                   ),
+                    //                   onPressed: () {
+                    //                     _displayTextInputDialog(
+                    //                         context,
+                    //                         index,
+                    //                         _listMontantUniverselle[index],
+                    //                         variable,
+                    //                         _listMontantUniverselle[index]
+                    //                             .icones);
+                    //                   },
+                    //                 )
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       SizedBox(
+                    //         width: 16.0,
+                    //       ),
+                    //       Row(
+                    //         children: [
+                    //           iconDataJoin((_listMontantUniverselle[index]
+                    //               .unity
+                    //               .toString())),
+                    //         ],
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                     subtitle: activeGlow(_listMontantUniverselle[index]),
                     isThreeLine: true,
                   ),
