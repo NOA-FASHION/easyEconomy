@@ -54,7 +54,6 @@ class _GestionMensuelLiveResultatsState
     return Material(
       child: Scaffold(
         key: scaffoldkey,
-       
         body: Shimmer(
           duration: Duration(seconds: 3),
           interval: Duration(seconds: 5),
@@ -78,14 +77,88 @@ class _GestionMensuelLiveResultatsState
                 ),
               ),
             ],
-            headerWidget: CalculMontant().header(true,
+            headerWidget: CalculMontant().header(
+                true,
                 _listMontantUniverselle,
                 _listMontantUniverselleLive,
                 montantChargessString,
                 montantRevenuString,
                 montantTotalsString,
                 simuOuchargeFixe),
-            title: Text("CHARGE FIXE"),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Card(
+                  color: Colors.orange,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 25.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        montantChargessString.toStringAsFixed(2) + " €",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.red.shade900,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  color: Colors.orange,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 25.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        montantRevenuString.toStringAsFixed(2) + " €",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.green.shade900,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  color: Colors.orange,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 25.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        montantTotalsString.toStringAsFixed(2) + " €",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.blue.shade900,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

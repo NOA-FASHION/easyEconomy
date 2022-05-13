@@ -213,13 +213,13 @@ class CalculMontantMensuel {
                             },
                             child: Icon(
                               Icons.settings,
-                              size: 20,
+                              size: 30,
                               color: Colors.black,
                             ),
                           ), // icon
                           Text(
                             "transaction",
-                            style: TextStyle(fontSize: 10, color: Colors.black),
+                            style: TextStyle(fontSize: 12, color: Colors.black),
                           ), // text
                         ],
                       ),

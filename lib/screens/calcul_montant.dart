@@ -300,7 +300,7 @@ class CalculMontant {
                 Column(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width / 1.45,
+                      width: MediaQuery.of(context).size.width / 1.80,
                       height: 25.0,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -309,6 +309,14 @@ class CalculMontant {
                           SizedBox(
                             width: 15.0,
                           ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.72,
+                      height: 30.0,
+                      child: Row(
+                        children: [
                           Card(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
@@ -323,31 +331,23 @@ class CalculMontant {
                                     .replaceAll(unityPattern, "")
                                     .toUpperCase(),
                                 style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.85,
-                      height: 30.0,
-                      child: Row(
-                        children: [
-                          Text(
-                            "Montant",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
-                          ),
                           SizedBox(
-                            width: 5.0,
+                            width: 10.0,
                           ),
                           Text(
                             gestion.montant.toStringAsFixed(2) + " €",
+                            style: TextStyle(
+                              color:
+                                  colorsDescription(gestion.unity.toString()),
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),

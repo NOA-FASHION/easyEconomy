@@ -24,8 +24,8 @@ class BuildGestionMensuelLive extends StatefulWidget {
 }
 
 class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
-  late String valueText;
-  late String valueText2;
+  late String valueText = "";
+  late String valueText2 = "";
   var controller = CurrencyTextFieldController(
       rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -285,8 +285,6 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
     return longLetter;
   }
 
-  
-
   String unityPattern = "unity_Montant_universelle.";
   @override
   Widget build(BuildContext context) {
@@ -519,9 +517,17 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                     // subtitle: CalculMontant()
                     //     .activeGlow(_listMontantUniverselle[index], context),
 
-                    subtitle: CalculMontant()
-                        .activeGlow(_listMontantUniverselle[index], context,index,_listMontantUniverselle[index],
-                          variable,_listMontantUniverselle[index].icones,formKey,valueText,valueText2,controller),
+                    subtitle: CalculMontant().activeGlow(
+                        _listMontantUniverselle[index],
+                        context,
+                        index,
+                        _listMontantUniverselle[index],
+                        variable,
+                        _listMontantUniverselle[index].icones,
+                        formKey,
+                        valueText,
+                        valueText2,
+                        controller),
 
                     isThreeLine: true,
                   ),
