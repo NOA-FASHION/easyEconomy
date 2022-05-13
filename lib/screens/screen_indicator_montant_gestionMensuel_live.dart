@@ -1,9 +1,14 @@
 import 'package:easyeconomy/models/easy_economy_models.dart';
-import 'package:flip_card/flip_card.dart';
+
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class ScreenIndicatorMontantGestionLive extends StatefulWidget {
+  final double montantCharge;
+  final double montantChargeLive;
+  final double montantRevenu;
+  final double montantRevenuLive;
+  final double montantTotals;
+  final double montantTotalsLive;
   final String titre;
   final String titre2;
   final String titre1;
@@ -19,7 +24,13 @@ class ScreenIndicatorMontantGestionLive extends StatefulWidget {
       required this.icones,
       required this.gestionListMontantUniverselleLive,
       List<MontantUniverselle>? listMontantUniverselle,
-      List<MontantUniverselle>? listMontantPrevision});
+      List<MontantUniverselle>? listMontantPrevision,
+      required this.montantCharge,
+      required this.montantChargeLive,
+      required this.montantRevenu,
+      required this.montantRevenuLive,
+      required this.montantTotals,
+      required this.montantTotalsLive});
 
   @override
   _ScreenIndicatorMontantGestionLiveState createState() =>
@@ -29,122 +40,126 @@ class ScreenIndicatorMontantGestionLive extends StatefulWidget {
 class _ScreenIndicatorMontantGestionLiveState
     extends State<ScreenIndicatorMontantGestionLive> {
   bool baterry = true;
-  double montantCharge() {
-    double montants = 0;
+  // double montantCharge() {
+  //   double montants = 0;
 
-    for (var i = widget.gestionListMontantUniverselle.length - 1; i >= 0; i--) {
-      if (widget.gestionListMontantUniverselle[i].unity.toString() ==
-              'unity_Montant_universelle.ChargeFixe' ||
-          widget.gestionListMontantUniverselle[i].unity.toString() ==
-              'unity_Montant_universelle.depensePonctuelle') {
-        montants = montants + widget.gestionListMontantUniverselle[i].montant;
-      }
-    }
-    return montants;
-  }
+  //   for (var i = widget.gestionListMontantUniverselle.length - 1; i >= 0; i--) {
+  //     if (widget.gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.ChargeFixe' ||
+  //         widget.gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.depensePonctuelle') {
+  //       montants = montants + widget.gestionListMontantUniverselle[i].montant;
+  //     }
+  //   }
+  //   return montants;
+  // }
 
-  double montantChargeLive() {
-    double montants = 0;
+  // double montantChargeLive() {
+  //   double montants = 0;
 
-    for (var i = widget.gestionListMontantUniverselleLive.length - 1;
-        i >= 0;
-        i--) {
-      print(widget.gestionListMontantUniverselleLive[i].unity.toString());
-      if (widget.gestionListMontantUniverselleLive[i].unity.toString() ==
-              'unity_Montant_universelle.ChargeFixe' ||
-          widget.gestionListMontantUniverselleLive[i].unity.toString() ==
-              'unity_Montant_universelle.depensePonctuelle') {
-        montants =
-            montants + widget.gestionListMontantUniverselleLive[i].montant;
-      }
-    }
+  //   for (var i = widget.gestionListMontantUniverselleLive.length - 1;
+  //       i >= 0;
+  //       i--) {
+  //     print(widget.gestionListMontantUniverselleLive[i].unity.toString());
+  //     if (widget.gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.ChargeFixe' ||
+  //         widget.gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.depensePonctuelle') {
+  //       montants =
+  //           montants + widget.gestionListMontantUniverselleLive[i].montant;
+  //     }
+  //   }
 
-    return montants;
-  }
+  //   return montants;
+  // }
 
-  double montantRevenu() {
-    double montants = 0;
-    for (var i = widget.gestionListMontantUniverselle.length - 1; i >= 0; i--) {
-      if (widget.gestionListMontantUniverselle[i].unity.toString() ==
-              'unity_Montant_universelle.RevenuFixe' ||
-          widget.gestionListMontantUniverselle[i].unity.toString() ==
-              'unity_Montant_universelle.RevenuPonctuel') {
-        montants = montants + widget.gestionListMontantUniverselle[i].montant;
-      }
-    }
+  // double montantRevenu() {
+  //   double montants = 0;
+  //   for (var i = widget.gestionListMontantUniverselle.length - 1; i >= 0; i--) {
+  //     if (widget.gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuFixe' ||
+  //         widget.gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuPonctuel') {
+  //       montants = montants + widget.gestionListMontantUniverselle[i].montant;
+  //     }
+  //   }
 
-    return montants;
-  }
+  //   return montants;
+  // }
 
-  double montantRevenuLive() {
-    double montants = 0;
+  // double montantRevenuLive() {
+  //   double montants = 0;
 
-    for (var i = widget.gestionListMontantUniverselleLive.length - 1;
-        i >= 0;
-        i--) {
-      if (widget.gestionListMontantUniverselleLive[i].unity.toString() ==
-              'unity_Montant_universelle.RevenuFixe' ||
-          widget.gestionListMontantUniverselleLive[i].unity.toString() ==
-              'unity_Montant_universelle.RevenuPonctuel') {
-        montants =
-            montants + widget.gestionListMontantUniverselleLive[i].montant;
-      }
-    }
-    return montants;
-  }
+  //   for (var i = widget.gestionListMontantUniverselleLive.length - 1;
+  //       i >= 0;
+  //       i--) {
+  //     if (widget.gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuFixe' ||
+  //         widget.gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuPonctuel') {
+  //       montants =
+  //           montants + widget.gestionListMontantUniverselleLive[i].montant;
+  //     }
+  //   }
+  //   return montants;
+  // }
 
-  double montantTotals() {
-    double montant = 0;
-    for (var i = widget.gestionListMontantUniverselle.length - 1; i >= 0; i--) {
-      if (widget.gestionListMontantUniverselle[i].unity.toString() ==
-              'unity_Montant_universelle.ChargeFixe' ||
-          widget.gestionListMontantUniverselle[i].unity.toString() ==
-              'unity_Montant_universelle.depensePonctuelle') {
-        montant = montant - widget.gestionListMontantUniverselle[i].montant;
-      } else if (widget.gestionListMontantUniverselle[i].unity.toString() ==
-              'unity_Montant_universelle.RevenuFixe' ||
-          widget.gestionListMontantUniverselle[i].unity.toString() ==
-              'unity_Montant_universelle.RevenuPonctuel') {
-        montant = montant + widget.gestionListMontantUniverselle[i].montant;
-      }
-    }
+  // double montantTotals() {
+  //   double montant = 0;
+  //   for (var i = widget.gestionListMontantUniverselle.length - 1; i >= 0; i--) {
+  //     if (widget.gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.ChargeFixe' ||
+  //         widget.gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.depensePonctuelle') {
+  //       montant = montant - widget.gestionListMontantUniverselle[i].montant;
+  //     } else if (widget.gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuFixe' ||
+  //         widget.gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuPonctuel') {
+  //       montant = montant + widget.gestionListMontantUniverselle[i].montant;
+  //     }
+  //   }
 
-    return montant;
-  }
+  //   return montant;
+  // }
 
-  double montantTotalsLive() {
-    double montant = 0;
+  // double montantTotalsLive() {
+  //   double montant = 0;
 
-    for (var i = widget.gestionListMontantUniverselleLive.length - 1;
-        i >= 0;
-        i--) {
-      if (widget.gestionListMontantUniverselleLive[i].unity.toString() ==
-              'unity_Montant_universelle.ChargeFixe' ||
-          widget.gestionListMontantUniverselleLive[i].unity.toString() ==
-              'unity_Montant_universelle.depensePonctuelle') {
-        montant = montant - widget.gestionListMontantUniverselleLive[i].montant;
-      } else if (widget.gestionListMontantUniverselleLive[i].unity.toString() ==
-              'unity_Montant_universelle.RevenuFixe' ||
-          widget.gestionListMontantUniverselleLive[i].unity.toString() ==
-              'unity_Montant_universelle.RevenuPonctuel') {
-        montant = montant + widget.gestionListMontantUniverselleLive[i].montant;
-      }
-    }
+  //   for (var i = widget.gestionListMontantUniverselleLive.length - 1;
+  //       i >= 0;
+  //       i--) {
+  //     if (widget.gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.ChargeFixe' ||
+  //         widget.gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.depensePonctuelle') {
+  //       montant = montant - widget.gestionListMontantUniverselleLive[i].montant;
+  //     } else if (widget.gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuFixe' ||
+  //         widget.gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuPonctuel') {
+  //       montant = montant + widget.gestionListMontantUniverselleLive[i].montant;
+  //     }
+  //   }
 
-    return montant;
-  }
+  //   return montant;
+  // }
 
   String choixMontant() {
     String montant = '0';
 
-    if (widget.titre == "Prévision  solde" || widget.titre == 'Restants ') {
-      montant = montantTotals().toStringAsFixed(2);
-    } else if (widget.titre == "Prévisions revenus" ||
-        widget.titre == ' Restants') {
-      montant = montantRevenu().toStringAsFixed(2);
-    } else if (widget.titre == "Prévisons charges" ||
-        widget.titre == "Restantes") {
-      montant = montantCharge().toStringAsFixed(2);
+    if (widget.titre == "Prévision  solde") {
+      montant = widget.montantTotals.toStringAsFixed(2);
+    } else if (widget.titre == "Prévisions revenus") {
+      montant = widget.montantRevenu.toStringAsFixed(2);
+    } else if (widget.titre == "Prévisons charges") {
+      montant = widget.montantCharge.toStringAsFixed(2);
+    } else if (widget.titre == 'Solde live') {
+      montant = widget.montantTotalsLive.toStringAsFixed(2);
+    } else if (widget.titre == 'Revenu live') {
+      montant = widget.montantRevenuLive.toStringAsFixed(2);
+    } else if (widget.titre == 'Charge Live') {
+      montant = widget.montantChargeLive.toStringAsFixed(2);
     }
 
     return montant;
@@ -153,12 +168,12 @@ class _ScreenIndicatorMontantGestionLiveState
   String choixMontantLive() {
     String montant = '0';
 
-    if (widget.titre1 == 'Validé ') {
-      montant = montantTotalsLive().toStringAsFixed(2);
-    } else if (widget.titre1 == ' Validés') {
-      montant = montantRevenuLive().toStringAsFixed(2);
-    } else if (widget.titre1 == "Validées") {
-      montant = montantChargeLive().toStringAsFixed(2);
+    if (widget.titre1 == 'Solde live') {
+      montant = widget.montantTotalsLive.toStringAsFixed(2);
+    } else if (widget.titre1 == 'Revenu live') {
+      montant = widget.montantRevenuLive.toStringAsFixed(2);
+    } else if (widget.titre1 == 'Charge Live') {
+      montant = widget.montantChargeLive.toStringAsFixed(2);
     }
 
     return montant;
@@ -169,240 +184,227 @@ class _ScreenIndicatorMontantGestionLiveState
 
     if (widget.titre == "Prévision  solde" ||
         widget.titre == 'Restants ' ||
-        widget.titre1 == 'Validé ') {
+        widget.titre == 'Solde live') {
       montant = Colors.blue.shade900;
     } else if (widget.titre == "Prévisions revenus" ||
         widget.titre == 'revenus restants' ||
-        widget.titre1 == ' Validés') {
+        widget.titre == 'Revenu live') {
       montant = Colors.green.shade900;
     } else if (widget.titre == "Prévisons charges" ||
-        widget.titre == "Restantes" ||
-        widget.titre1 == "Charges validées") {
+        widget.titre == "Charge Live" ||
+        widget.titre == "Charges validées") {
       montant = Colors.red.shade900;
     }
 
     return montant;
   }
 
-  double soldeLive() {
-    double montant = 0;
+  // double soldeLive() {
+  //   double montant = 0;
 
-    montant = montantTotals() + montantTotalsLive();
+  //   montant = montantTotals() + montantTotalsLive();
 
-    if (montant > 0) {
-      setState(() {
-        baterry = true;
-      });
-    } else {
-      setState(() {
-        baterry = false;
-      });
-    }
+  //   if (montant > 0) {
+  //     setState(() {
+  //       baterry = true;
+  //     });
+  //   } else {
+  //     setState(() {
+  //       baterry = false;
+  //     });
+  //   }
 
-    return montant;
-  }
+  //   return montant;
+  // }
 
-  bool flipCardTest() {
-    bool flip = true;
-    if (montantTotalsLive() > 0 && widget.titre1 == "Solde         validé") {
-      flip = true;
-    } else {
-      flip = false;
-    }
-    return flip;
-  }
+  // bool flipCardTest() {
+  //   bool flip = true;
+  //   if (montantTotalsLive() > 0 && widget.titre1 == "Solde         validé") {
+  //     flip = true;
+  //   } else {
+  //     flip = false;
+  //   }
+  //   return flip;
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return FlipCard(
-      flipOnTouch: true,
-      fill: Fill
-          .fillBack, // Fill the back side of the card to make in the same size as the front.
-      direction: FlipDirection.HORIZONTAL, // default
-      front: Container(
-        width: MediaQuery.of(context).size.width / 3.2,
-        height: 225,
-        child: Card(
-            color: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+    return Container(
+      margin: EdgeInsets.only(top: 1),
+      width: MediaQuery.of(context).size.width / 3.2,
+      height: 150,
+      child: Card(
+          color: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          elevation: 25.0,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white70),
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(10),
             ),
-            elevation: 25.0,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.transparent),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        widget.titre2,
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: choixColors(),
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    widget.icones,
+                    size: 30,
+                    color: choixColors(),
+                  ), // icon
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      widget.titre1,
+                      style: TextStyle(
+                          fontSize: 13,
+                          color: choixColors(),
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        widget.titre,
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: choixColors(),
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
+                  ),
+                  Card(
+                    color: Colors.orange,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
-                    Card(
-                      color: Colors.orange,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 25.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            choixMontant() + " €",
-                            style: TextStyle(
-                                fontSize: 13,
-                                color: choixColors(),
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
-                          ),
+                    elevation: 25.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          choixMontant() + " €",
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: choixColors(),
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                    Icon(
-                      widget.icones,
-                      size: 30,
-                      color: choixColors(),
-                    ),
-                    Card(
-                      color: Colors.orange,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 25.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            choixMontantLive() + " €",
-                            style: TextStyle(
-                                fontSize: 13,
-                                color: choixColors(),
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        widget.titre1,
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: choixColors(),
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    // text
-                  ],
-                ),
+                  ), // text
+                ],
               ),
-            )),
-      ),
-      back: Container(
-        width: MediaQuery.of(context).size.width / 3.2,
-        height: 220,
-        child: Card(
-            color: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
             ),
-            elevation: 25.0,
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white70),
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [Colors.blueAccent, Colors.orange])),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    // icon
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Prévision  solde",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: choixColors(),
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Card(
-                      color: Colors.orange,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 25.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white70),
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                colors: [Colors.orange, Colors.blueAccent])),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            soldeLive().toStringAsFixed(2) + " €",
-                            style: TextStyle(
-                                fontSize: 13,
-                                color: baterry
-                                    ? Colors.green.shade900
-                                    : Colors.red.shade900,
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 13,
-                    ),
-                    Container(
-                      width: 100,
-                      child: baterry
-                          ? Lottie.asset('assets/hight.json')
-                          : Lottie.asset('assets/low.json'),
-                    ),
-                  ],
-                ),
-              ),
-            )),
-      ),
+          )),
     );
   }
 }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: MediaQuery.of(context).size.width / 3.2,
+//       height: 225,
+//       child: Card(
+//           color: Colors.transparent,
+//           shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(10.0),
+//           ),
+//           elevation: 25.0,
+//           child: Container(
+//             decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(10),
+//                 color: Colors.transparent),
+//             child: Center(
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: <Widget>[
+//                   Padding(
+//                     padding: const EdgeInsets.all(8.0),
+//                     child: Text(
+//                       widget.titre2,
+//                       style: TextStyle(
+//                           fontSize: 13,
+//                           color: choixColors(),
+//                           fontWeight: FontWeight.bold),
+//                       textAlign: TextAlign.center,
+//                     ),
+//                   ),
+//                   Padding(
+//                     padding: const EdgeInsets.all(8.0),
+//                     child: Text(
+//                       widget.titre,
+//                       style: TextStyle(
+//                           fontSize: 13,
+//                           color: choixColors(),
+//                           fontWeight: FontWeight.bold),
+//                       textAlign: TextAlign.center,
+//                     ),
+//                   ),
+//                   Card(
+//                     color: Colors.orange,
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.circular(10.0),
+//                     ),
+//                     elevation: 25.0,
+//                     child: Container(
+//                       decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(10),
+//                           color: Colors.white),
+//                       child: Padding(
+//                         padding: const EdgeInsets.all(8.0),
+//                         child: Text(
+//                           choixMontant() + " €",
+//                           style: TextStyle(
+//                               fontSize: 13,
+//                               color: choixColors(),
+//                               fontWeight: FontWeight.bold),
+//                           textAlign: TextAlign.center,
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                   Icon(
+//                     widget.icones,
+//                     size: 30,
+//                     color: choixColors(),
+//                   ),
+//                   Card(
+//                     color: Colors.orange,
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.circular(10.0),
+//                     ),
+//                     elevation: 25.0,
+//                     child: Container(
+//                       decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(10),
+//                           color: Colors.white),
+//                       child: Padding(
+//                         padding: const EdgeInsets.all(8.0),
+//                         child: Text(
+//                           choixMontantLive() + " €",
+//                           style: TextStyle(
+//                               fontSize: 13,
+//                               color: choixColors(),
+//                               fontWeight: FontWeight.bold),
+//                           textAlign: TextAlign.center,
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+
+//                   Padding(
+//                     padding: const EdgeInsets.all(8.0),
+//                     child: Text(
+//                       widget.titre1,
+//                       style: TextStyle(
+//                           fontSize: 13,
+//                           color: choixColors(),
+//                           fontWeight: FontWeight.bold),
+//                       textAlign: TextAlign.center,
+//                     ),
+//                   ),
+//                   // text
+//                 ],
+//               ),
+//             ),
+//           )),
+//     );
+//   }
+// }

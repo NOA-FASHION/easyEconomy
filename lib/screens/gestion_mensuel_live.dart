@@ -115,128 +115,28 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
         .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
     List<MontantUniverselle> _listMontantUniverselleLive = variable
         .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
+
+    double montantChargeDouble = CalculMontantMensuel().montantCharge(
+      _listMontantUniverselle,
+    );
+    double montantChargeLiveDouble = CalculMontantMensuel().montantChargeLive(
+      _listMontantUniverselleLive,
+    );
+    double montantRevenuDouble = CalculMontantMensuel().montantRevenu(
+      _listMontantUniverselle,
+    );
+    double montantRevenuLiveDouble = CalculMontantMensuel().montantRevenuLive(
+      _listMontantUniverselleLive,
+    );
+    double montantTotalsDouble = CalculMontantMensuel().montantTotals(
+      _listMontantUniverselle,
+    );
+    double montantTotalsLiveDouble = CalculMontantMensuel().montantTotalsLive(
+      _listMontantUniverselleLive,
+    );
     return Material(
       child: Scaffold(
         key: scaffoldkey,
-        // appBar: PreferredSize(
-        //   preferredSize: Size.fromHeight(343.0),
-        //   child: SafeArea(
-        //     child: AppBar(
-        //       actions: [
-        //         Padding(
-        //           padding: const EdgeInsets.only(right: 27, top: 17),
-        //           child: Column(
-        //             mainAxisAlignment: MainAxisAlignment.center,
-        //             children: <Widget>[
-        //               InkWell(
-        //                 splashColor: Colors.white,
-        //                 onTap: () {
-        //                   Navigator.push(
-        //                       context,
-        //                       PageTransition(
-        //                           type: PageTransitionType.bottomToTop,
-        //                           child: ChangeNotifierProvider.value(
-        //                               value: variable,
-        //                               child: GestionMensuelLiveResultats(
-        //                                 idGestionMontantUniverselle:
-        //                                     widget.idGestionMontantUniverselle,
-        //                                 indexMontantUniverselle:
-        //                                     widget.indexMontantUniverselle,
-        //                               ))));
-        //                 },
-        //                 child: Icon(
-        //                   Icons.settings,
-        //                   size: 20,
-        //                   color: Colors.black,
-        //                 ),
-        //               ), // icon
-        //               Text(
-        //                 "transaction",
-        //                 style: TextStyle(fontSize: 10, color: Colors.black),
-        //               ), // text
-        //             ],
-        //           ),
-        //         ),
-        //       ],
-        //       title: Text("Mois en cours",
-        //           style: TextStyle(color: Colors.black, fontSize: 17)),
-        //       centerTitle: true,
-        //       flexibleSpace: Column(
-        //         children: [
-        //           Container(
-        //             height: 100,
-        //             padding: EdgeInsets.only(top: 27.0),
-        //             alignment: Alignment.center,
-        //             child: Image.asset(
-        //               'assets/logo1.png',
-        //               width: 110,
-        //               height: 90,
-        //             ),
-        //             decoration: BoxDecoration(
-        //                 gradient: LinearGradient(
-        //                     begin: Alignment.centerLeft,
-        //                     end: Alignment.centerRight,
-        //                     colors: <Color>[Colors.orange, Colors.blueAccent])),
-        //           ),
-        //           Container(
-        //             alignment: Alignment.center,
-        //             child: Padding(
-        //               padding: const EdgeInsets.all(8.0),
-        //               child: Column(
-        //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //                 children: [
-        //                   Row(
-        //                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //                     children: [
-        //                       ScreenIndicatorMontantGestionLive(
-        //                         titre: _listMontantUniverselleLive.length > 0
-        //                             ? 'Charges restantes'
-        //                             : "Prévisons charges",
-        //                         icones: Icons.arrow_circle_up,
-        //                         gestionListMontantUniverselle:
-        //                             _listMontantUniverselle,
-        //                         gestionListMontantUniverselleLive:
-        //                             _listMontantUniverselleLive,
-        //                         titre1: 'Charges validées',
-        //                       ),
-        //                       ScreenIndicatorMontantGestionLive(
-        //                         titre: _listMontantUniverselleLive.length > 0
-        //                             ? 'revenus restants'
-        //                             : "Prévisions revenus",
-        //                         icones: Icons.arrow_circle_down,
-        //                         gestionListMontantUniverselle:
-        //                             _listMontantUniverselle,
-        //                         gestionListMontantUniverselleLive:
-        //                             _listMontantUniverselleLive,
-        //                         titre1: 'Revenus validés',
-        //                       ),
-        //                       ScreenIndicatorMontantGestionLive(
-        //                         titre: _listMontantUniverselleLive.length > 0
-        //                             ? 'Transactions restantes'
-        //                             : "Prévision  solde",
-        //                         icones: Icons.calculate_outlined,
-        //                         gestionListMontantUniverselle:
-        //                             _listMontantUniverselle,
-        //                         gestionListMontantUniverselleLive:
-        //                             _listMontantUniverselleLive,
-        //                         titre1: 'Solde         validé',
-        //                       ),
-        //                     ],
-        //                   ),
-        //                 ],
-        //               ),
-        //             ),
-        //             decoration: BoxDecoration(
-        //                 gradient: LinearGradient(
-        //                     begin: Alignment.centerLeft,
-        //                     end: Alignment.centerRight,
-        //                     colors: <Color>[Colors.orange, Colors.blueAccent])),
-        //           ),
-        //         ],
-        //       ),
-        //     ),
-        //   ),
-        // ),
         body: Shimmer(
           duration: Duration(seconds: 3),
           interval: Duration(seconds: 5),
@@ -262,6 +162,12 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
               ),
             ],
             headerWidget: CalculMontantMensuel().header(
+                montantChargeDouble,
+                montantChargeLiveDouble,
+                montantRevenuDouble,
+                montantRevenuLiveDouble,
+                montantTotalsDouble,
+                montantTotalsLiveDouble,
                 context,
                 widget.idGestionMontantUniverselle,
                 variable,

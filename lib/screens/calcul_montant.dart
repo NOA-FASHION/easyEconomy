@@ -88,6 +88,7 @@ class CalculMontant {
   }
 
   Widget header(
+      bool transactionPasse,
       List<MontantUniverselle> _listMontantUniverselle,
       List<MontantUniverselle> _listMontPrevision,
       double montantChargesDouble,
@@ -101,7 +102,7 @@ class CalculMontant {
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
             children: [
@@ -124,15 +125,17 @@ class CalculMontant {
                             ? Text(
                                 " Charge Fixe".toUpperCase(),
                                 style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 12,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center,
                               )
                             : Text(
-                                " Simulateur".toUpperCase(),
+                                !transactionPasse
+                                    ? " Simulateur".toUpperCase()
+                                    : " Transactions passées".toUpperCase(),
                                 style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 12,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center,

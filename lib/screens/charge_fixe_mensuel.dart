@@ -251,7 +251,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                 child: BuildChargeFixe(),
               ),
             ],
-            headerWidget: CalculMontant().header(
+            headerWidget: CalculMontant().header(false,
                 _listMontantUniverselle,
                 _listMontPrevision,
                 montantChargessString,

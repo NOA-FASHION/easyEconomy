@@ -1,5 +1,6 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/gestion_mensuel_live.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -259,6 +260,9 @@ class _BuildGestionMensuelResultatsState
     }
 
     return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.only(top: 20),
+      shrinkWrap: true,
       itemCount: _listMontantUniverselle.length,
       itemBuilder: (context, index) {
         return Padding(
@@ -391,51 +395,52 @@ class _BuildGestionMensuelResultatsState
                       //             child: ResultDays(
                       //                 index, _productGagnantList[index].id))));
                     },
-                    title: Container(
-                      child: Row(
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width / 1.3,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              elevation: 15.0,
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Titre".toUpperCase(),
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: colorsDescription(
-                                            _listMontantUniverselle[index]
-                                                .unity
-                                                .toString()),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 5.0,
-                                    ),
-                                    maxLetterTitre(
-                                        _listMontantUniverselle[index]
-                                            .nom
-                                            .toUpperCase()),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 16.0,
-                          ),
-                          iconDataJoin(
-                              (_listMontantUniverselle[index].unity.toString()))
-                        ],
-                      ),
-                    ),
-                    subtitle: activeGlow(_listMontantUniverselle[index]),
+                    // title: Container(
+                    //   child: Row(
+                    //     children: [
+                    //       Container(
+                    //         width: MediaQuery.of(context).size.width / 1.3,
+                    //         child: Card(
+                    //           shape: RoundedRectangleBorder(
+                    //             borderRadius: BorderRadius.circular(5.0),
+                    //           ),
+                    //           elevation: 15.0,
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(4.0),
+                    //             child: Row(
+                    //               children: [
+                    //                 Text(
+                    //                   "Titre".toUpperCase(),
+                    //                   style: TextStyle(
+                    //                     fontWeight: FontWeight.bold,
+                    //                     color: colorsDescription(
+                    //                         _listMontantUniverselle[index]
+                    //                             .unity
+                    //                             .toString()),
+                    //                   ),
+                    //                 ),
+                    //                 SizedBox(
+                    //                   width: 5.0,
+                    //                 ),
+                    //                 maxLetterTitre(
+                    //                     _listMontantUniverselle[index]
+                    //                         .nom
+                    //                         .toUpperCase()),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       SizedBox(
+                    //         width: 16.0,
+                    //       ),
+                    //       iconDataJoin(
+                    //           (_listMontantUniverselle[index].unity.toString()))
+                    //     ],
+                    //   ),
+                    // ),
+                    subtitle: CalculMontant()
+                        .activeGlow(_listMontantUniverselle[index], context),
                     isThreeLine: true,
                   ),
                 ),

@@ -1,3 +1,4 @@
+import 'package:draggable_home/draggable_home.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_gestion_mensuel_resultats.dart';
@@ -43,136 +44,48 @@ class _GestionMensuelLiveResultatsState
         .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
     List<MontantUniverselle> _listMontantUniverselleLive = variable
         .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
+
+    double montantChargessString = CalculMontant().montantCharges(
+        _listMontantUniverselle, _listMontantUniverselleLive, simuOuchargeFixe);
+    double montantRevenuString = CalculMontant().montantRevenu(
+        _listMontantUniverselle, _listMontantUniverselleLive, simuOuchargeFixe);
+    double montantTotalsString = CalculMontant().montantTotals(
+        _listMontantUniverselle, _listMontantUniverselleLive, simuOuchargeFixe);
     return Material(
       child: Scaffold(
         key: scaffoldkey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(277.0),
-          child: SafeArea(
-            child: AppBar(
-              title: Text("Transactions validées",
-                  style: TextStyle(color: Colors.black)),
-              centerTitle: true,
-              flexibleSpace: Column(
-                children: [
-                  Container(
-                    height: 110,
-                    padding: EdgeInsets.only(top: 30.0),
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      'assets/logo1.png',
-                      width: 110,
-                      height: 110,
-                    ),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: <Color>[Colors.orange, Colors.blueAccent])),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 10.0),
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Charges validées",
-                                icones: Icons.arrow_circle_up,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision:
-                                    _listMontantUniverselleLive,
-                                montantCharge: CalculMontant().montantCharges(
-                                    _listMontantUniverselle,
-                                    _listMontantUniverselleLive,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantRevenu: CalculMontant().montantRevenu(
-                                    _listMontantUniverselle,
-                                    _listMontantUniverselleLive,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantTotals: CalculMontant().montantTotals(
-                                    _listMontantUniverselle,
-                                    _listMontantUniverselleLive,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                              ),
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Revenus Validés",
-                                icones: Icons.arrow_circle_down,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision:
-                                    _listMontantUniverselleLive,
-                                montantCharge: CalculMontant().montantCharges(
-                                    _listMontantUniverselle,
-                                    _listMontantUniverselleLive,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantRevenu: CalculMontant().montantRevenu(
-                                    _listMontantUniverselle,
-                                    _listMontantUniverselleLive,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantTotals: CalculMontant().montantTotals(
-                                    _listMontantUniverselle,
-                                    _listMontantUniverselleLive,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                              ),
-                              ScreenIndicatorMontant(
-                                simuOuchargeFixe: simuOuchargeFixe,
-                                titre: "Solde         validé",
-                                icones: Icons.calculate_outlined,
-                                listMontantUniverselle: _listMontantUniverselle,
-                                listMontantPrevision:
-                                    _listMontantUniverselleLive,
-                                montantCharge: CalculMontant().montantCharges(
-                                    _listMontantUniverselle,
-                                    _listMontantUniverselleLive,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantRevenu: CalculMontant().montantRevenu(
-                                    _listMontantUniverselle,
-                                    _listMontantUniverselleLive,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                                montantTotals: CalculMontant().montantTotals(
-                                    _listMontantUniverselle,
-                                    _listMontantUniverselleLive,
-                                    simuOuchargeFixe).toStringAsFixed(2),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: <Color>[Colors.orange, Colors.blueAccent])),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+       
         body: Shimmer(
           duration: Duration(seconds: 3),
           interval: Duration(seconds: 5),
           color: Colors.white,
           enabled: true,
           direction: ShimmerDirection.fromLTRB(),
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.orange, Colors.blueAccent])),
-            child: BuildGestionMensuelResultats(
-              idGestionMontantUniverselle: widget.idGestionMontantUniverselle,
-              indexGestionMensuel: widget.indexMontantUniverselle,
-            ),
+          child: DraggableHome(
+            backgroundColor: Colors.transparent,
+            appBarColor: Colors.orange,
+            body: [
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.orange, Colors.blueAccent])),
+                child: BuildGestionMensuelResultats(
+                  idGestionMontantUniverselle:
+                      widget.idGestionMontantUniverselle,
+                  indexGestionMensuel: widget.indexMontantUniverselle,
+                ),
+              ),
+            ],
+            headerWidget: CalculMontant().header(true,
+                _listMontantUniverselle,
+                _listMontantUniverselleLive,
+                montantChargessString,
+                montantRevenuString,
+                montantTotalsString,
+                simuOuchargeFixe),
+            title: Text("CHARGE FIXE"),
           ),
         ),
       ),

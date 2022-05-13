@@ -136,7 +136,7 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                 child: BuildSimulatorGestion(),
               ),
             ],
-            headerWidget: CalculMontant().header(
+            headerWidget: CalculMontant().header(false,
                 _listMontantUniverselle,
                 _listMontPrevision,
                 montantChargessString,

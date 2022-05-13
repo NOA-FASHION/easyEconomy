@@ -147,6 +147,7 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
           elevation: 25.0,
           child: Container(
             decoration: BoxDecoration(
+              border: Border.all(color: Colors.white70),
               color: Colors.transparent,
               borderRadius: BorderRadius.circular(10),
             ),

@@ -16,12 +16,9 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home>   {
- 
-
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-  
     EasyController variable = Provider.of<EasyController>(context);
     return Material(
       child: Scaffold(
@@ -227,52 +224,52 @@ class _HomeState extends State<Home>   {
                       ),
                     ),
                   ),
-                  Center(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                child: ChangeNotifierProvider.value(
-                                  value: variable,
-                                  child: TestScreen(
-                                  
-                                  ),
-                                )));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                colors: [Colors.blueAccent, Colors.orange])),
-                        width: MediaQuery.of(context).size.width / 1.2,
-                        height: 210,
-                        child: Card(
-                            color: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            elevation: 15.0,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.calendar_view_day,
-                                  color: Colors.white,
-                                  size: 45,
-                                ),
-                                SizedBox(
-                                  height: 15.0,
-                                ),
-                                Center(child: Text("test")),
-                              ],
-                            )),
-                      ),
-                    ),
-                  ),
+                  // Center(
+                  //   child: InkWell(
+                  //     onTap: () {
+                  //       Navigator.push(
+                  //           context,
+                  //           PageTransition(
+                  //               type: PageTransitionType.bottomToTop,
+                  //               child: ChangeNotifierProvider.value(
+                  //                 value: variable,
+                  //                 child: TestScreen(
+
+                  //                 ),
+                  //               )));
+                  //     },
+                  //     child: Container(
+                  //       decoration: BoxDecoration(
+                  //           borderRadius: BorderRadius.circular(10),
+                  //           gradient: LinearGradient(
+                  //               begin: Alignment.centerLeft,
+                  //               end: Alignment.centerRight,
+                  //               colors: [Colors.blueAccent, Colors.orange])),
+                  //       width: MediaQuery.of(context).size.width / 1.2,
+                  //       height: 210,
+                  //       child: Card(
+                  //           color: Colors.transparent,
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(30.0),
+                  //           ),
+                  //           elevation: 15.0,
+                  //           child: Column(
+                  //             mainAxisAlignment: MainAxisAlignment.center,
+                  //             children: [
+                  //               Icon(
+                  //                 Icons.calendar_view_day,
+                  //                 color: Colors.white,
+                  //                 size: 45,
+                  //               ),
+                  //               SizedBox(
+                  //                 height: 15.0,
+                  //               ),
+                  //               Center(child: Text("test")),
+                  //             ],
+                  //           )),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
