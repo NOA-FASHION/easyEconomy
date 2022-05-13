@@ -1,8 +1,10 @@
 import 'package:accordion/accordion.dart';
 import 'package:currency_textfield/currency_textfield.dart';
+import 'package:draggable_home/draggable_home.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_gestion_mensuel_live.dart';
+import 'package:easyeconomy/screens/calcul_montant_mensuel.dart';
 import 'package:easyeconomy/screens/constant.dart';
 import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 import 'package:easyeconomy/screens/screen_indicator_montant_gestionMensuel_live.dart';
@@ -116,141 +118,158 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
     return Material(
       child: Scaffold(
         key: scaffoldkey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(343.0),
-          child: SafeArea(
-            child: AppBar(
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 27, top: 17),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      InkWell(
-                        splashColor: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.bottomToTop,
-                                  child: ChangeNotifierProvider.value(
-                                      value: variable,
-                                      child: GestionMensuelLiveResultats(
-                                        idGestionMontantUniverselle:
-                                            widget.idGestionMontantUniverselle,
-                                        indexMontantUniverselle:
-                                            widget.indexMontantUniverselle,
-                                      ))));
-                        },
-                        child: Icon(
-                          Icons.settings,
-                          size: 20,
-                          color: Colors.black,
-                        ),
-                      ), // icon
-                      Text(
-                        "transaction",
-                        style: TextStyle(fontSize: 10, color: Colors.black),
-                      ), // text
-                    ],
-                  ),
-                ),
-              ],
-              title: Text("Mois en cours",
-                  style: TextStyle(color: Colors.black, fontSize: 17)),
-              centerTitle: true,
-              flexibleSpace: Column(
-                children: [
-                  Container(
-                    height: 100,
-                    padding: EdgeInsets.only(top: 27.0),
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      'assets/logo1.png',
-                      width: 110,
-                      height: 90,
-                    ),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: <Color>[Colors.orange, Colors.blueAccent])),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              ScreenIndicatorMontantGestionLive(
-                                titre: _listMontantUniverselleLive.length > 0
-                                    ? 'Charges restantes'
-                                    : "Prévisons charges",
-                                icones: Icons.arrow_circle_up,
-                                gestionListMontantUniverselle:
-                                    _listMontantUniverselle,
-                                gestionListMontantUniverselleLive:
-                                    _listMontantUniverselleLive,
-                                titre1: 'Charges validées',
-                              ),
-                              ScreenIndicatorMontantGestionLive(
-                                titre: _listMontantUniverselleLive.length > 0
-                                    ? 'revenus restants'
-                                    : "Prévisions revenus",
-                                icones: Icons.arrow_circle_down,
-                                gestionListMontantUniverselle:
-                                    _listMontantUniverselle,
-                                gestionListMontantUniverselleLive:
-                                    _listMontantUniverselleLive,
-                                titre1: 'Revenus validés',
-                              ),
-                              ScreenIndicatorMontantGestionLive(
-                                titre: _listMontantUniverselleLive.length > 0
-                                    ? 'Transactions restantes'
-                                    : "Prévision  solde",
-                                icones: Icons.calculate_outlined,
-                                gestionListMontantUniverselle:
-                                    _listMontantUniverselle,
-                                gestionListMontantUniverselleLive:
-                                    _listMontantUniverselleLive,
-                                titre1: 'Solde         validé',
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: <Color>[Colors.orange, Colors.blueAccent])),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+        // appBar: PreferredSize(
+        //   preferredSize: Size.fromHeight(343.0),
+        //   child: SafeArea(
+        //     child: AppBar(
+        //       actions: [
+        //         Padding(
+        //           padding: const EdgeInsets.only(right: 27, top: 17),
+        //           child: Column(
+        //             mainAxisAlignment: MainAxisAlignment.center,
+        //             children: <Widget>[
+        //               InkWell(
+        //                 splashColor: Colors.white,
+        //                 onTap: () {
+        //                   Navigator.push(
+        //                       context,
+        //                       PageTransition(
+        //                           type: PageTransitionType.bottomToTop,
+        //                           child: ChangeNotifierProvider.value(
+        //                               value: variable,
+        //                               child: GestionMensuelLiveResultats(
+        //                                 idGestionMontantUniverselle:
+        //                                     widget.idGestionMontantUniverselle,
+        //                                 indexMontantUniverselle:
+        //                                     widget.indexMontantUniverselle,
+        //                               ))));
+        //                 },
+        //                 child: Icon(
+        //                   Icons.settings,
+        //                   size: 20,
+        //                   color: Colors.black,
+        //                 ),
+        //               ), // icon
+        //               Text(
+        //                 "transaction",
+        //                 style: TextStyle(fontSize: 10, color: Colors.black),
+        //               ), // text
+        //             ],
+        //           ),
+        //         ),
+        //       ],
+        //       title: Text("Mois en cours",
+        //           style: TextStyle(color: Colors.black, fontSize: 17)),
+        //       centerTitle: true,
+        //       flexibleSpace: Column(
+        //         children: [
+        //           Container(
+        //             height: 100,
+        //             padding: EdgeInsets.only(top: 27.0),
+        //             alignment: Alignment.center,
+        //             child: Image.asset(
+        //               'assets/logo1.png',
+        //               width: 110,
+        //               height: 90,
+        //             ),
+        //             decoration: BoxDecoration(
+        //                 gradient: LinearGradient(
+        //                     begin: Alignment.centerLeft,
+        //                     end: Alignment.centerRight,
+        //                     colors: <Color>[Colors.orange, Colors.blueAccent])),
+        //           ),
+        //           Container(
+        //             alignment: Alignment.center,
+        //             child: Padding(
+        //               padding: const EdgeInsets.all(8.0),
+        //               child: Column(
+        //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //                 children: [
+        //                   Row(
+        //                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //                     children: [
+        //                       ScreenIndicatorMontantGestionLive(
+        //                         titre: _listMontantUniverselleLive.length > 0
+        //                             ? 'Charges restantes'
+        //                             : "Prévisons charges",
+        //                         icones: Icons.arrow_circle_up,
+        //                         gestionListMontantUniverselle:
+        //                             _listMontantUniverselle,
+        //                         gestionListMontantUniverselleLive:
+        //                             _listMontantUniverselleLive,
+        //                         titre1: 'Charges validées',
+        //                       ),
+        //                       ScreenIndicatorMontantGestionLive(
+        //                         titre: _listMontantUniverselleLive.length > 0
+        //                             ? 'revenus restants'
+        //                             : "Prévisions revenus",
+        //                         icones: Icons.arrow_circle_down,
+        //                         gestionListMontantUniverselle:
+        //                             _listMontantUniverselle,
+        //                         gestionListMontantUniverselleLive:
+        //                             _listMontantUniverselleLive,
+        //                         titre1: 'Revenus validés',
+        //                       ),
+        //                       ScreenIndicatorMontantGestionLive(
+        //                         titre: _listMontantUniverselleLive.length > 0
+        //                             ? 'Transactions restantes'
+        //                             : "Prévision  solde",
+        //                         icones: Icons.calculate_outlined,
+        //                         gestionListMontantUniverselle:
+        //                             _listMontantUniverselle,
+        //                         gestionListMontantUniverselleLive:
+        //                             _listMontantUniverselleLive,
+        //                         titre1: 'Solde         validé',
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 ],
+        //               ),
+        //             ),
+        //             decoration: BoxDecoration(
+        //                 gradient: LinearGradient(
+        //                     begin: Alignment.centerLeft,
+        //                     end: Alignment.centerRight,
+        //                     colors: <Color>[Colors.orange, Colors.blueAccent])),
+        //           ),
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
         body: Shimmer(
           duration: Duration(seconds: 3),
           interval: Duration(seconds: 5),
           color: Colors.white,
           enabled: true,
           direction: ShimmerDirection.fromLTRB(),
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.orange, Colors.blueAccent])),
-            child: BuildGestionMensuelLive(
-              idGestionMontantUniverselle: widget.idGestionMontantUniverselle,
-              indexGestionMensuel: widget.indexMontantUniverselle,
-            ),
+          child: DraggableHome(
+            headerExpandedHeight: 0.38,
+            backgroundColor: Colors.transparent,
+            appBarColor: Colors.orange,
+            body: [
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.orange, Colors.blueAccent])),
+                child: BuildGestionMensuelLive(
+                  idGestionMontantUniverselle:
+                      widget.idGestionMontantUniverselle,
+                  indexGestionMensuel: widget.indexMontantUniverselle,
+                ),
+              ),
+            ],
+            headerWidget: CalculMontantMensuel().header(
+                context,
+                widget.idGestionMontantUniverselle,
+                variable,
+                widget.indexMontantUniverselle,
+                _listMontantUniverselle,
+                _listMontantUniverselleLive,
+                simuOuchargeFixe),
+            title: Text("MOIS EN COURS"),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

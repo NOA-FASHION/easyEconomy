@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 
 class ScreenIndicatorMontantGestionLive extends StatefulWidget {
   final String titre;
+  final String titre2;
   final String titre1;
   final IconData icones;
 
@@ -12,6 +13,7 @@ class ScreenIndicatorMontantGestionLive extends StatefulWidget {
   final List<MontantUniverselle> gestionListMontantUniverselleLive;
   ScreenIndicatorMontantGestionLive(
       {required this.titre,
+      required this.titre2,
       required this.titre1,
       required this.gestionListMontantUniverselle,
       required this.icones,
@@ -135,14 +137,13 @@ class _ScreenIndicatorMontantGestionLiveState
   String choixMontant() {
     String montant = '0';
 
-    if (widget.titre == "Prévision  solde" ||
-        widget.titre == 'Transactions restantes') {
+    if (widget.titre == "Prévision  solde" || widget.titre == 'Restants ') {
       montant = montantTotals().toStringAsFixed(2);
     } else if (widget.titre == "Prévisions revenus" ||
-        widget.titre == 'revenus restants') {
+        widget.titre == ' Restants') {
       montant = montantRevenu().toStringAsFixed(2);
     } else if (widget.titre == "Prévisons charges" ||
-        widget.titre == "Charges restantes") {
+        widget.titre == "Restantes") {
       montant = montantCharge().toStringAsFixed(2);
     }
 
@@ -152,11 +153,11 @@ class _ScreenIndicatorMontantGestionLiveState
   String choixMontantLive() {
     String montant = '0';
 
-    if (widget.titre1 == "Solde         validé") {
+    if (widget.titre1 == 'Validé ') {
       montant = montantTotalsLive().toStringAsFixed(2);
-    } else if (widget.titre1 == "Revenus validés") {
+    } else if (widget.titre1 == ' Validés') {
       montant = montantRevenuLive().toStringAsFixed(2);
-    } else if (widget.titre1 == "Charges validées") {
+    } else if (widget.titre1 == "Validées") {
       montant = montantChargeLive().toStringAsFixed(2);
     }
 
@@ -167,15 +168,15 @@ class _ScreenIndicatorMontantGestionLiveState
     Color montant = Colors.white;
 
     if (widget.titre == "Prévision  solde" ||
-        widget.titre == 'Transactions restantes' ||
-        widget.titre1 == "Solde         validé") {
-      montant = Colors.white;
+        widget.titre == 'Restants ' ||
+        widget.titre1 == 'Validé ') {
+      montant = Colors.blue.shade900;
     } else if (widget.titre == "Prévisions revenus" ||
         widget.titre == 'revenus restants' ||
-        widget.titre1 == "Revenus validés") {
+        widget.titre1 == ' Validés') {
       montant = Colors.green.shade900;
     } else if (widget.titre == "Prévisons charges" ||
-        widget.titre == "Charges restantes" ||
+        widget.titre == "Restantes" ||
         widget.titre1 == "Charges validées") {
       montant = Colors.red.shade900;
     }
@@ -220,7 +221,7 @@ class _ScreenIndicatorMontantGestionLiveState
       direction: FlipDirection.HORIZONTAL, // default
       front: Container(
         width: MediaQuery.of(context).size.width / 3.2,
-        height: 227,
+        height: 225,
         child: Card(
             color: Colors.transparent,
             shape: RoundedRectangleBorder(
@@ -229,17 +230,23 @@ class _ScreenIndicatorMontantGestionLiveState
             elevation: 25.0,
             child: Container(
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white70),
                   borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [Colors.blueAccent, Colors.orange])),
+                  color: Colors.transparent),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    // icon
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.titre2,
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: choixColors(),
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
@@ -259,12 +266,8 @@ class _ScreenIndicatorMontantGestionLiveState
                       elevation: 25.0,
                       child: Container(
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white70),
                             borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                colors: [Colors.orange, Colors.blueAccent])),
+                            color: Colors.white),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
@@ -291,12 +294,8 @@ class _ScreenIndicatorMontantGestionLiveState
                       elevation: 25.0,
                       child: Container(
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white70),
                             borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                colors: [Colors.orange, Colors.blueAccent])),
+                            color: Colors.white),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
