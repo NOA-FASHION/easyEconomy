@@ -22,8 +22,8 @@ class BuildChargeFixe extends StatefulWidget {
 class _BuildChargeFixeState extends State<BuildChargeFixe> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late String codeDialog;
-  late String valueText;
-  late String valueText2;
+  late String valueText = "";
+  late String valueText2 = "";
   var controller = CurrencyTextFieldController(
       rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
   Color colorsDescription(String description) {
@@ -537,83 +537,20 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                     indexChargeFixe: index,
                                   ))));
                     },
-                    // title: Container(
-                    //   child: Row(
-                    //     children: [
-                    //       Container(
-                    //         height: 35,
-                    //         width: MediaQuery.of(context).size.width / 1.3,
-                    //         child: Card(
-                    //           shape: RoundedRectangleBorder(
-                    //             borderRadius: BorderRadius.circular(5.0),
-                    //           ),
-                    //           elevation: 15.0,
-                    //           child: Padding(
-                    //             padding: const EdgeInsets.all(4.0),
-                    //             child: Row(
-                    //               mainAxisAlignment:
-                    //                   MainAxisAlignment.spaceAround,
-                    //               children: [
-                    //                 Text(
-                    //                   "Titre".toUpperCase(),
-                    //                   style: TextStyle(
-                    //                     fontWeight: FontWeight.bold,
-                    //                     color: colorsDescription(
-                    //                         _listMontantUniverselle[index]
-                    //                             .unity
-                    //                             .toString()),
-                    //                   ),
-                    //                 ),
-                    //                 SizedBox(
-                    //                   width: 5.0,
-                    //                 ),
-                    //                 maxLetterTitre(
-                    //                     _listMontantUniverselle[index]
-                    //                         .nom
-                    //                         .toUpperCase()),
-                    //                 SizedBox(
-                    //                   width: 5.0,
-                    //                 ),
-                    //                 IconButton(
-                    //                   padding: EdgeInsets.all(0),
-                    //                   iconSize: 20,
-                    //                   icon: Icon(
-                    //                     Icons.edit,
-                    //                     color: colorsDescription(
-                    //                         _listMontantUniverselle[index]
-                    //                             .unity
-                    //                             .toString()),
-                    //                   ),
-                    //                   onPressed: () {
-                    //                     _displayTextInputDialog(
-                    //                         context,
-                    //                         index,
-                    //                         _listMontantUniverselle[index],
-                    //                         variable,
-                    //                         _listMontantUniverselle[index]
-                    //                             .icones);
-                    //                   },
-                    //                 )
-                    //               ],
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       SizedBox(
-                    //         width: 16.0,
-                    //       ),
-                    //       Row(
-                    //         children: [
-                    //           iconDataJoin((_listMontantUniverselle[index]
-                    //               .unity
-                    //               .toString())),
-                    //         ],
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
-                    subtitle: CalculMontant()
-                        .activeGlow(_listMontantUniverselle[index], context),
+
+                    subtitle: CalculMontant().activeGlow(
+                        _listMontantUniverselle[index],
+                        context,
+                        index,
+                        _listMontantUniverselle[index],
+                        variable,
+                        _listMontantUniverselle[index].icones,
+                        formKey,
+                        valueText,
+                        valueText2,
+                        controller),
+                    // subtitle: CalculMontant()
+                    //     .activeGlow(_listMontantUniverselle[index], context),
                     isThreeLine: true,
                   ),
                 ),

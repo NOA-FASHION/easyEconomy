@@ -516,8 +516,12 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                     //     ],
                     //   ),
                     // ),
+                    // subtitle: CalculMontant()
+                    //     .activeGlow(_listMontantUniverselle[index], context),
+
                     subtitle: CalculMontant()
-                        .activeGlow(_listMontantUniverselle[index], context),
+                        .activeGlow(_listMontantUniverselle[index], context,index,_listMontantUniverselle[index],
+                          variable,_listMontantUniverselle[index].icones,formKey,valueText,valueText2,controller),
 
                     isThreeLine: true,
                   ),

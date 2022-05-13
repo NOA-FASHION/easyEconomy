@@ -17,8 +17,8 @@ class BuildSimulatorGestion extends StatefulWidget {
 
 class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  late String valueText;
-  late String valueText2;
+  late String valueText = "";
+  late String valueText2 = "";
   var controller = CurrencyTextFieldController(
       rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
   Color colorsDescription(String description) {
@@ -528,8 +528,19 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                     //             child: ResultDays(
                     //                 index, _productGagnantList[index].id))));
                   },
-                  subtitle: CalculMontant()
-                      .activeGlow(_listMontantUniverselle[index], context),
+                  subtitle: CalculMontant().activeGlow(
+                      _listMontantUniverselle[index],
+                      context,
+                      index,
+                      _listMontantUniverselle[index],
+                      variable,
+                      _listMontantUniverselle[index].icones,
+                      formKey,
+                      valueText,
+                      valueText2,
+                      controller),
+                  // subtitle: CalculMontant()
+                  //     .activeGlow(_listMontantUniverselle[index], context),
                   isThreeLine: true,
                 ),
               ),

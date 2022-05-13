@@ -439,8 +439,9 @@ class _BuildGestionMensuelResultatsState
                     //     ],
                     //   ),
                     // ),
+
                     subtitle: CalculMontant()
-                        .activeGlow(_listMontantUniverselle[index], context),
+                        .activeGlow1(_listMontantUniverselle[index], context),
                     isThreeLine: true,
                   ),
                 ),
