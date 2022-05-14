@@ -9,6 +9,8 @@ import 'package:multi_charts/multi_charts.dart';
 import 'package:provider/provider.dart';
 
 class CalculMontant {
+  String valueText3 = '';
+  String valueText4 = '';
   String unityPattern = "unity_Montant_universelle.";
   double montantTotals(List<MontantUniverselle> listMontantUniverselle,
       List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
@@ -383,6 +385,7 @@ class CalculMontant {
   }
 
   Widget activeGlow(
+    bool modifNamePrix,
       MontantUniverselle gestion,
       BuildContext context,
       int index,
@@ -524,26 +527,30 @@ class CalculMontant {
           return AlertDialog(
             scrollable: true,
             title: Text('Modification'),
-            content: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              height: 450,
-              width: double.maxFinite,
-              child: ListView(
-                children: [
-                  formfieldDropDown(formKey, valueText, valueText2, controller),
-                  ChangeNotifierProvider.value(
-                    value: variable,
-                    child: TransactionEdit(
-                      icon: icon,
-                      indexGestion: index,
-                      item: item,
-                      typeMontantUniv: 'chargeFixe',
-                      indexGestionMensuel: 0,
-                    ),
-                  )
-                ],
+            content: Form(
+              key: formKey,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                height: 450,
+                width: double.maxFinite,
+                child: ListView(
+                  children: [
+                    formfieldDropDown(
+                        formKey, valueText, valueText2, controller),
+                    ChangeNotifierProvider.value(
+                      value: variable,
+                      child: TransactionEdit(
+                        icon: icon,
+                        indexGestion: index,
+                        item: item,
+                        typeMontantUniv: 'chargeFixe',
+                        indexGestionMensuel: 0,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             actions: <Widget>[
@@ -558,12 +565,13 @@ class CalculMontant {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    if (valueText.isNotEmpty) {
-                      variable.changeTitre(indexGestion: index, nom: valueText);
+                    if (valueText3.isNotEmpty) {
+                      variable.changeTitreSimulation(
+                          indexGestion: index, nom: valueText3);
                     }
-                    if (valueText.isNotEmpty) {
-                      variable.changePrix(
-                          indexGestion: index, montant: valueText2);
+                    if (valueText4.isNotEmpty) {
+                      variable.changePrixSimulation(
+                          indexGestion: index, montant: valueText4);
                     }
 
                     Navigator.pop(context);
@@ -584,7 +592,7 @@ class CalculMontant {
         TextFormField(
           textCapitalization: TextCapitalization.sentences,
           onSaved: (value) {
-            valueText = value!;
+            valueText3 = value!;
           },
           validator: (value) {
             if (value!.isEmpty) {
@@ -612,7 +620,7 @@ class CalculMontant {
           controller: controller,
           textCapitalization: TextCapitalization.sentences,
           onSaved: (value) {
-            valueText2 = controller.doubleValue.toString();
+            valueText4 = controller.doubleValue.toString();
           },
           validator: (value) {
             if (value!.isEmpty) {

@@ -395,51 +395,6 @@ class _BuildGestionMensuelResultatsState
                       //             child: ResultDays(
                       //                 index, _productGagnantList[index].id))));
                     },
-                    // title: Container(
-                    //   child: Row(
-                    //     children: [
-                    //       Container(
-                    //         width: MediaQuery.of(context).size.width / 1.3,
-                    //         child: Card(
-                    //           shape: RoundedRectangleBorder(
-                    //             borderRadius: BorderRadius.circular(5.0),
-                    //           ),
-                    //           elevation: 15.0,
-                    //           child: Padding(
-                    //             padding: const EdgeInsets.all(4.0),
-                    //             child: Row(
-                    //               children: [
-                    //                 Text(
-                    //                   "Titre".toUpperCase(),
-                    //                   style: TextStyle(
-                    //                     fontWeight: FontWeight.bold,
-                    //                     color: colorsDescription(
-                    //                         _listMontantUniverselle[index]
-                    //                             .unity
-                    //                             .toString()),
-                    //                   ),
-                    //                 ),
-                    //                 SizedBox(
-                    //                   width: 5.0,
-                    //                 ),
-                    //                 maxLetterTitre(
-                    //                     _listMontantUniverselle[index]
-                    //                         .nom
-                    //                         .toUpperCase()),
-                    //               ],
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       SizedBox(
-                    //         width: 16.0,
-                    //       ),
-                    //       iconDataJoin(
-                    //           (_listMontantUniverselle[index].unity.toString()))
-                    //     ],
-                    //   ),
-                    // ),
-
                     subtitle: CalculMontant()
                         .activeGlow1(_listMontantUniverselle[index], context),
                     isThreeLine: true,

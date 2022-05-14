@@ -538,7 +538,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                   ))));
                     },
 
-                    subtitle: CalculMontant().activeGlow(
+                    subtitle: CalculMontant().activeGlow(false,
                         _listMontantUniverselle[index],
                         context,
                         index,
