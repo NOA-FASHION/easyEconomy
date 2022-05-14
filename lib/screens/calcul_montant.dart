@@ -385,7 +385,7 @@ class CalculMontant {
   }
 
   Widget activeGlow(
-    bool modifNamePrix,
+      bool modifNamePrix,
       MontantUniverselle gestion,
       BuildContext context,
       int index,
@@ -417,8 +417,17 @@ class CalculMontant {
                 IconButton(
                     padding: EdgeInsets.all(2),
                     onPressed: () {
-                      displayTextInputDialog(context, index, item, variable,
-                          icon, formKey, valueText, valueText2, controller);
+                      displayTextInputDialog(
+                          modifNamePrix,
+                          context,
+                          index,
+                          item,
+                          variable,
+                          icon,
+                          formKey,
+                          valueText,
+                          valueText2,
+                          controller);
                     },
                     icon: Icon(
                       Icons.edit,
@@ -512,6 +521,7 @@ class CalculMontant {
   }
 
   Future<void> displayTextInputDialog(
+      bool modifNamePrix,
       BuildContext context,
       int index,
       MontantUniverselle item,
@@ -545,7 +555,8 @@ class CalculMontant {
                         icon: icon,
                         indexGestion: index,
                         item: item,
-                        typeMontantUniv: 'chargeFixe',
+                        typeMontantUniv:
+                            modifNamePrix ? "simulator" : 'chargeFixe',
                         indexGestionMensuel: 0,
                       ),
                     )
@@ -566,12 +577,19 @@ class CalculMontant {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                     if (valueText3.isNotEmpty) {
-                      variable.changeTitreSimulation(
-                          indexGestion: index, nom: valueText3);
+                      modifNamePrix
+                          ? variable.changeTitreSimulation(
+                              indexGestion: index, nom: valueText3)
+                          : variable.changeTitre(
+                              indexGestion: index, nom: valueText3);
                     }
                     if (valueText4.isNotEmpty) {
-                      variable.changePrixSimulation(
-                          indexGestion: index, montant: valueText4);
+                      modifNamePrix
+                          ? variable.changePrixSimulation(
+                              indexGestion: index, montant: valueText4)
+                          : variable.changePrix(
+                              indexGestion: index, montant: valueText4);
+                      ;
                     }
 
                     Navigator.pop(context);

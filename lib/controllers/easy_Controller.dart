@@ -969,17 +969,11 @@ class EasyController extends ChangeNotifier {
     required int indexGestionMensuel,
     required int indexGestion,
   }) async {
-    for (var i = _listGestionMensuel[indexGestionMensuel]
-                .montantUniverselleLive
-                .length -
-            1;
-        i >= 0;
-        i--) {
-      _listGestionMensuel[indexGestionMensuel]
-          .montantUniverselleLive[indexGestion]
-          .montant = double.parse(montant);
-    }
-    await _saveMontantPrevision();
+    _listGestionMensuel[indexGestionMensuel]
+        .montantUniverselle[indexGestion]
+        .montant = double.parse(montant);
+
+    await _saveGestionMensuelle();
     _initEconomy();
     notifyListeners();
   }
@@ -989,17 +983,15 @@ class EasyController extends ChangeNotifier {
     required int indexGestionMensuel,
     required int indexGestion,
   }) async {
-    for (var i = _listGestionMensuel[indexGestionMensuel]
-                .montantUniverselleLive
-                .length -
-            1;
-        i >= 0;
-        i--) {
-      _listGestionMensuel[indexGestionMensuel]
-          .montantUniverselleLive[indexGestion]
-          .nom = nom;
-    }
-    await _saveMontantPrevision();
+    print(_listGestionMensuel[indexGestionMensuel]
+        .montantUniverselle
+        .length
+        .toString());
+    _listGestionMensuel[indexGestionMensuel]
+        .montantUniverselle[indexGestion]
+        .nom = nom;
+
+    await _saveGestionMensuelle();
     _initEconomy();
     notifyListeners();
   }
@@ -1009,17 +1001,11 @@ class EasyController extends ChangeNotifier {
     required int indexGestionMensuel,
     required int indexGestion,
   }) async {
-    for (var i = _listGestionMensuel[indexGestionMensuel]
-                .montantUniverselleLive
-                .length -
-            1;
-        i >= 0;
-        i--) {
-      _listGestionMensuel[indexGestionMensuel]
-          .montantUniverselleLive[indexGestion]
-          .icones = icons;
-    }
-    await _saveMontantPrevision();
+    _listGestionMensuel[indexGestionMensuel]
+        .montantUniverselle[indexGestion]
+        .icones = icons;
+
+    await _saveGestionMensuelle();
     _initEconomy();
     notifyListeners();
   }
