@@ -602,6 +602,27 @@ class EasyController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addGestionMensuelMontantUnivLive(
+      {required int icones,
+      required String nom,
+      required double montant,
+      required String id,
+      required String unity,
+      required int index}) async {
+    _listGestionMensuel[index].montantUniverselleLive.add(MontantUniverselle(
+        unity: choixDesciptionEnum1(unity),
+        id: id,
+        montant: montant,
+        nom: nom,
+        descriptionUniverselle: [],
+        achat: [],
+        previsionsTotal: 0,
+        icones: icones));
+    await _saveGestionMensuelle();
+    _initEconomyDays();
+    notifyListeners();
+  }
+
   List<MontantUniverselle> _ListGestionMensuelPrevision() {
     List<MontantUniverselle> listMontantPrevision1 = [];
     for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
@@ -819,7 +840,7 @@ class EasyController extends ChangeNotifier {
         i--) {
       if (_listMontantUniverselle[index].descriptionUniverselle[i].echeance >
           0) {
-        print("montant echeance ok");
+        // print("montant echeance ok");
         _listMontantUniverselle[index]
             .descriptionUniverselle[i]
             .nombreEcheance = _listMontantUniverselle[index]
@@ -1010,18 +1031,18 @@ class EasyController extends ChangeNotifier {
     notifyListeners();
   }
 
-  activeListListMontantUniverselle({required int index}) async{
+  activeListListMontantUniverselle({required int index}) async {
     if (_listMontantUniverselle[index].previsionsTotal == 0) {
       _listMontantUniverselle[index].previsionsTotal = 1;
     } else {
       _listMontantUniverselle[index].previsionsTotal = 0;
     }
-     await _saveMontantUniverselle();
+    await _saveMontantUniverselle();
     _initEconomy();
     notifyListeners();
   }
 
-  activeListListMontantPrevision({required int index}) async{
+  activeListListMontantPrevision({required int index}) async {
     if (_listMontantPrevision[index].previsionsTotal == 0) {
       _listMontantPrevision[index].previsionsTotal = 1;
     } else {

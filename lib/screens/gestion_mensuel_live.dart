@@ -6,15 +6,12 @@ import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_gestion_mensuel_live.dart';
 import 'package:easyeconomy/screens/calcul_montant_mensuel.dart';
 import 'package:easyeconomy/screens/constant.dart';
-import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
-import 'package:easyeconomy/screens/screen_indicator_montant_gestionMensuel_live.dart';
+
 import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
-
-import 'gestion_mensuel_live_resultats.dart';
 
 class GestionMensuelLive extends StatefulWidget {
   final String idGestionMontantUniverselle;
@@ -28,6 +25,7 @@ class GestionMensuelLive extends StatefulWidget {
 }
 
 class _GestionMensuelLiveState extends State<GestionMensuelLive> {
+  bool _checkbox = false;
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late PersistentBottomSheetController _bottomSheetController;
@@ -415,6 +413,38 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                               ),
                             ],
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5.0,
+                                color: Colors.green,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Text(
+                                    "Valider la transaction".toUpperCase(),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Checkbox(
+                                value: _checkbox,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _bottomSheetController.setState!(() {
+                                      _checkbox = !_checkbox;
+                                    });
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
                           Center(
                             child: IconButton(
                               iconSize: 60,
@@ -426,19 +456,34 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
                                   formKey.currentState!.save();
-                                  {}
 
-                                  Provider.of<EasyController>(context,
-                                          listen: false)
-                                      .addGestionMensuelMontantUniv(
-                                          id: nanoid(10),
-                                          montant: montantCharge,
-                                          nom: nomCharge,
-                                          unity: unityChallenge,
-                                          index: widget.indexMontantUniverselle,
-                                          icones: iconData);
+                                  if (_checkbox) {
+                                    Provider.of<EasyController>(context,
+                                            listen: false)
+                                        .addGestionMensuelMontantUnivLive(
+                                            id: nanoid(10),
+                                            montant: montantCharge,
+                                            nom: nomCharge,
+                                            unity: unityChallenge,
+                                            index:
+                                                widget.indexMontantUniverselle,
+                                            icones: iconData);
 
-                                  Navigator.pop(context);
+                                    Navigator.pop(context);
+                                  } else {
+                                    Provider.of<EasyController>(context,
+                                            listen: false)
+                                        .addGestionMensuelMontantUniv(
+                                            id: nanoid(10),
+                                            montant: montantCharge,
+                                            nom: nomCharge,
+                                            unity: unityChallenge,
+                                            index:
+                                                widget.indexMontantUniverselle,
+                                            icones: iconData);
+
+                                    Navigator.pop(context);
+                                  }
                                 }
                               },
                             ),

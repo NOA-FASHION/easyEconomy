@@ -6,7 +6,7 @@ import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 import 'package:marquee_text/marquee_text.dart';
-import 'package:multi_charts/multi_charts.dart';
+
 import 'package:provider/provider.dart';
 
 class CalculMontant {
@@ -254,7 +254,7 @@ class CalculMontant {
                             color: Colors.red,
                             proportion: montantChargesDouble),
                         Pie(
-                            color: Colors.blue,
+                            color: Colors.green,
                             proportion: montantRevenuDouble),
                       ],
                       selected: 1,
@@ -387,7 +387,8 @@ class CalculMontant {
     return colors;
   }
 
-  Widget activeGlow1(MontantUniverselle gestion, BuildContext context) {
+  Widget activeGlow1(
+      double active, MontantUniverselle gestion, BuildContext context) {
     Widget glow = Padding(
       padding: const EdgeInsets.all(1.0),
       child: Container(
@@ -397,6 +398,7 @@ class CalculMontant {
           // color: colorsDescription(gestion.unity.toString()),
         ),
         child: Card(
+          color: active == 0 ? Colors.white : Colors.grey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
@@ -464,6 +466,7 @@ class CalculMontant {
                   ],
                 ),
                 Card(
+                  color: active == 0 ? Colors.white : Colors.grey,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(60.0),
                   ),
@@ -602,6 +605,7 @@ class CalculMontant {
                   ],
                 ),
                 Card(
+                  color: active == 0 ? Colors.white : Colors.grey,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(60.0),
                   ),

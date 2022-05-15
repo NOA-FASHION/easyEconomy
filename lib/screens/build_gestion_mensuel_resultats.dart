@@ -371,7 +371,9 @@ class _BuildGestionMensuelResultatsState
                 color: Colors.transparent,
               ),
               child: Card(
-                color: Colors.transparent,
+                color: _listMontantUniverselle[index].previsionsTotal == 1
+                    ? Colors.grey
+                    : Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
@@ -395,8 +397,10 @@ class _BuildGestionMensuelResultatsState
                       //             child: ResultDays(
                       //                 index, _productGagnantList[index].id))));
                     },
-                    subtitle: CalculMontant()
-                        .activeGlow1(_listMontantUniverselle[index], context),
+                    subtitle: CalculMontant().activeGlow1(
+                        _listMontantUniverselle[index].previsionsTotal,
+                        _listMontantUniverselle[index],
+                        context),
                     isThreeLine: true,
                   ),
                 ),

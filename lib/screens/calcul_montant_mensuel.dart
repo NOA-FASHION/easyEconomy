@@ -14,11 +14,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class CalculMontantMensuel {
-  final List<Pie> pies = [
-    Pie(color: const Color(0xFFFF6262), proportion: 8),
-    Pie(color: const Color(0xFFFF9494), proportion: 3),
-    Pie(color: const Color(0xFFFFDCDC), proportion: 8),
-  ];
   String valueText3 = '';
   String valueText4 = '';
   String unityPattern = "unity_Montant_universelle.";
@@ -320,7 +315,7 @@ class CalculMontantMensuel {
                             pies: [
                               Pie(color: Colors.red, proportion: montantCharge),
                               Pie(
-                                  color: Colors.blue,
+                                  color: Colors.green,
                                   proportion: montantRevenu),
                             ],
                             selected: 1,
@@ -477,7 +472,7 @@ class CalculMontantMensuel {
                                   color: Colors.red,
                                   proportion: montantChargeLive),
                               Pie(
-                                  color: Colors.blue,
+                                  color: Colors.green,
                                   proportion: montantRevenuLive),
                             ],
                             selected: 1,
@@ -777,6 +772,7 @@ class CalculMontantMensuel {
                   ],
                 ),
                 Card(
+                  color: active == 0 ? Colors.white : Colors.grey,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(60.0),
                   ),
