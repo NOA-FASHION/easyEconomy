@@ -298,7 +298,7 @@ class CalculMontantMensuel {
                             child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "Transaction à venir".toUpperCase(),
+                                  "Transactions à venir".toUpperCase(),
                                   style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.black,
@@ -453,7 +453,7 @@ class CalculMontantMensuel {
                             child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  " Transactions passées".toUpperCase(),
+                                  " Transactions validées".toUpperCase(),
                                   style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.black,

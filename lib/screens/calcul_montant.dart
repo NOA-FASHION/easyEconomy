@@ -234,7 +234,7 @@ class CalculMontant {
                             : Text(
                                 !transactionPasse
                                     ? " Simulateur".toUpperCase()
-                                    : " Transactions passées".toUpperCase(),
+                                    : " Transactions validées".toUpperCase(),
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.black,
