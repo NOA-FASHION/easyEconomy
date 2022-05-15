@@ -313,12 +313,21 @@ class CalculMontantMensuel {
                           height: 80,
                           child: FlutterPieChart(
                             pies: [
-                              Pie(color: Colors.red, proportion: montantCharge),
                               Pie(
-                                  color: Colors.green,
+                                  color: Colors.red.shade500,
+                                  proportion: montantCharge),
+                              Pie(
+                                  color: Colors.green.shade500,
                                   proportion: montantRevenu),
+                              Pie(
+                                  color: montantCharge > montantRevenu
+                                      ? Colors.red.shade900
+                                      : Colors.green.shade900,
+                                  proportion: montantTotals > 0
+                                      ? montantTotals
+                                      : -montantTotals),
                             ],
-                            selected: 1,
+                            selected: 2,
                           ),
                           // child: PieChart(
                           //   textScaleFactor: 0.0,
@@ -469,13 +478,20 @@ class CalculMontantMensuel {
                           child: FlutterPieChart(
                             pies: [
                               Pie(
-                                  color: Colors.red,
+                                  color: Colors.red.shade500,
                                   proportion: montantChargeLive),
                               Pie(
-                                  color: Colors.green,
+                                  color: Colors.green.shade500,
                                   proportion: montantRevenuLive),
+                              Pie(
+                                  color: montantChargeLive > montantRevenuLive
+                                      ? Colors.red.shade900
+                                      : Colors.green.shade900,
+                                  proportion: montantTotalsLive > 0
+                                      ? montantTotalsLive
+                                      : -montantTotalsLive),
                             ],
-                            selected: 1,
+                            selected: 2,
                           ),
                           // child: PieChart(
                           //   textScaleFactor: 0.0,

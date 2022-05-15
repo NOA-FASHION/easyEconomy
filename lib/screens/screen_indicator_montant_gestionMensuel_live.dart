@@ -182,18 +182,26 @@ class _ScreenIndicatorMontantGestionLiveState
   Color choixColors() {
     Color montant = Colors.white;
 
-    if (widget.titre == "Prévision  solde" ||
-        widget.titre == 'Restants ' ||
-        widget.titre == 'Solde live') {
-      montant = Colors.blue.shade900;
+    if (widget.titre == "Prévision  solde" || widget.titre == 'Restants ') {
+      if (widget.montantCharge > widget.montantRevenu) {
+        montant = Colors.red.shade900;
+      } else {
+        montant = Colors.green.shade900;
+      }
+    } else if (widget.titre == "Solde live") {
+      if (widget.montantChargeLive > widget.montantRevenuLive) {
+        montant = Colors.red.shade900;
+      } else {
+        montant = Colors.green.shade900;
+      }
     } else if (widget.titre == "Prévisions revenus" ||
         widget.titre == 'revenus restants' ||
         widget.titre == 'Revenu live') {
-      montant = Colors.green.shade900;
+      montant = Colors.green.shade500;
     } else if (widget.titre == "Prévisons charges" ||
         widget.titre == "Charge Live" ||
         widget.titre == "Charges validées") {
-      montant = Colors.red.shade900;
+      montant = Colors.red.shade500;
     }
 
     return montant;
@@ -312,4 +320,3 @@ class _ScreenIndicatorMontantGestionLiveState
     );
   }
 }
-

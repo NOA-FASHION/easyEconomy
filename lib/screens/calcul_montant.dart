@@ -251,13 +251,39 @@ class CalculMontant {
                     child: FlutterPieChart(
                       pies: [
                         Pie(
-                            color: Colors.red,
+                            color: Colors.red.shade500,
                             proportion: montantChargesDouble),
                         Pie(
-                            color: Colors.green,
+                            color: Colors.green.shade500,
                             proportion: montantRevenuDouble),
+                        Pie(
+                            color: montantChargesDouble > montantRevenuDouble
+                                ? Colors.red.shade900
+                                : Colors.green.shade900,
+                            proportion: montantTotalsDouble > 0
+                                ? montantTotalsDouble
+                                : -montantTotalsDouble),
+                        // Pie(
+                        //     color: Colors.red.shade500,
+                        //     proportion: montantChargesDouble >
+                        //             montantRevenuDouble
+                        //         ? (montantChargesDouble + montantTotalsDouble)
+                        //         : montantChargesDouble),
+                        // Pie(
+                        //     color: Colors.green.shade500,
+                        //     proportion: montantChargesDouble <
+                        //             montantRevenuDouble
+                        //         ? montantRevenuDouble
+                        //         : (montantRevenuDouble - montantTotalsDouble)),
+                        // Pie(
+                        //     color: montantChargesDouble > montantRevenuDouble
+                        //         ? Colors.red.shade900
+                        //         : Colors.green.shade900,
+                        //     proportion: montantTotalsDouble > 0
+                        //         ? montantTotalsDouble
+                        //         : -montantTotalsDouble),
                       ],
-                      selected: 1,
+                      selected: 2,
                     ),
                     // child: PieChart(
                     //   textScaleFactor: 0.0,
@@ -372,10 +398,10 @@ class CalculMontant {
   Color colorsDescription(String description) {
     Color colors = Colors.black;
     if (description == "unity_Montant_universelle.ChargeFixe") {
-      colors = Colors.red.shade900;
+      colors = Colors.red.shade500;
       return colors;
     } else if (description == "unity_Montant_universelle.depensePonctuelle") {
-      colors = Colors.red.shade900;
+      colors = Colors.red.shade500;
       return colors;
     } else if (description == "unity_Montant_universelle.RevenuFixe") {
       colors = Colors.green.shade900;

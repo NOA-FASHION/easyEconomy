@@ -122,12 +122,17 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
     Color montant = Colors.white;
 
     if (widget.titre == "Solde" || widget.titre == "Solde  validé") {
-      montant = Colors.blue.shade900;
+      if (double.parse(widget.montantCharge) >
+          double.parse(widget.montantRevenu)) {
+        montant = Colors.red.shade900;
+      } else {
+        montant = Colors.green.shade900;
+      }
     } else if (widget.titre == "Revenus" || widget.titre == "Revenus Validés") {
-      montant = Colors.green.shade900;
+      montant = Colors.green.shade500;
     } else if (widget.titre == "Charges" ||
         widget.titre == "Charges validées") {
-      montant = Colors.red.shade900;
+      montant = Colors.red.shade500;
     }
 
     return montant;
