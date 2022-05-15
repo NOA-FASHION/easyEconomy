@@ -7,25 +7,35 @@ import 'package:easyeconomy/screens/screen_indicator_montant_gestionMensuel_live
 import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 import 'package:marquee_text/marquee_text.dart';
-import 'package:multi_charts/multi_charts.dart';
+
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class CalculMontantMensuel {
+  final List<Pie> pies = [
+    Pie(color: const Color(0xFFFF6262), proportion: 8),
+    Pie(color: const Color(0xFFFF9494), proportion: 3),
+    Pie(color: const Color(0xFFFFDCDC), proportion: 8),
+  ];
   String valueText3 = '';
   String valueText4 = '';
   String unityPattern = "unity_Montant_universelle.";
   bool baterry = true;
+
   double montantCharge(List<MontantUniverselle> gestionListMontantUniverselle) {
     double montants = 0;
-
-    for (var i = gestionListMontantUniverselle.length - 1; i >= 0; i--) {
-      if (gestionListMontantUniverselle[i].unity.toString() ==
+    List<MontantUniverselle> gestionListMontantUniverselleTrie =
+        gestionListMontantUniverselle
+            .where((c) => c.previsionsTotal == 0)
+            .toList();
+    for (var i = gestionListMontantUniverselleTrie.length - 1; i >= 0; i--) {
+      if (gestionListMontantUniverselleTrie[i].unity.toString() ==
               'unity_Montant_universelle.ChargeFixe' ||
-          gestionListMontantUniverselle[i].unity.toString() ==
+          gestionListMontantUniverselleTrie[i].unity.toString() ==
               'unity_Montant_universelle.depensePonctuelle') {
-        montants = montants + gestionListMontantUniverselle[i].montant;
+        montants = montants + gestionListMontantUniverselleTrie[i].montant;
       }
     }
     return montants;
@@ -35,13 +45,20 @@ class CalculMontantMensuel {
       List<MontantUniverselle> gestionListMontantUniverselleLive) {
     double montants = 0;
 
-    for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
-      print(gestionListMontantUniverselleLive[i].unity.toString());
-      if (gestionListMontantUniverselleLive[i].unity.toString() ==
+    List<MontantUniverselle> gestionListMontantUniverselleLiveTrie =
+        gestionListMontantUniverselleLive
+            .where((c) => c.previsionsTotal == 0)
+            .toList();
+
+    for (var i = gestionListMontantUniverselleLiveTrie.length - 1;
+        i >= 0;
+        i--) {
+      print(gestionListMontantUniverselleLiveTrie[i].unity.toString());
+      if (gestionListMontantUniverselleLiveTrie[i].unity.toString() ==
               'unity_Montant_universelle.ChargeFixe' ||
-          gestionListMontantUniverselleLive[i].unity.toString() ==
+          gestionListMontantUniverselleLiveTrie[i].unity.toString() ==
               'unity_Montant_universelle.depensePonctuelle') {
-        montants = montants + gestionListMontantUniverselleLive[i].montant;
+        montants = montants + gestionListMontantUniverselleLiveTrie[i].montant;
       }
     }
 
@@ -50,12 +67,17 @@ class CalculMontantMensuel {
 
   double montantRevenu(List<MontantUniverselle> gestionListMontantUniverselle) {
     double montants = 0;
-    for (var i = gestionListMontantUniverselle.length - 1; i >= 0; i--) {
-      if (gestionListMontantUniverselle[i].unity.toString() ==
+
+    List<MontantUniverselle> gestionListMontantUniverselleTrie =
+        gestionListMontantUniverselle
+            .where((c) => c.previsionsTotal == 0)
+            .toList();
+    for (var i = gestionListMontantUniverselleTrie.length - 1; i >= 0; i--) {
+      if (gestionListMontantUniverselleTrie[i].unity.toString() ==
               'unity_Montant_universelle.RevenuFixe' ||
-          gestionListMontantUniverselle[i].unity.toString() ==
+          gestionListMontantUniverselleTrie[i].unity.toString() ==
               'unity_Montant_universelle.RevenuPonctuel') {
-        montants = montants + gestionListMontantUniverselle[i].montant;
+        montants = montants + gestionListMontantUniverselleTrie[i].montant;
       }
     }
 
@@ -65,13 +87,18 @@ class CalculMontantMensuel {
   double montantRevenuLive(
       List<MontantUniverselle> gestionListMontantUniverselleLive) {
     double montants = 0;
-
-    for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
-      if (gestionListMontantUniverselleLive[i].unity.toString() ==
+    List<MontantUniverselle> gestionListMontantUniverselleLiveTrie =
+        gestionListMontantUniverselleLive
+            .where((c) => c.previsionsTotal == 0)
+            .toList();
+    for (var i = gestionListMontantUniverselleLiveTrie.length - 1;
+        i >= 0;
+        i--) {
+      if (gestionListMontantUniverselleLiveTrie[i].unity.toString() ==
               'unity_Montant_universelle.RevenuFixe' ||
-          gestionListMontantUniverselleLive[i].unity.toString() ==
+          gestionListMontantUniverselleLiveTrie[i].unity.toString() ==
               'unity_Montant_universelle.RevenuPonctuel') {
-        montants = montants + gestionListMontantUniverselleLive[i].montant;
+        montants = montants + gestionListMontantUniverselleLiveTrie[i].montant;
       }
     }
     return montants;
@@ -79,17 +106,22 @@ class CalculMontantMensuel {
 
   double montantTotals(List<MontantUniverselle> gestionListMontantUniverselle) {
     double montant = 0;
-    for (var i = gestionListMontantUniverselle.length - 1; i >= 0; i--) {
-      if (gestionListMontantUniverselle[i].unity.toString() ==
+
+    List<MontantUniverselle> gestionListMontantUniverselleTrie =
+        gestionListMontantUniverselle
+            .where((c) => c.previsionsTotal == 0)
+            .toList();
+    for (var i = gestionListMontantUniverselleTrie.length - 1; i >= 0; i--) {
+      if (gestionListMontantUniverselleTrie[i].unity.toString() ==
               'unity_Montant_universelle.ChargeFixe' ||
-          gestionListMontantUniverselle[i].unity.toString() ==
+          gestionListMontantUniverselleTrie[i].unity.toString() ==
               'unity_Montant_universelle.depensePonctuelle') {
-        montant = montant - gestionListMontantUniverselle[i].montant;
-      } else if (gestionListMontantUniverselle[i].unity.toString() ==
+        montant = montant - gestionListMontantUniverselleTrie[i].montant;
+      } else if (gestionListMontantUniverselleTrie[i].unity.toString() ==
               'unity_Montant_universelle.RevenuFixe' ||
-          gestionListMontantUniverselle[i].unity.toString() ==
+          gestionListMontantUniverselleTrie[i].unity.toString() ==
               'unity_Montant_universelle.RevenuPonctuel') {
-        montant = montant + gestionListMontantUniverselle[i].montant;
+        montant = montant + gestionListMontantUniverselleTrie[i].montant;
       }
     }
 
@@ -100,22 +132,128 @@ class CalculMontantMensuel {
       List<MontantUniverselle> gestionListMontantUniverselleLive) {
     double montant = 0;
 
-    for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
-      if (gestionListMontantUniverselleLive[i].unity.toString() ==
+    List<MontantUniverselle> gestionListMontantUniverselleLiveTrie =
+        gestionListMontantUniverselleLive
+            .where((c) => c.previsionsTotal == 0)
+            .toList();
+    for (var i = gestionListMontantUniverselleLiveTrie.length - 1;
+        i >= 0;
+        i--) {
+      if (gestionListMontantUniverselleLiveTrie[i].unity.toString() ==
               'unity_Montant_universelle.ChargeFixe' ||
-          gestionListMontantUniverselleLive[i].unity.toString() ==
+          gestionListMontantUniverselleLiveTrie[i].unity.toString() ==
               'unity_Montant_universelle.depensePonctuelle') {
-        montant = montant - gestionListMontantUniverselleLive[i].montant;
-      } else if (gestionListMontantUniverselleLive[i].unity.toString() ==
+        montant = montant - gestionListMontantUniverselleLiveTrie[i].montant;
+      } else if (gestionListMontantUniverselleLiveTrie[i].unity.toString() ==
               'unity_Montant_universelle.RevenuFixe' ||
-          gestionListMontantUniverselleLive[i].unity.toString() ==
+          gestionListMontantUniverselleLiveTrie[i].unity.toString() ==
               'unity_Montant_universelle.RevenuPonctuel') {
-        montant = montant + gestionListMontantUniverselleLive[i].montant;
+        montant = montant + gestionListMontantUniverselleLiveTrie[i].montant;
       }
     }
 
     return montant;
   }
+
+  //  double montantCharge(List<MontantUniverselle> gestionListMontantUniverselle) {
+  //   double montants = 0;
+
+  //   for (var i = gestionListMontantUniverselle.length - 1; i >= 0; i--) {
+  //     if (gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.ChargeFixe' ||
+  //         gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.depensePonctuelle') {
+  //       montants = montants + gestionListMontantUniverselle[i].montant;
+  //     }
+  //   }
+  //   return montants;
+  // }
+
+  // double montantChargeLive(
+  //     List<MontantUniverselle> gestionListMontantUniverselleLive) {
+  //   double montants = 0;
+
+  //   for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
+  //     print(gestionListMontantUniverselleLive[i].unity.toString());
+  //     if (gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.ChargeFixe' ||
+  //         gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.depensePonctuelle') {
+  //       montants = montants + gestionListMontantUniverselleLive[i].montant;
+  //     }
+  //   }
+
+  //   return montants;
+  // }
+
+  // double montantRevenu(List<MontantUniverselle> gestionListMontantUniverselle) {
+  //   double montants = 0;
+  //   for (var i = gestionListMontantUniverselle.length - 1; i >= 0; i--) {
+  //     if (gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuFixe' ||
+  //         gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuPonctuel') {
+  //       montants = montants + gestionListMontantUniverselle[i].montant;
+  //     }
+  //   }
+
+  //   return montants;
+  // }
+
+  // double montantRevenuLive(
+  //     List<MontantUniverselle> gestionListMontantUniverselleLive) {
+  //   double montants = 0;
+
+  //   for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
+  //     if (gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuFixe' ||
+  //         gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuPonctuel') {
+  //       montants = montants + gestionListMontantUniverselleLive[i].montant;
+  //     }
+  //   }
+  //   return montants;
+  // }
+
+  // double montantTotals(List<MontantUniverselle> gestionListMontantUniverselle) {
+  //   double montant = 0;
+  //   for (var i = gestionListMontantUniverselle.length - 1; i >= 0; i--) {
+  //     if (gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.ChargeFixe' ||
+  //         gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.depensePonctuelle') {
+  //       montant = montant - gestionListMontantUniverselle[i].montant;
+  //     } else if (gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuFixe' ||
+  //         gestionListMontantUniverselle[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuPonctuel') {
+  //       montant = montant + gestionListMontantUniverselle[i].montant;
+  //     }
+  //   }
+
+  //   return montant;
+  // }
+
+  // double montantTotalsLive(
+  //     List<MontantUniverselle> gestionListMontantUniverselleLive) {
+  //   double montant = 0;
+
+  //   for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
+  //     if (gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.ChargeFixe' ||
+  //         gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.depensePonctuelle') {
+  //       montant = montant - gestionListMontantUniverselleLive[i].montant;
+  //     } else if (gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuFixe' ||
+  //         gestionListMontantUniverselleLive[i].unity.toString() ==
+  //             'unity_Montant_universelle.RevenuPonctuel') {
+  //       montant = montant + gestionListMontantUniverselleLive[i].montant;
+  //     }
+  //   }
+
+  //   return montant;
+  // }
 
   Widget header(
       double montantCharge,
@@ -175,24 +313,34 @@ class CalculMontantMensuel {
                           ),
                         ),
                         Container(
-                          width: 90,
-                          height: 90,
-                          child: PieChart(
-                            textScaleFactor: 0.0,
-                            values: [
-                              (montantCharge / montantRevenu) * 100,
-                              (montantTotals / montantRevenu) * 100
+                          padding: EdgeInsets.all(8),
+                          width: 80,
+                          height: 80,
+                          child: FlutterPieChart(
+                            pies: [
+                              Pie(color: Colors.red, proportion: montantCharge),
+                              Pie(
+                                  color: Colors.blue,
+                                  proportion: montantRevenu),
                             ],
-                            labels: ['Marge', 'frais'],
-                            sliceFillColors: [
-                              Colors.red,
-                              montantCharge > montantRevenu
-                                  ? Colors.red
-                                  : Colors.blue,
-                            ],
-                            animationDuration: Duration(milliseconds: 1500),
-                            showLegend: false,
+                            selected: 1,
                           ),
+                          // child: PieChart(
+                          //   textScaleFactor: 0.0,
+                          //   values: [
+                          //     (montantCharge / montantRevenu) * 100,
+                          //     (montantTotals / montantRevenu) * 100
+                          //   ],
+                          //   labels: ['Marge', 'frais'],
+                          //   sliceFillColors: [
+                          //     Colors.red,
+                          //     montantCharge > montantRevenu
+                          //         ? Colors.red
+                          //         : Colors.blue,
+                          //   ],
+                          //   animationDuration: Duration(milliseconds: 1500),
+                          //   showLegend: false,
+                          // ),
                         ),
                       ],
                     ),
@@ -320,22 +468,34 @@ class CalculMontantMensuel {
                           ),
                         ),
                         Container(
-                          width: 90,
-                          height: 90,
-                          child: PieChart(
-                            textScaleFactor: 0.0,
-                            values: [
-                              (montantChargeLive / montantRevenuLive) * 100,
-                              (montantTotalsLive / montantRevenuLive) * 100
+                          padding: EdgeInsets.all(8),
+                          width: 80,
+                          height: 80,
+                          child: FlutterPieChart(
+                            pies: [
+                              Pie(
+                                  color: Colors.red,
+                                  proportion: montantChargeLive),
+                              Pie(
+                                  color: Colors.blue,
+                                  proportion: montantRevenuLive),
                             ],
-                            labels: ['Marge', 'frais'],
-                            sliceFillColors: [
-                              Colors.red,
-                              Colors.blue,
-                            ],
-                            animationDuration: Duration(milliseconds: 1500),
-                            showLegend: false,
+                            selected: 1,
                           ),
+                          // child: PieChart(
+                          //   textScaleFactor: 0.0,
+                          //   values: [
+                          //     (montantChargeLive / montantRevenuLive) * 100,
+                          //     (montantTotalsLive / montantRevenuLive) * 100
+                          //   ],
+                          //   labels: ['Marge', 'frais'],
+                          //   sliceFillColors: [
+                          //     Colors.red,
+                          //     Colors.blue,
+                          //   ],
+                          //   animationDuration: Duration(milliseconds: 1500),
+                          //   showLegend: false,
+                          // ),
                         ),
                       ],
                     ),
@@ -518,6 +678,7 @@ class CalculMontantMensuel {
   }
 
   Widget activeGlow(
+      double active,
       int indexGestionMensuel,
       MontantUniverselle gestion,
       BuildContext context,
@@ -536,6 +697,7 @@ class CalculMontantMensuel {
           // color: colorsDescription(gestion.unity.toString()),
         ),
         child: Card(
+          color: active == 0 ? Colors.white : Colors.grey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),

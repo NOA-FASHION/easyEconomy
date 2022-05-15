@@ -25,83 +25,83 @@ class ScreenIndicatorMontant extends StatefulWidget {
 }
 
 class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
-  String montantCharge() {
-    double montants = 0;
-    if (!widget.simuOuchargeFixe) {
-      for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
-        print(widget.listMontantUniverselle[i].unity.toString());
-        if (widget.listMontantUniverselle[i].unity.toString() ==
-            'unity_Montant_universelle.ChargeFixe') {
-          montants = montants + widget.listMontantUniverselle[i].montant;
-        }
-      }
-    } else if (widget.simuOuchargeFixe) {
-      for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
-        print(widget.listMontantPrevision[i].unity.toString());
-        if (widget.listMontantPrevision[i].unity.toString() ==
-                'unity_Montant_universelle.ChargeFixe' ||
-            widget.listMontantPrevision[i].unity.toString() ==
-                'unity_Montant_universelle.depensePonctuelle') {
-          montants = montants + widget.listMontantPrevision[i].montant;
-        }
-      }
-    }
+  // String montantCharge() {
+  //   double montants = 0;
+  //   if (!widget.simuOuchargeFixe) {
+  //     for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
+  //       print(widget.listMontantUniverselle[i].unity.toString());
+  //       if (widget.listMontantUniverselle[i].unity.toString() ==
+  //           'unity_Montant_universelle.ChargeFixe') {
+  //         montants = montants + widget.listMontantUniverselle[i].montant;
+  //       }
+  //     }
+  //   } else if (widget.simuOuchargeFixe) {
+  //     for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
+  //       print(widget.listMontantPrevision[i].unity.toString());
+  //       if (widget.listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.ChargeFixe' ||
+  //           widget.listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.depensePonctuelle') {
+  //         montants = montants + widget.listMontantPrevision[i].montant;
+  //       }
+  //     }
+  //   }
 
-    return montants.toStringAsFixed(2);
-  }
+  //   return montants.toStringAsFixed(2);
+  // }
 
-  String montantRevenu() {
-    double montants = 0;
-    if (!widget.simuOuchargeFixe) {
-      for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
-        if (widget.listMontantUniverselle[i].unity.toString() ==
-            'unity_Montant_universelle.RevenuFixe') {
-          montants = montants + widget.listMontantUniverselle[i].montant;
-        }
-      }
-    } else if (widget.simuOuchargeFixe) {
-      for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
-        if (widget.listMontantPrevision[i].unity.toString() ==
-                'unity_Montant_universelle.RevenuFixe' ||
-            widget.listMontantPrevision[i].unity.toString() ==
-                'unity_Montant_universelle.RevenuPonctuel') {
-          montants = montants + widget.listMontantPrevision[i].montant;
-        }
-      }
-    }
-    return montants.toStringAsFixed(2);
-  }
+  // String montantRevenu() {
+  //   double montants = 0;
+  //   if (!widget.simuOuchargeFixe) {
+  //     for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
+  //       if (widget.listMontantUniverselle[i].unity.toString() ==
+  //           'unity_Montant_universelle.RevenuFixe') {
+  //         montants = montants + widget.listMontantUniverselle[i].montant;
+  //       }
+  //     }
+  //   } else if (widget.simuOuchargeFixe) {
+  //     for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
+  //       if (widget.listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.RevenuFixe' ||
+  //           widget.listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.RevenuPonctuel') {
+  //         montants = montants + widget.listMontantPrevision[i].montant;
+  //       }
+  //     }
+  //   }
+  //   return montants.toStringAsFixed(2);
+  // }
 
-  String montantTotals() {
-    double montant = 0;
-    if (!widget.simuOuchargeFixe) {
-      for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
-        if (widget.listMontantUniverselle[i].unity.toString() ==
-            'unity_Montant_universelle.ChargeFixe') {
-          montant = montant - widget.listMontantUniverselle[i].montant;
-        } else if (widget.listMontantUniverselle[i].unity.toString() ==
-            'unity_Montant_universelle.RevenuFixe') {
-          montant = montant + widget.listMontantUniverselle[i].montant;
-        }
-      }
-    } else if (widget.simuOuchargeFixe) {
-      for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
-        if (widget.listMontantPrevision[i].unity.toString() ==
-                'unity_Montant_universelle.ChargeFixe' ||
-            widget.listMontantPrevision[i].unity.toString() ==
-                'unity_Montant_universelle.depensePonctuelle') {
-          montant = montant - widget.listMontantPrevision[i].montant;
-        } else if (widget.listMontantPrevision[i].unity.toString() ==
-                'unity_Montant_universelle.RevenuFixe' ||
-            widget.listMontantPrevision[i].unity.toString() ==
-                'unity_Montant_universelle.RevenuPonctuel') {
-          montant = montant + widget.listMontantPrevision[i].montant;
-        }
-      }
-    }
+  // String montantTotals() {
+  //   double montant = 0;
+  //   if (!widget.simuOuchargeFixe) {
+  //     for (var i = widget.listMontantUniverselle.length - 1; i >= 0; i--) {
+  //       if (widget.listMontantUniverselle[i].unity.toString() ==
+  //           'unity_Montant_universelle.ChargeFixe') {
+  //         montant = montant - widget.listMontantUniverselle[i].montant;
+  //       } else if (widget.listMontantUniverselle[i].unity.toString() ==
+  //           'unity_Montant_universelle.RevenuFixe') {
+  //         montant = montant + widget.listMontantUniverselle[i].montant;
+  //       }
+  //     }
+  //   } else if (widget.simuOuchargeFixe) {
+  //     for (var i = widget.listMontantPrevision.length - 1; i >= 0; i--) {
+  //       if (widget.listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.ChargeFixe' ||
+  //           widget.listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.depensePonctuelle') {
+  //         montant = montant - widget.listMontantPrevision[i].montant;
+  //       } else if (widget.listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.RevenuFixe' ||
+  //           widget.listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.RevenuPonctuel') {
+  //         montant = montant + widget.listMontantPrevision[i].montant;
+  //       }
+  //     }
+  //   }
 
-    return montant.toStringAsFixed(2);
-  }
+  //   return montant.toStringAsFixed(2);
+  // }
 
   String choixMontant() {
     String montant = '0';

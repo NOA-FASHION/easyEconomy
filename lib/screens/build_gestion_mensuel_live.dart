@@ -416,20 +416,21 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                 color: Colors.transparent,
               ),
               child: Card(
-                color: Colors.transparent,
+                color: _listMontantUniverselle[index].previsionsTotal == 1
+                    ? Colors.grey
+                    : Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 elevation: 20.0,
                 child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white70),
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Colors.blueAccent, Colors.orange])),
+                 
                   child: ListTile(
+                    onLongPress: () {
+                      variable.activeListListGestionMensuel(
+                          indexGestion: index,
+                          indexGestionMensuel: widget.indexGestionMensuel);
+                    },
                     onTap: () async {
                       Navigator.push(
                           context,
@@ -446,6 +447,7 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                                   ))));
                     },
                     subtitle: CalculMontantMensuel().activeGlow(
+                        _listMontantUniverselle[index].previsionsTotal,
                         widget.indexGestionMensuel,
                         _listMontantUniverselle[index],
                         context,

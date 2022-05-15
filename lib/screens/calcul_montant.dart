@@ -4,6 +4,7 @@ import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 import 'package:marquee_text/marquee_text.dart';
 import 'package:multi_charts/multi_charts.dart';
 import 'package:provider/provider.dart';
@@ -12,31 +13,36 @@ class CalculMontant {
   String valueText3 = '';
   String valueText4 = '';
   String unityPattern = "unity_Montant_universelle.";
+
   double montantTotals(List<MontantUniverselle> listMontantUniverselle,
       List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
+    List<MontantUniverselle> listMontantPrevisionTrie =
+        listMontantPrevision.where((c) => c.previsionsTotal == 0).toList();
+    List<MontantUniverselle> listMontantUniverselleTrie =
+        listMontantUniverselle.where((c) => c.previsionsTotal == 0).toList();
     double montant = 0;
     if (!simuOuchargeFixe) {
-      for (var i = listMontantUniverselle.length - 1; i >= 0; i--) {
-        if (listMontantUniverselle[i].unity.toString() ==
+      for (var i = listMontantUniverselleTrie.length - 1; i >= 0; i--) {
+        if (listMontantUniverselleTrie[i].unity.toString() ==
             'unity_Montant_universelle.ChargeFixe') {
-          montant = montant - listMontantUniverselle[i].montant;
-        } else if (listMontantUniverselle[i].unity.toString() ==
+          montant = montant - listMontantUniverselleTrie[i].montant;
+        } else if (listMontantUniverselleTrie[i].unity.toString() ==
             'unity_Montant_universelle.RevenuFixe') {
-          montant = montant + listMontantUniverselle[i].montant;
+          montant = montant + listMontantUniverselleTrie[i].montant;
         }
       }
     } else if (simuOuchargeFixe) {
-      for (var i = listMontantPrevision.length - 1; i >= 0; i--) {
-        if (listMontantPrevision[i].unity.toString() ==
+      for (var i = listMontantPrevisionTrie.length - 1; i >= 0; i--) {
+        if (listMontantPrevisionTrie[i].unity.toString() ==
                 'unity_Montant_universelle.ChargeFixe' ||
-            listMontantPrevision[i].unity.toString() ==
+            listMontantPrevisionTrie[i].unity.toString() ==
                 'unity_Montant_universelle.depensePonctuelle') {
-          montant = montant - listMontantPrevision[i].montant;
-        } else if (listMontantPrevision[i].unity.toString() ==
+          montant = montant - listMontantPrevisionTrie[i].montant;
+        } else if (listMontantPrevisionTrie[i].unity.toString() ==
                 'unity_Montant_universelle.RevenuFixe' ||
-            listMontantPrevision[i].unity.toString() ==
+            listMontantPrevisionTrie[i].unity.toString() ==
                 'unity_Montant_universelle.RevenuPonctuel') {
-          montant = montant + listMontantPrevision[i].montant;
+          montant = montant + listMontantPrevisionTrie[i].montant;
         }
       }
     }
@@ -46,23 +52,27 @@ class CalculMontant {
 
   double montantCharges(List<MontantUniverselle> listMontantUniverselle,
       List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
+    List<MontantUniverselle> listMontantPrevisionTrie =
+        listMontantPrevision.where((c) => c.previsionsTotal == 0).toList();
+    List<MontantUniverselle> listMontantUniverselleTrie =
+        listMontantUniverselle.where((c) => c.previsionsTotal == 0).toList();
     double montants = 0;
     if (!simuOuchargeFixe) {
-      for (var i = listMontantUniverselle.length - 1; i >= 0; i--) {
-        print(listMontantUniverselle[i].unity.toString());
-        if (listMontantUniverselle[i].unity.toString() ==
+      for (var i = listMontantUniverselleTrie.length - 1; i >= 0; i--) {
+        print(listMontantUniverselleTrie[i].unity.toString());
+        if (listMontantUniverselleTrie[i].unity.toString() ==
             'unity_Montant_universelle.ChargeFixe') {
-          montants = montants + listMontantUniverselle[i].montant;
+          montants = montants + listMontantUniverselleTrie[i].montant;
         }
       }
     } else if (simuOuchargeFixe) {
-      for (var i = listMontantPrevision.length - 1; i >= 0; i--) {
-        print(listMontantPrevision[i].unity.toString());
-        if (listMontantPrevision[i].unity.toString() ==
+      for (var i = listMontantPrevisionTrie.length - 1; i >= 0; i--) {
+        print(listMontantPrevisionTrie[i].unity.toString());
+        if (listMontantPrevisionTrie[i].unity.toString() ==
                 'unity_Montant_universelle.ChargeFixe' ||
-            listMontantPrevision[i].unity.toString() ==
+            listMontantPrevisionTrie[i].unity.toString() ==
                 'unity_Montant_universelle.depensePonctuelle') {
-          montants = montants + listMontantPrevision[i].montant;
+          montants = montants + listMontantPrevisionTrie[i].montant;
         }
       }
     }
@@ -72,26 +82,111 @@ class CalculMontant {
 
   double montantRevenu(List<MontantUniverselle> listMontantUniverselle,
       List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
+    List<MontantUniverselle> listMontantPrevisionTrie =
+        listMontantPrevision.where((c) => c.previsionsTotal == 0).toList();
+    List<MontantUniverselle> listMontantUniverselleTrie =
+        listMontantUniverselle.where((c) => c.previsionsTotal == 0).toList();
     double montants = 0;
     if (!simuOuchargeFixe) {
-      for (var i = listMontantUniverselle.length - 1; i >= 0; i--) {
-        if (listMontantUniverselle[i].unity.toString() ==
+      for (var i = listMontantUniverselleTrie.length - 1; i >= 0; i--) {
+        if (listMontantUniverselleTrie[i].unity.toString() ==
             'unity_Montant_universelle.RevenuFixe') {
-          montants = montants + listMontantUniverselle[i].montant;
+          montants = montants + listMontantUniverselleTrie[i].montant;
         }
       }
     } else if (simuOuchargeFixe) {
-      for (var i = listMontantPrevision.length - 1; i >= 0; i--) {
-        if (listMontantPrevision[i].unity.toString() ==
+      for (var i = listMontantPrevisionTrie.length - 1; i >= 0; i--) {
+        if (listMontantPrevisionTrie[i].unity.toString() ==
                 'unity_Montant_universelle.RevenuFixe' ||
-            listMontantPrevision[i].unity.toString() ==
+            listMontantPrevisionTrie[i].unity.toString() ==
                 'unity_Montant_universelle.RevenuPonctuel') {
-          montants = montants + listMontantPrevision[i].montant;
+          montants = montants + listMontantPrevisionTrie[i].montant;
         }
       }
     }
     return montants;
   }
+
+  //  double montantTotals(List<MontantUniverselle> listMontantUniverselle,
+  //     List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
+  //   double montant = 0;
+  //   if (!simuOuchargeFixe) {
+  //     for (var i = listMontantUniverselle.length - 1; i >= 0; i--) {
+  //       if (listMontantUniverselle[i].unity.toString() ==
+  //           'unity_Montant_universelle.ChargeFixe') {
+  //         montant = montant - listMontantUniverselle[i].montant;
+  //       } else if (listMontantUniverselle[i].unity.toString() ==
+  //           'unity_Montant_universelle.RevenuFixe') {
+  //         montant = montant + listMontantUniverselle[i].montant;
+  //       }
+  //     }
+  //   } else if (simuOuchargeFixe) {
+  //     for (var i = listMontantPrevision.length - 1; i >= 0; i--) {
+  //       if (listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.ChargeFixe' ||
+  //           listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.depensePonctuelle') {
+  //         montant = montant - listMontantPrevision[i].montant;
+  //       } else if (listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.RevenuFixe' ||
+  //           listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.RevenuPonctuel') {
+  //         montant = montant + listMontantPrevision[i].montant;
+  //       }
+  //     }
+  //   }
+
+  //   return montant;
+  // }
+
+  // double montantCharges(List<MontantUniverselle> listMontantUniverselle,
+  //     List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
+  //   double montants = 0;
+  //   if (!simuOuchargeFixe) {
+  //     for (var i = listMontantUniverselle.length - 1; i >= 0; i--) {
+  //       print(listMontantUniverselle[i].unity.toString());
+  //       if (listMontantUniverselle[i].unity.toString() ==
+  //           'unity_Montant_universelle.ChargeFixe') {
+  //         montants = montants + listMontantUniverselle[i].montant;
+  //       }
+  //     }
+  //   } else if (simuOuchargeFixe) {
+  //     for (var i = listMontantPrevision.length - 1; i >= 0; i--) {
+  //       print(listMontantPrevision[i].unity.toString());
+  //       if (listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.ChargeFixe' ||
+  //           listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.depensePonctuelle') {
+  //         montants = montants + listMontantPrevision[i].montant;
+  //       }
+  //     }
+  //   }
+
+  //   return montants;
+  // }
+
+  // double montantRevenu(List<MontantUniverselle> listMontantUniverselle,
+  //     List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
+  //   double montants = 0;
+  //   if (!simuOuchargeFixe) {
+  //     for (var i = listMontantUniverselle.length - 1; i >= 0; i--) {
+  //       if (listMontantUniverselle[i].unity.toString() ==
+  //           'unity_Montant_universelle.RevenuFixe') {
+  //         montants = montants + listMontantUniverselle[i].montant;
+  //       }
+  //     }
+  //   } else if (simuOuchargeFixe) {
+  //     for (var i = listMontantPrevision.length - 1; i >= 0; i--) {
+  //       if (listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.RevenuFixe' ||
+  //           listMontantPrevision[i].unity.toString() ==
+  //               'unity_Montant_universelle.RevenuPonctuel') {
+  //         montants = montants + listMontantPrevision[i].montant;
+  //       }
+  //     }
+  //   }
+  //   return montants;
+  // }
 
   Widget header(
       bool transactionPasse,
@@ -150,22 +245,34 @@ class CalculMontant {
                     ),
                   ),
                   Container(
-                    width: 110,
-                    height: 110,
-                    child: PieChart(
-                      textScaleFactor: 0.0,
-                      values: [
-                        (montantChargesDouble / montantRevenuDouble) * 100,
-                        (montantTotalsDouble / montantRevenuDouble) * 100
+                    padding: EdgeInsets.all(8),
+                    width: 80,
+                    height: 80,
+                    child: FlutterPieChart(
+                      pies: [
+                        Pie(
+                            color: Colors.red,
+                            proportion: montantChargesDouble),
+                        Pie(
+                            color: Colors.blue,
+                            proportion: montantRevenuDouble),
                       ],
-                      labels: ['Marge', 'frais'],
-                      sliceFillColors: [
-                        Colors.red,
-                        Colors.blue,
-                      ],
-                      animationDuration: Duration(milliseconds: 1500),
-                      showLegend: false,
+                      selected: 1,
                     ),
+                    // child: PieChart(
+                    //   textScaleFactor: 0.0,
+                    //   values: [
+                    //     (montantChargesDouble / montantRevenuDouble) * 100,
+                    //     (montantTotalsDouble / montantRevenuDouble) * 100
+                    //   ],
+                    //   labels: ['Marge', 'frais'],
+                    //   sliceFillColors: [
+                    //     Colors.red,
+                    //     Colors.blue,
+                    //   ],
+                    //   animationDuration: Duration(milliseconds: 1500),
+                    //   showLegend: false,
+                    // ),
                   ),
                 ],
               ),
@@ -385,6 +492,7 @@ class CalculMontant {
   }
 
   Widget activeGlow(
+      double active,
       bool modifNamePrix,
       MontantUniverselle gestion,
       BuildContext context,
@@ -405,6 +513,7 @@ class CalculMontant {
           // color: colorsDescription(gestion.unity.toString()),
         ),
         child: Card(
+          color: active == 0 ? Colors.white : Colors.grey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),

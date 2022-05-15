@@ -528,7 +528,9 @@ class _BuildTestState extends State<BuildTest> {
                 color: Colors.transparent,
               ),
               child: Card(
-                color: Colors.white,
+               color: _listMontantUniverselle[index].previsionsTotal == 1
+                    ? Colors.grey
+                    : Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
@@ -537,12 +539,7 @@ class _BuildTestState extends State<BuildTest> {
                   decoration: BoxDecoration(),
                   child: ListTile(
                     onLongPress: () {
-                      _displayTextInputDialog(
-                          context,
-                          index,
-                          _listMontantUniverselle[index],
-                          variable,
-                          _listMontantUniverselle[index].icones);
+                      variable.activeListListMontantPrevision(index: index);
                     },
                     onTap: () async {
                       Navigator.push(
@@ -556,7 +553,7 @@ class _BuildTestState extends State<BuildTest> {
                                   ))));
                     },
                     subtitle: CalculMontant()
-                        .activeGlow(true,_listMontantUniverselle[index], context,index,_listMontantUniverselle[index],
+                        .activeGlow(_listMontantUniverselle[index].previsionsTotal,true,_listMontantUniverselle[index], context,index,_listMontantUniverselle[index],
                           variable,_listMontantUniverselle[index].icones,formKey,valueText,valueText2,controller),
                     isThreeLine: true,
                   ),

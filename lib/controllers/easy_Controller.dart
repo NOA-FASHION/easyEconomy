@@ -1009,4 +1009,45 @@ class EasyController extends ChangeNotifier {
     _initEconomy();
     notifyListeners();
   }
+
+  activeListListMontantUniverselle({required int index}) async{
+    if (_listMontantUniverselle[index].previsionsTotal == 0) {
+      _listMontantUniverselle[index].previsionsTotal = 1;
+    } else {
+      _listMontantUniverselle[index].previsionsTotal = 0;
+    }
+     await _saveMontantUniverselle();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  activeListListMontantPrevision({required int index}) async{
+    if (_listMontantPrevision[index].previsionsTotal == 0) {
+      _listMontantPrevision[index].previsionsTotal = 1;
+    } else {
+      _listMontantPrevision[index].previsionsTotal = 0;
+    }
+    await _saveMontantPrevision();
+    _initEconomy();
+    notifyListeners();
+  }
+
+  activeListListGestionMensuel(
+      {required int indexGestionMensuel, required int indexGestion}) async {
+    if (_listGestionMensuel[indexGestionMensuel]
+            .montantUniverselle[indexGestion]
+            .previsionsTotal ==
+        0) {
+      _listGestionMensuel[indexGestionMensuel]
+          .montantUniverselle[indexGestion]
+          .previsionsTotal = 1;
+    } else {
+      _listGestionMensuel[indexGestionMensuel]
+          .montantUniverselle[indexGestion]
+          .previsionsTotal = 0;
+    }
+    await _saveGestionMensuelle();
+    _initEconomy();
+    notifyListeners();
+  }
 }

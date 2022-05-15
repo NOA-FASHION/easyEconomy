@@ -518,14 +518,18 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                 color: Colors.transparent,
               ),
               child: Card(
-                color: Colors.white,
+                color: _listMontantUniverselle[index].previsionsTotal == 1
+                    ? Colors.grey
+                    : Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 elevation: 20.0,
                 child: Container(
-                  decoration: BoxDecoration(),
                   child: ListTile(
+                    onLongPress: () {
+                      variable.activeListListMontantUniverselle(index: index);
+                    },
                     onTap: () async {
                       Navigator.push(
                           context,
@@ -538,7 +542,9 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                   ))));
                     },
 
-                    subtitle: CalculMontant().activeGlow(false,
+                    subtitle: CalculMontant().activeGlow(
+                        _listMontantUniverselle[index].previsionsTotal,
+                        false,
                         _listMontantUniverselle[index],
                         context,
                         index,

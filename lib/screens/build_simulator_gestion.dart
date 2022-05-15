@@ -276,8 +276,6 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
     return longLetter;
   }
 
- 
-
   String unityPattern = "unity_Montant_universelle.";
   @override
   Widget build(BuildContext context) {
@@ -421,22 +419,20 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                 color: Colors.transparent,
               ),
               child: Card(
+                color: _listMontantUniverselle[index].previsionsTotal == 1
+                    ? Colors.grey
+                    : Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 elevation: 20.0,
                 child: ListTile(
-                  onTap: () async {
-                    // Navigator.push(
-                    //     context,
-                    //     PageTransition(
-                    //         type: PageTransitionType.bottomToTop,
-                    //         child: ChangeNotifierProvider.value(
-                    //             value: variable,
-                    //             child: ResultDays(
-                    //                 index, _productGagnantList[index].id))));
+                  onLongPress: () async {
+                    variable.activeListListMontantPrevision(index: index);
                   },
-                  subtitle: CalculMontant().activeGlow(true,
+                  subtitle: CalculMontant().activeGlow(
+                      _listMontantUniverselle[index].previsionsTotal,
+                      true,
                       _listMontantUniverselle[index],
                       context,
                       index,
