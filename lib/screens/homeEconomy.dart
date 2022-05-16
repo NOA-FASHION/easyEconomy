@@ -2,6 +2,7 @@ import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/screens/screenTest.dart';
 import 'package:easyeconomy/screens/simulator_gestion.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
@@ -92,17 +93,40 @@ class _HomeState extends State<Home> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
-                                  Icons.approval,
-                                  color: Colors.white,
-                                  size: 45,
-                                ),
+                                Lottie.asset("assets/chargeRevenuFixe.json",
+                                    width: 60),
+                                // Icon(
+                                //   Icons.approval,
+                                //   color: Colors.white,
+                                //   size: 45,
+                                // ),
                                 SizedBox(
                                   height: 15.0,
                                 ),
-                                Center(
-                                    child: Text(
-                                        "Charge et revenu fixe mensuelle")),
+                                Card(
+                                  color: Colors.transparent,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 25.0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Charge et revenu fixe mensuelle"
+                                            .toUpperCase(),
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             )),
                       ),
@@ -127,7 +151,7 @@ class _HomeState extends State<Home> {
                                 end: Alignment.centerRight,
                                 colors: [Colors.blueAccent, Colors.orange])),
                         width: MediaQuery.of(context).size.width / 1.2,
-                        height: 210,
+                        height: 220,
                         child: Card(
                             color: Colors.transparent,
                             shape: RoundedRectangleBorder(
@@ -164,18 +188,44 @@ class _HomeState extends State<Home> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 35.0,
-                                  ),
-                                  Icon(
-                                    Icons.calculate,
-                                    color: Colors.white,
-                                    size: 45,
-                                  ),
+                                  // SizedBox(
+                                  //   height: 5.0,
+                                  // ),
+                                  Lottie.asset("assets/simulateur.json",
+                                      width: 70),
+                                  // Icon(
+                                  //   Icons.calculate,
+                                  //   color: Colors.white,
+                                  //   size: 45,
+                                  // ),
                                   SizedBox(
                                     height: 15.0,
                                   ),
-                                  Center(child: Text("Simulateur de gestion")),
+                                  Card(
+                                    color: Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    elevation: 25.0,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Colors.white),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "Simulateur de gestion".toUpperCase(),
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  // Center(child: Text("Simulateur de gestion")),
                                 ],
                               ),
                             )),
@@ -210,15 +260,39 @@ class _HomeState extends State<Home> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
-                                  Icons.calendar_view_day,
-                                  color: Colors.white,
-                                  size: 45,
-                                ),
+                                Lottie.asset("assets/shedule.json", width: 60),
+                                // Icon(
+                                //   Icons.calendar_view_day,
+                                //   color: Colors.white,
+                                //   size: 45,
+                                // ),
                                 SizedBox(
                                   height: 15.0,
                                 ),
-                                Center(child: Text("Gestion mensuelle")),
+                                Card(
+                                  color: Colors.transparent,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 25.0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.white),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Gestion mensuelle".toUpperCase(),
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // Center(child: Text("Gestion mensuelle")),
                               ],
                             )),
                       ),
