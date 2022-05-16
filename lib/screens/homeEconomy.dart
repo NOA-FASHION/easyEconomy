@@ -21,13 +21,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
+    Duration duration = Duration(seconds: 10);
     Future<Null> delay(int milliseconds) {
       return new Future.delayed(new Duration(milliseconds: milliseconds));
     }
 
-    bool _isLoading = false;
     EasyController variable = Provider.of<EasyController>(context);
     return Material(
       child: Scaffold(
@@ -183,26 +185,28 @@ class _HomeState extends State<Home> {
                                               padding: const EdgeInsets.only(
                                                   right: 8),
                                               child: IconButton(
-                                                onPressed: () {
-                                                  setState(() async {
+                                                onPressed: () async {
+                                                  setState(() {
                                                     _isLoading = true;
-                                                    await delay(2000);
-                                                    _isLoading = false;
-                                                    showTopSnackBar(
-                                                      context,
-                                                      CustomSnackBar.success(
-                                                        backgroundColor:
-                                                            Colors.blue,
-                                                        icon: Icon(
-                                                          Icons.restore,
-                                                          size: 30,
-                                                          color: Colors.white,
-                                                        ),
-                                                        message:
-                                                            'reset effectué avec succes',
-                                                      ),
-                                                    );
                                                   });
+                                                  await delay(2000);
+                                                  setState(() {
+                                                    _isLoading = false;
+                                                  });
+                                                  showTopSnackBar(
+                                                    context,
+                                                    CustomSnackBar.success(
+                                                      backgroundColor:
+                                                          Colors.blue,
+                                                      icon: Icon(
+                                                        Icons.restore,
+                                                        size: 30,
+                                                        color: Colors.white,
+                                                      ),
+                                                      message:
+                                                          'reset effectué avec succes',
+                                                    ),
+                                                  );
                                                   variable
                                                       .resetListMontantPrevision();
                                                 },
