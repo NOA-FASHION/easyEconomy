@@ -2,6 +2,7 @@ import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/gestion_mensuel_live.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
 import 'package:multi_charts/multi_charts.dart';
@@ -117,7 +118,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
         width: MediaQuery.of(context).size.width / 2,
         color: Colors.transparent,
         child: MarqueeText(
-          text:TextSpan(text: word),
+          text: TextSpan(text: word),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black,
@@ -140,6 +141,12 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
   }
 
   Widget activeGlow(GestionMensuel gestion) {
+    double montantTotalsLives =
+        montantTotalsLive(gestion.montantUniverselleLive);
+    double montantRevenuLives =
+        montantRevenuLive(gestion.montantUniverselleLive);
+    double montantChargeLives =
+        montantChargeLive(gestion.montantUniverselleLive);
     Widget glow = Padding(
       padding: const EdgeInsets.all(1.0),
       child: Container(
@@ -226,23 +233,46 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                     ),
                   ],
                 ),
-                PieChart(
-                  textScaleFactor: 0.0,
-                  maxWidth: MediaQuery.of(context).size.width / 4.3,
-                  maxHeight: MediaQuery.of(context).size.height / 14,
-                  values: [
-                    (montantTotalsLive(gestion.montantUniverselleLive) /
-                            montantRevenuLive(gestion.montantUniverselleLive)) *
-                        100.roundToDouble(),
-                    (montantChargeLive(gestion.montantUniverselleLive) /
-                            montantRevenuLive(gestion.montantUniverselleLive)) *
-                        100.roundToDouble()
-                  ],
-                  labels: ['Marge', 'frais'],
-                  sliceFillColors: [Colors.greenAccent, Colors.red],
-                  animationDuration: Duration(milliseconds: 1500),
-                  showLegend: false,
+                Container(
+                  padding: EdgeInsets.all(8),
+                  width: 80,
+                  height: 80,
+                  child: FlutterPieChart(
+                    pies: [
+                      Pie(
+                          color: Colors.red.shade500,
+                          proportion: montantChargeLives),
+                      Pie(
+                          color: Colors.green.shade500,
+                          proportion: montantRevenuLives),
+                      Pie(
+                          color: montantChargeLives > montantRevenuLives
+                              ? Colors.red.shade900
+                              : Colors.green.shade900,
+                          proportion: montantTotalsLives > 0
+                              ? montantTotalsLives
+                              : -montantTotalsLives),
+                    ],
+                    selected: 2,
+                  ),
                 ),
+                // PieChart(
+                //   textScaleFactor: 0.0,
+                //   maxWidth: MediaQuery.of(context).size.width / 4.3,
+                //   maxHeight: MediaQuery.of(context).size.height / 14,
+                //   values: [
+                //     (montantTotalsLive(gestion.montantUniverselleLive) /
+                //             montantRevenuLive(gestion.montantUniverselleLive)) *
+                //         100.roundToDouble(),
+                //     (montantChargeLive(gestion.montantUniverselleLive) /
+                //             montantRevenuLive(gestion.montantUniverselleLive)) *
+                //         100.roundToDouble()
+                //   ],
+                //   labels: ['Marge', 'frais'],
+                //   sliceFillColors: [Colors.greenAccent, Colors.red],
+                //   animationDuration: Duration(milliseconds: 1500),
+                //   showLegend: false,
+                // ),
               ],
             ),
           ),

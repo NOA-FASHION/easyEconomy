@@ -263,42 +263,11 @@ class CalculMontant {
                             proportion: montantTotalsDouble > 0
                                 ? montantTotalsDouble
                                 : -montantTotalsDouble),
-                        // Pie(
-                        //     color: Colors.red.shade500,
-                        //     proportion: montantChargesDouble >
-                        //             montantRevenuDouble
-                        //         ? (montantChargesDouble + montantTotalsDouble)
-                        //         : montantChargesDouble),
-                        // Pie(
-                        //     color: Colors.green.shade500,
-                        //     proportion: montantChargesDouble <
-                        //             montantRevenuDouble
-                        //         ? montantRevenuDouble
-                        //         : (montantRevenuDouble - montantTotalsDouble)),
-                        // Pie(
-                        //     color: montantChargesDouble > montantRevenuDouble
-                        //         ? Colors.red.shade900
-                        //         : Colors.green.shade900,
-                        //     proportion: montantTotalsDouble > 0
-                        //         ? montantTotalsDouble
-                        //         : -montantTotalsDouble),
+                       
                       ],
                       selected: 2,
                     ),
-                    // child: PieChart(
-                    //   textScaleFactor: 0.0,
-                    //   values: [
-                    //     (montantChargesDouble / montantRevenuDouble) * 100,
-                    //     (montantTotalsDouble / montantRevenuDouble) * 100
-                    //   ],
-                    //   labels: ['Marge', 'frais'],
-                    //   sliceFillColors: [
-                    //     Colors.red,
-                    //     Colors.blue,
-                    //   ],
-                    //   animationDuration: Duration(milliseconds: 1500),
-                    //   showLegend: false,
-                    // ),
+                  
                   ),
                 ],
               ),

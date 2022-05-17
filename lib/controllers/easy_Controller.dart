@@ -833,6 +833,8 @@ class EasyController extends ChangeNotifier {
     return false;
   }
 
+  deleteNombreEcheance() {}
+
   echeancePasseMontanUniveValid(int index) {
     for (var i =
             _listMontantUniverselle[index].descriptionUniverselle.length - 1;
@@ -847,6 +849,14 @@ class EasyController extends ChangeNotifier {
                 .descriptionUniverselle[i]
                 .nombreEcheance -
             1;
+      }
+
+      if (_listMontantUniverselle[index]
+              .descriptionUniverselle[i]
+              .nombreEcheance ==
+          0) {
+        // print("montant echeance ok");
+        removeMontantUniverselle(index: index);
       }
     }
   }
