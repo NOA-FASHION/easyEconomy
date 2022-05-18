@@ -188,7 +188,9 @@ class CalculMontant {
   //   return montants;
   // }
 
-  Widget header(BuildContext context,EasyController variable,
+  Widget header(
+      BuildContext context,
+      EasyController variable,
       bool transactionPasse,
       List<MontantUniverselle> _listMontantUniverselle,
       List<MontantUniverselle> _listMontPrevision,
@@ -245,29 +247,38 @@ class CalculMontant {
                     ),
                   ),
                   !simuOuchargeFixe
-                            ?
-                  InkWell(
-                        // splash color
-                        splashColor: Colors.white,
-                        onTap: () {
-                          variable.writeContent();
-                        }, // button pressed
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(
-                              Icons.share_rounded,
-                              size: 20,
-                              color: Colors.white,
-                            ), // icon
-                            Text(
-                              "partage",
-                              style:
-                                  TextStyle(fontSize: 10, color: Colors.white),
-                            ), // text
-                          ],
+                      ? SizedBox.fromSize(
+                          size: Size(50, 50), // button width and height
+                          child: ClipOval(
+                              child: Material(
+                                  color: Colors.blue,
+                                  child: InkWell(
+                                    // splash color
+                                    splashColor: Colors.white,
+                                    onTap: () {
+                                      variable.writeContent();
+                                    }, // button pressed
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.share_rounded,
+                                          size: 20,
+                                          color: Colors.white,
+                                        ), // icon
+                                        Text(
+                                          "partage",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.white),
+                                        ), // text
+                                      ],
+                                    ),
+                                  ))))
+                      : SizedBox(
+                          width: 1.0,
                         ),
-                      ):SizedBox(width: 1.0,),
                   Container(
                     padding: EdgeInsets.all(8),
                     width: 80,
@@ -287,11 +298,9 @@ class CalculMontant {
                             proportion: montantTotalsDouble > 0
                                 ? montantTotalsDouble
                                 : -montantTotalsDouble),
-                       
                       ],
                       selected: 2,
                     ),
-                  
                   ),
                 ],
               ),

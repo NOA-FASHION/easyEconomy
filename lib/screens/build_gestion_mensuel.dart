@@ -81,16 +81,17 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
         color: Colors.transparent,
         child: MarqueeText(
           text: TextSpan(text: word),
-          style: TextStyle(
-            color: Colors.black,
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
           speed: 30,
         ),
       );
       return longLetter;
     } else {
       word2 = word;
-      longLetter = Text(word2);
+      longLetter = Text(
+        word2,
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+      );
     }
     return longLetter;
   }
@@ -196,16 +197,18 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                             "Revenu",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue),
+                                color: Colors.green.shade500),
                           ),
                           SizedBox(
                             width: 6.0,
                           ),
                           Text(
-                            montantRevenuLive(gestion.montantUniverselleLive)
-                                    .toStringAsFixed(2) +
-                                " €",
-                          ),
+                              montantRevenuLive(gestion.montantUniverselleLive)
+                                      .toStringAsFixed(2) +
+                                  " €",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green.shade500)),
                         ],
                       ),
                     ),
@@ -217,8 +220,11 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                           Text(
                             "Solde",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.greenAccent),
+                              fontWeight: FontWeight.bold,
+                              color: montantChargeLives > montantRevenuLives
+                                  ? Colors.red.shade900
+                                  : Colors.green.shade900,
+                            ),
                           ),
                           SizedBox(
                             width: 18.0,
@@ -227,6 +233,12 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                             montantTotalsLive(gestion.montantUniverselleLive)
                                     .toStringAsFixed(2) +
                                 " €",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: montantChargeLives > montantRevenuLives
+                                  ? Colors.red.shade900
+                                  : Colors.green.shade900,
+                            ),
                           ),
                         ],
                       ),

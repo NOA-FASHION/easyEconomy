@@ -1093,7 +1093,7 @@ class EasyController extends ChangeNotifier {
     String contents = "";
     try {
       final path = await FlutterDocumentPicker.openDocument();
-      final file = File(path);
+      final file = File(path!);
       contents = await file.readAsString();
       return contents;
     } catch (e) {
@@ -1144,8 +1144,6 @@ class EasyController extends ChangeNotifier {
   }
 
   void addMontanUniverselleUpload() async {
-    UploadMontantniversell? uploadFileChallenge;
-
     for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
       uploadFileChallenge!.montantUniverselle.add(
         MontantUniverselle(
@@ -1163,6 +1161,7 @@ class EasyController extends ChangeNotifier {
   }
 
   void writeContent() async {
+    addMontanUniverselleUpload();
     final file = await _localFile;
     // Write the file
     await file.writeAsString(_saveLocalData());

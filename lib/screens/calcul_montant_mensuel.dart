@@ -269,6 +269,7 @@ class CalculMontantMensuel {
       child: Padding(
         padding: const EdgeInsets.only(top: 60.0, right: 10, left: 10),
         child: FlipCard(
+          speed: 400,
           flipOnTouch: true,
           fill: Fill
               .fillBack, // Fill the back side of the card to make in the same size as the front.
@@ -376,7 +377,7 @@ class CalculMontantMensuel {
                             ),
                           ), // icon
                           Text(
-                            "transaction",
+                            "Transactions passées",
                             style: TextStyle(fontSize: 12, color: Colors.black),
                           ), // text
                         ],
