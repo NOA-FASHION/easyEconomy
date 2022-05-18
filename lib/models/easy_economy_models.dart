@@ -157,6 +157,29 @@ class MontantUniverselle {
   }
 }
 
+class UploadMontantniversell {
+  List<MontantUniverselle> montantUniverselle;
+
+  UploadMontantniversell({
+    required this.montantUniverselle,
+  });
+
+  factory UploadMontantniversell.fromJSON(Map<String, dynamic> json) =>
+      UploadMontantniversell(
+        montantUniverselle: List<MontantUniverselle>.from(
+            json["montantUniverselle"]
+                .map((x) => MontantUniverselle.fromJSON(x))
+                .toList()),
+      );
+
+  Map<String, dynamic> toJson() {
+    return {
+      "montantUniverselle":
+          List<dynamic>.from(montantUniverselle.map((x) => x.toJson())),
+    };
+  }
+}
+
 class GestionMensuel {
   String idGestion;
   String nom;

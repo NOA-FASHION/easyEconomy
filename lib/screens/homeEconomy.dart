@@ -102,43 +102,74 @@ class _HomeState extends State<Home> {
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
                               elevation: 15.0,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              child: Row(
                                 children: [
-                                  Lottie.asset("assets/ChargeRevenuFixe.json",
-                                      width: 60),
-                                  // Icon(
-                                  //   Icons.approval,
-                                  //   color: Colors.white,
-                                  //   size: 45,
-                                  // ),
-                                  SizedBox(
-                                    height: 15.0,
-                                  ),
-                                  Card(
-                                    color: Colors.transparent,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    elevation: 25.0,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.orangeAccent),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "Charge et revenu fixe mensuelle"
-                                              .toUpperCase(),
+                                  InkWell(
+                                    // splash color
+                                    splashColor: Colors.white,
+                                    onTap: () {
+                                      variable.uploadChallenge();
+                                      // variable.initialiseConnectionDatabase();
+                                    }, // button pressed
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.upload_sharp,
+                                          size: 20,
+                                          color: Colors.white,
+                                        ), // icon
+                                        Text(
+                                          "Upload",
                                           style: TextStyle(
-                                              fontSize: 12,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
+                                              fontSize: 10,
+                                              color: Colors.white),
+                                        ), // text
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Lottie.asset(
+                                          "assets/ChargeRevenuFixe.json",
+                                          width: 60),
+                                      // Icon(
+                                      //   Icons.approval,
+                                      //   color: Colors.white,
+                                      //   size: 45,
+                                      // ),
+                                      SizedBox(
+                                        height: 15.0,
+                                      ),
+                                      Card(
+                                        color: Colors.transparent,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                        ),
+                                        elevation: 25.0,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.orangeAccent),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "Charge et revenu fixe mensuelle"
+                                                  .toUpperCase(),
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ],
                               )),

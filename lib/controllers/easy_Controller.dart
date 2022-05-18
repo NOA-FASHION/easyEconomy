@@ -1,10 +1,15 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_document_picker/flutter_document_picker.dart';
+
 import 'package:nanoid/nanoid.dart';
+import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
 
 const String keyAcces = "gestionMensuel";
 const String keyAccesMontantUniverselle = "montantUniverselle";
@@ -22,7 +27,9 @@ class EasyController extends ChangeNotifier {
   late SharedPreferences _localDataMontaUniverselle;
   late SharedPreferences _localDataEcononyDays;
   late SharedPreferences _localDataMontantPrevision;
-
+  late String patchData;
+  late String _jsonChallengeList;
+  UploadMontantniversell? uploadFileChallenge;
   EasyController() {
     _initEconomy();
   }
@@ -1080,5 +1087,102 @@ class EasyController extends ChangeNotifier {
     await _saveGestionMensuelle();
     _initEconomy();
     notifyListeners();
+  }
+
+  Future<String> readContent() async {
+    String contents = "";
+    try {
+      final path = await FlutterDocumentPicker.openDocument();
+      final file = File(path);
+      contents = await file.readAsString();
+      return contents;
+    } catch (e) {
+      return 'Error!';
+    }
+  }
+
+  void uploadChallenge() async {
+    UploadMontantniversell uploadFileChallenge;
+    Map<String, dynamic> _jsonDecodeuploadFile;
+    String uploadFile = await readContent();
+    if (uploadFile.isNotEmpty) {
+      _jsonDecodeuploadFile = jsonDecode(uploadFile);
+      uploadFileChallenge =
+          UploadMontantniversell.fromJSON(_jsonDecodeuploadFile);
+
+      for (var i = uploadFileChallenge.montantUniverselle.length - 1;
+          i >= 0;
+          i--) {
+        addMontanUniverselle(
+            id: uploadFileChallenge.montantUniverselle[i].id,
+            montant: uploadFileChallenge.montantUniverselle[i].montant,
+            nom: uploadFileChallenge.montantUniverselle[i].nom,
+            unity: choixDesciptionEnum2(
+                uploadFileChallenge.montantUniverselle[i].unity),
+            icones: uploadFileChallenge.montantUniverselle[i].icones);
+      }
+    }
+  }
+
+  String choixDesciptionEnum2(unity_Montant_universelle json) {
+    String unity = "ChargeFixe";
+
+    if (json == unity_Montant_universelle.ChargeFixe) {
+      unity = "ChargeFixe";
+      return unity;
+    } else if (json == unity_Montant_universelle.RevenuFixe) {
+      unity = "RevenuFixe";
+      return unity;
+    } else if (json == unity_Montant_universelle.depensePonctuelle) {
+      unity = "depensePonctuelle";
+      return unity;
+    } else if (json == unity_Montant_universelle.RevenuPonctuel) {
+      unity = "RevenuPonctuel";
+      return unity;
+    }
+    return unity;
+  }
+
+  void addMontanUniverselleUpload() async {
+    UploadMontantniversell? uploadFileChallenge;
+
+    for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
+      uploadFileChallenge!.montantUniverselle.add(
+        MontantUniverselle(
+            unity: _listMontantUniverselle[i].unity,
+            id: _listMontantUniverselle[i].id,
+            montant: _listMontantUniverselle[i].montant,
+            nom: _listMontantUniverselle[i].nom,
+            descriptionUniverselle:
+                _listMontantUniverselle[i].descriptionUniverselle,
+            achat: _listMontantUniverselle[i].achat,
+            previsionsTotal: _listMontantUniverselle[i].previsionsTotal,
+            icones: _listMontantUniverselle[i].icones),
+      );
+    }
+  }
+
+  void writeContent() async {
+    final file = await _localFile;
+    // Write the file
+    await file.writeAsString(_saveLocalData());
+    Share.shareFiles([patchData], text: "Challenges");
+  }
+
+  String _saveLocalData() {
+    Map<String, dynamic> mapChallengeList = uploadFileChallenge!.toJson();
+    _jsonChallengeList = jsonEncode(mapChallengeList);
+    return _jsonChallengeList;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    patchData = '$path/challengeList.txt';
+    return File('$path/challengeList.txt');
+  }
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
   }
 }

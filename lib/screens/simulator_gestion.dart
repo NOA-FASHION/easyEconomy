@@ -137,6 +137,8 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
               ),
             ],
             headerWidget: CalculMontant().header(
+                context,
+                variable,
                 false,
                 _listMontantUniverselle,
                 _listMontPrevision,

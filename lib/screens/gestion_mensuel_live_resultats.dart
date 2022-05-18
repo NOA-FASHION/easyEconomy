@@ -78,6 +78,8 @@ class _GestionMensuelLiveResultatsState
               ),
             ],
             headerWidget: CalculMontant().header(
+                context,
+                variable,
                 true,
                 _listMontantUniverselle,
                 _listMontantUniverselleLive,

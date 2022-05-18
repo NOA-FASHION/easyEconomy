@@ -45,7 +45,10 @@ dependencies:
   currency_textfield: ^2.0.0
   draggable_home: ^1.0.3
   flutter_pie_chart: ^0.0.1
+  flutter_document_picker: ^4.0.1
+  share: ^2.0.4
   loading_overlay_pro: any
+  path_provider: ^2.0.10
   
 
 

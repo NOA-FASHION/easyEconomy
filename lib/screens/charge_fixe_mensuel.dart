@@ -252,6 +252,8 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
               ),
             ],
             headerWidget: CalculMontant().header(
+                context,
+                variable,
                 false,
                 _listMontantUniverselle,
                 _listMontPrevision,
