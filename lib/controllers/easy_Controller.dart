@@ -21,6 +21,10 @@ List<MontantUniverselle> _listMontantPrevision = [];
 late EconomyDays economyDays = EconomyDays(date: '');
 
 class EasyController extends ChangeNotifier {
+  Future<Null> delay(int milliseconds) {
+    return new Future.delayed(new Duration(milliseconds: milliseconds));
+  }
+
   late double soldePrevisionel;
   late DateTime today = new DateTime.now();
   late SharedPreferences _localData;
@@ -29,7 +33,8 @@ class EasyController extends ChangeNotifier {
   late SharedPreferences _localDataMontantPrevision;
   late String patchData;
   late String _jsonChallengeList;
-  UploadMontantniversell? uploadFileChallenge;
+  UploadMontantniversell uploadFileChallenge =
+      UploadMontantniversell(montantUniverselle: []);
   EasyController() {
     _initEconomy();
   }
@@ -1102,7 +1107,8 @@ class EasyController extends ChangeNotifier {
   }
 
   void uploadChallenge() async {
-    UploadMontantniversell uploadFileChallenge;
+    UploadMontantniversell uploadFileChallenge =
+        UploadMontantniversell(montantUniverselle: []);
     Map<String, dynamic> _jsonDecodeuploadFile;
     String uploadFile = await readContent();
     if (uploadFile.isNotEmpty) {
@@ -1144,8 +1150,10 @@ class EasyController extends ChangeNotifier {
   }
 
   void addMontanUniverselleUpload() async {
+    // uploadFileChallenge.montantUniverselle = _listMontantUniverselle;
+    // await delay(1500);
     for (var i = _listMontantUniverselle.length - 1; i >= 0; i--) {
-      uploadFileChallenge!.montantUniverselle.add(
+      uploadFileChallenge.montantUniverselle.add(
         MontantUniverselle(
             unity: _listMontantUniverselle[i].unity,
             id: _listMontantUniverselle[i].id,
@@ -1161,15 +1169,16 @@ class EasyController extends ChangeNotifier {
   }
 
   void writeContent() async {
-    addMontanUniverselleUpload();
     final file = await _localFile;
     // Write the file
+    addMontanUniverselleUpload();
+
     await file.writeAsString(_saveLocalData());
     Share.shareFiles([patchData], text: "Challenges");
   }
 
   String _saveLocalData() {
-    Map<String, dynamic> mapChallengeList = uploadFileChallenge!.toJson();
+    Map<String, dynamic>? mapChallengeList = uploadFileChallenge.toJson();
     _jsonChallengeList = jsonEncode(mapChallengeList);
     return _jsonChallengeList;
   }
