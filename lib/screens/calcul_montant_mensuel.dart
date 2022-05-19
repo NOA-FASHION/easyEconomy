@@ -514,80 +514,75 @@ class CalculMontantMensuel {
                     Container(
                       width: MediaQuery.of(context).size.width / 3.2,
                       height: 150,
-                      child: Card(
+                      child: Container(
+                        decoration: BoxDecoration(
                           color: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          elevation: 25.0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white70),
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  // icon
-                                  Padding(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              // icon
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Estimation finale ",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: baterry
+                                          ? Colors.green.shade900
+                                          : Colors.red.shade900,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              Card(
+                                color: Colors.orange,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                elevation: 25.0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      "Estimation finale ",
+                                      soldeLive(montantTotals,
+                                                  montantTotalsLive)
+                                              .toStringAsFixed(2) +
+                                          " €",
                                       style: TextStyle(
                                           fontSize: 13,
-                                          color: Colors.black,
+                                          color: baterry
+                                              ? Colors.green.shade900
+                                              : Colors.red.shade900,
                                           fontWeight: FontWeight.bold),
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
-                                  Card(
-                                    color: Colors.orange,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    elevation: 25.0,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          soldeLive(montantTotals,
-                                                      montantTotalsLive)
-                                                  .toStringAsFixed(2) +
-                                              " €",
-                                          style: TextStyle(
-                                              fontSize: 13,
-                                              color: baterry
-                                                  ? Colors.green.shade900
-                                                  : Colors.red.shade900,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 13,
-                                  ),
-                                  Text(
-                                    "Solde",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        color: baterry
-                                            ? Colors.green.shade900
-                                            : Colors.red.shade900,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                          )),
+                              SizedBox(
+                                height: 13,
+                              ),
+                              Text(
+                                "Solde",
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    color: baterry
+                                        ? Colors.green.shade900
+                                        : Colors.red.shade900,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -675,15 +670,15 @@ class CalculMontantMensuel {
     if (titre == "Prévision  solde" ||
         titre == 'Solde live' ||
         titre1 == 'Validé ') {
-      montant = Colors.blue.shade900;
+      montant = Colors.blue.shade500;
     } else if (titre == "Prévisions revenus" ||
         titre == 'revenus restants' ||
         titre1 == 'Revenu live') {
-      montant = Colors.green.shade900;
+      montant = Colors.green.shade500;
     } else if (titre == "Prévisons charges" ||
         titre == "Restantes" ||
         titre1 == "Charge Live") {
-      montant = Colors.red.shade900;
+      montant = Colors.red.shade500;
     }
 
     return montant;
@@ -820,16 +815,16 @@ class CalculMontantMensuel {
   Color colorsDescription(String description) {
     Color colors = Colors.black;
     if (description == "unity_Montant_universelle.ChargeFixe") {
-      colors = Colors.red.shade900;
+      colors = Colors.red.shade500;
       return colors;
     } else if (description == "unity_Montant_universelle.depensePonctuelle") {
-      colors = Colors.red.shade900;
+      colors = Colors.red.shade500;
       return colors;
     } else if (description == "unity_Montant_universelle.RevenuFixe") {
-      colors = Colors.green.shade900;
+      colors = Colors.green.shade500;
       return colors;
     } else if (description == "unity_Montant_universelle.RevenuPonctuel") {
-      colors = Colors.green.shade900;
+      colors = Colors.green.shade500;
       return colors;
     }
     return colors;

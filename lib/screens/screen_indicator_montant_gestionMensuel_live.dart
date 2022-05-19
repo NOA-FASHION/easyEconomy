@@ -241,82 +241,75 @@ class _ScreenIndicatorMontantGestionLiveState
       margin: EdgeInsets.only(top: 1),
       width: MediaQuery.of(context).size.width / 3.2,
       height: 150,
-      child: Card(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.white70),
           color: Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          elevation: 25.0,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.white70),
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(
-                    widget.icones,
-                    size: 30,
-                    color: choixColors(),
-                  ), // icon
-                  // Padding(
-                  //   padding: const EdgeInsets.all(4.0),
-                  //   child: Text(
-                  //     widget.titre1,
-                  //     style: TextStyle(
-                  //         fontSize: 13,
-                  //         color: choixColors(),
-                  //         fontWeight: FontWeight.bold),
-                  //     textAlign: TextAlign.center,
-                  //   ),
-                  // ),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    elevation: 5.0,
-                    color: choixColors(),
-                    child: Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: Text(
-                        widget.titre1.toUpperCase(),
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                widget.icones,
+                size: 30,
+                color: choixColors(),
+              ), // icon
+              // Padding(
+              //   padding: const EdgeInsets.all(4.0),
+              //   child: Text(
+              //     widget.titre1,
+              //     style: TextStyle(
+              //         fontSize: 13,
+              //         color: choixColors(),
+              //         fontWeight: FontWeight.bold),
+              //     textAlign: TextAlign.center,
+              //   ),
+              // ),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                elevation: 5.0,
+                color: choixColors(),
+                child: Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Text(
+                    widget.titre1.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Card(
-                    color: Colors.orange,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    elevation: 25.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          choixMontant() + " €",
-                          style: TextStyle(
-                              fontSize: 13,
-                              color: choixColors(),
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ), // text
-                ],
+                ),
               ),
-            ),
-          )),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                elevation: 25.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      choixMontant() + " €",
+                      style: TextStyle(
+                          fontSize: 13,
+                          color: choixColors(),
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ), // text
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

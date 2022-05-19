@@ -49,6 +49,11 @@ dependencies:
   share: ^2.0.4
   loading_overlay_pro: any
   path_provider: ^2.0.10
+  google_fonts: ^2.3.2
+  introduction_screen: ^3.0.2
+  avatar_glow: ^2.0.2
+  in_app_purchase: ^3.0.4
+  vertical_card_pager: ^1.5.0
   # scaffold_gradient_background: ^1.0.3+1
 
 
