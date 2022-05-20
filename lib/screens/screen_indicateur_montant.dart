@@ -164,18 +164,7 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
                     widget.icones,
                     size: 30,
                     color: choixColors(),
-                  ), // icon
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: Text(
-                  //     widget.titre,
-                  //     style: TextStyle(
-                  //         fontSize: 13,
-                  //         color: choixColors(),
-                  //         fontWeight: FontWeight.bold),
-                  //     textAlign: TextAlign.center,
-                  //   ),
-                  // ),
+                  ),
                   Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),

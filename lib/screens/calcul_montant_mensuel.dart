@@ -330,22 +330,6 @@ class CalculMontantMensuel {
                             ],
                             selected: 2,
                           ),
-                          // child: PieChart(
-                          //   textScaleFactor: 0.0,
-                          //   values: [
-                          //     (montantCharge / montantRevenu) * 100,
-                          //     (montantTotals / montantRevenu) * 100
-                          //   ],
-                          //   labels: ['Marge', 'frais'],
-                          //   sliceFillColors: [
-                          //     Colors.red,
-                          //     montantCharge > montantRevenu
-                          //         ? Colors.red
-                          //         : Colors.blue,
-                          //   ],
-                          //   animationDuration: Duration(milliseconds: 1500),
-                          //   showLegend: false,
-                          // ),
                         ),
                       ],
                     ),
@@ -494,28 +478,16 @@ class CalculMontantMensuel {
                             ],
                             selected: 2,
                           ),
-                          // child: PieChart(
-                          //   textScaleFactor: 0.0,
-                          //   values: [
-                          //     (montantChargeLive / montantRevenuLive) * 100,
-                          //     (montantTotalsLive / montantRevenuLive) * 100
-                          //   ],
-                          //   labels: ['Marge', 'frais'],
-                          //   sliceFillColors: [
-                          //     Colors.red,
-                          //     Colors.blue,
-                          //   ],
-                          //   animationDuration: Duration(milliseconds: 1500),
-                          //   showLegend: false,
-                          // ),
                         ),
                       ],
                     ),
                     Container(
+                      margin: EdgeInsets.only(top: 1),
                       width: MediaQuery.of(context).size.width / 3.2,
                       height: 150,
                       child: Container(
                         decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white70),
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -523,18 +495,53 @@ class CalculMontantMensuel {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              // icon
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Estimation finale ",
-                                  style: TextStyle(
-                                      fontSize: 13,
-                                      color: baterry
-                                          ? Colors.green.shade900
-                                          : Colors.red.shade900,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
+                              Card(
+                                color: Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 25.0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white),
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Estimation".toUpperCase(),
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      )),
+                                ),
+                              ),
+                              Icon(
+                                Icons.calculate,
+                                size: 30,
+                                color: baterry
+                                    ? Colors.green.shade900
+                                    : Colors.red.shade900,
+                              ),
+                              Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5.0,
+                                color: baterry
+                                    ? Colors.green.shade900
+                                    : Colors.red.shade900,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Text(
+                                    "Solde",
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
                               Card(
@@ -545,9 +552,8 @@ class CalculMontantMensuel {
                                 elevation: 25.0,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
@@ -565,25 +571,85 @@ class CalculMontantMensuel {
                                     ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 13,
-                              ),
-                              Text(
-                                "Solde",
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: baterry
-                                        ? Colors.green.shade900
-                                        : Colors.red.shade900,
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              ),
+                              ), // text
                             ],
                           ),
                         ),
                       ),
                     ),
+                    // Container(
+                    //   width: MediaQuery.of(context).size.width / 3.2,
+                    //   height: 150,
+                    //   child: Container(
+                    //     decoration: BoxDecoration(
+                    //       color: Colors.transparent,
+                    //       borderRadius: BorderRadius.circular(10),
+                    //     ),
+                    //     child: Center(
+                    //       child: Column(
+                    //         mainAxisAlignment: MainAxisAlignment.center,
+                    //         children: <Widget>[
+                    //           // icon
+                    //           Padding(
+                    //             padding: const EdgeInsets.all(8.0),
+                    //             child: Text(
+                    //               "Estimation finale ",
+                    //               style: TextStyle(
+                    //                   fontSize: 13,
+                    //                   color: baterry
+                    //                       ? Colors.green.shade900
+                    //                       : Colors.red.shade900,
+                    //                   fontWeight: FontWeight.bold),
+                    //               textAlign: TextAlign.center,
+                    //             ),
+                    //           ),
+                    //           Card(
+                    //             color: Colors.orange,
+                    //             shape: RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(10.0),
+                    //             ),
+                    //             elevation: 25.0,
+                    //             child: Container(
+                    //               decoration: BoxDecoration(
+                    //                 color: Colors.white,
+                    //                 borderRadius: BorderRadius.circular(10),
+                    //               ),
+                    //               child: Padding(
+                    //                 padding: const EdgeInsets.all(8.0),
+                    //                 child: Text(
+                    //                   soldeLive(montantTotals,
+                    //                               montantTotalsLive)
+                    //                           .toStringAsFixed(2) +
+                    //                       " €",
+                    //                   style: TextStyle(
+                    //                       fontSize: 13,
+                    //                       color: baterry
+                    //                           ? Colors.green.shade900
+                    //                           : Colors.red.shade900,
+                    //                       fontWeight: FontWeight.bold),
+                    //                   textAlign: TextAlign.center,
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           SizedBox(
+                    //             height: 13,
+                    //           ),
+                    //           Text(
+                    //             "Solde",
+                    //             style: TextStyle(
+                    //                 fontSize: 13,
+                    //                 color: baterry
+                    //                     ? Colors.green.shade900
+                    //                     : Colors.red.shade900,
+                    //                 fontWeight: FontWeight.bold),
+                    //             textAlign: TextAlign.center,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
                 Row(
