@@ -225,3 +225,39 @@ class GestionMensuel {
     };
   }
 }
+
+class Challengeyesterday {
+  String date;
+  String nbChallengeEnCours;
+  String nbTacheEnCours;
+  String commentaire;
+  String nbchallengeVallide;
+  String nbtacheVallide;
+
+  Challengeyesterday(
+      {required this.date,
+      required this.nbChallengeEnCours,
+      required this.commentaire,
+      required this.nbchallengeVallide,
+      required this.nbTacheEnCours,
+      required this.nbtacheVallide});
+
+  Challengeyesterday.fromJSON(Map<String, dynamic> json)
+      : date = json['date'],
+        nbChallengeEnCours = json['nbChallengeEnCours'],
+        nbTacheEnCours = json['nbTacheEnCours'],
+        nbchallengeVallide = json['nbchallengeVallide'],
+        nbtacheVallide = json['nbtacheVallide'],
+        commentaire = json['commentaire'];
+
+  Map<String, dynamic> toJson() {
+    return {
+      "date": date,
+      "nbchallengeVallide": nbchallengeVallide,
+      "nbTacheEnCours": nbTacheEnCours,
+      "nbtacheVallide": nbtacheVallide,
+      "nbChallengeEnCours": nbChallengeEnCours,
+      "commentaire": commentaire
+    };
+  }
+}

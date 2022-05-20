@@ -19,12 +19,14 @@ List<GestionMensuel> _listGestionMensuel = [];
 List<MontantUniverselle> _listMontantUniverselle = [];
 List<MontantUniverselle> _listMontantPrevision = [];
 late EconomyDays economyDays = EconomyDays(date: '');
+const String keyAccesChallengeYesterday = "ChallengeyesterDay";
 
 class EasyController extends ChangeNotifier {
   Future<Null> delay(int milliseconds) {
     return new Future.delayed(new Duration(milliseconds: milliseconds));
   }
 
+  late SharedPreferences _localDataChallengeyesterday;
   late double soldePrevisionel;
   late DateTime today = new DateTime.now();
   late SharedPreferences _localData;
@@ -35,6 +37,14 @@ class EasyController extends ChangeNotifier {
   late String _jsonChallengeList;
   UploadMontantniversell uploadFileChallenge =
       UploadMontantniversell(montantUniverselle: []);
+  Challengeyesterday challengeyesterday = Challengeyesterday(
+      commentaire: '',
+      date: '',
+      nbChallengeEnCours: '',
+      nbchallengeVallide: '',
+      nbTacheEnCours: '',
+      nbtacheVallide: '');
+
   EasyController() {
     _initEconomy();
   }
@@ -83,6 +93,7 @@ class EasyController extends ChangeNotifier {
           .map((challenge) => MontantUniverselle.fromJSON(challenge))
           .toList();
     }
+    _initChallengeListStartChallenge();
     _initEconomyDays();
     // starteconomyDays();
     notifyListeners();
@@ -1192,5 +1203,118 @@ class EasyController extends ChangeNotifier {
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
+  }
+
+  Challengeyesterday getChallengeyesterday() {
+    return challengeyesterday;
+  }
+
+  Future<bool> _saveChallenyesterday() async {
+    if (challengeyesterday != null) {
+      print('save challengeyesterday ok');
+      Map mapyesterday = challengeyesterday.toJson();
+      String _jsonyesterday = jsonEncode(mapyesterday);
+      return _localData.setString(keyAccesChallengeYesterday, _jsonyesterday);
+    }
+
+    return false;
+  }
+
+  void switchTrueIntro(bool active) async {
+    if (active) {
+      challengeyesterday.nbchallengeVallide = "true";
+    } else {
+      challengeyesterday.nbchallengeVallide = "false";
+    }
+
+    await _saveChallenyesterday();
+    // _initChallengeListStartChallenge();
+  }
+
+  void initChallengeyesterday() async {
+    // getBoolActivation();
+    // await modifDtabaseFirebase();
+    DateTime today = new DateTime.now();
+    DateTime lastDay =
+        DateFormat('EEEE, d MMM, yyyy').parseStrict(challengeyesterday.date);
+
+    if (lastDay.day <= (24)) {
+      if ((today.day >= (lastDay.day + 7)) || (today.month > lastDay.month)) {
+        if (challengeyesterday.nbChallengeEnCours == "true") {
+          print('start init yestederday');
+          challengeyesterday.nbChallengeEnCours = "false";
+          challengeyesterday.nbchallengeVallide = "false";
+          await _saveChallenyesterday();
+          _initChallengeListStartChallenge();
+        }
+      }
+    } else {
+      if (today.day <= 24) {
+        if (((30 - lastDay.day) + today.day >= 7) ||
+            (today.month > lastDay.month + 1)) {
+          if (challengeyesterday.nbChallengeEnCours == "true") {
+            print('start init yestederday');
+            challengeyesterday.nbChallengeEnCours = "false";
+            challengeyesterday.nbchallengeVallide = "false";
+            await _saveChallenyesterday();
+            _initChallengeListStartChallenge();
+          }
+        }
+      }
+    }
+  }
+
+  void startChallenyesterday() async {
+    DateTime today = new DateTime.now();
+    if (challengeyesterday.nbTacheEnCours != "false") {
+      // print('start challenge yestederday');
+      challengeyesterday.date = DateFormat('EEEE, d MMM, yyyy').format(today);
+      challengeyesterday.nbChallengeEnCours = "true";
+      challengeyesterday.nbTacheEnCours = "false";
+      challengeyesterday.commentaire = "true";
+      challengeyesterday.nbchallengeVallide = "true";
+      challengeyesterday.nbtacheVallide = "";
+      // await initialiseConnectionDatabase();
+      await _saveChallenyesterday();
+      _initChallengeListStartChallenge();
+    }
+  }
+
+  void _initChallengeListStartChallenge() async {
+    // _localDataChallengeDay = await SharedPreferences.getInstance();
+    // Map _jsonDecodeListChallenge;
+    // final String _tempListChallenge =
+    //     _localDataChallengeDay.getString(keyAccesChallengeDay);
+    // if (_tempListChallenge != null) {
+    //   _jsonDecodeListChallenge = jsonDecode(_tempListChallenge);
+    //   challengeDays = ChallengeDays.fromJSON(_jsonDecodeListChallenge);
+    // }
+    // challengeDays.nbChallengeEnCours = (_challengeList.length).toString();
+
+    _localDataChallengeyesterday = await SharedPreferences.getInstance();
+    Map<String, dynamic> _jsonDecodeListchallengeyesterday;
+    final String? _tempListchallengeyesterday =
+        _localDataChallengeyesterday.getString(keyAccesChallengeYesterday);
+    if (_tempListchallengeyesterday != null) {
+      _jsonDecodeListchallengeyesterday =
+          jsonDecode(_tempListchallengeyesterday);
+      challengeyesterday =
+          Challengeyesterday.fromJSON(_jsonDecodeListchallengeyesterday);
+    }
+
+    startChallenyesterday();
+    initChallengeyesterday();
+
+    notifyListeners();
+  }
+
+   switchIntro(String switchBoll) async {
+    if (switchBoll == "true" || switchBoll == "") {
+      challengeyesterday.commentaire = "false";
+    } else {
+      challengeyesterday.commentaire = "true";
+    }
+    await _saveChallenyesterday();
+    _initChallengeListStartChallenge();
   }
 }

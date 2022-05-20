@@ -1,5 +1,10 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
+import 'package:easyeconomy/screens/etape_deux.dart';
+import 'package:easyeconomy/screens/etape_quatre.dart';
+import 'package:easyeconomy/screens/etape_trois.dart';
+import 'package:easyeconomy/screens/etape_une.dart';
 import 'package:easyeconomy/screens/homeEconomy.dart';
+import 'package:easyeconomy/screens/liste_de_course.dart';
 import 'package:easyeconomy/screens/switch.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +21,8 @@ class HomeScreen extends StatelessWidget {
         context,
         PageTransition(
             type: PageTransitionType.bottomToTop,
-            child: ChangeNotifierProvider.value(
-                value: variable,
-                child: Home(
-               
-                ))));
+            child:
+                ChangeNotifierProvider.value(value: variable, child: Home())));
   }
 
   Widget _buildFullscreenImage() {
@@ -75,10 +77,7 @@ class HomeScreen extends StatelessWidget {
                   PageTransition(
                       type: PageTransitionType.bottomToTop,
                       child: ChangeNotifierProvider.value(
-                          value: variable,
-                          child: Home(
-                            
-                          ))));
+                          value: variable, child: Home())));
             },
           ),
         ),
@@ -86,7 +85,7 @@ class HomeScreen extends StatelessWidget {
           PageViewModel(
             useScrollView: true,
             title: "Les meilleures pratiques".toUpperCase(),
-            bodyWidget: ListeTacheQuotidienne(),
+            bodyWidget: EtapeUne(),
             decoration: pageDecoration.copyWith(
               titlePadding: EdgeInsets.only(top: 22),
               titleTextStyle: GoogleFonts.playfairDisplay(
@@ -105,7 +104,7 @@ class HomeScreen extends StatelessWidget {
           PageViewModel(
             useScrollView: true,
             title: "Les meilleures pratiques".toUpperCase(),
-            bodyWidget: FaireGateauxAuChaocolat(),
+            bodyWidget: EtapeDeux(),
             decoration: pageDecoration.copyWith(
               titlePadding: EdgeInsets.only(top: 22),
               titleTextStyle: GoogleFonts.playfairDisplay(
@@ -124,7 +123,7 @@ class HomeScreen extends StatelessWidget {
           PageViewModel(
             useScrollView: true,
             title: "Les meilleures pratiques".toUpperCase(),
-            bodyWidget: Formations(),
+            bodyWidget: EtapeTrois(),
             decoration: pageDecoration.copyWith(
               titlePadding: EdgeInsets.only(top: 22),
               titleTextStyle: GoogleFonts.playfairDisplay(
@@ -143,7 +142,7 @@ class HomeScreen extends StatelessWidget {
           PageViewModel(
             useScrollView: true,
             title: "Les meilleures pratiques".toUpperCase(),
-            bodyWidget: ListeDeCourses(),
+            bodyWidget: EtapeQuatre(),
             decoration: pageDecoration.copyWith(
               titlePadding: EdgeInsets.only(top: 22),
               titleTextStyle: GoogleFonts.playfairDisplay(
@@ -162,7 +161,7 @@ class HomeScreen extends StatelessWidget {
           PageViewModel(
             useScrollView: true,
             title: "Les meilleures pratiques".toUpperCase(),
-            bodyWidget: TravauxDeRenovation(),
+            bodyWidget: ListDeCourse(),
             decoration: pageDecoration.copyWith(
               titlePadding: EdgeInsets.only(top: 22),
               titleTextStyle: GoogleFonts.playfairDisplay(
@@ -178,63 +177,63 @@ class HomeScreen extends StatelessWidget {
             // image: _buildImage('logo.png', 100),
             reverse: true,
           ),
-          PageViewModel(
-            useScrollView: true,
-            title: "Les meilleures pratiques".toUpperCase(),
-            bodyWidget: ListeDeMusics(),
-            decoration: pageDecoration.copyWith(
-              titlePadding: EdgeInsets.only(top: 22),
-              titleTextStyle: GoogleFonts.playfairDisplay(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-              pageColor: Colors.transparent,
-              bodyFlex: 2,
-              imageFlex: 4,
-              bodyAlignment: Alignment.bottomCenter,
-              imageAlignment: Alignment.topCenter,
-            ),
-            // image: _buildImage('logo.png', 100),
-            reverse: true,
-          ),
-          PageViewModel(
-            useScrollView: true,
-            title: "Les meilleures pratiques".toUpperCase(),
-            bodyWidget: RestaurantList(),
-            decoration: pageDecoration.copyWith(
-              titlePadding: EdgeInsets.only(top: 22),
-              titleTextStyle: GoogleFonts.playfairDisplay(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-              pageColor: Colors.transparent,
-              bodyFlex: 2,
-              imageFlex: 4,
-              bodyAlignment: Alignment.bottomCenter,
-              imageAlignment: Alignment.topCenter,
-            ),
-            // image: _buildImage('logo.png', 100),
-            reverse: true,
-          ),
-          PageViewModel(
-            useScrollView: true,
-            title: "Les meilleures pratiques".toUpperCase(),
-            bodyWidget: ShareChallenge(),
-            decoration: pageDecoration.copyWith(
-              titlePadding: EdgeInsets.only(top: 22),
-              titleTextStyle: GoogleFonts.playfairDisplay(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-              pageColor: Colors.transparent,
-              bodyFlex: 2,
-              imageFlex: 4,
-              bodyAlignment: Alignment.bottomCenter,
-              imageAlignment: Alignment.topCenter,
-            ),
-            // image: _buildImage('logo.png', 100),
-            reverse: true,
-          ),
+          // PageViewModel(
+          //   useScrollView: true,
+          //   title: "Les meilleures pratiques".toUpperCase(),
+          //   bodyWidget: ListeDeMusics(),
+          //   decoration: pageDecoration.copyWith(
+          //     titlePadding: EdgeInsets.only(top: 22),
+          //     titleTextStyle: GoogleFonts.playfairDisplay(
+          //       fontWeight: FontWeight.bold,
+          //       fontSize: 20,
+          //     ),
+          //     pageColor: Colors.transparent,
+          //     bodyFlex: 2,
+          //     imageFlex: 4,
+          //     bodyAlignment: Alignment.bottomCenter,
+          //     imageAlignment: Alignment.topCenter,
+          //   ),
+          //   // image: _buildImage('logo.png', 100),
+          //   reverse: true,
+          // ),
+          // PageViewModel(
+          //   useScrollView: true,
+          //   title: "Les meilleures pratiques".toUpperCase(),
+          //   bodyWidget: RestaurantList(),
+          //   decoration: pageDecoration.copyWith(
+          //     titlePadding: EdgeInsets.only(top: 22),
+          //     titleTextStyle: GoogleFonts.playfairDisplay(
+          //       fontWeight: FontWeight.bold,
+          //       fontSize: 20,
+          //     ),
+          //     pageColor: Colors.transparent,
+          //     bodyFlex: 2,
+          //     imageFlex: 4,
+          //     bodyAlignment: Alignment.bottomCenter,
+          //     imageAlignment: Alignment.topCenter,
+          //   ),
+          //   // image: _buildImage('logo.png', 100),
+          //   reverse: true,
+          // ),
+          // PageViewModel(
+          //   useScrollView: true,
+          //   title: "Les meilleures pratiques".toUpperCase(),
+          //   bodyWidget: ShareChallenge(),
+          //   decoration: pageDecoration.copyWith(
+          //     titlePadding: EdgeInsets.only(top: 22),
+          //     titleTextStyle: GoogleFonts.playfairDisplay(
+          //       fontWeight: FontWeight.bold,
+          //       fontSize: 20,
+          //     ),
+          //     pageColor: Colors.transparent,
+          //     bodyFlex: 2,
+          //     imageFlex: 4,
+          //     bodyAlignment: Alignment.bottomCenter,
+          //     imageAlignment: Alignment.topCenter,
+          //   ),
+          //   // image: _buildImage('logo.png', 100),
+          //   reverse: true,
+          // ),
         ],
         onDone: () {
           // _onIntroEnd(context, variable);
@@ -243,13 +242,7 @@ class HomeScreen extends StatelessWidget {
               PageTransition(
                   type: PageTransitionType.bottomToTop,
                   child: ChangeNotifierProvider.value(
-                      value: variable,
-                      child: Home(
-                        id: "",
-                        idChallenge1: '',
-                        namechallenge: '',
-                        returnRaccourci: false,
-                      ))));
+                      value: variable, child: Home())));
         },
         //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
         showSkipButton: false,

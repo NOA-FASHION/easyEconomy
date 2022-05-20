@@ -1,4 +1,5 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
+import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
