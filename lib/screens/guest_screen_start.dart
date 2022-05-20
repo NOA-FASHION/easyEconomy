@@ -29,9 +29,9 @@ class _GuestScreenStart1State extends State<GuestScreenStart1> {
     // test = variable.getChallengeyesterday().nbtacheVallide;
     // modifDtabaseFirebase().then((value) => variable.logOut);
     bool activationManuel = false;
-    String switchIntro1 = variable.getChallengeyesterday().nbchallengeVallide;
+    String switchActiv= variable.getChallengeyesterday().active;
     return Container(
-      child: (switchIntro1 == "false" && activationManuel == false)
+      child: (switchActiv == "false" && activationManuel == false)
           ? ChangeNotifierProvider.value(value: variable, child: PurchaseApp())
           : ChangeNotifierProvider.value(value: variable, child: GuestScreen()),
     );

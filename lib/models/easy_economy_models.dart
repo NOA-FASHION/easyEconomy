@@ -226,38 +226,38 @@ class GestionMensuel {
   }
 }
 
-class Challengeyesterday {
+class ActivSwitch {
   String date;
-  String nbChallengeEnCours;
+  String firstActive;
   String nbTacheEnCours;
-  String commentaire;
-  String nbchallengeVallide;
+  String switchIintro;
+  String active;
   String nbtacheVallide;
 
-  Challengeyesterday(
+  ActivSwitch(
       {required this.date,
-      required this.nbChallengeEnCours,
-      required this.commentaire,
-      required this.nbchallengeVallide,
+      required this.firstActive,
+      required this.switchIintro,
+      required this.active,
       required this.nbTacheEnCours,
       required this.nbtacheVallide});
 
-  Challengeyesterday.fromJSON(Map<String, dynamic> json)
+  ActivSwitch.fromJSON(Map<String, dynamic> json)
       : date = json['date'],
-        nbChallengeEnCours = json['nbChallengeEnCours'],
+        firstActive = json['firstActive'],
         nbTacheEnCours = json['nbTacheEnCours'],
-        nbchallengeVallide = json['nbchallengeVallide'],
+        active = json['active'],
         nbtacheVallide = json['nbtacheVallide'],
-        commentaire = json['commentaire'];
+        switchIintro = json['switchIintro'];
 
   Map<String, dynamic> toJson() {
     return {
       "date": date,
-      "nbchallengeVallide": nbchallengeVallide,
+      "active": active,
       "nbTacheEnCours": nbTacheEnCours,
       "nbtacheVallide": nbtacheVallide,
-      "nbChallengeEnCours": nbChallengeEnCours,
-      "commentaire": commentaire
+      "firstActive": firstActive,
+      "switchIintro": switchIintro
     };
   }
 }
