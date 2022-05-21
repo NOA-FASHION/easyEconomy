@@ -16,7 +16,7 @@ class _GuestScreenState extends State<GuestScreen> {
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
-    String switchIntro = variable.getChallengeyesterday().switchIintro;
+    String? switchIntro = variable.getChallengeyesterday().switchIintro;
 
     return Container(
       child: switchIntro == "true" || switchIntro == ""

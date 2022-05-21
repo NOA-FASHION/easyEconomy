@@ -274,7 +274,7 @@ class _PurchaseAppState extends State<PurchaseApp> {
     // final _auth = FirebaseAuth.instance;
     // _auth.signInAnonymously();
     EasyController variable = Provider.of<EasyController>(context);
-    String documentId = variable.getChallengeyesterday().nbtacheVallide;
+    // String? documentId = variable.getChallengeyesterday().nbtacheVallide;
     return Scaffold(
       backgroundColor: Colors.purple,
       body: LoadingOverlayPro(

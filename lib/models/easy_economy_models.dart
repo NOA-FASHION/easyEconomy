@@ -228,11 +228,11 @@ class GestionMensuel {
 
 class ActivSwitch {
   String date;
-  String firstActive;
-  String nbTacheEnCours;
-  String switchIintro;
-  String active;
-  String nbtacheVallide;
+  String? firstActive;
+  String? nbTacheEnCours;
+  String? switchIintro;
+  String? active;
+  String? nbtacheVallide;
 
   ActivSwitch(
       {required this.date,
