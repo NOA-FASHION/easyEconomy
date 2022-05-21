@@ -54,6 +54,7 @@ dependencies:
   avatar_glow: ^2.0.2
   in_app_purchase: ^3.0.4
   vertical_card_pager: ^1.5.0
+  circle_nav_bar: ^1.0.2
   # scaffold_gradient_background: ^1.0.3+1
 
 

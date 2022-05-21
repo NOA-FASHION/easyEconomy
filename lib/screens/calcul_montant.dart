@@ -2,17 +2,23 @@ import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
+
 import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 import 'package:marquee_text/marquee_text.dart';
 
 import 'package:provider/provider.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class CalculMontant {
   String valueText3 = '';
   String valueText4 = '';
   String unityPattern = "unity_Montant_universelle.";
+  Future<Null> delay(int milliseconds) {
+    return new Future.delayed(new Duration(milliseconds: milliseconds));
+  }
 
   double montantTotals(List<MontantUniverselle> listMontantUniverselle,
       List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
@@ -247,37 +253,119 @@ class CalculMontant {
                     ),
                   ),
                   !simuOuchargeFixe
-                      ? SizedBox.fromSize(
-                          size: Size(50, 50), // button width and height
-                          child: ClipOval(
-                              child: Material(
-                                  color: Colors.blue,
-                                  child: InkWell(
-                                    // splash color
-                                    splashColor: Colors.white,
-                                    onTap: () {
-                                      variable.writeContent();
-                                    }, // button pressed
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(
-                                          Icons.share_rounded,
-                                          size: 20,
-                                          color: Colors.white,
-                                        ), // icon
-                                        Text(
-                                          "partage",
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white),
-                                        ), // text
-                                      ],
-                                    ),
-                                  ))))
-                      : SizedBox(
-                          width: 1.0,
+                      ? Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox.fromSize(
+                                  size: Size(50, 50), // button width and height
+                                  child: ClipOval(
+                                      child: Material(
+                                          color: Colors.blue,
+                                          child: InkWell(
+                                            // splash color
+                                            splashColor: Colors.white,
+                                            onTap: () {
+                                              variable.uploadChallenge();
+                                            },
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons.upload_sharp,
+                                                  size: 20,
+                                                  color: Colors.white,
+                                                ), // icon
+                                                Text(
+                                                  "Upload",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: Colors.white),
+                                                ), // text
+                                              ],
+                                            ),
+                                          )))),
+                            ),
+                            SizedBox.fromSize(
+                                size: Size(50, 50), // button width and height
+                                child: ClipOval(
+                                    child: Material(
+                                        color: Colors.blue,
+                                        child: InkWell(
+                                          // splash color
+                                          splashColor: Colors.white,
+                                          onTap: () {
+                                            variable.writeContent();
+                                          }, // button pressed
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.share_rounded,
+                                                size: 20,
+                                                color: Colors.white,
+                                              ), // icon
+                                              Text(
+                                                "partage",
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.white),
+                                              ), // text
+                                            ],
+                                          ),
+                                        )))),
+                          ],
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox.fromSize(
+                              size: Size(50, 50), // button width and height
+                              child: ClipOval(
+                                  child: Material(
+                                      color: Colors.blue,
+                                      child: InkWell(
+                                        // splash color
+                                        splashColor: Colors.white,
+                                        onTap: () async {
+                                          variable.isLoadingTrue();
+
+                                          await delay(2000);
+                                          variable.isLoadingFalse();
+                                          showTopSnackBar(
+                                            context,
+                                            CustomSnackBar.success(
+                                              backgroundColor: Colors.blue,
+                                              icon: Icon(
+                                                Icons.restore,
+                                                size: 30,
+                                                color: Colors.white,
+                                              ),
+                                              message:
+                                                  'reset effectué avec succes',
+                                            ),
+                                          );
+                                          variable.resetListMontantPrevision();
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.restore,
+                                              size: 20,
+                                              color: Colors.white,
+                                            ), // icon
+                                            Text(
+                                              "Reset",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.white),
+                                            ), // text
+                                          ],
+                                        ),
+                                      )))),
                         ),
                   Container(
                     padding: EdgeInsets.all(8),

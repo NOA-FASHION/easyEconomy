@@ -35,6 +35,7 @@ class EasyController extends ChangeNotifier {
   late SharedPreferences _localDataMontantPrevision;
   late String patchData;
   late String _jsonChallengeList;
+  late bool _isLoading = false;
   UploadMontantniversell uploadFileChallenge =
       UploadMontantniversell(montantUniverselle: []);
   ActivSwitch activSwitch = ActivSwitch(
@@ -1304,5 +1305,21 @@ class EasyController extends ChangeNotifier {
     }
     await _saveChallenyesterday();
     _initChallengeListStartChallenge();
+  }
+
+  isLoadingTrue() {
+    _isLoading = true;
+    _initEconomy();
+    notifyListeners();
+  }
+
+  isLoadingFalse() {
+    _isLoading = false;
+    _initEconomy();
+    notifyListeners();
+  }
+
+  bool boolIsloading() {
+    return _isLoading;
   }
 }
