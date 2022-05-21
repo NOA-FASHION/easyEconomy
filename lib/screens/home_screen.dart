@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
         PageTransition(
             type: PageTransitionType.bottomToTop,
             child:
-                ChangeNotifierProvider.value(value: variable, child: Home())));
+                ChangeNotifierProvider.value(value: variable, child: Home(index: 1,))));
   }
 
   Widget _buildFullscreenImage() {
@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                   PageTransition(
                       type: PageTransitionType.bottomToTop,
                       child: ChangeNotifierProvider.value(
-                          value: variable, child: Home())));
+                          value: variable, child: Home(index: 1,))));
             },
           ),
         ),
@@ -242,7 +242,7 @@ class HomeScreen extends StatelessWidget {
               PageTransition(
                   type: PageTransitionType.bottomToTop,
                   child: ChangeNotifierProvider.value(
-                      value: variable, child: Home())));
+                      value: variable, child: Home(index: 1,))));
         },
         //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
         showSkipButton: false,

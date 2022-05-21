@@ -1,9 +1,13 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/screens/charge_fixe_mensuel.dart';
+import 'package:easyeconomy/screens/home_screen.dart';
+import 'package:easyeconomy/screens/purchase.dart';
+import 'package:easyeconomy/screens/setting.dart';
 
 import 'package:easyeconomy/screens/simulator_gestion.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:loading_overlay_pro/loading_overlay_pro.dart';
 
 import 'package:page_transition/page_transition.dart';
@@ -15,7 +19,8 @@ import 'package:vertical_card_pager/vertical_card_pager.dart';
 import 'gestion_mensuel.dart';
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  final int index;
+  Home({Key? key, required this.index}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -26,11 +31,23 @@ class _HomeState extends State<Home> {
   final List<String> titles = ["", "", ""];
 
   @override
+  void initState() {
+    super.initState();
+    timeDilation = 3;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timeDilation = 1;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Duration duration = Duration(seconds: 10);
-    Future<Null> delay(int milliseconds) {
-      return new Future.delayed(new Duration(milliseconds: milliseconds));
-    }
+    // Duration duration = Duration(seconds: 10);
+    // Future<Null> delay(int milliseconds) {
+    //   return new Future.delayed(new Duration(milliseconds: milliseconds));
+    // }
 
     EasyController variable = Provider.of<EasyController>(context);
     return Material(
@@ -49,9 +66,33 @@ class _HomeState extends State<Home> {
           color: Colors.grey.shade400,
           height: 60,
           circleWidth: 60,
-          initIndex: 1,
+          initIndex: widget.index,
           onChanged: (v) {
-            // TODO
+            if (v == 0) {
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.bottomToTop,
+                      child: ChangeNotifierProvider.value(
+                          value: variable, child: PurchaseApp(index: 0))));
+            } else if (v == 1) {
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.bottomToTop,
+                      child: ChangeNotifierProvider.value(
+                          value: variable, child: Home(index: 1))));
+            } else if (v == 2) {
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.bottomToTop,
+                      child: ChangeNotifierProvider.value(
+                          value: variable,
+                          child: Setting(
+                            index: 2,
+                          ))));
+            }
           },
           // tabCurve: ,
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
@@ -108,6 +149,12 @@ class _HomeState extends State<Home> {
                 onPageChanged: (page) {},
                 onSelectedItem: (page) {
                   if (page == 0) {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute<void>(
+                    //       builder: (context) => ChangeNotifierProvider.value(
+                    //           value: variable, child: ChargeFixeMensuel())),
+                    // );
                     Navigator.push(
                         context,
                         PageTransition(

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class GuestScreen extends StatefulWidget {
-  GuestScreen({Key ?key}) : super(key: key);
+  GuestScreen({Key? key}) : super(key: key);
 
   @override
   _GuestScreenState createState() => _GuestScreenState();
@@ -23,7 +23,9 @@ class _GuestScreenState extends State<GuestScreen> {
           ? ChangeNotifierProvider.value(value: variable, child: HomeScreen())
           : ChangeNotifierProvider.value(
               value: variable,
-              child: Home()),
+              child: Home(
+                index: 1,
+              )),
     );
   }
 }
