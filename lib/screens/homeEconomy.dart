@@ -30,17 +30,17 @@ class _HomeState extends State<Home> {
   bool _isLoading = false;
   final List<String> titles = ["", "", ""];
 
-  @override
-  void initState() {
-    super.initState();
-    timeDilation = 3;
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   timeDilation = 3;
+  // }
 
-  @override
-  void dispose() {
-    super.dispose();
-    timeDilation = 1;
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   timeDilation = 1;
+  // }
 
   @override
   Widget build(BuildContext context) {
