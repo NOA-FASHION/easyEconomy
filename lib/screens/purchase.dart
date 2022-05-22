@@ -1,9 +1,8 @@
 import 'package:avatar_glow/avatar_glow.dart';
-import 'package:circle_nav_bar/circle_nav_bar.dart';
+
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/screens/homeEconomy.dart';
-import 'package:easyeconomy/screens/home_screen.dart';
-import 'package:easyeconomy/screens/setting.dart';
+
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_core/firebase_core.dart';
@@ -12,7 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:loading_overlay_pro/loading_overlay_pro.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'package:page_transition/page_transition.dart';
+
 // import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -21,8 +20,6 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:vertical_card_pager/vertical_card_pager.dart';
 
 class PurchaseApp extends StatefulWidget {
-  final int index;
-  PurchaseApp({required this.index});
   @override
   State<PurchaseApp> createState() => _PurchaseAppState();
 }
@@ -288,65 +285,6 @@ class _PurchaseAppState extends State<PurchaseApp> {
     EasyController variable = Provider.of<EasyController>(context);
     // String? documentId = variable.getChallengeyesterday().nbtacheVallide;
     return Scaffold(
-      bottomNavigationBar: CircleNavBar(
-        activeIcons: const [
-          Icon(Icons.person, color: Colors.deepPurple),
-          Icon(Icons.home, color: Colors.deepPurple),
-          Icon(Icons.favorite, color: Colors.deepPurple),
-        ],
-        inactiveIcons: const [
-          Text("My"),
-          Text("Home"),
-          Text("Like"),
-        ],
-        color: Colors.grey.shade400,
-        height: 60,
-        circleWidth: 60,
-        initIndex: widget.index,
-        onChanged: (v) {
-          if (v == 0) {
-            Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.bottomToTop,
-                    child: ChangeNotifierProvider.value(
-                        value: variable,
-                        child: PurchaseApp(
-                          index: 0,
-                        ))));
-          } else if (v == 1) {
-            Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.bottomToTop,
-                    child: ChangeNotifierProvider.value(
-                        value: variable,
-                        child: Home(
-                          index: 1,
-                        ))));
-          } else if (v == 2) {
-            Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.bottomToTop,
-                    child: ChangeNotifierProvider.value(
-                        value: variable,
-                        child: Setting(
-                          index: 2,
-                        ))));
-          }
-        },
-        // tabCurve: ,
-        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
-        cornerRadius: const BorderRadius.only(
-          topLeft: Radius.circular(8),
-          topRight: Radius.circular(8),
-          bottomRight: Radius.circular(24),
-          bottomLeft: Radius.circular(24),
-        ),
-        shadowColor: Colors.deepPurple,
-        elevation: 10,
-      ),
       backgroundColor: Colors.purple,
       body: LoadingOverlayPro(
         isLoading: _isLoading,

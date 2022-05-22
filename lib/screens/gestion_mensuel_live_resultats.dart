@@ -52,114 +52,121 @@ class _GestionMensuelLiveResultatsState
     double montantTotalsString = CalculMontant().montantTotals(
         _listMontantUniverselle, _listMontantUniverselleLive, simuOuchargeFixe);
     return Material(
-      child: Scaffold(
-        key: scaffoldkey,
-        body: Shimmer(
-          duration: Duration(seconds: 3),
-          interval: Duration(seconds: 5),
-          color: Colors.white,
-          enabled: true,
-          direction: ShimmerDirection.fromLTRB(),
-          child: DraggableHome(
-            backgroundColor: Colors.transparent,
-            appBarColor: Colors.orange,
-            body: [
-              Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [Colors.orange, Colors.blueAccent])),
-                child: BuildGestionMensuelResultats(
-                  idGestionMontantUniverselle:
-                      widget.idGestionMontantUniverselle,
-                  indexGestionMensuel: widget.indexMontantUniverselle,
-                ),
-              ),
-            ],
-            headerWidget: CalculMontant().header(
-                context,
-                variable,
-                true,
-                _listMontantUniverselle,
-                _listMontantUniverselleLive,
-                montantChargessString,
-                montantRevenuString,
-                montantTotalsString,
-                simuOuchargeFixe),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Card(
-                  color: Colors.orange,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  elevation: 25.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        montantChargessString.toStringAsFixed(2) + " €",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.red.shade900,
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  color: Colors.orange,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  elevation: 25.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        montantRevenuString.toStringAsFixed(2) + " €",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.green.shade900,
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  color: Colors.orange,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  elevation: 25.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        montantTotalsString.toStringAsFixed(2) + " €",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.blue.shade900,
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Colors.orange, Colors.blueAccent])),
+        child: Scaffold(
+          key: scaffoldkey,
+          body: Shimmer(
+            duration: Duration(seconds: 3),
+            interval: Duration(seconds: 5),
+            color: Colors.white,
+            enabled: true,
+            direction: ShimmerDirection.fromLTRB(),
+            child: DraggableHome(
+              backgroundColor: Colors.transparent,
+              appBarColor: Colors.orange,
+              body: [
+                Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [Colors.orange, Colors.blueAccent])),
+                  child: BuildGestionMensuelResultats(
+                    idGestionMontantUniverselle:
+                        widget.idGestionMontantUniverselle,
+                    indexGestionMensuel: widget.indexMontantUniverselle,
                   ),
                 ),
               ],
+              headerWidget: CalculMontant().header(
+                  context,
+                  variable,
+                  true,
+                  _listMontantUniverselle,
+                  _listMontantUniverselleLive,
+                  montantChargessString,
+                  montantRevenuString,
+                  montantTotalsString,
+                  simuOuchargeFixe),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Card(
+                    color: Colors.orange,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    elevation: 25.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          montantChargessString.toStringAsFixed(2) + " €",
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.red.shade900,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    color: Colors.orange,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    elevation: 25.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          montantRevenuString.toStringAsFixed(2) + " €",
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.green.shade900,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    color: Colors.orange,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    elevation: 25.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          montantTotalsString.toStringAsFixed(2) + " €",
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.blue.shade900,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

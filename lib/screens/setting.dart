@@ -1,8 +1,8 @@
-import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
-import 'package:easyeconomy/screens/homeEconomy.dart';
+
 import 'package:easyeconomy/screens/introViews.dart';
 import 'package:easyeconomy/screens/purchase.dart';
+
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -15,72 +15,12 @@ class Setting extends StatefulWidget {
   @override
   State<Setting> createState() => _SettingState();
 }
-
 class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
-    EasyController variable = Provider.of<EasyController>(context);
+    // EasyController variable = Provider.of<EasyController>(context);
     double widthC = MediaQuery.of(context).size.width * 100;
     return Scaffold(
-        bottomNavigationBar: CircleNavBar(
-          activeIcons: const [
-            Icon(Icons.person, color: Colors.deepPurple),
-            Icon(Icons.home, color: Colors.deepPurple),
-            Icon(Icons.favorite, color: Colors.deepPurple),
-          ],
-          inactiveIcons: const [
-            Text("My"),
-            Text("Home"),
-            Text("Like"),
-          ],
-          color: Colors.grey.shade400,
-          height: 60,
-          circleWidth: 60,
-          initIndex: widget.index,
-          onChanged: (v) {
-            if (v == 0) {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.bottomToTop,
-                      child: ChangeNotifierProvider.value(
-                          value: variable,
-                          child: PurchaseApp(
-                            index: 0,
-                          ))));
-            } else if (v == 1) {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.bottomToTop,
-                      child: ChangeNotifierProvider.value(
-                          value: variable,
-                          child: Home(
-                            index: 1,
-                          ))));
-            } else if (v == 2) {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.bottomToTop,
-                      child: ChangeNotifierProvider.value(
-                          value: variable,
-                          child: Setting(
-                            index: 2,
-                          ))));
-            }
-          },
-          // tabCurve: ,
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
-          cornerRadius: const BorderRadius.only(
-            topLeft: Radius.circular(8),
-            topRight: Radius.circular(8),
-            bottomRight: Radius.circular(24),
-            bottomLeft: Radius.circular(24),
-          ),
-          shadowColor: Colors.deepPurple,
-          elevation: 10,
-        ),
         backgroundColor: Colors.grey.shade50,
         body: SingleChildScrollView(
           child: Column(
@@ -89,8 +29,6 @@ class _SettingState extends State<Setting> {
               // build Top Section of Profile (include : Image & main info & card of info[photos ... ] )
               //==========================================================================================
               _buildHeader(context, widthC),
-
-              SizedBox(height: 10.0),
 
               //==========================================================================================
               //  build Bottom Section of Profile (include : email - phone number - about - location )
@@ -106,7 +44,12 @@ class _SettingState extends State<Setting> {
       children: <Widget>[
         Ink(
           height: 250,
-          color: Colors.deepOrangeAccent,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Colors.orange, Colors.blueAccent])),
         ),
         Container(
           width: double.infinity,
@@ -114,11 +57,11 @@ class _SettingState extends State<Setting> {
           child: Column(
             children: <Widget>[
               Card(
-                elevation: 2,
+                elevation: 15,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100),
                 ),
-                color: Colors.deepOrange,
+                color: Colors.grey.shade400,
                 child: Container(
                   width: 100,
                   height: 100,
@@ -140,6 +83,12 @@ class _SettingState extends State<Setting> {
           ),
         ),
         Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [Colors.orange, Colors.blueAccent])),
             margin: const EdgeInsets.only(top: 210),
             child: _buildInfoCard(context))
       ],
@@ -236,20 +185,26 @@ class _SettingState extends State<Setting> {
 
   Widget _buildMainInfo(BuildContext context, double width) {
     return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [Colors.orange, Colors.blueAccent])),
       width: width,
       margin: const EdgeInsets.all(10),
       alignment: AlignmentDirectional.center,
       child: Column(
         children: <Widget>[
-          Text('Lorem Ipsum',
+          Text('SETTINGS',
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.teal,
                   fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
-          Text('Flutter',
-              style: TextStyle(
-                  color: Colors.grey.shade50, fontStyle: FontStyle.italic))
+          // Text('Flutter',
+          //     style: TextStyle(
+          //         color: Colors.grey.shade50, fontStyle: FontStyle.italic))
         ],
       ),
     );
@@ -258,12 +213,19 @@ class _SettingState extends State<Setting> {
   Widget _buildInfo(BuildContext context, double width) {
     EasyController variable = Provider.of<EasyController>(context);
     return Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(0.0),
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Colors.orange, Colors.blueAccent])),
         padding: EdgeInsets.all(10),
         child: Card(
+          elevation: 5,
           color: Colors.white,
           child: Container(
             alignment: Alignment.topLeft,
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.all(35),
             child: Column(
               children: <Widget>[
                 Column(
@@ -273,17 +235,25 @@ class _SettingState extends State<Setting> {
                           Icon(Icons.email, color: Colors.deepOrangeAccent),
                       title: Text("E-Mail",
                           style: TextStyle(fontSize: 18, color: Colors.black)),
-                      subtitle: Text("email@gmailc.com",
+                      subtitle: Text("easyeconomy@gmail.com",
                           style:
                               TextStyle(fontSize: 15, color: Colors.black54)),
                     ),
                     Divider(),
                     ListTile(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                type: PageTransitionType.bottomToTop,
+                                child: ChangeNotifierProvider.value(
+                                    value: variable, child: PurchaseApp())));
+                      },
                       leading:
-                          Icon(Icons.phone, color: Colors.deepOrangeAccent),
-                      title: Text("Phone Number",
+                          Icon(Icons.store, color: Colors.deepOrangeAccent),
+                      title: Text("Achat",
                           style: TextStyle(fontSize: 18, color: Colors.black)),
-                      subtitle: Text("11-111111-11",
+                      subtitle: Text("À vie",
                           style:
                               TextStyle(fontSize: 15, color: Colors.black54)),
                     ),
@@ -291,10 +261,9 @@ class _SettingState extends State<Setting> {
                     ListTile(
                       leading:
                           Icon(Icons.person, color: Colors.deepOrangeAccent),
-                      title: Text("About",
+                      title: Text("À propos",
                           style: TextStyle(fontSize: 18, color: Colors.black)),
-                      subtitle: Text(
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                      subtitle: Text("Présentation",
                           style:
                               TextStyle(fontSize: 15, color: Colors.black54)),
                     ),
@@ -314,9 +283,9 @@ class _SettingState extends State<Setting> {
                           Icon(Icons.start, color: Colors.deepOrangeAccent),
                       title: Text("Introduction",
                           style: TextStyle(fontSize: 18, color: Colors.black)),
-                      subtitle: Text("Help",
-                          style:
-                              TextStyle(fontSize: 15, color: Colors.black54)),
+                      // subtitle: Text("Help",
+                      //     style:
+                      //         TextStyle(fontSize: 15, color: Colors.black54)),
                     ),
                   ],
                 )

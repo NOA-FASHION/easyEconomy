@@ -287,7 +287,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
       return Container(
         alignment: Alignment.center,
         child: Text(
-          "Pas de charge.",
+          "Pas de transaction.",
           style: TextStyle(color: Colors.orange[600], fontSize: 18.0),
           textAlign: TextAlign.center,
         ),
