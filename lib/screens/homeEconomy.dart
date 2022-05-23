@@ -24,7 +24,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+class _HomeState extends State<Home> {
   bool _isLoading = false;
   final List<String> titles = ["", "", ""];
   bool navbar = true;
@@ -47,8 +47,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     //   return new Future.delayed(new Duration(milliseconds: milliseconds));
     // }
     int tabIndex = 0;
-    late TabController tabController =
-        TabController(length: 2, vsync: this, initialIndex: tabIndex);
+    // late TabController tabController =
+    //     TabController(length: 2, vsync: this, initialIndex: tabIndex);
     EasyController variable = Provider.of<EasyController>(context);
     return Material(
       child: Container(
@@ -135,47 +135,48 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     color: Colors.white,
                     enabled: true,
                     direction: ShimmerDirection.fromLTRB(),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [Colors.orange, Colors.blueAccent])),
-                      child: VerticalCardPager(
-                        initialPage: 1,
-                        align: ALIGN.CENTER,
-                        onPageChanged: (page) {},
-                        onSelectedItem: (page) {
-                          if (page == 0) {
-                            Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.bottomToTop,
-                                    child: ChangeNotifierProvider.value(
-                                        value: variable,
-                                        child: ChargeFixeMensuel())));
-                          } else if (page == 1) {
-                            Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.bottomToTop,
-                                    child: ChangeNotifierProvider.value(
-                                        value: variable,
-                                        child: SimulatorGestion())));
-                          } else if (page == 2) {
-                            Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.bottomToTop,
-                                    child: ChangeNotifierProvider.value(
-                                        value: variable,
-                                        child: GestionMensuel())));
-                          }
-                        },
-                        titles: titles,
-                        images: [
-                          Center(
-                            child: Container(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        height: 650,
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [Colors.orange, Colors.blueAccent])),
+                        child: VerticalCardPager(
+                          initialPage: 1,
+                          align: ALIGN.CENTER,
+                          onPageChanged: (page) {},
+                          onSelectedItem: (page) {
+                            if (page == 0) {
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.bottomToTop,
+                                      child: ChangeNotifierProvider.value(
+                                          value: variable,
+                                          child: ChargeFixeMensuel())));
+                            } else if (page == 1) {
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.bottomToTop,
+                                      child: ChangeNotifierProvider.value(
+                                          value: variable,
+                                          child: SimulatorGestion())));
+                            } else if (page == 2) {
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.bottomToTop,
+                                      child: ChangeNotifierProvider.value(
+                                          value: variable,
+                                          child: GestionMensuel())));
+                            }
+                          },
+                          titles: titles,
+                          images: [
+                            Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(15.0),
@@ -186,7 +187,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 ),
                               ),
                               width: MediaQuery.of(context).size.width / 1.2,
-                              height: 220,
+                              height: 210,
                               child: Card(
                                   color: Colors.transparent,
                                   shape: RoundedRectangleBorder(
@@ -276,9 +277,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     ),
                                   )),
                             ),
-                          ),
-                          Center(
-                            child: Container(
+                            Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15.0),
                                 image: DecorationImage(
@@ -287,7 +286,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 ),
                               ),
                               width: MediaQuery.of(context).size.width / 1.2,
-                              height: 220,
+                              height: 210,
                               child: Card(
                                   color: Colors.transparent,
                                   shape: RoundedRectangleBorder(
@@ -399,9 +398,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     ),
                                   )),
                             ),
-                          ),
-                          Center(
-                            child: Container(
+                            Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15.0),
                                 image: DecorationImage(
@@ -458,8 +455,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     ],
                                   )),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
