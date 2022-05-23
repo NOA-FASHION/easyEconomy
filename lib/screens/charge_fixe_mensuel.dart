@@ -4,11 +4,11 @@ import 'package:draggable_home/draggable_home.dart';
 
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
-import 'package:easyeconomy/screens/buildTest.dart';
+
 import 'package:easyeconomy/screens/build_charge_fixe.dart';
 import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/constant.dart';
-import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
+
 import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';

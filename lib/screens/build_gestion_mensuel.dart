@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
-import 'package:multi_charts/multi_charts.dart';
+
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 

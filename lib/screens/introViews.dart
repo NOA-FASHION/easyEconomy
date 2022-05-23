@@ -2,64 +2,48 @@ import 'package:easyeconomy/screens/homeEconomy.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_views_flutter/intro_views_flutter.dart';
 
-///  this class uses this library : intro_views_flutter
-///  the link to it : https://pub.dev/packages/intro_views_flutter#-installing-tab-
-
 class IntroViewsPage extends StatelessWidget {
   static const routeName = '/IntroViewsPage';
 
-  /// -----------------------------------------------
-  /// making list of pages needed to pass in IntroViewsFlutter constructor.
-  /// -----------------------------------------------
   final pages = [
-    /// -----------------------------------------------
-    /// PageViewModel dart class for storing data in it
-    /// -----------------------------------------------
     PageViewModel(
-        pageColor: const Color(0xFF03A9F4),
-        // iconImageAssetPath: 'assets/air-hostess.png',
-        /// -----------------------------------------------
-        /// bubble Image for indicator.
-        /// -----------------------------------------------
+        pageColor: Colors.blue,
         bubble: Image.asset('assets/air-hostess.png'),
-
-        /// -----------------------------------------------
-        /// Text details.
-        /// -----------------------------------------------
         body: Text(
           'Haselfree  booking  of  flight  tickets  with  full  refund  on  cancelation',
         ),
-
-        /// -----------------------------------------------
-        /// Text header .
-        /// -----------------------------------------------
         title: Text(
           'Flights',
         ),
         titleTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
         bodyTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
-
-        /// -----------------------------------------------
-        /// Main image.
-        /// -----------------------------------------------
         mainImage: Image.asset(
-          'assets/airplane.png',
-          height: 285.0,
-          width: 285.0,
-          alignment: Alignment.center,
+          'assets/chargeRevenuFixe.png',
         )),
     PageViewModel(
-      pageColor: const Color(0xFF8BC34A),
+      pageColor: Colors.blue,
       iconImageAssetPath: 'assets/waiter.png',
       body: Text(
         'We  work  for  the  comfort ,  enjoy  your  stay  at  our  beautiful  hotels',
       ),
       title: Text('Hotels'),
-      mainImage: Image.asset(
-        'assets/hotel.png',
-        height: 285.0,
-        width: 285.0,
-        alignment: Alignment.center,
+      mainImage: Column(
+        children: [
+          Container(
+            width: 1000,
+            child: Image.asset(
+              'assets/simulator.png',
+              alignment: Alignment.center,
+            ),
+          ),
+          Container(
+            width: 1000,
+            child: Image.asset(
+              'assets/simulator.png',
+              alignment: Alignment.center,
+            ),
+          ),
+        ],
       ),
       titleTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
       bodyTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
@@ -84,9 +68,6 @@ class IntroViewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// -----------------------------------------------
-    /// Build main content with MaterialApp widget.
-    /// -----------------------------------------------
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'IntroViews Flutter', //title of app
@@ -94,9 +75,6 @@ class IntroViewsPage extends StatelessWidget {
         primarySwatch: Colors.blue,
       ), //ThemeData
       home: Builder(
-        /// -----------------------------------------------
-        /// Build Into with IntroViewsFlutter widget.
-        /// -----------------------------------------------
         builder: (context) => IntroViewsFlutter(
           pages,
           showNextButton: true,

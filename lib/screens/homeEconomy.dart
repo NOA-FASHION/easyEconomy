@@ -137,7 +137,7 @@ class _HomeState extends State<Home> {
                     direction: ShimmerDirection.fromLTRB(),
                     child: SingleChildScrollView(
                       child: Container(
-                        height: 650,
+                        height: 600,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
                                 begin: Alignment.centerLeft,
@@ -234,44 +234,7 @@ class _HomeState extends State<Home> {
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
-                                          children: [
-                                            // Padding(
-                                            //   padding: const EdgeInsets.all(8.0),
-                                            //   child: SizedBox.fromSize(
-                                            //       size: Size(50,
-                                            //           50), // button width and height
-                                            //       child: ClipOval(
-                                            //           child: Material(
-                                            //               color: Colors.blue,
-                                            //               child: InkWell(
-                                            //                 // splash color
-                                            //                 splashColor: Colors.white,
-                                            //                 onTap: () {
-                                            //                   variable
-                                            //                       .uploadChallenge();
-                                            //                 },
-                                            //                 child: Column(
-                                            //                   mainAxisAlignment:
-                                            //                       MainAxisAlignment
-                                            //                           .center,
-                                            //                   children: <Widget>[
-                                            //                     Icon(
-                                            //                       Icons.upload_sharp,
-                                            //                       size: 20,
-                                            //                       color: Colors.white,
-                                            //                     ), // icon
-                                            //                     Text(
-                                            //                       "Upload",
-                                            //                       style: TextStyle(
-                                            //                           fontSize: 10,
-                                            //                           color: Colors
-                                            //                               .white),
-                                            //                     ), // text
-                                            //                   ],
-                                            //                 ),
-                                            //               )))),
-                                            // ),
-                                          ],
+                                          children: [],
                                         ),
                                       ],
                                     ),
@@ -327,73 +290,6 @@ class _HomeState extends State<Home> {
                                             ),
                                           ),
                                         ),
-                                        // SizedBox(
-                                        //   height: 15.0,
-                                        // ),
-                                        // Row(
-                                        //   mainAxisAlignment: MainAxisAlignment.end,
-                                        //   children: [
-                                        //     Column(
-                                        //       children: [
-                                        //         Padding(
-                                        //           padding:
-                                        //               const EdgeInsets.only(right: 8),
-                                        //           child: IconButton(
-                                        //             onPressed: () async {
-                                        //               setState(() {
-                                        //                 _isLoading = true;
-                                        //               });
-                                        //               await delay(2000);
-                                        //               setState(() {
-                                        //                 _isLoading = false;
-                                        //               });
-                                        //               showTopSnackBar(
-                                        //                 context,
-                                        //                 CustomSnackBar.success(
-                                        //                   backgroundColor:
-                                        //                       Colors.blue,
-                                        //                   icon: Icon(
-                                        //                     Icons.restore,
-                                        //                     size: 30,
-                                        //                     color: Colors.white,
-                                        //                   ),
-                                        //                   message:
-                                        //                       'reset effectué avec succes',
-                                        //                 ),
-                                        //               );
-                                        //               variable
-                                        //                   .resetListMontantPrevision();
-                                        //             },
-                                        //             icon: Icon(
-                                        //               Icons.restart_alt,
-                                        //               color: Colors.blue,
-                                        //               size: 45,
-                                        //             ),
-                                        //           ),
-                                        //         ),
-                                        //         Center(
-                                        //           child: Text(
-                                        //             "Reset",
-                                        //             style:
-                                        //                 TextStyle(color: Colors.blue),
-                                        //           ),
-                                        //         ),
-                                        //       ],
-                                        //     ),
-                                        //   ],
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 5.0,
-                                        // ),
-                                        // Lottie.asset("assets/simulateur.json",
-                                        //     width: 70),
-                                        // Icon(
-                                        //   Icons.calculate,
-                                        //   color: Colors.white,
-                                        //   size: 45,
-                                        // ),
-
-                                        // Center(child: Text("Simulateur de gestion")),
                                       ],
                                     ),
                                   )),

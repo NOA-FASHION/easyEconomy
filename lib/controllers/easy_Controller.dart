@@ -94,7 +94,7 @@ class EasyController extends ChangeNotifier {
           .map((challenge) => MontantUniverselle.fromJSON(challenge))
           .toList();
     }
-    _initChallengeListStartChallenge();
+    // _initChallengeListStartChallenge();
     _initEconomyDays();
     // starteconomyDays();
     notifyListeners();

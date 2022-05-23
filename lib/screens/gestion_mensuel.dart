@@ -1,7 +1,7 @@
-import 'package:easyeconomy/controllers/easy_Controller.dart';
+
 import 'package:easyeconomy/screens/build_gestion_mensuel.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import 'package:shimmer_animation/shimmer_animation.dart';
 
 class GestionMensuel extends StatefulWidget {

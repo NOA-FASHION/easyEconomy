@@ -8,9 +8,9 @@ import 'package:easyeconomy/screens/buildTest.dart';
 import 'package:easyeconomy/screens/calcul_montant.dart';
 
 import 'package:easyeconomy/screens/constant.dart';
-import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
+
 import 'package:flutter/material.dart';
-import 'package:multi_charts/multi_charts.dart';
+
 import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';

@@ -1,10 +1,10 @@
-import 'dart:io';
+
 
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/play_commentaires.dart';
 import 'package:easyeconomy/screens/play_images.dart';
-import 'package:flip_card/flip_card.dart';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';

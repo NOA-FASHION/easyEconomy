@@ -818,7 +818,6 @@ class CalculMontant {
                               indexGestion: index, montant: valueText4)
                           : variable.changePrix(
                               indexGestion: index, montant: valueText4);
-                      ;
                     }
 
                     Navigator.pop(context);
