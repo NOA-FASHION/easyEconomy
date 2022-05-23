@@ -15,6 +15,7 @@ class Setting extends StatefulWidget {
   @override
   State<Setting> createState() => _SettingState();
 }
+
 class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _SettingState extends State<Setting> {
     return Stack(
       children: <Widget>[
         Ink(
-          height: 250,
+          height: 230,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
               gradient: LinearGradient(
@@ -101,7 +102,11 @@ class _SettingState extends State<Setting> {
         Container(
           padding: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Card(
-            elevation: 5.0,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.grey.shade400, width: 3),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 15.0,
             color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.only(
@@ -221,74 +226,76 @@ class _SettingState extends State<Setting> {
                 colors: [Colors.orange, Colors.blueAccent])),
         padding: EdgeInsets.all(10),
         child: Card(
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.white70, width: 1),
+            borderRadius: BorderRadius.circular(15.0),
+          ),
           elevation: 5,
-          color: Colors.white,
+          color: Colors.grey.shade400,
           child: Container(
             alignment: Alignment.topLeft,
-            padding: EdgeInsets.all(35),
+            padding: EdgeInsets.all(28),
             child: Column(
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading:
-                          Icon(Icons.email, color: Colors.deepOrangeAccent),
-                      title: Text("E-Mail",
-                          style: TextStyle(fontSize: 18, color: Colors.black)),
-                      subtitle: Text("easyeconomy@gmail.com",
-                          style:
-                              TextStyle(fontSize: 15, color: Colors.black54)),
-                    ),
-                    Divider(),
-                    ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                child: ChangeNotifierProvider.value(
-                                    value: variable, child: PurchaseApp())));
-                      },
-                      leading:
-                          Icon(Icons.store, color: Colors.deepOrangeAccent),
-                      title: Text("Achat",
-                          style: TextStyle(fontSize: 18, color: Colors.black)),
-                      subtitle: Text("À vie",
-                          style:
-                              TextStyle(fontSize: 15, color: Colors.black54)),
-                    ),
-                    Divider(),
-                    ListTile(
-                      leading:
-                          Icon(Icons.person, color: Colors.deepOrangeAccent),
-                      title: Text("À propos",
-                          style: TextStyle(fontSize: 18, color: Colors.black)),
-                      subtitle: Text("Présentation",
-                          style:
-                              TextStyle(fontSize: 15, color: Colors.black54)),
-                    ),
-                    Divider(),
-                    ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                child: ChangeNotifierProvider.value(
-                                    value: variable, child: IntroViewsPage())));
-                      },
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                      leading:
-                          Icon(Icons.start, color: Colors.deepOrangeAccent),
-                      title: Text("Introduction",
-                          style: TextStyle(fontSize: 18, color: Colors.black)),
-                      // subtitle: Text("Help",
-                      //     style:
-                      //         TextStyle(fontSize: 15, color: Colors.black54)),
-                    ),
-                  ],
-                )
+                ListTile(
+                  leading: Icon(Icons.email, color: Colors.deepOrangeAccent),
+                  title: Text("E-Mail",
+                      style: TextStyle(fontSize: 18, color: Colors.black)),
+                  subtitle: Text("easyeconomy@gmail.com",
+                      style: TextStyle(fontSize: 15, color: Colors.black54)),
+                ),
+                Divider(
+                  thickness: 2,
+                  color: Colors.white,
+                ),
+                ListTile(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.bottomToTop,
+                            child: ChangeNotifierProvider.value(
+                                value: variable, child: PurchaseApp())));
+                  },
+                  leading: Icon(Icons.store, color: Colors.deepOrangeAccent),
+                  title: Text("Achat",
+                      style: TextStyle(fontSize: 18, color: Colors.black)),
+                  subtitle: Text("À vie",
+                      style: TextStyle(fontSize: 15, color: Colors.black54)),
+                ),
+                Divider(
+                  thickness: 2,
+                  color: Colors.white,
+                ),
+                ListTile(
+                  leading: Icon(Icons.person, color: Colors.deepOrangeAccent),
+                  title: Text("À propos",
+                      style: TextStyle(fontSize: 18, color: Colors.black)),
+                  subtitle: Text("Présentation",
+                      style: TextStyle(fontSize: 15, color: Colors.black54)),
+                ),
+                Divider(
+                  thickness: 2,
+                  color: Colors.white,
+                ),
+                ListTile(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.bottomToTop,
+                            child: ChangeNotifierProvider.value(
+                                value: variable, child: IntroViewsPage())));
+                  },
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  leading: Icon(Icons.start, color: Colors.deepOrangeAccent),
+                  title: Text("Introduction",
+                      style: TextStyle(fontSize: 18, color: Colors.black)),
+                  // subtitle: Text("Help",
+                  //     style:
+                  //         TextStyle(fontSize: 15, color: Colors.black54)),
+                ),
               ],
             ),
           ),
