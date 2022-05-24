@@ -7,43 +7,47 @@ class IntroViewsPage extends StatelessWidget {
 
   final pages = [
     PageViewModel(
-        pageColor: Colors.blue,
+        pageColor: Colors.grey,
         bubble: Image.asset('assets/air-hostess.png'),
-        body: Text(
-          'Haselfree  booking  of  flight  tickets  with  full  refund  on  cancelation',
+        body: SingleChildScrollView(
+          child: Container(
+            height: 200,
+            child: Column(
+              children: [
+                Text(
+                  "La première étape consiste, à rentrer vos charge et revenus fixe. dans l'onglet revenus fixe mensuel",
+                  style: TextStyle(color: Colors.black, fontSize: 15),
+                ),
+                Text(
+                  "Vous aurez une idée rapide de vos capacité de consomation  ",
+                  style: TextStyle(color: Colors.black, fontSize: 15),
+                )
+              ],
+            ),
+          ),
         ),
         title: Text(
-          'Flights',
+          'ETAPE 1',
+          style: TextStyle(color: Colors.black),
         ),
         titleTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
         bodyTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
         mainImage: Image.asset(
-          'assets/chargeRevenuFixe.png',
+          'assets/6.png',
         )),
     PageViewModel(
-      pageColor: Colors.blue,
+      pageColor: Colors.white,
       iconImageAssetPath: 'assets/waiter.png',
       body: Text(
         'We  work  for  the  comfort ,  enjoy  your  stay  at  our  beautiful  hotels',
+        style: TextStyle(color: Colors.black),
       ),
-      title: Text('Hotels'),
-      mainImage: Column(
-        children: [
-          Container(
-            width: 1000,
-            child: Image.asset(
-              'assets/simulator.png',
-              alignment: Alignment.center,
-            ),
-          ),
-          Container(
-            width: 1000,
-            child: Image.asset(
-              'assets/simulator.png',
-              alignment: Alignment.center,
-            ),
-          ),
-        ],
+      title: Text(
+        'ETAPE 2',
+        style: TextStyle(color: Colors.black),
+      ),
+      mainImage: Image.asset(
+        'assets/7.png',
       ),
       titleTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
       bodyTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
@@ -54,11 +58,41 @@ class IntroViewsPage extends StatelessWidget {
       body: Text(
         'Easy  cab  booking  at  your  doorstep  with  cashless  payment  system',
       ),
-      title: Text('Cabs'),
+      title: Text('ETAPE 3'),
       mainImage: Image.asset(
-        'assets/taxi.png',
-        height: 285.0,
-        width: 285.0,
+        'assets/8.png',
+        alignment: Alignment.center,
+      ),
+      titleTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
+      bodyTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
+    ),
+    PageViewModel(
+      pageColor: Color.fromRGBO(123, 142, 183, 1),
+      iconImageAssetPath: 'assets/taxi-driver.png',
+      body: Text(
+        'Easy  cab  booking  at  your  doorstep  with  cashless  payment  system',
+      ),
+      title: Text('ETAPE 4'),
+      mainImage: Image.asset(
+        'assets/9.png',
+        alignment: Alignment.center,
+      ),
+      titleTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
+      bodyTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
+    ),
+    PageViewModel(
+      pageColor: Colors.white,
+      iconImageAssetPath: 'assets/taxi-driver.png',
+      body: Text(
+        'Easy  cab  booking  at  your  doorstep  with  cashless  payment  system',
+        style: TextStyle(color: Colors.black),
+      ),
+      title: Text(
+        'ETAPE 5',
+        style: TextStyle(color: Colors.black),
+      ),
+      mainImage: Image.asset(
+        'assets/10.png',
         alignment: Alignment.center,
       ),
       titleTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
