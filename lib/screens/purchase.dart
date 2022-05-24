@@ -93,10 +93,7 @@ class _PurchaseAppState extends State<PurchaseApp> {
           // addDataToFirebse(variable, documentId, _auth);
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => ChangeNotifierProvider.value(
-                  value: variable,
-                  child: Home(
-                    index: 1,
-                  ))));
+                  value: variable, child: Home())));
           setState(() {
             _isLoading = false;
           });
@@ -143,10 +140,7 @@ class _PurchaseAppState extends State<PurchaseApp> {
 
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => ChangeNotifierProvider.value(
-                  value: variable,
-                  child: Home(
-                    index: 1,
-                  ))));
+                  value: variable, child: Home())));
           setState(() {
             _isLoading = false;
           });

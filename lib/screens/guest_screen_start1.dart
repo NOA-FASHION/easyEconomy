@@ -24,7 +24,7 @@ class _GuestScreenState extends State<GuestScreen> {
           : ChangeNotifierProvider.value(
               value: variable,
               child: Home(
-                index: 1,
+
               )),
     );
   }

@@ -17,8 +17,9 @@ import 'package:vertical_card_pager/vertical_card_pager.dart';
 import 'gestion_mensuel.dart';
 
 class Home extends StatefulWidget {
-  final int index;
-  Home({Key? key, required this.index}) : super(key: key);
+  Home({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();

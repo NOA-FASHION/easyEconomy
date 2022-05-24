@@ -23,10 +23,7 @@ class _EasyEconomyState extends State<EasyEconomy> {
       ),
       title: 'EasyEconomy',
       home: ChangeNotifierProvider<EasyController>(
-          create: (context) => EasyController(),
-          child: Home(
-            index: 1,
-          )),
+          create: (context) => EasyController(), child: Home()),
     );
   }
 }

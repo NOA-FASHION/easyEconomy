@@ -1,523 +1,525 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-
-class HeroWidget extends StatefulWidget {
-  @override
-  _HeroWidgetState createState() => _HeroWidgetState();
-}
-
-class _HeroWidgetState extends State<HeroWidget> {
-  @override
-  void initState() {
-    super.initState();
-    timeDilation = 3;
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    timeDilation = 1;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Hero(
-          tag: 'hero',
-          child: ClipOval(
-            child: Container(
-              width: 60,
-              height: 60,
-              child: FlutterLogo(),
-            ),
-          ),
-        ),
-        RaisedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                  builder: (context) => HeroSecondPage('hero')),
-            );
-          },
-          child: Text('Goto'),
-        ),
-      ],
-    );
-  }
-}
-
-class HeroSecondPage extends StatelessWidget {
-  final String tag;
-
-  HeroSecondPage(this.tag);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Container(
-          child: Hero(
-            tag: tag,
-            child: ClipOval(
-              child: Container(
-                width: 200,
-                height: 200,
-                child: FlutterLogo(),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
- 
-
-
 // import 'package:flutter/material.dart';
-// import 'package:page_transition/page_transition.dart';
-// import 'package:provider/provider.dart';
-// import 'package:shimmer_animation/shimmer_animation.dart';
+// import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+// import 'package:tab_container/tab_container.dart';
 
-// class OffreProduct extends StatefulWidget {
+// class ExamplePage extends StatefulWidget {
+//   const ExamplePage({Key? key}) : super(key: key);
+
 //   @override
-//   _OffreProductState createState() => _OffreProductState();
+//   _ExamplePageState createState() => _ExamplePageState();
 // }
 
-// class _OffreProductState extends State<OffreProduct> {
-//   late PersistentBottomSheetController _bottomSheetController;
-//   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-//   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+// class _ExamplePageState extends State<ExamplePage> {
+//   late final TabContainerController _controller;
+//   late TextTheme textTheme;
 
-//   // late FancyDrawerController _controller;
+//   @override
 //   void initState() {
+//     _controller = TabContainerController(length: 3);
 //     super.initState();
-
-//     // _controller =
-//     //     FancyDrawerController(vsync: this, duration: Duration(milliseconds: 50))
-//     //       ..addListener(() {
-//     //         setState(() {}); // Must call setState
-//     //       }); // This chunk of code is important
 //   }
 
-//   Color margeColors = Colors.green;
-//   String margeText = '';
-//   double roas1 = 0;
-//   double marge1 = 0;
-//   double margeOffre = 0;
-//   double prixAchat = 0;
-//   double prixBarre = 0;
-//   int index = 0;
-//   double prixVente = 0;
-//   double roas = 0;
-//   List<String> offres = [];
-
-//   double validateMarge(GlobalKey<FormState> formKey1) {
-//     double marge = 0;
-//     if (formKey1.currentState!.validate()) {
-//       formKey1.currentState!.save();
-//       {
-//         setState(() {
-//           marge = prixVente - prixAchat;
-//           marge1 = marge;
-//         });
-//       }
-//     }
-//     return marge;
+//   @override
+//   void didChangeDependencies() {
+//     textTheme = Theme.of(context).textTheme;
+//     super.didChangeDependencies();
 //   }
 
-//   double validateRoas(GlobalKey<FormState> formKey1) {
-//     double roas = 0;
-//     if (formKey1.currentState!.validate()) {
-//       formKey1.currentState!.save();
-//       {
-//         setState(() {
-//           roas = prixVente - prixAchat;
-//           roas1 = roas;
-//         });
-//       }
-//     }
-//     return roas;
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
 //   }
 
 //   @override
 //   Widget build(BuildContext context) {
-//     // Challengecontroller variable = Provider.of<Challengecontroller>(context);
-//     return Material(
-//       child: Scaffold(
-//         key: scaffoldkey,
-//         appBar: PreferredSize(
-//           preferredSize: Size.fromHeight(100.0),
-//           child: SafeArea(
-//             child: AppBar(
-//               title: Text("Offres"),
-//               centerTitle: true,
-//               flexibleSpace: Container(
-//                 padding: EdgeInsets.only(top: 40.0),
-//                 alignment: Alignment.center,
-//                 height: 130,
-//                 child: Image.asset(
-//                   'assets/logo.png',
-//                   width: 55,
-//                   height: 130,
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Example'),
+//       ),
+//       body: SingleChildScrollView(
+//         child: SizedBox(
+//           height: 1800,
+//           child: Column(
+//             children: [
+//               const Spacer(),
+//               SizedBox(
+//                 width: MediaQuery.of(context).size.width * 0.9,
+//                 child: AspectRatio(
+//                   aspectRatio: 10 / 8,
+//                   child: TabContainer(
+//                     radius: 20,
+//                     tabEdge: TabEdge.bottom,
+//                     tabCurve: Curves.easeIn,
+//                     transitionBuilder: (child, animation) {
+//                       animation = CurvedAnimation(
+//                           curve: Curves.easeIn, parent: animation);
+//                       return SlideTransition(
+//                         position: Tween(
+//                           begin: const Offset(0.2, 0.0),
+//                           end: const Offset(0.0, 0.0),
+//                         ).animate(animation),
+//                         child: FadeTransition(
+//                           opacity: animation,
+//                           child: child,
+//                         ),
+//                       );
+//                     },
+//                     colors: const <Color>[
+//                       Color(0xfffa86be),
+//                       Color(0xffa275e3),
+//                       Color(0xff9aebed),
+//                     ],
+//                     selectedTextStyle:
+//                         textTheme.bodyText2?.copyWith(fontSize: 15.0),
+//                     unselectedTextStyle:
+//                         textTheme.bodyText2?.copyWith(fontSize: 13.0),
+//                     children: _getChildren1(),
+//                     tabs: _getTabs1(),
+//                   ),
 //                 ),
-//                 decoration: BoxDecoration(
-//                     gradient: LinearGradient(
-//                         begin: Alignment.centerLeft,
-//                         end: Alignment.centerRight,
-//                         colors: <Color>[Colors.orange, Colors.pink])),
 //               ),
-//             ),
+//               const Spacer(),
+//               SizedBox(
+//                 height: 330.0,
+//                 child: TabContainer(
+//                   controller: _controller,
+//                   radius: 0,
+//                   color: Colors.black,
+//                   tabDuration: const Duration(seconds: 0),
+//                   selectedTextStyle:
+//                       textTheme.bodyText2?.copyWith(color: Colors.white),
+//                   unselectedTextStyle:
+//                       textTheme.bodyText2?.copyWith(color: Colors.black),
+//                   children: _getChildren2(),
+//                   tabs: _getTabs2(),
+//                 ),
+//               ),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                 children: [
+//                   IconButton(
+//                     onPressed: () => _controller.prev(),
+//                     icon: Icon(Ionicons.arrow_back),
+//                   ),
+//                   IconButton(
+//                     onPressed: () => _controller.next(),
+//                     icon: Icon(Ionicons.arrow_forward),
+//                   ),
+//                 ],
+//               ),
+//               const Spacer(),
+//               Expanded(
+//                 flex: 3,
+//                 child: Padding(
+//                   padding: const EdgeInsets.all(20.0),
+//                   child: TabContainer(
+//                     color: Theme.of(context).colorScheme.secondary,
+//                     tabEdge: TabEdge.right,
+//                     childPadding: const EdgeInsets.all(20.0),
+//                     children: _getChildren3(context),
+//                     tabs: _getTabs3(context),
+//                     isStringTabs: false,
+//                   ),
+//                 ),
+//               ),
+//               const Spacer(),
+//               Expanded(
+//                 flex: 4,
+//                 child: Padding(
+//                   padding: const EdgeInsets.all(20.0),
+//                   child: TabContainer(
+//                     color: Theme.of(context).colorScheme.primary,
+//                     tabEdge: TabEdge.left,
+//                     tabStart: 0.1,
+//                     tabEnd: 0.6,
+//                     childPadding: const EdgeInsets.all(20.0),
+//                     children: _getChildren4(),
+//                     tabs: _getTabs4(),
+//                     selectedTextStyle: const TextStyle(
+//                       color: Colors.white,
+//                       fontSize: 15.0,
+//                     ),
+//                     unselectedTextStyle: const TextStyle(
+//                       color: Colors.black,
+//                       fontSize: 13.0,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//             ],
 //           ),
 //         ),
-//         body: Shimmer(
-//           duration: Duration(seconds: 3),
-//           interval: Duration(seconds: 5),
-//           color: Colors.white,
-//           enabled: true,
-//           direction: ShimmerDirection.fromLTRB(),
-//           child: Container(
-//             decoration: BoxDecoration(
-//                 gradient: LinearGradient(
-//                     begin: Alignment.centerLeft,
-//                     end: Alignment.centerRight,
-//                     colors: [Colors.orange, Colors.pink])),
-//           ),
-//         ),
-//         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-//         floatingActionButton: buildBottomSheet(),
 //       ),
 //     );
 //   }
 
-//   updateController(dynamic value) {
-//     _bottomSheetController.setState!(() {
-//       var unityChallenge = value;
-//     });
+//   List<Widget> _getChildren1() {
+//     List<CreditCardData> cards = kCreditCards
+//         .map(
+//           (e) => CreditCardData.fromJson(e),
+//         )
+//         .toList();
+
+//     return cards.map((e) => CreditCard(data: e)).toList();
 //   }
 
-//   FloatingActionButton buildBottomSheet() {
-//     return FloatingActionButton(
-//         // child: Lottie.asset('assets/float.json'),
-//         child: Icon(Icons.add),
-//         backgroundColor: Colors.orange[900],
-//         onPressed: () {
-//           _bottomSheetController = scaffoldkey.currentState!.showBottomSheet(
-//             (context) {
-//               return Container(
-//                   alignment: Alignment.center,
-//                   height: MediaQuery.of(context).size.height * 0.5,
-//                   child: Form(
-//                     key: formKey,
-//                     child: SingleChildScrollView(
-//                       child: Column(
-//                         mainAxisAlignment: MainAxisAlignment.center,
-//                         children: [
-//                           SizedBox(
-//                             height: 5.0,
-//                           ),
-//                           ///////////////////////////////////
+//   List<String> _getTabs1() {
+//     List<CreditCardData> cards = kCreditCards
+//         .map(
+//           (e) => CreditCardData.fromJson(e),
+//         )
+//         .toList();
 
-//                           Card(
-//                             shape: RoundedRectangleBorder(
-//                               borderRadius: BorderRadius.circular(15.0),
-//                             ),
-//                             elevation: 15.0,
-//                             child: Container(
-//                               width: MediaQuery.of(context).size.width / 1.2,
-//                               child: Padding(
-//                                 padding: const EdgeInsets.all(8.0),
-//                                 child: TextFormField(
-//                                   maxLines: 6,
-//                                   style: TextStyle(fontSize: 10),
-//                                   textCapitalization:
-//                                       TextCapitalization.sentences,
-//                                   onSaved: (value) {
-//                                     offres.add(value!);
-//                                   },
-//                                   validator: (value) {
-//                                     if (value!.isEmpty) {
-//                                       return "Merci d'entrer une offre'";
-//                                     } else if (value.length > 35) {
-//                                       return "Pas plus de 50 caractères";
-//                                     }
-//                                     return null;
-//                                   },
-//                                   decoration: InputDecoration(
-//                                     focusedBorder: OutlineInputBorder(
-//                                         borderSide: BorderSide(
-//                                             width: 2.0,
-//                                             color: Colors.blueAccent),
-//                                         borderRadius:
-//                                             BorderRadius.circular(15.0)),
-//                                     enabledBorder: OutlineInputBorder(
-//                                         borderSide: BorderSide(
-//                                             width: 1.0,
-//                                             color: Colors.blueAccent),
-//                                         borderRadius:
-//                                             BorderRadius.circular(15.0)),
-//                                     contentPadding: EdgeInsets.symmetric(
-//                                         horizontal: 20, vertical: 10),
-//                                     labelText: "offre",
-//                                     border: OutlineInputBorder(
-//                                         borderRadius:
-//                                             BorderRadius.circular(15.0)),
-//                                   ),
-//                                 ),
-//                               ),
-//                             ),
-//                           ),
+//     return cards
+//         .map(
+//           (e) => '*' + e.number.substring(e.number.length - 4, e.number.length),
+//         )
+//         .toList();
+//   }
 
-//                           SizedBox(
-//                             height: 15.0,
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.center,
-//                             children: [
-//                               Container(
-//                                 width: MediaQuery.of(context).size.width / 3.2,
-//                                 child: Padding(
-//                                   padding: const EdgeInsets.all(8.0),
-//                                   child: TextFormField(
-//                                     style: TextStyle(fontSize: 10),
-//                                     textCapitalization:
-//                                         TextCapitalization.sentences,
-//                                     onSaved: (value) {
-//                                       prixAchat = double.parse(value!);
-//                                     },
-//                                     validator: (value) {
-//                                       if (value!.isEmpty) {
-//                                         return "Merci d'entrer le prix d'achat";
-//                                       } else if (value.length > 35) {
-//                                         return "Pas plus de 50 caractères";
-//                                       }
-//                                       return null;
-//                                     },
-//                                     decoration: InputDecoration(
-//                                       focusedBorder: OutlineInputBorder(
-//                                           borderSide: BorderSide(
-//                                               width: 2.0,
-//                                               color: Colors.blueAccent),
-//                                           borderRadius:
-//                                               BorderRadius.circular(15.0)),
-//                                       enabledBorder: OutlineInputBorder(
-//                                           borderSide: BorderSide(
-//                                               width: 1.0,
-//                                               color: Colors.blueAccent),
-//                                           borderRadius:
-//                                               BorderRadius.circular(15.0)),
-//                                       contentPadding: EdgeInsets.symmetric(
-//                                           horizontal: 20, vertical: 10),
-//                                       labelText: "Prix d'achat",
-//                                       border: OutlineInputBorder(
-//                                           borderRadius:
-//                                               BorderRadius.circular(15.0)),
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ),
-//                               SizedBox(
-//                                 width: 2.0,
-//                               ),
-//                               Container(
-//                                 width: MediaQuery.of(context).size.width / 3.2,
-//                                 child: Padding(
-//                                   padding: const EdgeInsets.all(8.0),
-//                                   child: TextFormField(
-//                                     style: TextStyle(fontSize: 10),
-//                                     textCapitalization:
-//                                         TextCapitalization.sentences,
-//                                     onSaved: (value) {
-//                                       prixVente = double.parse(value!);
-//                                     },
-//                                     validator: (value) {
-//                                       if (value!.isEmpty) {
-//                                         return "Merci d'entrer le prix de vente";
-//                                       } else if (value.length > 35) {
-//                                         return "Pas plus de 50 caractères";
-//                                       }
-//                                       return null;
-//                                     },
-//                                     decoration: InputDecoration(
-//                                       focusedBorder: OutlineInputBorder(
-//                                           borderSide: BorderSide(
-//                                               width: 2.0,
-//                                               color: Colors.blueAccent),
-//                                           borderRadius:
-//                                               BorderRadius.circular(15.0)),
-//                                       enabledBorder: OutlineInputBorder(
-//                                           borderSide: BorderSide(
-//                                               width: 1.0,
-//                                               color: Colors.blueAccent),
-//                                           borderRadius:
-//                                               BorderRadius.circular(15.0)),
-//                                       contentPadding: EdgeInsets.symmetric(
-//                                           horizontal: 20, vertical: 10),
-//                                       labelText: "Prix de vente",
-//                                       border: OutlineInputBorder(
-//                                           borderRadius:
-//                                               BorderRadius.circular(15.0)),
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ),
-//                               SizedBox(
-//                                 width: 2.0,
-//                               ),
-//                               Container(
-//                                 width: MediaQuery.of(context).size.width / 3.2,
-//                                 child: Padding(
-//                                   padding: const EdgeInsets.all(8.0),
-//                                   child: TextFormField(
-//                                     style: TextStyle(fontSize: 10),
-//                                     textCapitalization:
-//                                         TextCapitalization.sentences,
-//                                     onSaved: (value) {
-//                                       prixBarre = double.parse(value!);
-//                                     },
-//                                     validator: (value) {
-//                                       if (value!.isEmpty) {
-//                                         return "Merci d'entrer le prix barré";
-//                                       } else if (value.length > 35) {
-//                                         return "Pas plus de 50 caractères";
-//                                       }
-//                                       return null;
-//                                     },
-//                                     decoration: InputDecoration(
-//                                       focusedBorder: OutlineInputBorder(
-//                                           borderSide: BorderSide(
-//                                               width: 2.0,
-//                                               color: Colors.blueAccent),
-//                                           borderRadius:
-//                                               BorderRadius.circular(15.0)),
-//                                       enabledBorder: OutlineInputBorder(
-//                                           borderSide: BorderSide(
-//                                               width: 1.0,
-//                                               color: Colors.blueAccent),
-//                                           borderRadius:
-//                                               BorderRadius.circular(15.0)),
-//                                       contentPadding: EdgeInsets.symmetric(
-//                                           horizontal: 20, vertical: 10),
-//                                       labelText: "prix barré",
-//                                       border: OutlineInputBorder(
-//                                           borderRadius:
-//                                               BorderRadius.circular(15.0)),
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ),
-//                               SizedBox(
-//                                 width: 10.0,
-//                               ),
-//                             ],
-//                           ),
-//                           SizedBox(
-//                             height: 15.0,
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.center,
-//                             children: [
-//                               InkWell(
-//                                 onTap: () {
-//                                   validateRoas(formKey);
-//                                   _bottomSheetController.setState!(() {
-//                                     margeText =
-//                                         validateRoas(formKey).toString();
-//                                     if (validateRoas(formKey) > 12) {
-//                                       margeColors = Colors.green;
-//                                     } else {
-//                                       margeColors = Colors.red;
-//                                     }
-//                                   });
-//                                   // setState(() {
-//                                   //   margeText =
-//                                   //       validateRoas(formKey).toString();
-//                                   // });
-//                                 },
-//                                 child: Container(
-//                                   width:
-//                                       MediaQuery.of(context).size.width / 3.2,
-//                                   child: Card(
-//                                     color: margeColors,
-//                                     shape: RoundedRectangleBorder(
-//                                       borderRadius: BorderRadius.circular(15.0),
-//                                     ),
-//                                     elevation: 15.0,
-//                                     child: Column(
-//                                       children: [
-//                                         Container(
-//                                           child: Card(
-//                                               color: margeColors,
-//                                               shape: RoundedRectangleBorder(
-//                                                 borderRadius:
-//                                                     BorderRadius.circular(15.0),
-//                                               ),
-//                                               elevation: 15.0,
-//                                               child: Text("Marge")),
-//                                         ),
-//                                         Text(margeText)
-//                                       ],
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ),
-//                               Container(
-//                                 width: MediaQuery.of(context).size.width / 3.2,
-//                                 child: Card(
-//                                   color: Colors.green,
-//                                   shape: RoundedRectangleBorder(
-//                                     borderRadius: BorderRadius.circular(15.0),
-//                                   ),
-//                                   elevation: 15.0,
-//                                   child: Column(
-//                                     children: [
-//                                       Container(
-//                                         child: Card(
-//                                             color: Colors.green,
-//                                             shape: RoundedRectangleBorder(
-//                                               borderRadius:
-//                                                   BorderRadius.circular(15.0),
-//                                             ),
-//                                             elevation: 15.0,
-//                                             child: Text("Roas")),
-//                                       ),
-//                                       Text("200")
-//                                     ],
-//                                   ),
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
+//   List<Widget> _getChildren2() {
+//     return <Widget>[
+//       Image.asset('assets/car1.jpg'),
+//       Image.asset('assets/car2.jpg'),
+//       Image.asset('assets/car3.jpg'),
+//     ];
+//   }
 
-//                           Center(
-//                             child: IconButton(
-//                               iconSize: 60,
-//                               alignment: Alignment.topRight,
-//                               icon: Icon(
-//                                 Icons.check_circle,
-//                                 color: Colors.orange[900],
-//                               ),
-//                               onPressed: () {
-//                                 if (formKey.currentState!.validate()) {
-//                                   formKey.currentState!.save();
-//                                   {
-//                                     Navigator.pop(context);
-//                                   }
-//                                 }
-//                               },
-//                             ),
-//                           ),
-//                         ],
-//                       ),
+//   List<String> _getTabs2() {
+//     return <String>['Image 1', 'Image 2', 'Image 3'];
+//   }
+
+//   List<Widget> _getChildren3(BuildContext context) => <Widget>[
+//         Column(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text('Info', style: Theme.of(context).textTheme.headline5),
+//             const Text(
+//               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non ex ac metus facilisis pulvinar. In id nulla tellus. Donec vehicula iaculis lacinia. Fusce tincidunt viverra nisi non ultrices. Donec accumsan metus sed purus ullamcorper tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+//             ),
+//           ],
+//         ),
+//         Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text('Documents', style: Theme.of(context).textTheme.headline5),
+//             const Spacer(flex: 2),
+//             Expanded(
+//               flex: 4,
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: const [
+//                   Divider(thickness: 1),
+//                   Padding(
+//                     padding: EdgeInsets.only(left: 10.0),
+//                     child: Text('Document 1'),
+//                   ),
+//                   Divider(thickness: 1),
+//                   Padding(
+//                     padding: EdgeInsets.only(left: 10.0),
+//                     child: Text('Document 2'),
+//                   ),
+//                   Divider(thickness: 1),
+//                   Padding(
+//                     padding: EdgeInsets.only(left: 10.0),
+//                     child: Text('Document 3'),
+//                   ),
+//                   Divider(thickness: 1),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//         Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text('Profile', style: Theme.of(context).textTheme.headline5),
+//             const Spacer(flex: 3),
+//             Expanded(
+//               flex: 3,
+//               child: Row(
+//                 children: [
+//                   Flexible(
+//                     flex: 3,
+//                     child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.end,
+//                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                       children: const [
+//                         Text('username:'),
+//                         Text('email:'),
+//                         Text('birthday:'),
+//                       ],
 //                     ),
-//                   ));
-//             },
-//           );
-//         });
+//                   ),
+//                   const Spacer(),
+//                   Flexible(
+//                     flex: 5,
+//                     child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                       children: const [
+//                         Text('John Doe'),
+//                         Text('john.doe@email.com'),
+//                         Text('1/1/1985'),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             const Spacer(),
+//           ],
+//         ),
+//         Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text('Settings', style: Theme.of(context).textTheme.headline5),
+//             const Spacer(flex: 1),
+//             Expanded(
+//               flex: 3,
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 mainAxisAlignment: MainAxisAlignment.end,
+//                 children: [
+//                   SwitchListTile(
+//                     title: const Text('Darkmode'),
+//                     value: false,
+//                     onChanged: (v) {},
+//                     secondary: Icon(Ionicons.moon),
+//                   ),
+//                   SwitchListTile(
+//                     title: const Text('Analytics'),
+//                     value: false,
+//                     onChanged: (v) {},
+//                     secondary: Icon(Ionicons.analytics),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//       ];
+
+//   List<Widget> _getTabs3(BuildContext context) => <Widget>[
+//         Icon(
+//           Ionicons.information_circle,
+//         ),
+//         Icon(
+//           Ionicons.document_text,
+//         ),
+//         Icon(
+//           Ionicons.person,
+//         ),
+//         Icon(
+//           Ionicons.settings,
+//         ),
+//       ];
+
+//   List<Widget> _getChildren4() => <Widget>[
+//         SingleChildScrollView(
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 'Page 1',
+//                 style: Theme.of(context).textTheme.headline5?.copyWith(
+//                       color: Colors.white,
+//                     ),
+//               ),
+//               const SizedBox(height: 50.0),
+//               const Text(
+//                 '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque, est ac suscipit interdum, leo lacus ultrices metus, eget tristique metus velit eget nisi. Cras ut sagittis libero, in volutpat erat. Proin luctus turpis nec molestie congue. Nam et mollis augue. Duis ornare odio vel egestas lacinia. Nam luctus venenatis diam sollicitudin elementum. Duis laoreet, mi quis luctus lacinia, nunc mauris auctor turpis, ac condimentum felis augue at purus. Integer eu dolor vehicula odio elementum vulputate vel non neque.
+//         Vestibulum et sapien sed quam euismod rutrum. Phasellus molestie dignissim ullamcorper. Donec eleifend sapien egestas tincidunt ornare. Pellentesque elit leo, bibendum nec augue nec, faucibus eleifend nisi. In blandit nulla sit amet congue tincidunt. Etiam dictum ornare justo, vulputate aliquam nisi egestas id. Nulla diam ipsum, pretium vitae leo et, fringilla mollis arcu. Praesent ut ipsum malesuada, posuere quam non, consectetur sem. Aenean velit dolor, laoreet sit amet lacinia quis, porta vitae tortor. Pellentesque scelerisque lacus nec velit finibus pharetra. Donec lacus arcu, consectetur eget nibh ac, viverra mollis nunc. Morbi auctor condimentum odio, ut laoreet neque maximus et. Mauris ut magna ipsum.''',
+//                 style: TextStyle(color: Colors.white),
+//               ),
+//             ],
+//           ),
+//         ),
+//         SingleChildScrollView(
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 'Page 2',
+//                 style: Theme.of(context).textTheme.headline5?.copyWith(
+//                       color: Colors.white,
+//                     ),
+//               ),
+//               const SizedBox(height: 50.0),
+//               const Text(
+//                 '''Duis in tortor nisl. Vestibulum vitae ullamcorper urna. Aliquam at consequat mi, sit amet ultricies mauris. Nam volutpat risus mollis tortor porta volutpat. Fusce sollicitudin felis in interdum finibus. Nam ultrices volutpat posuere. Quisque eget mattis nulla. Cras sit amet consequat erat. Nam consectetur urna sem, eget faucibus quam tincidunt sed. Cras congue diam vitae turpis tristique, ut commodo nunc placerat. Nunc id risus mattis, cursus erat in, dignissim mauris.
+
+// Donec ac libero arcu. Pellentesque sollicitudin mi et lectus interdum, sit amet dignissim turpis laoreet. Aenean id sapien at felis fermentum faucibus. Fusce suscipit, odio eget vestibulum rutrum, magna nibh sagittis felis, auctor blandit tortor diam et augue. Etiam sit amet mi fermentum, sollicitudin dolor sit amet, viverra lectus. Curabitur non leo vulputate, gravida urna non, maximus lacus. Maecenas a suscipit lacus. Donec pharetra laoreet lacus, non sagittis ante aliquet eget. Sed fermentum eros a nunc molestie imperdiet. Ut quis massa vitae sem vehicula facilisis at eget eros. Proin facilisis eu dolor eu ultricies. Etiam rhoncus arcu nec diam malesuada, in malesuada ipsum rhoncus. Nunc convallis fermentum purus. Sed lobortis purus sit amet ante blandit pharetra. Cras ut turpis sem. Vivamus vel felis in elit fringilla laoreet.''',
+//                 style: TextStyle(color: Colors.white),
+//               ),
+//             ],
+//           ),
+//         ),
+//         SingleChildScrollView(
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 'Page 3',
+//                 style: Theme.of(context).textTheme.headline5?.copyWith(
+//                       color: Colors.white,
+//                     ),
+//               ),
+//               const SizedBox(height: 50.0),
+//               const Text(
+//                 '''Phasellus a rutrum lectus. Maecenas turpis nisi, imperdiet non tellus eget, aliquam bibendum urna. Nullam tincidunt aliquam sem, eget finibus mauris commodo nec. Sed pharetra varius augue, id dignissim tortor vulputate at. Nunc sodales, nisl a ornare posuere, dolor purus pulvinar nulla, vel facilisis magna justo id tortor. Aliquam tempus nulla diam, non faucibus ligula cursus id. Maecenas vitae lorem augue. Aliquam hendrerit urna quis mi ornare pharetra. Duis vitae urna porttitor, porta elit a, egestas nibh. Etiam sollicitudin tincidunt sem pellentesque fringilla. Aenean sed mauris non augue hendrerit volutpat. Praesent consectetur metus ex, eu feugiat risus rhoncus sed. Suspendisse dapibus, nunc vel rhoncus placerat, tellus odio tincidunt mi, sed sagittis dui nulla eu erat.''',
+//                 style: TextStyle(color: Colors.white),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ];
+
+//   List<String> _getTabs4() {
+//     return <String>['1', '2', '3'];
 //   }
 // }
+
+// class CreditCard extends StatelessWidget {
+//   final Color? color;
+//   final CreditCardData data;
+
+//   const CreditCard({
+//     Key? key,
+//     this.color,
+//     required this.data,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: const EdgeInsets.all(20.0),
+//       decoration: BoxDecoration(
+//         color: color,
+//         borderRadius: BorderRadius.circular(14.0),
+//       ),
+//       child: Column(
+//         children: [
+//           Expanded(
+//             flex: 2,
+//             child: Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 Text(
+//                   data.bank,
+//                 ),
+//                 Icon(
+//                   data.number[0] == '4'
+//                       ? FontAwesome5Brands.cc_visa
+//                       : data.number[0] == '5'
+//                           ? FontAwesome5Brands.cc_mastercard
+//                           : FontAwesome5Regular.question_circle,
+//                   size: 36,
+//                 ),
+//               ],
+//             ),
+//           ),
+//           const Spacer(flex: 2),
+//           Expanded(
+//             flex: 5,
+//             child: Row(
+//               children: [
+//                 Text(
+//                   data.number,
+//                   style: const TextStyle(
+//                     fontSize: 22.0,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//           Expanded(
+//             flex: 2,
+//             child: Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 const Text('Exp.'),
+//                 const SizedBox(width: 4),
+//                 Text(
+//                   data.expiration,
+//                 ),
+//               ],
+//             ),
+//           ),
+//           Expanded(
+//             flex: 2,
+//             child: Row(
+//               children: [
+//                 Text(
+//                   data.name,
+//                   style: const TextStyle(
+//                     fontSize: 16.0,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class CreditCardData {
+//   int index;
+//   bool locked;
+//   final String bank;
+//   final String name;
+//   final String number;
+//   final String expiration;
+//   final String cvc;
+
+//   CreditCardData({
+//     this.index = 0,
+//     this.locked = false,
+//     required this.bank,
+//     required this.name,
+//     required this.number,
+//     required this.expiration,
+//     required this.cvc,
+//   });
+
+//   factory CreditCardData.fromJson(Map<String, dynamic> json) => CreditCardData(
+//         index: json['index'],
+//         bank: json['bank'],
+//         name: json['name'],
+//         number: json['number'],
+//         expiration: json['expiration'],
+//         cvc: json['cvc'],
+//       );
+// }
+
+// const List<Map<String, dynamic>> kCreditCards = [
+//   {
+//     'index': 0,
+//     'bank': 'Aerarium',
+//     'name': 'John Doe',
+//     'number': '4540 1234 5678 2975',
+//     'expiration': '11/25',
+//     'cvc': '123',
+//   },
+//   {
+//     'index': 1,
+//     'bank': 'Aerarium',
+//     'name': 'John Doe',
+//     'number': '5450 8765 4321 6372',
+//     'expiration': '07/24',
+//     'cvc': '321',
+//   },
+//   {
+//     'index': 2,
+//     'bank': 'Aerarium',
+//     'name': 'John Doe',
+//     'number': '4540 4321 8765 7446',
+//     'expiration': '09/23',
+//     'cvc': '456',
+//   },
+// ];
