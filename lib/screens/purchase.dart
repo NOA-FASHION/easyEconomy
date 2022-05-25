@@ -44,7 +44,7 @@ class _PurchaseAppState extends State<PurchaseApp> {
   String purchaseId = '';
   Future<List<ProductDetails>?> loadProductsForSale() async {
     if (await isAppPurchaseAvailable()) {
-      const Set<String> _kids = {"in_app_purchase"};
+      const Set<String> _kids = {"in_app_purchase_economy"};
       final ProductDetailsResponse responses =
           await iap.queryProductDetails(_kids);
 
