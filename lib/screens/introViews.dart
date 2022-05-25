@@ -1,5 +1,6 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/screens/homeEconomy.dart';
+import 'package:easyeconomy/screens/switch.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_views_flutter/intro_views_flutter.dart';
 import 'package:page_transition/page_transition.dart';
@@ -9,7 +10,8 @@ import 'package:tab_container/tab_container.dart';
 class IntroViewsPage extends StatelessWidget {
   static const routeName = '/IntroViewsPage';
 
-  List<PageViewModel> pageViewModel(BuildContext context) {
+  List<PageViewModel> pageViewModel(
+      BuildContext context, EasyController variable) {
     final pages = [
       ///////////pageView1
       PageViewModel(
@@ -111,15 +113,25 @@ class IntroViewsPage extends StatelessWidget {
           ),
           titleTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
           bodyTextStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
-          mainImage: Card(
-            color: Colors.transparent,
-            elevation: 15,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                'assets/6.png',
+          mainImage: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Card(
+                color: Colors.transparent,
+                elevation: 15,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/6.png',
+                  ),
+                ),
               ),
-            ),
+              Align(
+                alignment: Alignment.topRight,
+                child: ChangeNotifierProvider.value(
+                    value: variable, child: SwitchEdit()),
+              )
+            ],
           )),
 
       ///////////pageView2
@@ -450,7 +462,7 @@ class IntroViewsPage extends StatelessWidget {
       ///////////pageView5
       PageViewModel(
         bubbleBackgroundColor: Color.fromRGBO(43, 132, 170, 1),
-        pageColor: Colors.white,
+        pageColor: Colors.orangeAccent,
         iconImageAssetPath: 'assets/taxi-driver.png',
         body: SingleChildScrollView(
           child: SizedBox(
@@ -572,9 +584,10 @@ class IntroViewsPage extends StatelessWidget {
       ), //ThemeData
       home: Builder(
         builder: (context) => IntroViewsFlutter(
-          pageViewModel(context),
-          showNextButton: true,
-          showBackButton: true,
+          pageViewModel(context, variable),
+          background: Colors.blue,
+          showNextButton: false,
+          showBackButton: false,
           onTapDoneButton: () {
             Navigator.push(
                 context,

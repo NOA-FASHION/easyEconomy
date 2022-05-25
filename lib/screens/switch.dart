@@ -32,6 +32,7 @@ class _SwitchEditState extends State<SwitchEdit> {
     return Padding(
       padding: const EdgeInsets.all(30.0),
       child: Container(
+        height: 80,
         decoration: BoxDecoration(
             border: Border.all(color: Colors.white70),
             borderRadius: BorderRadius.circular(10),
@@ -59,10 +60,10 @@ class _SwitchEditState extends State<SwitchEdit> {
                 "Introduction ",
                 style: TextStyle(fontSize: 10),
               ),
-              Text(
-                "au démarage ",
-                style: TextStyle(fontSize: 10),
-              )
+              // Text(
+              //   "au démarage ",
+              //   style: TextStyle(fontSize: 10),
+              // )
             ],
           ),
         ),

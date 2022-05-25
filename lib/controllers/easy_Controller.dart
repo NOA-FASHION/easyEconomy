@@ -94,7 +94,7 @@ class EasyController extends ChangeNotifier {
           .map((challenge) => MontantUniverselle.fromJSON(challenge))
           .toList();
     }
-    // _initChallengeListStartChallenge();
+    _initChallengeListStartChallenge();
     _initEconomyDays();
     // starteconomyDays();
     notifyListeners();
@@ -1245,6 +1245,7 @@ class EasyController extends ChangeNotifier {
           print('start init yestederday');
           activSwitch.firstActive = "false";
           activSwitch.active = "false";
+          print("initChallengeyesterday");
           await _saveChallenyesterday();
           _initChallengeListStartChallenge();
         }
@@ -1257,6 +1258,7 @@ class EasyController extends ChangeNotifier {
             print('start init yestederday');
             activSwitch.firstActive = "false";
             activSwitch.active = "false";
+            print("initChallengeyesterday2");
             await _saveChallenyesterday();
             _initChallengeListStartChallenge();
           }
@@ -1268,7 +1270,7 @@ class EasyController extends ChangeNotifier {
   void startChallenyesterday() async {
     DateTime today = new DateTime.now();
     if (activSwitch.nbTacheEnCours != "false") {
-      // print('start challenge yestederday');
+      print('start challenge yestederday');
       activSwitch.date = DateFormat('EEEE, d MMM, yyyy').format(today);
       activSwitch.firstActive = "true";
       activSwitch.nbTacheEnCours = "false";
@@ -1276,6 +1278,7 @@ class EasyController extends ChangeNotifier {
       activSwitch.active = "true";
       activSwitch.nbtacheVallide = "";
       // await initialiseConnectionDatabase();
+      print("startChallenyesterday");
       await _saveChallenyesterday();
       _initChallengeListStartChallenge();
     }
@@ -1290,7 +1293,7 @@ class EasyController extends ChangeNotifier {
       _jsonDecodeListActivSwitch = jsonDecode(_tempListActivSwitch);
       activSwitch = ActivSwitch.fromJSON(_jsonDecodeListActivSwitch);
     }
-
+    print("_initChallengeListStartChallenge");
     startChallenyesterday();
     initChallengeyesterday();
 
