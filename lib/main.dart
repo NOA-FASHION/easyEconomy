@@ -1,4 +1,5 @@
-import 'package:easyeconomy/screens/homeEconomy.dart';
+import 'package:easyeconomy/screens/guest_screen_start.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,7 @@ class _EasyEconomyState extends State<EasyEconomy> {
       ),
       title: 'EasyEconomy',
       home: ChangeNotifierProvider<EasyController>(
-          create: (context) => EasyController(), child: Home()),
+          create: (context) => EasyController(), child: GuestScreenStart1()),
     );
   }
 }

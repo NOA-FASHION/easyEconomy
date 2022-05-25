@@ -38,7 +38,7 @@ class EasyController extends ChangeNotifier {
   late bool _isLoading = false;
   UploadMontantniversell uploadFileChallenge =
       UploadMontantniversell(montantUniverselle: []);
-  ActivSwitch activSwitch = ActivSwitch(
+  late ActivSwitch activSwitch = ActivSwitch(
       switchIintro: '',
       date: '',
       firstActive: '',
@@ -94,8 +94,9 @@ class EasyController extends ChangeNotifier {
           .map((challenge) => MontantUniverselle.fromJSON(challenge))
           .toList();
     }
-    _initChallengeListStartChallenge();
+    _initChallengeListStartChallenge().then((value) => startChallenyesterday());
     _initEconomyDays();
+
     // starteconomyDays();
     notifyListeners();
   }
@@ -1242,7 +1243,6 @@ class EasyController extends ChangeNotifier {
     if (lastDay.day <= (24)) {
       if ((today.day >= (lastDay.day + 7)) || (today.month > lastDay.month)) {
         if (activSwitch.firstActive == "true") {
-          print('start init yestederday');
           activSwitch.firstActive = "false";
           activSwitch.active = "false";
           print("initChallengeyesterday");
@@ -1255,7 +1255,6 @@ class EasyController extends ChangeNotifier {
         if (((30 - lastDay.day) + today.day >= 7) ||
             (today.month > lastDay.month + 1)) {
           if (activSwitch.firstActive == "true") {
-            print('start init yestederday');
             activSwitch.firstActive = "false";
             activSwitch.active = "false";
             print("initChallengeyesterday2");
@@ -1269,7 +1268,7 @@ class EasyController extends ChangeNotifier {
 
   void startChallenyesterday() async {
     DateTime today = new DateTime.now();
-    if (activSwitch.nbTacheEnCours != "false") {
+    if (activSwitch.nbTacheEnCours!.isEmpty) {
       print('start challenge yestederday');
       activSwitch.date = DateFormat('EEEE, d MMM, yyyy').format(today);
       activSwitch.firstActive = "true";
@@ -1282,9 +1281,10 @@ class EasyController extends ChangeNotifier {
       await _saveChallenyesterday();
       _initChallengeListStartChallenge();
     }
+    initChallengeyesterday();
   }
 
-  void _initChallengeListStartChallenge() async {
+  Future<void> _initChallengeListStartChallenge() async {
     _localDataactivSwitch = await SharedPreferences.getInstance();
     Map<String, dynamic> _jsonDecodeListActivSwitch;
     final String? _tempListActivSwitch =
@@ -1294,8 +1294,8 @@ class EasyController extends ChangeNotifier {
       activSwitch = ActivSwitch.fromJSON(_jsonDecodeListActivSwitch);
     }
     print("_initChallengeListStartChallenge");
-    startChallenyesterday();
-    initChallengeyesterday();
+    // startChallenyesterday();
+    // initChallengeyesterday();
 
     notifyListeners();
   }

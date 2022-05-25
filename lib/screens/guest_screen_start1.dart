@@ -1,6 +1,7 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/screens/homeEconomy.dart';
-import 'package:easyeconomy/screens/home_screen.dart';
+
+import 'package:easyeconomy/screens/introViews.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -20,12 +21,9 @@ class _GuestScreenState extends State<GuestScreen> {
 
     return Container(
       child: switchIntro == "true" || switchIntro == ""
-          ? ChangeNotifierProvider.value(value: variable, child: HomeScreen())
-          : ChangeNotifierProvider.value(
-              value: variable,
-              child: Home(
-
-              )),
+          ? ChangeNotifierProvider.value(
+              value: variable, child: IntroViewsPage())
+          : ChangeNotifierProvider.value(value: variable, child: Home()),
     );
   }
 }

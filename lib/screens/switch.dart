@@ -26,7 +26,7 @@ class _SwitchEditState extends State<SwitchEdit> {
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
-    ActivSwitch challengeYestaday = variable.getChallengeyesterday();
+    ActivSwitch? challengeYestaday = variable.getChallengeyesterday();
     String? switchBool = challengeYestaday.switchIintro;
     boolTransform(switchBool!);
     return Padding(
