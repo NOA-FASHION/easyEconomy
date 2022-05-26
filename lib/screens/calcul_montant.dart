@@ -252,10 +252,76 @@ class CalculMontant {
                       ),
                     ),
                   ),
-                  !simuOuchargeFixe
-                      ? Row(
-                          children: [
-                            Padding(
+                  !transactionPasse
+                      ? !simuOuchargeFixe
+                          ? Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox.fromSize(
+                                      size: Size(
+                                          50, 50), // button width and height
+                                      child: ClipOval(
+                                          child: Material(
+                                              color: Colors.blue,
+                                              child: InkWell(
+                                                // splash color
+                                                splashColor: Colors.white,
+                                                onTap: () {
+                                                  variable.uploadChallenge();
+                                                },
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    Icon(
+                                                      Icons.upload_sharp,
+                                                      size: 20,
+                                                      color: Colors.white,
+                                                    ), // icon
+                                                    Text(
+                                                      "Upload",
+                                                      style: TextStyle(
+                                                          fontSize: 10,
+                                                          color: Colors.white),
+                                                    ), // text
+                                                  ],
+                                                ),
+                                              )))),
+                                ),
+                                SizedBox.fromSize(
+                                    size:
+                                        Size(50, 50), // button width and height
+                                    child: ClipOval(
+                                        child: Material(
+                                            color: Colors.blue,
+                                            child: InkWell(
+                                              // splash color
+                                              splashColor: Colors.white,
+                                              onTap: () {
+                                                variable.writeContent();
+                                              }, // button pressed
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Icon(
+                                                    Icons.share_rounded,
+                                                    size: 20,
+                                                    color: Colors.white,
+                                                  ), // icon
+                                                  Text(
+                                                    "partage",
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white),
+                                                  ), // text
+                                                ],
+                                              ),
+                                            )))),
+                              ],
+                            )
+                          : Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox.fromSize(
                                   size: Size(50, 50), // button width and height
@@ -265,20 +331,38 @@ class CalculMontant {
                                           child: InkWell(
                                             // splash color
                                             splashColor: Colors.white,
-                                            onTap: () {
-                                              variable.uploadChallenge();
+                                            onTap: () async {
+                                              variable.isLoadingTrue();
+
+                                              await delay(2000);
+                                              variable.isLoadingFalse();
+                                              showTopSnackBar(
+                                                context,
+                                                CustomSnackBar.success(
+                                                  backgroundColor: Colors.blue,
+                                                  icon: Icon(
+                                                    Icons.restore,
+                                                    size: 30,
+                                                    color: Colors.white,
+                                                  ),
+                                                  message:
+                                                      'reset effectué avec succes',
+                                                ),
+                                              );
+                                              variable
+                                                  .resetListMontantPrevision();
                                             },
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: <Widget>[
                                                 Icon(
-                                                  Icons.upload_sharp,
+                                                  Icons.restore,
                                                   size: 20,
                                                   color: Colors.white,
                                                 ), // icon
                                                 Text(
-                                                  "Upload",
+                                                  "Reset",
                                                   style: TextStyle(
                                                       fontSize: 10,
                                                       color: Colors.white),
@@ -286,86 +370,9 @@ class CalculMontant {
                                               ],
                                             ),
                                           )))),
-                            ),
-                            SizedBox.fromSize(
-                                size: Size(50, 50), // button width and height
-                                child: ClipOval(
-                                    child: Material(
-                                        color: Colors.blue,
-                                        child: InkWell(
-                                          // splash color
-                                          splashColor: Colors.white,
-                                          onTap: () {
-                                            variable.writeContent();
-                                          }, // button pressed
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.share_rounded,
-                                                size: 20,
-                                                color: Colors.white,
-                                              ), // icon
-                                              Text(
-                                                "partage",
-                                                style: TextStyle(
-                                                    fontSize: 10,
-                                                    color: Colors.white),
-                                              ), // text
-                                            ],
-                                          ),
-                                        )))),
-                          ],
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SizedBox.fromSize(
-                              size: Size(50, 50), // button width and height
-                              child: ClipOval(
-                                  child: Material(
-                                      color: Colors.blue,
-                                      child: InkWell(
-                                        // splash color
-                                        splashColor: Colors.white,
-                                        onTap: () async {
-                                          variable.isLoadingTrue();
-
-                                          await delay(2000);
-                                          variable.isLoadingFalse();
-                                          showTopSnackBar(
-                                            context,
-                                            CustomSnackBar.success(
-                                              backgroundColor: Colors.blue,
-                                              icon: Icon(
-                                                Icons.restore,
-                                                size: 30,
-                                                color: Colors.white,
-                                              ),
-                                              message:
-                                                  'reset effectué avec succes',
-                                            ),
-                                          );
-                                          variable.resetListMontantPrevision();
-                                        },
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Icon(
-                                              Icons.restore,
-                                              size: 20,
-                                              color: Colors.white,
-                                            ), // icon
-                                            Text(
-                                              "Reset",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.white),
-                                            ), // text
-                                          ],
-                                        ),
-                                      )))),
+                            )
+                      : SizedBox(
+                          width: 1,
                         ),
                   Container(
                     padding: EdgeInsets.all(8),

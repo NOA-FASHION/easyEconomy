@@ -219,9 +219,9 @@ class _PurchaseAppState extends State<PurchaseApp> {
     initialize();
   }
 
-  refreshApp() {
-    setState(() {});
-  }
+  // refreshApp() {
+  //   setState(() {});
+  // }
 
   bool index = true;
   bool visibleButt = false;
@@ -279,7 +279,7 @@ class _PurchaseAppState extends State<PurchaseApp> {
     EasyController variable = Provider.of<EasyController>(context);
     // String? documentId = variable.getChallengeyesterday().nbtacheVallide;
     return Scaffold(
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.orange,
       body: LoadingOverlayPro(
         isLoading: _isLoading,
         child: Container(
@@ -287,7 +287,7 @@ class _PurchaseAppState extends State<PurchaseApp> {
               gradient: LinearGradient(
                   begin: Alignment.center,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.purple, Colors.blue])),
+                  colors: [Colors.orange, Colors.blueAccent])),
           child: SingleChildScrollView(
             child: Center(
               child:
@@ -367,7 +367,7 @@ class _PurchaseAppState extends State<PurchaseApp> {
                                 width: 6,
                               ),
                               Text(
-                                "Easytodo972@gmail.com.",
+                                "Easyeconomy972@gmail.com.",
                                 style: GoogleFonts.playfairDisplay(),
                               ),
                             ],
@@ -481,7 +481,7 @@ class CurvePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
-    paint.color = Colors.purple;
+    paint.color = Colors.orange;
     paint.style = PaintingStyle.fill;
     var path = Path();
     path.moveTo(0, 300);
@@ -505,21 +505,21 @@ class HeaderSection extends StatelessWidget {
         SizedBox(height: 10),
         Image.asset(
           'assets/logo.png',
-          width: 60,
+          width: 100,
           fit: BoxFit.cover,
         ),
         SizedBox(height: 5),
-        Text(
-          'Easytodo',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            color: Colors.grey[200],
-          ),
-        ),
+        // Text(
+        //   'Easytodo',
+        //   textAlign: TextAlign.center,
+        //   style: TextStyle(
+        //     fontWeight: FontWeight.w700,
+        //     color: Colors.grey[200],
+        //   ),
+        // ),
         SizedBox(height: 5),
         Text(
-          'Activer Easytodo ',
+          'Activer Easyeconmy',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 34,

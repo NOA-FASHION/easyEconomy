@@ -59,6 +59,7 @@ class _HomeState extends State<Home> {
                 end: Alignment.centerRight,
                 colors: [Colors.orange, Colors.blueAccent])),
         child: Scaffold(
+          backgroundColor: Colors.transparent,
           bottomNavigationBar: CircleNavBar(
             activeIcons: const [
               Icon(Icons.home, color: Colors.blue),
