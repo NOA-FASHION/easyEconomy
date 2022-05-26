@@ -20,9 +20,6 @@ class IntroViewsPage extends StatelessWidget {
             Icons.remove_red_eye,
           ),
           Icon(
-            Icons.dashboard,
-          ),
-          Icon(
             Icons.info,
           ),
         ];
@@ -42,7 +39,7 @@ class IntroViewsPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 1.1,
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
-                      "La première étape consiste, à rentrer vos charge et revenus fixe. dans l'onglet revenus fixe mensuel",
+                      "La première étape consiste, à rentrer vos charge et revenus fixe. dans l'onglet revenus et charges fixes mensuels",
                       maxLines: 3,
                       style: TextStyle(fontSize: 15),
                       textAlign: TextAlign.start,
@@ -52,7 +49,7 @@ class IntroViewsPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 1.1,
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "Vous aurez une idée rapide de vos capacité de consomation  ",
+                      "Vous aurez une idée rapide de vos capacités de consomations  ",
                       maxLines: 5,
                       style: TextStyle(fontSize: 15),
                       textAlign: TextAlign.start,
@@ -144,25 +141,21 @@ class IntroViewsPage extends StatelessWidget {
             child: TabContainer(
               color: Color.fromRGBO(43, 132, 170, 1),
               children: [
-                Row(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.1,
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        "Documenter vos futur transactions. Par exemple ajouter les photos d'un contrat d'un pret bancaire ou les informations de vos échéances. ",
-                        maxLines: 4,
-                        style: TextStyle(fontSize: 15),
-                        textAlign: TextAlign.start,
-                      ),
-                    ),
-                  ],
+                Container(
+                  width: MediaQuery.of(context).size.width / 1.1,
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    "Documenter vos futur transactions. Par exemple ajouter les photos d'un contrat d'un prêt bancaire ou les informations de vos échéances. ",
+                    maxLines: 4,
+                    style: TextStyle(fontSize: 15),
+                    textAlign: TextAlign.start,
+                  ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Chaque validation de cette transaction mettra a jour les informations de vos échéance. C'est à dire le reste de vos échéances et le montant total restant à payer.",
+                    "Chaque validation d'un prêt bancaire par exemple, mettra a jour les informations suivantes: le restant dû et nombre d'échéance restantes.",
                     maxLines: 5,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -247,7 +240,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Le simulateur à pour but de vous permettre de budgétiser vos dépenses futures à n'importe quel moment. Plusieur option s'offre à vous: reset de vos tansactions, désactivation de transactions. ",
+                    "Budgétiser vos dépenses futures. Pour mener à bien votre simulation vous pourrez soit remettre à zero vos tansactions ponctuelles ou désactivé une opération. ",
                     maxLines: 5,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -257,7 +250,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Le simulateur hérite de toutes vos charges et revenus fixe. En rentrant vos dépenses et revenue ponctuelles, vos prévisions de charge , de revenus et de solde seront calculés en live.",
+                    "Le simulateur hérite de toutes vos charges et revenus fixe. En rentrant vos dépenses et revenue ponctuelles, vous aurez une idée rapide de vos capacités de consomations. ",
                     maxLines: 5,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -342,7 +335,7 @@ class IntroViewsPage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 1.1,
                       padding: const EdgeInsets.all(15.0),
                       child: Text(
-                        "Dans l'onglet gestion mensuel se trouve le gestionnaire de vos revenus. Chaque mois  hérite automatiquement de toutes vos charges et revenus fixe. ",
+                        "L'onglet gestion mensuel vous permettra de gérer vos finaces mensuellement. Chaque mois hérite automatiquement de toutes vos charges et revenus fixe. ",
                         maxLines: 4,
                         style: TextStyle(fontSize: 15),
                         textAlign: TextAlign.start,
@@ -354,7 +347,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Il vous suffira de rentrer vos dépenses et revenue ponctuelles. et easyeconomy  se chargera de vous donner les informations nécessaires  pour une gestion efficace  de vos finances.",
+                    "Envrentrant vos dépenses et revenus ponctuels, vous pourrez acceder aux informations nécessaires  pour une gestion efficace  de vos finances.",
                     maxLines: 5,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -437,7 +430,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Maintenant que vous toutes vos transactions future sont visibles, il vous restera à valider par un swipe vers la gauche chaque mouvement d'argent. ",
+                    "Maintenant que vous toutes vos transactions future sont visibles, il vous restera à valider par un swipe vers la gauche chaque mouvement d'argent. Par exemple l'arrivé de votre salaire.",
                     maxLines: 4,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -447,18 +440,8 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Quand votre salaire est arrivé et que vous validez cette transaction par un swipe elle se retourvera dans la liste 'Transactions validées'. 2 tableaux de bord sont disponible: transactions à venir et transactions validées ",
+                    "Les transactions validées se retourveront dans la liste 'Transactions validées'. 2 tableaux de bord sont disponible: transactions à venir et transactions validées ",
                     maxLines: 5,
-                    style: TextStyle(fontSize: 15),
-                    textAlign: TextAlign.start,
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 1.1,
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    "Easyeconomy met à votre disposition un tableau de bord pour les transaction à venir et un autre pour les transactions validées ",
-                    maxLines: 4,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
                   ),
@@ -528,47 +511,25 @@ class IntroViewsPage extends StatelessWidget {
             child: TabContainer(
               color: Color.fromRGBO(43, 132, 170, 1),
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.settings,
-                        size: 27,
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.1,
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        "Vous pouvez lorsque vous faites vos emplettes, par exemple vos courses du mois, ajouter les informations de vos articles tel que prix type d'articles.",
-                        maxLines: 4,
-                        style: TextStyle(fontSize: 15),
-                        textAlign: TextAlign.start,
-                      ),
-                    ),
-                  ],
+                Container(
+                  width: MediaQuery.of(context).size.width / 1.1,
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    "Vous pouvez lorsque vous faites vos emplettes, par exemple vos courses du mois, ajouter les informations de vos articles tel que prix type d'articles.",
+                    maxLines: 4,
+                    style: TextStyle(fontSize: 15),
+                    textAlign: TextAlign.start,
+                  ),
                 ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Icon(
-                        Icons.remove_red_eye,
-                        size: 27,
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.1,
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        "Easytodo se chargera de vous donner en live le montant total de vos achats. Vous aurez une idée rapide de vos capacité de consomation  ",
-                        maxLines: 5,
-                        style: TextStyle(fontSize: 15),
-                        textAlign: TextAlign.start,
-                      ),
-                    ),
-                  ],
+                Container(
+                  width: MediaQuery.of(context).size.width / 1.1,
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    "Easytodo se chargera de vous donner en live le montant total de vos achats. Vous aurez une idée rapide de vos capacité de consomation  ",
+                    maxLines: 5,
+                    style: TextStyle(fontSize: 15),
+                    textAlign: TextAlign.start,
+                  ),
                 ),
                 Center(
                   child: Padding(
