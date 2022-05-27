@@ -6,6 +6,8 @@ import 'package:easyeconomy/screens/purchase.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:shape_of_view_null_safe/shape/bubble.dart';
+import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 
 class Setting extends StatefulWidget {
   final int index;
@@ -22,14 +24,17 @@ class _SettingState extends State<Setting> {
     // EasyController variable = Provider.of<EasyController>(context);
     double widthC = MediaQuery.of(context).size.width * 100;
     return Scaffold(
-        backgroundColor: Colors.grey.shade50,
+        backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               //==========================================================================================
               // build Top Section of Profile (include : Image & main info & card of info[photos ... ] )
               //==========================================================================================
-              _buildHeader(context, widthC),
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: _buildHeader(context, widthC),
+              ),
 
               //==========================================================================================
               //  build Bottom Section of Profile (include : email - phone number - about - location )
@@ -41,58 +46,72 @@ class _SettingState extends State<Setting> {
   }
 
   Widget _buildHeader(BuildContext context, double width) {
-    return Stack(
-      children: <Widget>[
-        Ink(
-          height: 230,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Colors.orange, Colors.blueAccent])),
-        ),
-        Container(
-          width: double.infinity,
-          margin: const EdgeInsets.only(top: 50),
-          child: Column(
-            children: <Widget>[
-              Card(
-                elevation: 15,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                color: Colors.grey.shade400,
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 6.0,
-                    ),
-                  ),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(80),
-                      child: Image.asset('assets/logo.png',
-                          width: 80, height: 80, fit: BoxFit.fill)),
-                ),
-              ),
-              _buildMainInfo(context, width)
-            ],
-          ),
-        ),
-        Container(
+    return ShapeOfView(
+      shape: BubbleShape(
+          position: BubblePosition.Bottom,
+          arrowPositionPercent: 0.5,
+          borderRadius: 20,
+          arrowHeight: 10,
+          arrowWidth: 10),
+      child: Stack(
+        children: <Widget>[
+          Ink(
+            height: 230,
+            width: 430,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.orange, Colors.blueAccent])),
-            margin: const EdgeInsets.only(top: 210),
-            child: _buildInfoCard(context))
-      ],
+              borderRadius: BorderRadius.circular(5.0),
+              image: new DecorationImage(
+                image: new AssetImage('assets/6.png'),
+                fit: BoxFit.cover,
+              ),
+              // gradient: LinearGradient(
+              //     begin: Alignment.centerLeft,
+              //     end: Alignment.centerRight,
+              //     colors: [Colors.orange, Colors.blueAccent])
+            ),
+          ),
+          Container(
+            width: 200,
+            margin: const EdgeInsets.only(top: 50),
+            child: Column(
+              children: <Widget>[
+                Card(
+                  elevation: 15,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  color: Colors.grey.shade400,
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 6.0,
+                      ),
+                    ),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(80),
+                        child: Image.asset('assets/logo.png',
+                            width: 80, height: 80, fit: BoxFit.fill)),
+                  ),
+                ),
+                _buildMainInfo(context, width)
+              ],
+            ),
+          ),
+          // Container(
+          //     decoration: BoxDecoration(
+          //         borderRadius: BorderRadius.circular(5.0),
+          //         gradient: LinearGradient(
+          //             begin: Alignment.centerLeft,
+          //             end: Alignment.centerRight,
+          //             colors: [Colors.orange, Colors.blueAccent])),
+          //     margin: const EdgeInsets.only(top: 210),
+          //     child: _buildInfoCard(context))
+        ],
+      ),
     );
   }
 
@@ -191,11 +210,13 @@ class _SettingState extends State<Setting> {
   Widget _buildMainInfo(BuildContext context, double width) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Colors.orange, Colors.blueAccent])),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(5.0),
+        // gradient: LinearGradient(
+        //     begin: Alignment.centerLeft,
+        //     end: Alignment.centerRight,
+        //     colors: [Colors.orange, Colors.blueAccent])
+      ),
       width: width,
       margin: const EdgeInsets.all(10),
       alignment: AlignmentDirectional.center,
@@ -218,12 +239,14 @@ class _SettingState extends State<Setting> {
   Widget _buildInfo(BuildContext context, double width) {
     EasyController variable = Provider.of<EasyController>(context);
     return Container(
+        height: 510,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(0.0),
-            gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [Colors.orange, Colors.blueAccent])),
+            borderRadius: BorderRadius.circular(0.0), color: Colors.transparent
+            // gradient: LinearGradient(
+            //     begin: Alignment.centerLeft,
+            //     end: Alignment.centerRight,
+            //     colors: [Colors.orange, Colors.blueAccent])
+            ),
         padding: EdgeInsets.all(10),
         child: Card(
           shape: RoundedRectangleBorder(
@@ -231,70 +254,97 @@ class _SettingState extends State<Setting> {
             borderRadius: BorderRadius.circular(15.0),
           ),
           elevation: 5,
-          color: Colors.grey.shade400,
+          color: Colors.transparent,
           child: Container(
             alignment: Alignment.topLeft,
             padding: EdgeInsets.all(28),
             child: Column(
               children: <Widget>[
-                ListTile(
-                  leading: Icon(Icons.email, color: Colors.deepOrangeAccent),
-                  title: Text("E-Mail",
-                      style: TextStyle(fontSize: 18, color: Colors.black)),
-                  subtitle: Text("easyeconomy@gmail.com",
-                      style: TextStyle(fontSize: 15, color: Colors.black54)),
+                Card(
+                  color: Colors.white24,
+                  elevation: 15,
+                  child: ListTile(
+                    leading: Icon(Icons.email, color: Colors.deepOrangeAccent),
+                    title: Text("E-Mail",
+                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                    subtitle: Text("easyeconomy@gmail.com",
+                        style: TextStyle(fontSize: 12, color: Colors.black54)),
+                  ),
                 ),
                 Divider(
                   thickness: 2,
                   color: Colors.white,
                 ),
-                ListTile(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                            type: PageTransitionType.bottomToTop,
-                            child: ChangeNotifierProvider.value(
-                                value: variable, child: PurchaseApp())));
-                  },
-                  leading: Icon(Icons.store, color: Colors.deepOrangeAccent),
-                  title: Text("Achat",
-                      style: TextStyle(fontSize: 18, color: Colors.black)),
-                  subtitle: Text("À vie",
-                      style: TextStyle(fontSize: 15, color: Colors.black54)),
+                Card(
+                  color: Colors.white24,
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              child: ChangeNotifierProvider.value(
+                                  value: variable, child: PurchaseApp())));
+                    },
+                    leading: Icon(Icons.store, color: Colors.deepOrangeAccent),
+                    title: Text("Achat",
+                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                    subtitle: Text("À vie",
+                        style: TextStyle(fontSize: 12, color: Colors.black54)),
+                  ),
                 ),
                 Divider(
                   thickness: 2,
                   color: Colors.white,
                 ),
-                ListTile(
-                  leading: Icon(Icons.person, color: Colors.deepOrangeAccent),
-                  title: Text("À propos",
-                      style: TextStyle(fontSize: 18, color: Colors.black)),
-                  subtitle: Text("Présentation",
-                      style: TextStyle(fontSize: 15, color: Colors.black54)),
+                Card(
+                  color: Colors.white24,
+                  child: ListTile(
+                    leading: Icon(Icons.person, color: Colors.deepOrangeAccent),
+                    title: Text("Politique de confidentialité",
+                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                    // subtitle: Text("Présentation",
+                    //     style: TextStyle(fontSize: 15, color: Colors.black54)),
+                  ),
                 ),
                 Divider(
                   thickness: 2,
                   color: Colors.white,
                 ),
-                ListTile(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                            type: PageTransitionType.bottomToTop,
-                            child: ChangeNotifierProvider.value(
-                                value: variable, child: IntroViewsPage())));
-                  },
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  leading: Icon(Icons.start, color: Colors.deepOrangeAccent),
-                  title: Text("Introduction",
-                      style: TextStyle(fontSize: 18, color: Colors.black)),
-                  // subtitle: Text("Help",
-                  //     style:
-                  //         TextStyle(fontSize: 15, color: Colors.black54)),
+                Card(
+                  color: Colors.white24,
+                  child: ListTile(
+                    leading: Icon(Icons.person, color: Colors.deepOrangeAccent),
+                    title: Text("À propos",
+                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                    // subtitle: Text("Présentation",
+                    //     style: TextStyle(fontSize: 12, color: Colors.black54)),
+                  ),
+                ),
+                Divider(
+                  thickness: 2,
+                  color: Colors.white,
+                ),
+                Card(
+                  color: Colors.white24,
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              child: ChangeNotifierProvider.value(
+                                  value: variable, child: IntroViewsPage())));
+                    },
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    leading: Icon(Icons.start, color: Colors.deepOrangeAccent),
+                    title: Text("Introduction",
+                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                    // subtitle: Text("Help",
+                    //     style:
+                    //         TextStyle(fontSize: 15, color: Colors.black54)),
+                  ),
                 ),
               ],
             ),
