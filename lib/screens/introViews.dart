@@ -660,10 +660,7 @@ class IntroViewsPage extends StatelessWidget {
 }
 
 void _launchMapsUrl(String lien) async {
-  final url = lien;
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
+  launchUrl(
+    Uri.parse(lien),
+  );
 }
