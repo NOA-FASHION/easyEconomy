@@ -6,6 +6,7 @@ import 'package:intro_views_flutter/intro_views_flutter.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:tab_container/tab_container.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class IntroViewsPage extends StatelessWidget {
   static const routeName = '/IntroViewsPage';
@@ -66,7 +67,10 @@ class IntroViewsPage extends StatelessWidget {
                                   child: InkWell(
                                     // splash color
                                     splashColor: Colors.white,
-                                    onTap: () async {},
+                                    onTap: () async {
+                                      _launchMapsUrl(
+                                          "https://esyeconomy.freshdesk.com/support/solutions/articles/73000552862-charges-et-revenus-fixe");
+                                    },
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -172,7 +176,10 @@ class IntroViewsPage extends StatelessWidget {
                                 child: InkWell(
                                   // splash color
                                   splashColor: Colors.white,
-                                  onTap: () async {},
+                                  onTap: () async {
+                                    _launchMapsUrl(
+                                        "https://esyeconomy.freshdesk.com/support/solutions/articles/73000552865-documenter-vos-transactions");
+                                  },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -267,7 +274,10 @@ class IntroViewsPage extends StatelessWidget {
                                 child: InkWell(
                                   // splash color
                                   splashColor: Colors.white,
-                                  onTap: () async {},
+                                  onTap: () async {
+                                    _launchMapsUrl(
+                                        "https://esyeconomy.freshdesk.com/support/solutions/articles/73000552901-simulateur-de-gestion");
+                                  },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -364,7 +374,10 @@ class IntroViewsPage extends StatelessWidget {
                                 child: InkWell(
                                   // splash color
                                   splashColor: Colors.white,
-                                  onTap: () async {},
+                                  onTap: () async {
+                                    _launchMapsUrl(
+                                        "https://esyeconomy.freshdesk.com/support/solutions/articles/73000552905-gestion-mensuelle");
+                                  },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -457,7 +470,10 @@ class IntroViewsPage extends StatelessWidget {
                                 child: InkWell(
                                   // splash color
                                   splashColor: Colors.white,
-                                  onTap: () async {},
+                                  onTap: () async {
+                                    _launchMapsUrl(
+                                        "https://esyeconomy.freshdesk.com/support/solutions/articles/73000552906-validation-des-transactions");
+                                  },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -542,7 +558,10 @@ class IntroViewsPage extends StatelessWidget {
                                 child: InkWell(
                                   // splash color
                                   splashColor: Colors.white,
-                                  onTap: () async {},
+                                  onTap: () async {
+                                    _launchMapsUrl(
+                                        "https://esyeconomy.freshdesk.com/support/solutions/articles/73000552907-liste-des-courses");
+                                  },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -637,5 +656,14 @@ class IntroViewsPage extends StatelessWidget {
         ), //IntroViewsFlutter
       ), //Builder
     ); //Material App
+  }
+}
+
+void _launchMapsUrl(String lien) async {
+  final url = lien;
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }

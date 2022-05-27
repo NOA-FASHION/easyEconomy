@@ -57,6 +57,7 @@ dependencies:
   circle_nav_bar: ^1.0.2
   intro_views_flutter: ^3.2.0
   tab_container: ^2.0.0
+  url_launcher: ^6.1.2
   # scaffold_gradient_background: ^1.0.3+1
 
 
