@@ -404,7 +404,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                   index: index,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "Le produit a bien été supprimée",
+                    content: "La transaction a bien été supprimée",
                     lotties: 'assets/trash.json'));
               }
 
@@ -413,7 +413,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                   index: index,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "Le produit a bien été supprimée",
+                    content: "La transaction a bien été supprimée",
                     lotties: 'assets/trash.json'));
               }
             },
@@ -427,7 +427,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                           "Confirmation",
                           style: TextStyle(color: Colors.blue),
                         ),
-                        content: Text("Voulez vous supprimer le produit"),
+                        content: Text("Voulez vous supprimer la transaction"),
                         actions: [
                           RaisedButton(
                             onPressed: () {
@@ -455,7 +455,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                           "Confirmation",
                           style: TextStyle(color: Colors.blue),
                         ),
-                        content: Text("Voulez vous supprimer le produit"),
+                        content: Text("Voulez vous supprimer la transaction"),
                         actions: [
                           RaisedButton(
                             onPressed: () {

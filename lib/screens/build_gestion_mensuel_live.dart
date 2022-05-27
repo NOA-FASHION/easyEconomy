@@ -339,7 +339,7 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                   validation: false,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "Le produit a bien été supprimée",
+                    content: "La transaction a bien été supprimée",
                     lotties: 'assets/trash.json'));
               }
             },
@@ -353,7 +353,7 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                           "Confirmation",
                           style: TextStyle(color: Colors.blue),
                         ),
-                        content: Text("Voulez vous supprimer le produit"),
+                        content: Text("Voulez vous supprimer la transaction"),
                         actions: [
                           RaisedButton(
                             onPressed: () {
@@ -424,7 +424,6 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                 ),
                 elevation: 20.0,
                 child: Container(
-                 
                   child: ListTile(
                     onLongPress: () {
                       variable.activeListListGestionMensuel(

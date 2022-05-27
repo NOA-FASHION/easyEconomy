@@ -282,7 +282,7 @@ class _BuildGestionMensuelResultatsState
                 );
 
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "La transaction à été  valider",
+                    content: "La transaction à été validée",
                     lotties: 'assets/challenge.json'));
               }
 
@@ -294,7 +294,7 @@ class _BuildGestionMensuelResultatsState
                   validation: false,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "Le produit a bien été supprimée",
+                    content: "La transaction a bien été supprimée",
                     lotties: 'assets/trash.json'));
               }
             },
@@ -308,7 +308,8 @@ class _BuildGestionMensuelResultatsState
                           "Confirmation",
                           style: TextStyle(color: Colors.blue),
                         ),
-                        content: Text("Voulez vous supprimer le produit"),
+                        content:
+                            Text("Voulez vous supprimer cette transaction"),
                         actions: [
                           RaisedButton(
                             onPressed: () {

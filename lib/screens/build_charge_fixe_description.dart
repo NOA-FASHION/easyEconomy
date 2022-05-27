@@ -408,7 +408,7 @@ class _BuildChargeFixeDescriptionState
 
               if (direction == DismissDirection.startToEnd) {
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "La mission a bien ete supprime",
+                    content: "La description a bien été supprimée",
                     lotties: 'assets/trash.json'));
                 providerType.removeDescriptionMontaUniv(
                     index: index, indexChargeFixe: widget.indexChargeFixe);
@@ -424,7 +424,7 @@ class _BuildChargeFixeDescriptionState
                           "Confirmation",
                           style: TextStyle(color: Colors.blue),
                         ),
-                        content: Text("Voulez vous suprimmez la mission"),
+                        content: Text("Voulez vous suprimmez la description"),
                         actions: [
                           RaisedButton(
                             onPressed: () {

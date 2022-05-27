@@ -323,7 +323,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                   index: index,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "Le produit a bien été supprimée",
+                    content: "les transactions ont bien été supprimées",
                     lotties: 'assets/trash.json'));
               }
 
@@ -332,7 +332,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                   index: index,
                 );
                 Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "Le produit a bien été supprimée",
+                    content: "les transactions ont bien été supprimées",
                     lotties: 'assets/trash.json'));
               }
             },
@@ -346,7 +346,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                           "Confirmation",
                           style: TextStyle(color: Colors.blue),
                         ),
-                        content: Text("Voulez vous supprimer le produit"),
+                        content: Text("Voulez vous supprimer les transactions"),
                         actions: [
                           RaisedButton(
                             onPressed: () {
@@ -374,7 +374,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                           "Confirmation",
                           style: TextStyle(color: Colors.blue),
                         ),
-                        content: Text("Voulez vous supprimer le produit"),
+                        content: Text("Voulez vous supprimer les transactions"),
                         actions: [
                           RaisedButton(
                             onPressed: () {
