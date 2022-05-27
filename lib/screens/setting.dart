@@ -6,7 +6,7 @@ import 'package:easyeconomy/screens/purchase.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:shape_of_view_null_safe/shape/bubble.dart';
+
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 
 class Setting extends StatefulWidget {
@@ -217,22 +217,12 @@ class _SettingState extends State<Setting> {
         //     end: Alignment.centerRight,
         //     colors: [Colors.orange, Colors.blueAccent])
       ),
-      width: width,
+      width: 120,
       margin: const EdgeInsets.all(10),
       alignment: AlignmentDirectional.center,
-      child: Column(
-        children: <Widget>[
-          Text('SETTINGS',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.teal,
-                  fontWeight: FontWeight.bold)),
-          SizedBox(height: 10),
-          // Text('Flutter',
-          //     style: TextStyle(
-          //         color: Colors.grey.shade50, fontStyle: FontStyle.italic))
-        ],
-      ),
+      child: Text('SETTINGS',
+          style: TextStyle(
+              fontSize: 20, color: Colors.teal, fontWeight: FontWeight.bold)),
     );
   }
 
@@ -250,7 +240,7 @@ class _SettingState extends State<Setting> {
         padding: EdgeInsets.all(10),
         child: Card(
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.white70, width: 1),
+            // side: BorderSide(color: Colors.white70, width: 1),
             borderRadius: BorderRadius.circular(15.0),
           ),
           elevation: 5,

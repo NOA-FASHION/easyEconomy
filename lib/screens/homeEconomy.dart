@@ -509,7 +509,7 @@ Widget _buildMainInfo(BuildContext context, double width) {
       //     end: Alignment.centerRight,
       //     colors: [Colors.orange, Colors.blueAccent])
     ),
-    width: width,
+    width: 70,
     margin: const EdgeInsets.all(10),
     alignment: AlignmentDirectional.center,
     child: Column(
@@ -517,7 +517,7 @@ Widget _buildMainInfo(BuildContext context, double width) {
         Text('HOME',
             style: TextStyle(
                 fontSize: 20, color: Colors.teal, fontWeight: FontWeight.bold)),
-        SizedBox(height: 10),
+
         // Text('Flutter',
         //     style: TextStyle(
         //         color: Colors.grey.shade50, fontStyle: FontStyle.italic))
