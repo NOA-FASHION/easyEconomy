@@ -4,11 +4,12 @@ import 'package:easyeconomy/screens/introViews.dart';
 import 'package:easyeconomy/screens/purchase.dart';
 
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wave_transition/wave_transition.dart';
 
 class Setting extends StatefulWidget {
   final int index;
@@ -240,8 +241,9 @@ class _SettingState extends State<Setting> {
                   onTap: () {
                     Navigator.push(
                         context,
-                        PageTransition(
-                            type: PageTransitionType.bottomToTop,
+                            WaveTransition(
+                            center: FractionalOffset(0.90, 0.90),
+                            duration: Duration(milliseconds: 1000),
                             child: ChangeNotifierProvider.value(
                                 value: variable, child: PurchaseApp())));
                   },
@@ -297,8 +299,9 @@ class _SettingState extends State<Setting> {
                   onTap: () {
                     Navigator.push(
                         context,
-                        PageTransition(
-                            type: PageTransitionType.bottomToTop,
+                            WaveTransition(
+                            center: FractionalOffset(0.90, 0.90),
+                            duration: Duration(milliseconds: 1000),
                             child: ChangeNotifierProvider.value(
                                 value: variable, child: IntroViewsPage())));
                   },

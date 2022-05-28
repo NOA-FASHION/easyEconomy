@@ -10,8 +10,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:provider/provider.dart';
+import 'package:wave_transition/wave_transition.dart';
 
 class HomeScreen extends StatelessWidget {
   final introKey = GlobalKey<IntroductionScreenState>();
@@ -19,8 +20,9 @@ class HomeScreen extends StatelessWidget {
   void _onIntroEnd(context, ChangeNotifier variable) {
     Navigator.push(
         context,
-        PageTransition(
-            type: PageTransitionType.bottomToTop,
+            WaveTransition(
+                            center: FractionalOffset(0.90, 0.90),
+                            duration: Duration(milliseconds: 1000),
             child:
                 ChangeNotifierProvider.value(value: variable, child: Home())));
   }
@@ -74,8 +76,9 @@ class HomeScreen extends StatelessWidget {
               // _onIntroEnd(context, variable);
               Navigator.push(
                   context,
-                  PageTransition(
-                      type: PageTransitionType.bottomToTop,
+                       WaveTransition(
+                            center: FractionalOffset(0.90, 0.90),
+                            duration: Duration(milliseconds: 1000),
                       child: ChangeNotifierProvider.value(
                           value: variable, child: Home())));
             },
@@ -239,8 +242,9 @@ class HomeScreen extends StatelessWidget {
           // _onIntroEnd(context, variable);
           Navigator.push(
               context,
-              PageTransition(
-                  type: PageTransitionType.bottomToTop,
+                  WaveTransition(
+                            center: FractionalOffset(0.90, 0.90),
+                            duration: Duration(milliseconds: 1000),
                   child: ChangeNotifierProvider.value(
                       value: variable, child: Home())));
         },

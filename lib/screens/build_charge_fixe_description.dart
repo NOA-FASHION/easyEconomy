@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:wave_transition/wave_transition.dart';
 
 class BuildChargeFixeDescription extends StatefulWidget {
   final int indexChargeFixe;
@@ -496,8 +496,9 @@ class _BuildChargeFixeDescriptionState
                         "commentaire") {
                       Navigator.push(
                           context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
+                          WaveTransition(
+                              center: FractionalOffset(0.90, 0.90),
+                              duration: Duration(milliseconds: 1000),
                               child: ChangeNotifierProvider.value(
                                   value: providerType,
                                   child: PlayCommentaire(
@@ -511,8 +512,9 @@ class _BuildChargeFixeDescriptionState
                         "image") {
                       Navigator.push(
                           context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
+                          WaveTransition(
+                              center: FractionalOffset(0.90, 0.90),
+                              duration: Duration(milliseconds: 1000),
                               child: ChangeNotifierProvider.value(
                                   value: providerType,
                                   child: PlayPicture(
