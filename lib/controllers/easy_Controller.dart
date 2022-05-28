@@ -1241,7 +1241,7 @@ class EasyController extends ChangeNotifier {
         DateFormat('EEEE, d MMM, yyyy').parseStrict(activSwitch.date);
 
     if (lastDay.day <= (24)) {
-      if ((today.day >= (lastDay.day + 7)) || (today.month > lastDay.month)) {
+      if ((today.day >= (lastDay.day + 1)) || (today.month > lastDay.month)) {
         if (activSwitch.firstActive == "true") {
           activSwitch.firstActive = "false";
           activSwitch.active = "false";
@@ -1252,7 +1252,7 @@ class EasyController extends ChangeNotifier {
       }
     } else {
       if (today.day <= 24) {
-        if (((30 - lastDay.day) + today.day >= 7) ||
+        if (((30 - lastDay.day) + today.day >= 1) ||
             (today.month > lastDay.month + 1)) {
           if (activSwitch.firstActive == "true") {
             activSwitch.firstActive = "false";
