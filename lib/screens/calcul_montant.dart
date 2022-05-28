@@ -232,7 +232,7 @@ class CalculMontant {
                         padding: const EdgeInsets.all(8.0),
                         child: !simuOuchargeFixe
                             ? Text(
-                                " Charge Fixe".toUpperCase(),
+                                " Charges Fixes".toUpperCase(),
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.black,

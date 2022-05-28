@@ -54,8 +54,8 @@ class _HomeState extends State<Home> {
               Icon(Icons.settings, color: Colors.orangeAccent),
             ],
             inactiveIcons: const [
-              Text("Home"),
-              Text("Setting"),
+              Text("Accueil"),
+              Text("Paramètres"),
             ],
             color: Colors.grey.shade400,
             height: 60,
@@ -196,7 +196,7 @@ class _HomeState extends State<Home> {
                                                   child: MarqueeText(
                                                     text: TextSpan(
                                                         text:
-                                                            "Charge et revenu fixe"
+                                                            "Charges et revenus fixes"
                                                                 .toUpperCase()),
                                                     style: TextStyle(
                                                       fontWeight:
@@ -375,7 +375,7 @@ Widget _buildHeader(BuildContext context, double width) {
     shape: BubbleShape(
         position: BubblePosition.Bottom,
         arrowPositionPercent: 0.5,
-        borderRadius: 20,
+        borderRadius: 30,
         arrowHeight: 15,
         arrowWidth: 20),
     child: Stack(
@@ -441,12 +441,12 @@ Widget _buildMainInfo(BuildContext context, double width) {
       //     end: Alignment.centerRight,
       //     colors: [Colors.orange, Colors.blueAccent])
     ),
-    width: 70,
+    width: 100,
     margin: const EdgeInsets.all(10),
     alignment: AlignmentDirectional.center,
     child: Column(
       children: <Widget>[
-        Text('HOME',
+        Text('ACCUEIL',
             style: TextStyle(
                 fontSize: 20, color: Colors.teal, fontWeight: FontWeight.bold)),
 

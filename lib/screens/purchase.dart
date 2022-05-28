@@ -529,7 +529,7 @@ class HeaderSection extends StatelessWidget {
         ),
         SizedBox(height: 5),
         Text(
-          "Si vous avez déja eu la chance de l'acheter, et que vous souhaitez l'installer sur un nouveau smartphone, procédez à une restauration d'achat.",
+          "Si vous avez déjà eu la chance de l'acheter, et que vous souhaitez l'installer sur un nouveau smartphone, procédez à une restauration d'achat.",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 17,

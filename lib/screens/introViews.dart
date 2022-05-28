@@ -41,7 +41,7 @@ class IntroViewsPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 1.1,
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
-                      "La première étape consiste, à rentrer vos charge et revenus fixe. dans l'onglet revenus et charges fixes mensuels",
+                      "La première étape consiste, à rentrer vos charges et revenus fixes. dans l'onglet 'revenus et charges fixes mensuels'.",
                       maxLines: 3,
                       style: TextStyle(fontSize: 15),
                       textAlign: TextAlign.start,
@@ -51,7 +51,7 @@ class IntroViewsPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 1.1,
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "Vous aurez une idée rapide de vos capacités de consomations  ",
+                      "Vous aurez une idée rapide de vos capacités de consomation.",
                       maxLines: 5,
                       style: TextStyle(fontSize: 15),
                       textAlign: TextAlign.start,
@@ -150,7 +150,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Documenter vos futur transactions. Par exemple ajouter les photos d'un contrat d'un prêt bancaire ou les informations de vos échéances. ",
+                    "Documenter vos futures transactions. Par exemple ajouter les photos d'un contrat d'un prêt bancaire ou les informations de vos échéances. ",
                     maxLines: 4,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -160,7 +160,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Chaque validation d'un prêt bancaire par exemple, mettra a jour les informations suivantes: le restant dû et nombre d'échéance restantes.",
+                    "Chaque validation d'un prêt bancaire par exemple, mettra à jour le nombre d'échéances restantes.",
                     maxLines: 5,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -248,7 +248,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Budgétiser vos dépenses futures. Pour mener à bien votre simulation vous pourrez soit remettre à zero vos tansactions ponctuelles ou désactivé une opération. ",
+                    "Budgétiser vos dépenses futures. Pour mener à bien votre simulation vous pourrez soit remettre à zero vos tansactions ponctuelles ou désactiver une opération inutile. ",
                     maxLines: 5,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -258,7 +258,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Le simulateur hérite de toutes vos charges et revenus fixe. En rentrant vos dépenses et revenue ponctuelles, vous aurez une idée rapide de vos capacités de consomations. ",
+                    "Le simulateur hérite de toutes vos charges et revenus fixes. En rentrant vos dépenses et revenus ponctuels, vous aurez une idée rapide de vos capacités de consomation. ",
                     maxLines: 5,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -346,7 +346,7 @@ class IntroViewsPage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 1.1,
                       padding: const EdgeInsets.all(15.0),
                       child: Text(
-                        "L'onglet gestion mensuel vous permettra de gérer vos finaces mensuellement. Chaque mois hérite automatiquement de toutes vos charges et revenus fixe. ",
+                        "L'onglet gestion mensuel vous permettra de gérer vos finances périodiquement. Chaque mois hérite automatiquement de toutes vos charges et revenus fixe. ",
                         maxLines: 4,
                         style: TextStyle(fontSize: 15),
                         textAlign: TextAlign.start,
@@ -358,7 +358,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Envrentrant vos dépenses et revenus ponctuels, vous pourrez acceder aux informations nécessaires  pour une gestion efficace  de vos finances.",
+                    "En rentrant vos dépenses et revenus ponctuels, vous pourrez accéder aux informations nécessaires  pour une gestion efficace  de vos finances.",
                     maxLines: 5,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -444,7 +444,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Maintenant que vous toutes vos transactions future sont visibles, il vous restera à valider par un swipe vers la gauche chaque mouvement d'argent. Par exemple l'arrivé de votre salaire.",
+                    "Maintenant que vos transactions futures sont visibles, il ne vous restera qu'à valider par un swipe vers la gauche chaque mouvement d'argent. Par exemple l'arrivée de votre salaire.",
                     maxLines: 4,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -454,7 +454,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Les transactions validées se retourveront dans la liste 'Transactions validées'. 2 tableaux de bord sont disponible: transactions à venir et transactions validées ",
+                    "Les transactions validées se retourveront dans la liste 'Transactions validées'. 2 tableaux de bords sont disponibles : 'transactions à venir' et 'transactions validées'. ",
                     maxLines: 5,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -532,7 +532,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Vous pouvez lorsque vous faites vos emplettes, par exemple vos courses du mois, ajouter les informations de vos articles tel que prix type d'articles.",
+                    "Vous pouvez lorsque vous faites vos emplettes, par exemple vos courses du mois, ajouter les informations de vos articles tel que, le prix et le type d'article.",
                     maxLines: 4,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,
@@ -542,7 +542,7 @@ class IntroViewsPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    "Easytodo se chargera de vous donner en live le montant total de vos achats. Vous aurez une idée rapide de vos capacité de consomation  ",
+                    "Easytodo se chargera de vous donner en live le montant total de vos achats. ",
                     maxLines: 5,
                     style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.start,

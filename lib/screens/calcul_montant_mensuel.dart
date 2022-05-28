@@ -343,9 +343,9 @@ class CalculMontantMensuel {
                             onTap: () {
                               Navigator.push(
                                   context,
-                                    WaveTransition(
-                            center: FractionalOffset(0.90, 0.90),
-                            duration: Duration(milliseconds: 1000),
+                                  WaveTransition(
+                                      center: FractionalOffset(0.90, 0.90),
+                                      duration: Duration(milliseconds: 1000),
                                       child: ChangeNotifierProvider.value(
                                           value: variable,
                                           child: GestionMensuelLiveResultats(
@@ -698,7 +698,7 @@ class CalculMontantMensuel {
                       gestionListMontantUniverselle: _listMontantUniverselle,
                       gestionListMontantUniverselleLive:
                           _listMontantUniverselleLive,
-                      titre1: 'Soldes',
+                      titre1: 'Solde',
                       titre2: 'SOLDE',
                     ),
                   ],

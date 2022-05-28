@@ -174,7 +174,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                       child: Row(
                         children: [
                           Text(
-                            "Charge",
+                            "Charges",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, color: Colors.red),
                           ),
@@ -194,7 +194,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                       child: Row(
                         children: [
                           Text(
-                            "Revenu",
+                            "Revenus",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.green.shade500),

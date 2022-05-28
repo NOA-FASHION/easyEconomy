@@ -51,7 +51,7 @@ class _SettingState extends State<Setting> {
       shape: BubbleShape(
           position: BubblePosition.Bottom,
           arrowPositionPercent: 0.5,
-          borderRadius: 20,
+          borderRadius: 30,
           arrowHeight: 15,
           arrowWidth: 20),
       child: Stack(
@@ -65,10 +65,6 @@ class _SettingState extends State<Setting> {
                 image: new AssetImage('assets/6.png'),
                 fit: BoxFit.cover,
               ),
-              // gradient: LinearGradient(
-              //     begin: Alignment.centerLeft,
-              //     end: Alignment.centerRight,
-              //     colors: [Colors.orange, Colors.blueAccent])
             ),
           ),
           Container(
@@ -102,15 +98,6 @@ class _SettingState extends State<Setting> {
               ],
             ),
           ),
-          // Container(
-          //     decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.circular(5.0),
-          //         gradient: LinearGradient(
-          //             begin: Alignment.centerLeft,
-          //             end: Alignment.centerRight,
-          //             colors: [Colors.orange, Colors.blueAccent])),
-          //     margin: const EdgeInsets.only(top: 210),
-          //     child: _buildInfoCard(context))
         ],
       ),
     );
@@ -213,15 +200,11 @@ class _SettingState extends State<Setting> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(5.0),
-        // gradient: LinearGradient(
-        //     begin: Alignment.centerLeft,
-        //     end: Alignment.centerRight,
-        //     colors: [Colors.orange, Colors.blueAccent])
       ),
-      width: 120,
+      width: 160,
       margin: const EdgeInsets.all(10),
       alignment: AlignmentDirectional.center,
-      child: Text('SETTINGS',
+      child: Text('PARAMÈTRES',
           style: TextStyle(
               fontSize: 20, color: Colors.teal, fontWeight: FontWeight.bold)),
     );
@@ -230,14 +213,6 @@ class _SettingState extends State<Setting> {
   Widget _buildInfo(BuildContext context, double width) {
     EasyController variable = Provider.of<EasyController>(context);
     return Container(
-        // height: 510,
-        // decoration: BoxDecoration(
-        // borderRadius: BorderRadius.circular(0.0), color: Colors.transparent
-        // gradient: LinearGradient(
-        //     begin: Alignment.centerLeft,
-        //     end: Alignment.centerRight,
-        //     colors: [Colors.orange, Colors.blueAccent])
-        // ),
         padding: EdgeInsets.all(10),
         child: Container(
           alignment: Alignment.topLeft,

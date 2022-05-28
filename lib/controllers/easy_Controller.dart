@@ -1240,28 +1240,13 @@ class EasyController extends ChangeNotifier {
     DateTime lastDay =
         DateFormat('EEEE, d MMM, yyyy').parseStrict(activSwitch.date);
 
-    if (lastDay.day <= (24)) {
-      if ((today.day >= (lastDay.day + 1)) || (today.month > lastDay.month)) {
-        if (activSwitch.firstActive == "true") {
-          activSwitch.firstActive = "false";
-          activSwitch.active = "false";
-          print("initChallengeyesterday");
-          await _saveChallenyesterday();
-          _initChallengeListStartChallenge();
-        }
-      }
-    } else {
-      if (today.day <= 24) {
-        if (((30 - lastDay.day) + today.day >= 1) ||
-            (today.month > lastDay.month + 1)) {
-          if (activSwitch.firstActive == "true") {
-            activSwitch.firstActive = "false";
-            activSwitch.active = "false";
-            print("initChallengeyesterday2");
-            await _saveChallenyesterday();
-            _initChallengeListStartChallenge();
-          }
-        }
+    if ((today.day >= (lastDay.day + 1)) && (today.month > lastDay.month)) {
+      if (activSwitch.firstActive == "true") {
+        activSwitch.firstActive = "false";
+        activSwitch.active = "false";
+        print("initChallengeyesterday");
+        await _saveChallenyesterday();
+        _initChallengeListStartChallenge();
       }
     }
   }
@@ -1297,7 +1282,7 @@ class EasyController extends ChangeNotifier {
     // startChallenyesterday();
     // initChallengeyesterday();
 
-    notifyListeners();
+    // notifyListeners();
   }
 
   switchIntro(String switchBoll) async {
