@@ -9,12 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:loading_overlay_pro/loading_overlay_pro.dart';
 import 'package:marquee_text/marquee_text.dart';
 
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
 import 'package:vertical_card_pager/vertical_card_pager.dart';
+import 'package:wave_transition/wave_transition.dart';
 
 import 'gestion_mensuel.dart';
 
@@ -166,24 +166,30 @@ class _HomeState extends State<Home> {
                                 if (page == 0) {
                                   Navigator.push(
                                       context,
-                                      PageTransition(
-                                          type: PageTransitionType.bottomToTop,
+                                      WaveTransition(
+                                          center: FractionalOffset(0.90, 0.90),
+                                          duration:
+                                              Duration(milliseconds: 3000),
                                           child: ChangeNotifierProvider.value(
                                               value: variable,
                                               child: ChargeFixeMensuel())));
                                 } else if (page == 1) {
                                   Navigator.push(
                                       context,
-                                      PageTransition(
-                                          type: PageTransitionType.bottomToTop,
+                                      WaveTransition(
+                                          center: FractionalOffset(0.90, 0.90),
+                                          duration:
+                                              Duration(milliseconds: 3000),
                                           child: ChangeNotifierProvider.value(
                                               value: variable,
                                               child: SimulatorGestion())));
                                 } else if (page == 2) {
                                   Navigator.push(
                                       context,
-                                      PageTransition(
-                                          type: PageTransitionType.bottomToTop,
+                                      WaveTransition(
+                                          center: FractionalOffset(0.90, 0.90),
+                                          duration:
+                                              Duration(milliseconds: 3000),
                                           child: ChangeNotifierProvider.value(
                                               value: variable,
                                               child: GestionMensuel())));
@@ -435,8 +441,8 @@ Widget _buildHeader(BuildContext context, double width) {
         position: BubblePosition.Bottom,
         arrowPositionPercent: 0.5,
         borderRadius: 20,
-        arrowHeight: 10,
-        arrowWidth: 10),
+        arrowHeight: 15,
+        arrowWidth: 20),
     child: Stack(
       children: <Widget>[
         Ink(

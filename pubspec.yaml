@@ -59,6 +59,7 @@ dependencies:
   tab_container: ^2.0.0
   url_launcher: ^6.1.2
   shape_of_view_null_safe: ^2.0.0
+  wave_transition: ^0.0.6
   # scaffold_gradient_background: ^1.0.3+1
 
 

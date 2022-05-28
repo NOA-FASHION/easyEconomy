@@ -51,8 +51,8 @@ class _SettingState extends State<Setting> {
           position: BubblePosition.Bottom,
           arrowPositionPercent: 0.5,
           borderRadius: 20,
-          arrowHeight: 10,
-          arrowWidth: 10),
+          arrowHeight: 15,
+          arrowWidth: 20),
       child: Stack(
         children: <Widget>[
           Ink(

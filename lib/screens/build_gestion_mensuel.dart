@@ -8,6 +8,7 @@ import 'package:marquee_text/marquee_text.dart';
 
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:wave_transition/wave_transition.dart';
 
 class BuildGestionMensuel extends StatefulWidget {
   BuildGestionMensuel({Key? key}) : super(key: key);
@@ -441,8 +442,9 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                   onTap: () async {
                     Navigator.push(
                         context,
-                        PageTransition(
-                            type: PageTransitionType.bottomToTop,
+                        WaveTransition(
+                            center: FractionalOffset(0.90, 0.90),
+                            duration: Duration(milliseconds: 3000),
                             child: ChangeNotifierProvider.value(
                                 value: variable,
                                 child: GestionMensuelLive(
