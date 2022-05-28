@@ -237,6 +237,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                 end: Alignment.centerRight,
                 colors: [Colors.orange, Colors.blueAccent])),
         child: Scaffold(
+          backgroundColor: Colors.transparent,
           key: scaffoldkey,
           body: Shimmer(
             duration: Duration(seconds: 3),

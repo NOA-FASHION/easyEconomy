@@ -3,10 +3,11 @@ import 'package:easyeconomy/screens/homeEconomy.dart';
 import 'package:easyeconomy/screens/switch.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_views_flutter/intro_views_flutter.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:provider/provider.dart';
 import 'package:tab_container/tab_container.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wave_transition/wave_transition.dart';
 
 class IntroViewsPage extends StatelessWidget {
   static const routeName = '/IntroViewsPage';
@@ -29,7 +30,7 @@ class IntroViewsPage extends StatelessWidget {
       PageViewModel(
           bubbleBackgroundColor: Color.fromRGBO(43, 132, 170, 1),
           pageColor: Colors.grey,
-          bubble: Image.asset('assets/air-hostess.png'),
+          bubble: Image.asset('assets/logo1.png'),
           body: SingleChildScrollView(
             child: SizedBox(
               height: 160,
@@ -138,7 +139,7 @@ class IntroViewsPage extends StatelessWidget {
       PageViewModel(
         bubbleBackgroundColor: Color.fromRGBO(43, 132, 170, 1),
         pageColor: Colors.white,
-        iconImageAssetPath: 'assets/waiter.png',
+        iconImageAssetPath: 'assets/logo1.png',
         body: SingleChildScrollView(
           child: SizedBox(
             height: 160,
@@ -236,7 +237,7 @@ class IntroViewsPage extends StatelessWidget {
       PageViewModel(
         bubbleBackgroundColor: Color.fromRGBO(43, 132, 170, 1),
         pageColor: const Color(0xFF607D8B),
-        iconImageAssetPath: 'assets/taxi-driver.png',
+        iconImageAssetPath: 'assets/logo1.png',
         body: SingleChildScrollView(
           child: SizedBox(
             height: 160,
@@ -332,7 +333,7 @@ class IntroViewsPage extends StatelessWidget {
       PageViewModel(
         bubbleBackgroundColor: Color.fromRGBO(43, 132, 170, 1),
         pageColor: Color.fromRGBO(123, 142, 183, 1),
-        iconImageAssetPath: 'assets/taxi-driver.png',
+        iconImageAssetPath: 'assets/logo1.png',
         body: SingleChildScrollView(
           child: SizedBox(
             height: 160,
@@ -432,7 +433,7 @@ class IntroViewsPage extends StatelessWidget {
       PageViewModel(
         bubbleBackgroundColor: Color.fromRGBO(43, 132, 170, 1),
         pageColor: Colors.orangeAccent,
-        iconImageAssetPath: 'assets/taxi-driver.png',
+        iconImageAssetPath: 'assets/logo1.png',
         body: SingleChildScrollView(
           child: SizedBox(
             height: 170,
@@ -520,7 +521,7 @@ class IntroViewsPage extends StatelessWidget {
       PageViewModel(
         bubbleBackgroundColor: Color.fromRGBO(43, 132, 170, 1),
         pageColor: Colors.orangeAccent,
-        iconImageAssetPath: 'assets/taxi-driver.png',
+        iconImageAssetPath: 'assets/logo1.png',
         body: SingleChildScrollView(
           child: SizedBox(
             height: 160,
@@ -631,13 +632,14 @@ class IntroViewsPage extends StatelessWidget {
         builder: (context) => IntroViewsFlutter(
           pageViewModel(context, variable),
           background: Colors.blue,
-          showNextButton: false,
-          showBackButton: false,
+          showNextButton: true,
+          showBackButton: true,
           onTapDoneButton: () {
             Navigator.push(
                 context,
-                PageTransition(
-                    type: PageTransitionType.bottomToTop,
+                WaveTransition(
+                    center: FractionalOffset(0.90, 0.90),
+                    duration: Duration(milliseconds: 1000),
                     child: ChangeNotifierProvider.value(
                         value: variable, child: Home())));
             // Navigator.push(
@@ -650,8 +652,8 @@ class IntroViewsPage extends StatelessWidget {
             // );
           },
           pageButtonTextStyles: TextStyle(
-            color: Colors.white,
-            fontSize: 18.0,
+            color: Colors.blue,
+            fontSize: 13.0,
           ),
         ), //IntroViewsFlutter
       ), //Builder

@@ -6,7 +6,6 @@ import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
 
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:wave_transition/wave_transition.dart';
 
@@ -444,7 +443,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                         context,
                         WaveTransition(
                             center: FractionalOffset(0.90, 0.90),
-                            duration: Duration(milliseconds: 3000),
+                            duration: Duration(milliseconds: 1000),
                             child: ChangeNotifierProvider.value(
                                 value: variable,
                                 child: GestionMensuelLive(

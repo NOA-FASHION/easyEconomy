@@ -32,27 +32,11 @@ class _HomeState extends State<Home> {
 
   final List<String> titles = ["", "", ""];
   bool navbar = true;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   timeDilation = 3;
-  // }
-
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   timeDilation = 1;
-  // }
 
   @override
   Widget build(BuildContext context) {
-    // Duration duration = Duration(seconds: 10);
-    // Future<Null> delay(int milliseconds) {
-    //   return new Future.delayed(new Duration(milliseconds: milliseconds));
-    // }
     int tabIndex = 0;
-    // late TabController tabController =
-    //     TabController(length: 2, vsync: this, initialIndex: tabIndex);
+
     EasyController variable = Provider.of<EasyController>(context);
     double widthC = MediaQuery.of(context).size.width * 100;
     return Material(
@@ -101,37 +85,6 @@ class _HomeState extends State<Home> {
             shadowColor: Colors.red,
             elevation: 15,
           ),
-          // appBar: PreferredSize(
-          //   preferredSize: Size.fromHeight(130.0),
-          //   child: SafeArea(
-          // child: navbar
-          // ? AppBar(
-          //     title: Text('EASYECONOMY',
-          //         style: TextStyle(color: Colors.black, fontSize: 18)),
-          //     centerTitle: true,
-          //     flexibleSpace: Container(
-          //       padding: EdgeInsets.only(top: 30.0),
-          //       alignment: Alignment.center,
-          //       child: Image.asset(
-          //         'assets/logo1.png',
-          //         width: 80,
-          //         height: 120,
-          //       ),
-          //       decoration: BoxDecoration(
-          //           gradient: LinearGradient(
-          //               begin: Alignment.centerLeft,
-          //               end: Alignment.centerRight,
-          //               colors: <Color>[
-          //             Colors.orange,
-          //             Colors.blueAccent
-          //           ])),
-          //     ),
-          //   )
-          // : SizedBox(
-          //     height: 0.1,
-          //   ),
-          //   ),
-          // ),
           body: navbar
               ? LoadingOverlayPro(
                   isLoading: _isLoading,
@@ -169,7 +122,7 @@ class _HomeState extends State<Home> {
                                       WaveTransition(
                                           center: FractionalOffset(0.90, 0.90),
                                           duration:
-                                              Duration(milliseconds: 3000),
+                                              Duration(milliseconds: 1000),
                                           child: ChangeNotifierProvider.value(
                                               value: variable,
                                               child: ChargeFixeMensuel())));
@@ -179,7 +132,7 @@ class _HomeState extends State<Home> {
                                       WaveTransition(
                                           center: FractionalOffset(0.90, 0.90),
                                           duration:
-                                              Duration(milliseconds: 3000),
+                                              Duration(milliseconds: 1000),
                                           child: ChangeNotifierProvider.value(
                                               value: variable,
                                               child: SimulatorGestion())));
@@ -189,7 +142,7 @@ class _HomeState extends State<Home> {
                                       WaveTransition(
                                           center: FractionalOffset(0.90, 0.90),
                                           duration:
-                                              Duration(milliseconds: 3000),
+                                              Duration(milliseconds: 1000),
                                           child: ChangeNotifierProvider.value(
                                               value: variable,
                                               child: GestionMensuel())));
@@ -246,27 +199,17 @@ class _HomeState extends State<Home> {
                                                             "Charge et revenu fixe"
                                                                 .toUpperCase()),
                                                     style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color: Colors.black,
                                                     ),
                                                     speed: 30,
                                                   ),
 
-                                                  // Text(
-                                                  //   "Charge et revenu fixe"
-                                                  //       .toUpperCase(),
-                                                  //   style: TextStyle(
-                                                  //       fontSize: 12,
-                                                  //       color: Colors.black,
-                                                  //       fontWeight:
-                                                  //           FontWeight.bold),
-                                                  //   textAlign: TextAlign.center,
                                                   // ),
                                                 ),
                                               ),
                                             ),
-                                            // SizedBox(
-                                            //   height: 20.0,
-                                            // ),
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
@@ -323,21 +266,12 @@ class _HomeState extends State<Home> {
                                                             "Simulateur de gestion"
                                                                 .toUpperCase()),
                                                     style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color: Colors.black,
                                                     ),
                                                     speed: 30,
                                                   ),
-
-                                                  // Text(
-                                                  //   "Simulateur de gestion"
-                                                  //       .toUpperCase(),
-                                                  //   style: TextStyle(
-                                                  //       fontSize: 12,
-                                                  //       color: Colors.black,
-                                                  //       fontWeight:
-                                                  //           FontWeight.bold),
-                                                  //   textAlign: TextAlign.center,
-                                                  // ),
                                                 ),
                                               ),
                                             ),
@@ -397,6 +331,7 @@ class _HomeState extends State<Home> {
                                                       text: "Gestion mensuelle"
                                                           .toUpperCase()),
                                                   style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
                                                     color: Colors.black,
                                                   ),
                                                   speed: 30,
@@ -491,15 +426,6 @@ Widget _buildHeader(BuildContext context, double width) {
             ],
           ),
         ),
-        // Container(
-        //     decoration: BoxDecoration(
-        //         borderRadius: BorderRadius.circular(5.0),
-        //         gradient: LinearGradient(
-        //             begin: Alignment.centerLeft,
-        //             end: Alignment.centerRight,
-        //             colors: [Colors.orange, Colors.blueAccent])),
-        //     margin: const EdgeInsets.only(top: 210),
-        //     child: _buildInfoCard(context))
       ],
     ),
   );

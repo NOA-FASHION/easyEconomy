@@ -8,6 +8,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Setting extends StatefulWidget {
   final int index;
@@ -229,116 +230,125 @@ class _SettingState extends State<Setting> {
   Widget _buildInfo(BuildContext context, double width) {
     EasyController variable = Provider.of<EasyController>(context);
     return Container(
-        height: 510,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(0.0), color: Colors.transparent
-            // gradient: LinearGradient(
-            //     begin: Alignment.centerLeft,
-            //     end: Alignment.centerRight,
-            //     colors: [Colors.orange, Colors.blueAccent])
-            ),
+        // height: 510,
+        // decoration: BoxDecoration(
+        // borderRadius: BorderRadius.circular(0.0), color: Colors.transparent
+        // gradient: LinearGradient(
+        //     begin: Alignment.centerLeft,
+        //     end: Alignment.centerRight,
+        //     colors: [Colors.orange, Colors.blueAccent])
+        // ),
         padding: EdgeInsets.all(10),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            // side: BorderSide(color: Colors.white70, width: 1),
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          elevation: 5,
-          color: Colors.transparent,
-          child: Container(
-            alignment: Alignment.topLeft,
-            padding: EdgeInsets.all(28),
-            child: Column(
-              children: <Widget>[
-                Card(
-                  color: Colors.white24,
-                  elevation: 15,
-                  child: ListTile(
-                    leading: Icon(Icons.email, color: Colors.deepOrangeAccent),
-                    title: Text("E-Mail",
-                        style: TextStyle(fontSize: 15, color: Colors.black)),
-                    subtitle: Text("easyeconomy@gmail.com",
-                        style: TextStyle(fontSize: 12, color: Colors.black54)),
-                  ),
+        child: Container(
+          alignment: Alignment.topLeft,
+          padding: EdgeInsets.all(28),
+          child: Column(
+            children: <Widget>[
+              Card(
+                color: Colors.white24,
+                elevation: 15,
+                child: ListTile(
+                  leading: Icon(Icons.email, color: Colors.deepOrangeAccent),
+                  title: Text("easyeconomy@gmail.com",
+                      style: TextStyle(fontSize: 15, color: Colors.black)),
+                  // subtitle: Text("easyeconomy@gmail.com",
+                  //     style: TextStyle(fontSize: 12, color: Colors.black54)),
                 ),
-                Divider(
-                  thickness: 2,
-                  color: Colors.white,
+              ),
+              Divider(
+                thickness: 2,
+                color: Colors.white,
+              ),
+              Card(
+                color: Colors.white24,
+                child: ListTile(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.bottomToTop,
+                            child: ChangeNotifierProvider.value(
+                                value: variable, child: PurchaseApp())));
+                  },
+                  leading: Icon(Icons.store, color: Colors.deepOrangeAccent),
+                  title: Text("Achat à vie",
+                      style: TextStyle(fontSize: 15, color: Colors.black)),
+                  // subtitle: Text("",
+                  //     style: TextStyle(fontSize: 12, color: Colors.black54)),
                 ),
-                Card(
-                  color: Colors.white24,
-                  child: ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              child: ChangeNotifierProvider.value(
-                                  value: variable, child: PurchaseApp())));
-                    },
-                    leading: Icon(Icons.store, color: Colors.deepOrangeAccent),
-                    title: Text("Achat",
-                        style: TextStyle(fontSize: 15, color: Colors.black)),
-                    subtitle: Text("À vie",
-                        style: TextStyle(fontSize: 12, color: Colors.black54)),
-                  ),
+              ),
+              Divider(
+                thickness: 2,
+                color: Colors.white,
+              ),
+              Card(
+                color: Colors.white24,
+                child: ListTile(
+                  onTap: () {
+                    _launchMapsUrl(
+                        'https://easyeconomy.fr/politiquedeconfidentialite.html');
+                  },
+                  leading: Icon(Icons.person, color: Colors.deepOrangeAccent),
+                  title: Text("Politique de confidentialité",
+                      style: TextStyle(fontSize: 15, color: Colors.black)),
+                  // subtitle: Text("Présentation",
+                  //     style: TextStyle(fontSize: 15, color: Colors.black54)),
                 ),
-                Divider(
-                  thickness: 2,
-                  color: Colors.white,
+              ),
+              Divider(
+                thickness: 2,
+                color: Colors.white,
+              ),
+              Card(
+                color: Colors.white24,
+                child: ListTile(
+                  onTap: () {
+                    _launchMapsUrl('https://easyeconomy.fr/');
+                  },
+                  leading: Icon(Icons.person, color: Colors.deepOrangeAccent),
+                  title: Text("À propos",
+                      style: TextStyle(fontSize: 15, color: Colors.black)),
+                  // subtitle: Text("Présentation",
+                  //     style: TextStyle(fontSize: 12, color: Colors.black54)),
                 ),
-                Card(
-                  color: Colors.white24,
-                  child: ListTile(
-                    leading: Icon(Icons.person, color: Colors.deepOrangeAccent),
-                    title: Text("Politique de confidentialité",
-                        style: TextStyle(fontSize: 15, color: Colors.black)),
-                    // subtitle: Text("Présentation",
-                    //     style: TextStyle(fontSize: 15, color: Colors.black54)),
-                  ),
+              ),
+              Divider(
+                thickness: 2,
+                color: Colors.white,
+              ),
+              Card(
+                color: Colors.white24,
+                child: ListTile(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.bottomToTop,
+                            child: ChangeNotifierProvider.value(
+                                value: variable, child: IntroViewsPage())));
+                  },
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  leading: Icon(Icons.start, color: Colors.deepOrangeAccent),
+                  title: Text("Introduction",
+                      style: TextStyle(fontSize: 15, color: Colors.black)),
+                  // subtitle: Text("Help",
+                  //     style:
+                  //         TextStyle(fontSize: 15, color: Colors.black54)),
                 ),
-                Divider(
-                  thickness: 2,
-                  color: Colors.white,
-                ),
-                Card(
-                  color: Colors.white24,
-                  child: ListTile(
-                    leading: Icon(Icons.person, color: Colors.deepOrangeAccent),
-                    title: Text("À propos",
-                        style: TextStyle(fontSize: 15, color: Colors.black)),
-                    // subtitle: Text("Présentation",
-                    //     style: TextStyle(fontSize: 12, color: Colors.black54)),
-                  ),
-                ),
-                Divider(
-                  thickness: 2,
-                  color: Colors.white,
-                ),
-                Card(
-                  color: Colors.white24,
-                  child: ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              child: ChangeNotifierProvider.value(
-                                  value: variable, child: IntroViewsPage())));
-                    },
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    leading: Icon(Icons.start, color: Colors.deepOrangeAccent),
-                    title: Text("Introduction",
-                        style: TextStyle(fontSize: 15, color: Colors.black)),
-                    // subtitle: Text("Help",
-                    //     style:
-                    //         TextStyle(fontSize: 15, color: Colors.black54)),
-                  ),
-                ),
-              ],
-            ),
+              ),
+              Divider(
+                thickness: 2,
+                color: Colors.white,
+              ),
+            ],
           ),
         ));
   }
+}
+
+void _launchMapsUrl(String lien) async {
+  launchUrl(
+    Uri.parse(lien),
+  );
 }
