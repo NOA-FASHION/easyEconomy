@@ -423,14 +423,14 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     List<DesciprtionUniverselle> listDesription =
         providerType.getGestionMensuelDescription(
             widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
-    List<double> _GestionMensListAchat =
+    List<double> GestionMensListAchat =
         providerType.getGestionMensuelListAchat(
             widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
     return Scaffold(
       key: scaffoldkeyTache,
       appBar: PreferredSize(
         preferredSize:
-            (achatValid(listDesription) || _GestionMensListAchat.length > 0)
+            (achatValid(listDesription) || GestionMensListAchat.length > 0)
                 ? Size.fromHeight(246.0)
                 : Size.fromHeight(111.0),
         child: SafeArea(
@@ -455,7 +455,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                           end: Alignment.centerRight,
                           colors: <Color>[Colors.orange, Colors.blueAccent])),
                 ),
-                (achatValid(listDesription) || _GestionMensListAchat.length > 0)
+                (achatValid(listDesription) || GestionMensListAchat.length > 0)
                     ? Container(
                         padding: EdgeInsets.only(top: 10.0),
                         alignment: Alignment.center,
@@ -463,7 +463,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                             padding: const EdgeInsets.all(8.0),
                             child: ScreenAchat(
                               listDesription: listDesription,
-                              achat: _GestionMensListAchat,
+                              achat: GestionMensListAchat,
                             )),
                         decoration: BoxDecoration(
                             gradient: LinearGradient(

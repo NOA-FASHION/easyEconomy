@@ -1212,12 +1212,9 @@ class EasyController extends ChangeNotifier {
   }
 
   Future<bool> _saveChallenyesterday() async {
-    if (activSwitch != null) {
-      // print('save challengeyesterday ok');
-      Map mapyesterday = activSwitch.toJson();
-      String _jsonyesterday = jsonEncode(mapyesterday);
-      return _localData.setString(keyAccesActivSwitch, _jsonyesterday);
-    }
+    Map mapyesterday = activSwitch.toJson();
+    String _jsonyesterday = jsonEncode(mapyesterday);
+    return _localData.setString(keyAccesActivSwitch, _jsonyesterday);
 
     return false;
   }

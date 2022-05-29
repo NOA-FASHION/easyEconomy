@@ -2,7 +2,6 @@ import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_charge_fixe_description.dart';
-import 'package:easyeconomy/screens/screen_achat.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
