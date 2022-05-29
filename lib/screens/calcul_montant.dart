@@ -65,7 +65,7 @@ class CalculMontant {
     double montants = 0;
     if (!simuOuchargeFixe) {
       for (var i = listMontantUniverselleTrie.length - 1; i >= 0; i--) {
-        print(listMontantUniverselleTrie[i].unity.toString());
+        // print(listMontantUniverselleTrie[i].unity.toString());
         if (listMontantUniverselleTrie[i].unity.toString() ==
             'unity_Montant_universelle.ChargeFixe') {
           montants = montants + listMontantUniverselleTrie[i].montant;
@@ -73,7 +73,7 @@ class CalculMontant {
       }
     } else if (simuOuchargeFixe) {
       for (var i = listMontantPrevisionTrie.length - 1; i >= 0; i--) {
-        print(listMontantPrevisionTrie[i].unity.toString());
+        // print(listMontantPrevisionTrie[i].unity.toString());
         if (listMontantPrevisionTrie[i].unity.toString() ==
                 'unity_Montant_universelle.ChargeFixe' ||
             listMontantPrevisionTrie[i].unity.toString() ==

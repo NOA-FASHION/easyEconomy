@@ -16,6 +16,7 @@ class _EasyEconomyState extends State<EasyEconomy> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.transparent,
         brightness: Brightness.light,

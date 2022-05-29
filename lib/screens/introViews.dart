@@ -346,7 +346,7 @@ class IntroViewsPage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 1.1,
                       padding: const EdgeInsets.all(15.0),
                       child: Text(
-                        "L'onglet gestion mensuel vous permettra de gérer vos finances périodiquement. Chaque mois hérite automatiquement de toutes vos charges et revenus fixe. ",
+                        "L'onglet 'gestion mensuelle' vous permettra de gérer vos finances périodiquement. Chaque mois hérite automatiquement de toutes vos charges et revenus fixes. ",
                         maxLines: 4,
                         style: TextStyle(fontSize: 15),
                         textAlign: TextAlign.start,

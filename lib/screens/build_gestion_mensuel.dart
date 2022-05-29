@@ -22,7 +22,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
     double montants = 0;
 
     for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
-      print(gestionListMontantUniverselleLive[i].unity.toString());
+      // print(gestionListMontantUniverselleLive[i].unity.toString());
       if (gestionListMontantUniverselleLive[i].unity.toString() ==
               'unity_Montant_universelle.ChargeFixe' ||
           gestionListMontantUniverselleLive[i].unity.toString() ==

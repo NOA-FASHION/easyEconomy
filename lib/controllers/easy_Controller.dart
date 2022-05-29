@@ -96,7 +96,7 @@ class EasyController extends ChangeNotifier {
     }
     _initChallengeListStartChallenge().then((value) => startChallenyesterday());
     _initEconomyDays();
-
+    print("_initEconomy");
     // starteconomyDays();
     notifyListeners();
   }
@@ -556,7 +556,7 @@ class EasyController extends ChangeNotifier {
   }
 
   void starteconomyDays() async {
-    print('economydays:' + economyDays.date);
+    // print('economydays:' + economyDays.date);
     DateTime today = new DateTime.now();
     String todays = DateFormat('MMM').format(today);
     if (economyDays.date.isEmpty || economyDays.date != todays) {
@@ -582,7 +582,7 @@ class EasyController extends ChangeNotifier {
 
   Future<bool> _saveEconomyDays() async {
     if (economyDays.date.isNotEmpty) {
-      print("enregistrement ok");
+      // print("enregistrement ok");
       Map mapday = economyDays.toJson();
       String _jsonDay = jsonEncode(mapday);
       return _localDataEcononyDays.setString(keyAccesEconomyDays, _jsonDay);
@@ -592,14 +592,14 @@ class EasyController extends ChangeNotifier {
   }
 
   void _initEconomyDays() async {
-    print('init econodays');
+    // print('init econodays');
     _localDataEcononyDays = await SharedPreferences.getInstance();
     Map<String, dynamic> _jsonDecodeEconomyDays;
     final String? _tempListChallenge =
         _localDataEcononyDays.getString(keyAccesEconomyDays);
 
     if (_tempListChallenge != null) {
-      print('economy:' + economyDays.date);
+      // print('economy:' + economyDays.date);
       _jsonDecodeEconomyDays = jsonDecode(_tempListChallenge);
       economyDays = EconomyDays.fromJSON(_jsonDecodeEconomyDays);
     }
@@ -671,7 +671,7 @@ class EasyController extends ChangeNotifier {
     DateTime today = new DateTime.now();
     String todays = DateFormat('MMM').format(today);
     if (economyDays.date != todays) {
-      print('date != econonydays');
+      // print('date != econonydays');
       economyDays.date = DateFormat('MMM').format(today);
       _listGestionMensuel.add(
         GestionMensuel(
@@ -1039,10 +1039,10 @@ class EasyController extends ChangeNotifier {
     required int indexGestionMensuel,
     required int indexGestion,
   }) async {
-    print(_listGestionMensuel[indexGestionMensuel]
-        .montantUniverselle
-        .length
-        .toString());
+    // print(_listGestionMensuel[indexGestionMensuel]
+    // .montantUniverselle
+    // .length
+    // .toString());
     _listGestionMensuel[indexGestionMensuel]
         .montantUniverselle[indexGestion]
         .nom = nom;
@@ -1213,7 +1213,7 @@ class EasyController extends ChangeNotifier {
 
   Future<bool> _saveChallenyesterday() async {
     if (activSwitch != null) {
-      print('save challengeyesterday ok');
+      // print('save challengeyesterday ok');
       Map mapyesterday = activSwitch.toJson();
       String _jsonyesterday = jsonEncode(mapyesterday);
       return _localData.setString(keyAccesActivSwitch, _jsonyesterday);
@@ -1244,7 +1244,7 @@ class EasyController extends ChangeNotifier {
       if (activSwitch.firstActive == "true") {
         activSwitch.firstActive = "false";
         activSwitch.active = "false";
-        print("initChallengeyesterday");
+        // print("initChallengeyesterday");
         await _saveChallenyesterday();
         _initChallengeListStartChallenge();
       }
@@ -1254,7 +1254,7 @@ class EasyController extends ChangeNotifier {
   void startChallenyesterday() async {
     DateTime today = new DateTime.now();
     if (activSwitch.nbTacheEnCours!.isEmpty) {
-      print('start challenge yestederday');
+      // print('start challenge yestederday');
       activSwitch.date = DateFormat('EEEE, d MMM, yyyy').format(today);
       activSwitch.firstActive = "true";
       activSwitch.nbTacheEnCours = "false";
@@ -1262,7 +1262,7 @@ class EasyController extends ChangeNotifier {
       activSwitch.active = "true";
       activSwitch.nbtacheVallide = "";
       // await initialiseConnectionDatabase();
-      print("startChallenyesterday");
+      // print("startChallenyesterday");
       await _saveChallenyesterday();
       _initChallengeListStartChallenge();
     }
@@ -1278,7 +1278,7 @@ class EasyController extends ChangeNotifier {
       _jsonDecodeListActivSwitch = jsonDecode(_tempListActivSwitch);
       activSwitch = ActivSwitch.fromJSON(_jsonDecodeListActivSwitch);
     }
-    print("_initChallengeListStartChallenge");
+    // print("_initChallengeListStartChallenge");
     // startChallenyesterday();
     // initChallengeyesterday();
 

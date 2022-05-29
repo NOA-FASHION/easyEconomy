@@ -48,7 +48,7 @@ class CalculMontantMensuel {
     for (var i = gestionListMontantUniverselleLiveTrie.length - 1;
         i >= 0;
         i--) {
-      print(gestionListMontantUniverselleLiveTrie[i].unity.toString());
+      // print(gestionListMontantUniverselleLiveTrie[i].unity.toString());
       if (gestionListMontantUniverselleLiveTrie[i].unity.toString() ==
               'unity_Montant_universelle.ChargeFixe' ||
           gestionListMontantUniverselleLiveTrie[i].unity.toString() ==
