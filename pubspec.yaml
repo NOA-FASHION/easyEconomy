@@ -52,7 +52,7 @@ dependencies:
   google_fonts: ^3.0.1
   introduction_screen: ^3.0.2
   avatar_glow: ^2.0.2
-  in_app_purchase: ^3.0.4
+  in_app_purchase: ^3.0.2
   vertical_card_pager: ^1.5.0
   circle_nav_bar: ^1.0.2
   intro_views_flutter: ^3.2.0
