@@ -35,7 +35,7 @@ class IntroViewsPage extends StatelessWidget {
             child: SizedBox(
               height: 160,
               child: TabContainer(
-                color: Color.fromRGBO(43, 132, 170, 1),
+                color: Color.fromARGB(255, 0, 167, 238),
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width / 1.1,
