@@ -202,12 +202,13 @@ class _SettingState extends State<Setting> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(5.0),
       ),
-      width: 160,
       margin: const EdgeInsets.all(10),
-      alignment: AlignmentDirectional.center,
-      child: Text('PARAMÈTRES',
-          style: TextStyle(
-              fontSize: 20, color: Colors.teal, fontWeight: FontWeight.bold)),
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: Text('PARAMÈTRES',
+            style: TextStyle(
+                fontSize: 20, color: Colors.teal, fontWeight: FontWeight.bold)),
+      ),
     );
   }
 
@@ -241,7 +242,7 @@ class _SettingState extends State<Setting> {
                   onTap: () {
                     Navigator.push(
                         context,
-                            WaveTransition(
+                        WaveTransition(
                             center: FractionalOffset(0.90, 0.90),
                             duration: Duration(milliseconds: 1000),
                             child: ChangeNotifierProvider.value(
@@ -299,7 +300,7 @@ class _SettingState extends State<Setting> {
                   onTap: () {
                     Navigator.push(
                         context,
-                            WaveTransition(
+                        WaveTransition(
                             center: FractionalOffset(0.90, 0.90),
                             duration: Duration(milliseconds: 1000),
                             child: ChangeNotifierProvider.value(

@@ -199,6 +199,7 @@ class _HomeState extends State<Home> {
                                                             "Charges et revenus fixes"
                                                                 .toUpperCase()),
                                                     style: TextStyle(
+                                                      fontSize: 12,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.black,
@@ -266,6 +267,7 @@ class _HomeState extends State<Home> {
                                                             "Simulateur de gestion"
                                                                 .toUpperCase()),
                                                     style: TextStyle(
+                                                      fontSize: 12,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.black,
@@ -331,6 +333,7 @@ class _HomeState extends State<Home> {
                                                       text: "Gestion mensuelle"
                                                           .toUpperCase()),
                                                   style: TextStyle(
+                                                    fontSize: 12,
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.black,
                                                   ),
@@ -407,8 +410,6 @@ Widget _buildHeader(BuildContext context, double width) {
                 ),
                 color: Colors.grey.shade400,
                 child: Container(
-                  width: 100,
-                  height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     border: Border.all(
@@ -441,19 +442,12 @@ Widget _buildMainInfo(BuildContext context, double width) {
       //     end: Alignment.centerRight,
       //     colors: [Colors.orange, Colors.blueAccent])
     ),
-    width: 100,
     margin: const EdgeInsets.all(10),
-    alignment: AlignmentDirectional.center,
-    child: Column(
-      children: <Widget>[
-        Text('ACCUEIL',
-            style: TextStyle(
-                fontSize: 20, color: Colors.teal, fontWeight: FontWeight.bold)),
-
-        // Text('Flutter',
-        //     style: TextStyle(
-        //         color: Colors.grey.shade50, fontStyle: FontStyle.italic))
-      ],
+    child: Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Text('ACCUEIL',
+          style: TextStyle(
+              fontSize: 20, color: Colors.teal, fontWeight: FontWeight.bold)),
     ),
   );
 }
