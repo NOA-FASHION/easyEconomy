@@ -34,7 +34,7 @@ class IntroViewsPage extends StatelessWidget {
           body: SizedBox(
             height: 160,
             child: TabContainer(
-              color: Color.fromARGB(255, 0, 167, 238),
+              color: Color.fromRGBO(43, 132, 170, 1),
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width / 1.1,
@@ -51,11 +51,13 @@ class IntroViewsPage extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Vous aurez une idée rapide de vos capacités de consomation.",
-                    maxLines: 5,
-                    style: TextStyle(fontSize: 15),
-                    textAlign: TextAlign.start,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      "Vous aurez une idée rapide de vos capacités de consomation.",
+                      maxLines: 5,
+                      style: TextStyle(fontSize: 15),
+                      textAlign: TextAlign.start,
+                    ),
                   ),
                 ),
                 Center(
@@ -159,11 +161,13 @@ class IntroViewsPage extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    "Chaque validation d'un prêt bancaire par exemple, mettra à jour le nombre d'échéances restantes.",
-                    maxLines: 5,
-                    style: TextStyle(fontSize: 15),
-                    textAlign: TextAlign.start,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      "Chaque validation d'un prêt bancaire par exemple, mettra à jour le nombre d'échéances restantes.",
+                      maxLines: 5,
+                      style: TextStyle(fontSize: 15),
+                      textAlign: TextAlign.start,
+                    ),
                   ),
                 ),
                 Center(
@@ -349,11 +353,13 @@ class IntroViewsPage extends StatelessWidget {
                     Container(
                       width: MediaQuery.of(context).size.width / 1.1,
                       padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        "L'onglet 'gestion mensuelle' vous permettra de gérer vos finances périodiquement. Chaque mois hérite automatiquement de toutes vos charges et revenus fixes. ",
-                        maxLines: 4,
-                        style: TextStyle(fontSize: 15),
-                        textAlign: TextAlign.start,
+                      child: SingleChildScrollView(
+                        child: Text(
+                          "L'onglet 'gestion mensuelle' vous permettra de gérer vos finances périodiquement. Chaque mois hérite automatiquement de toutes vos charges et revenus fixes. ",
+                          maxLines: 4,
+                          style: TextStyle(fontSize: 15),
+                          textAlign: TextAlign.start,
+                        ),
                       ),
                     ),
                   ],
@@ -361,11 +367,13 @@ class IntroViewsPage extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    "En rentrant vos dépenses et revenus ponctuels, vous pourrez accéder aux informations nécessaires  pour une gestion efficace  de vos finances.",
-                    maxLines: 5,
-                    style: TextStyle(fontSize: 15),
-                    textAlign: TextAlign.start,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      "En rentrant vos dépenses et revenus ponctuels, vous pourrez accéder aux informations nécessaires  pour une gestion efficace  de vos finances.",
+                      maxLines: 5,
+                      style: TextStyle(fontSize: 15),
+                      textAlign: TextAlign.start,
+                    ),
                   ),
                 ),
                 Center(
@@ -461,7 +469,7 @@ class IntroViewsPage extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: SingleChildScrollView(
                     child: Text(
-                      "Les transactions validées se retourveront dans la liste 'Transactions validées'. 2 tableaux de bords sont disponibles : 'transactions à venir' et 'transactions validées'. ",
+                      "Les transactions validées se retourveront dans la liste 'Transactions validées'. Si vous tapez sur le tableau de bord 'transactions à venir' vous aurez accès à 'transactions validées'. ",
                       maxLines: 5,
                       style: TextStyle(fontSize: 15),
                       textAlign: TextAlign.start,
@@ -551,11 +559,13 @@ class IntroViewsPage extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width / 1.1,
                   padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    "Easytodo se chargera de vous donner en live le montant total de vos achats. ",
-                    maxLines: 5,
-                    style: TextStyle(fontSize: 15),
-                    textAlign: TextAlign.start,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      "Easytodo se chargera de vous donner en live le montant total de vos achats. ",
+                      maxLines: 5,
+                      style: TextStyle(fontSize: 15),
+                      textAlign: TextAlign.start,
+                    ),
                   ),
                 ),
                 Center(
