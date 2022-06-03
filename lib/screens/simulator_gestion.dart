@@ -5,6 +5,7 @@ import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 
 import 'package:easyeconomy/screens/build_simulator_gestion.dart';
+import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/constant.dart';
 
@@ -147,16 +148,17 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                     child: BuildSimulatorGestion(),
                   ),
                 ],
-                headerWidget: CalculMontant().header(
-                    context,
-                    variable,
-                    false,
-                    _listMontantUniverselle,
-                    _listMontPrevision,
-                    montantChargessString,
-                    montantRevenuString,
-                    montantTotalsString,
-                    simuOuchargeFixe),
+                headerWidget: Header(
+                  context: context,
+                  variable: variable,
+                  listMontantUniverselle: _listMontantUniverselle,
+                  listMontPrevision: _listMontPrevision,
+                  montantChargesDouble: montantChargessString,
+                  montantRevenuDouble: montantRevenuString,
+                  montantTotalsDouble: montantTotalsString,
+                  simuOuchargeFix: simuOuchargeFixe,
+                  transactionPasse: false,
+                ),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -2,6 +2,7 @@ import 'package:draggable_home/draggable_home.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_gestion_mensuel_resultats.dart';
+import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 import 'package:easyeconomy/screens/calcul_montant.dart';
 
 import 'package:flutter/material.dart';
@@ -84,16 +85,17 @@ class _GestionMensuelLiveResultatsState
                   ),
                 ),
               ],
-              headerWidget: CalculMontant().header(
-                  context,
-                  variable,
-                  true,
-                  _listMontantUniverselle,
-                  _listMontantUniverselleLive,
-                  montantChargessString,
-                  montantRevenuString,
-                  montantTotalsString,
-                  simuOuchargeFixe),
+              headerWidget: Header(
+                context: context,
+                variable: variable,
+                listMontantUniverselle: _listMontantUniverselle,
+                listMontPrevision: _listMontantUniverselleLive,
+                montantChargesDouble: montantChargessString,
+                montantRevenuDouble: montantRevenuString,
+                montantTotalsDouble: montantTotalsString,
+                simuOuchargeFix: simuOuchargeFixe,
+                transactionPasse: false,
+              ),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

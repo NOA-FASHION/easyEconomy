@@ -295,8 +295,9 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
     }
 
     return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.only(top: 20),
+      physics: const NeverScrollableScrollPhysics(),
+      itemExtent: 93,
+      // padding: EdgeInsets.only(top: 20, bottom: 20),
       shrinkWrap: true,
       itemCount: _listMontantUniverselle.length,
       itemBuilder: (context, index) {
@@ -387,7 +388,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
               color: Colors.red,
               padding: EdgeInsets.only(right: 10.0),
               alignment: Alignment.centerLeft,
-              child: Icon(
+              child: const Icon(
                 Icons.delete,
                 size: 55.0,
                 color: Colors.white,
@@ -397,7 +398,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
               padding: EdgeInsets.only(right: 10.0),
               alignment: Alignment.centerRight,
               color: Colors.red,
-              child: Icon(
+              child: const Icon(
                 Icons.delete,
                 size: 55.0,
                 color: Colors.white,
@@ -447,7 +448,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                       controller),
                   // subtitle: CalculMontant()
                   //     .activeGlow(_listMontantUniverselle[index], context),
-                  isThreeLine: true,
+                  // isThreeLine: true,
                 ),
               ),
             ),

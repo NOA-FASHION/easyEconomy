@@ -113,339 +113,258 @@ class CalculMontant {
     return montants;
   }
 
-  //  double montantTotals(List<MontantUniverselle> listMontantUniverselle,
-  //     List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
-  //   double montant = 0;
-  //   if (!simuOuchargeFixe) {
-  //     for (var i = listMontantUniverselle.length - 1; i >= 0; i--) {
-  //       if (listMontantUniverselle[i].unity.toString() ==
-  //           'unity_Montant_universelle.ChargeFixe') {
-  //         montant = montant - listMontantUniverselle[i].montant;
-  //       } else if (listMontantUniverselle[i].unity.toString() ==
-  //           'unity_Montant_universelle.RevenuFixe') {
-  //         montant = montant + listMontantUniverselle[i].montant;
-  //       }
-  //     }
-  //   } else if (simuOuchargeFixe) {
-  //     for (var i = listMontantPrevision.length - 1; i >= 0; i--) {
-  //       if (listMontantPrevision[i].unity.toString() ==
-  //               'unity_Montant_universelle.ChargeFixe' ||
-  //           listMontantPrevision[i].unity.toString() ==
-  //               'unity_Montant_universelle.depensePonctuelle') {
-  //         montant = montant - listMontantPrevision[i].montant;
-  //       } else if (listMontantPrevision[i].unity.toString() ==
-  //               'unity_Montant_universelle.RevenuFixe' ||
-  //           listMontantPrevision[i].unity.toString() ==
-  //               'unity_Montant_universelle.RevenuPonctuel') {
-  //         montant = montant + listMontantPrevision[i].montant;
-  //       }
-  //     }
-  //   }
+  // Widget header(
+  //     BuildContext context,
+  //     EasyController variable,
+  //     bool transactionPasse,
+  //     List<MontantUniverselle> _listMontantUniverselle,
+  //     List<MontantUniverselle> _listMontPrevision,
+  //     double montantChargesDouble,
+  //     double montantRevenuDouble,
+  //     double montantTotalsDouble,
+  //     bool simuOuchargeFixe) {
+  //   Widget headers = Container(
+  //     alignment: Alignment.center,
+  //     child: Padding(
+  //       padding: const EdgeInsets.only(top: 70.0, right: 10, left: 10),
+  //       child: Container(
+  //         decoration: BoxDecoration(
+  //           color: Colors.white,
+  //           borderRadius: BorderRadius.circular(10),
+  //         ),
+  //         child: Column(
+  //           children: [
+  //             Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //               children: [
+  //                 Card(
+  //                   color: Colors.transparent,
+  //                   shape: RoundedRectangleBorder(
+  //                     borderRadius: BorderRadius.circular(5.0),
+  //                   ),
+  //                   elevation: 25.0,
+  //                   child: Container(
+  //                     decoration: BoxDecoration(
+  //                         borderRadius: BorderRadius.circular(10),
+  //                         color: Colors.white),
+  //                     child: Padding(
+  //                       padding: const EdgeInsets.all(8.0),
+  //                       child: !simuOuchargeFixe
+  //                           ? Text(
+  //                               " Charges Fixes".toUpperCase(),
+  //                               style: TextStyle(
+  //                                   fontSize: 12,
+  //                                   color: Colors.black,
+  //                                   fontWeight: FontWeight.bold),
+  //                               textAlign: TextAlign.center,
+  //                             )
+  //                           : Text(
+  //                               !transactionPasse
+  //                                   ? " Simulateur".toUpperCase()
+  //                                   : " Transactions validées".toUpperCase(),
+  //                               style: TextStyle(
+  //                                   fontSize: 12,
+  //                                   color: Colors.black,
+  //                                   fontWeight: FontWeight.bold),
+  //                               textAlign: TextAlign.center,
+  //                             ),
+  //                     ),
+  //                   ),
+  //                 ),
+  //                 !transactionPasse
+  //                     ? !simuOuchargeFixe
+  //                         ? Row(
+  //                             children: [
+  //                               Padding(
+  //                                 padding: const EdgeInsets.all(8.0),
+  //                                 child: SizedBox.fromSize(
+  //                                     size: Size(
+  //                                         50, 50), // button width and height
+  //                                     child: ClipOval(
+  //                                         child: Material(
+  //                                             color: Colors.blue,
+  //                                             child: InkWell(
+  //                                               // splash color
+  //                                               splashColor: Colors.white,
+  //                                               onTap: () {
+  //                                                 variable.uploadChallenge();
+  //                                               },
+  //                                               child: Column(
+  //                                                 mainAxisAlignment:
+  //                                                     MainAxisAlignment.center,
+  //                                                 children: <Widget>[
+  //                                                   Icon(
+  //                                                     Icons.upload_sharp,
+  //                                                     size: 20,
+  //                                                     color: Colors.white,
+  //                                                   ), // icon
+  //                                                   Text(
+  //                                                     "Upload",
+  //                                                     style: TextStyle(
+  //                                                         fontSize: 10,
+  //                                                         color: Colors.white),
+  //                                                   ), // text
+  //                                                 ],
+  //                                               ),
+  //                                             )))),
+  //                               ),
+  //                               SizedBox.fromSize(
+  //                                   size:
+  //                                       Size(50, 50), // button width and height
+  //                                   child: ClipOval(
+  //                                       child: Material(
+  //                                           color: Colors.blue,
+  //                                           child: InkWell(
+  //                                             // splash color
+  //                                             splashColor: Colors.white,
+  //                                             onTap: () {
+  //                                               variable.writeContent();
+  //                                             }, // button pressed
+  //                                             child: Column(
+  //                                               mainAxisAlignment:
+  //                                                   MainAxisAlignment.center,
+  //                                               children: <Widget>[
+  //                                                 Icon(
+  //                                                   Icons.share_rounded,
+  //                                                   size: 20,
+  //                                                   color: Colors.white,
+  //                                                 ), // icon
+  //                                                 Text(
+  //                                                   "partage",
+  //                                                   style: TextStyle(
+  //                                                       fontSize: 10,
+  //                                                       color: Colors.white),
+  //                                                 ), // text
+  //                                               ],
+  //                                             ),
+  //                                           )))),
+  //                             ],
+  //                           )
+  //                         : Padding(
+  //                             padding: const EdgeInsets.all(8.0),
+  //                             child: SizedBox.fromSize(
+  //                                 size: Size(50, 50), // button width and height
+  //                                 child: ClipOval(
+  //                                     child: Material(
+  //                                         color: Colors.blue,
+  //                                         child: InkWell(
+  //                                           // splash color
+  //                                           splashColor: Colors.white,
+  //                                           onTap: () async {
+  //                                             variable.isLoadingTrue();
 
-  //   return montant;
+  //                                             await delay(2000);
+  //                                             variable.isLoadingFalse();
+  //                                             showTopSnackBar(
+  //                                               context,
+  //                                               CustomSnackBar.success(
+  //                                                 backgroundColor: Colors.blue,
+  //                                                 icon: Icon(
+  //                                                   Icons.restore,
+  //                                                   size: 30,
+  //                                                   color: Colors.white,
+  //                                                 ),
+  //                                                 message:
+  //                                                     'reset effectué avec succes',
+  //                                               ),
+  //                                             );
+  //                                             variable
+  //                                                 .resetListMontantPrevision();
+  //                                           },
+  //                                           child: Column(
+  //                                             mainAxisAlignment:
+  //                                                 MainAxisAlignment.center,
+  //                                             children: <Widget>[
+  //                                               Icon(
+  //                                                 Icons.restore,
+  //                                                 size: 20,
+  //                                                 color: Colors.white,
+  //                                               ), // icon
+  //                                               Text(
+  //                                                 "Reset",
+  //                                                 style: TextStyle(
+  //                                                     fontSize: 10,
+  //                                                     color: Colors.white),
+  //                                               ), // text
+  //                                             ],
+  //                                           ),
+  //                                         )))),
+  //                           )
+  //                     : SizedBox(
+  //                         width: 1,
+  //                       ),
+  //                 Container(
+  //                   padding: EdgeInsets.all(8),
+  //                   width: 80,
+  //                   height: 80,
+  //                   child: FlutterPieChart(
+  //                     pies: [
+  //                       Pie(
+  //                           color: Colors.red.shade500,
+  //                           proportion: montantChargesDouble),
+  //                       Pie(
+  //                           color: Colors.green.shade500,
+  //                           proportion: montantRevenuDouble),
+  //                       Pie(
+  //                           color: montantChargesDouble > montantRevenuDouble
+  //                               ? Colors.red.shade900
+  //                               : Colors.green.shade900,
+  //                           proportion: montantTotalsDouble > 0
+  //                               ? montantTotalsDouble
+  //                               : -montantTotalsDouble),
+  //                     ],
+  //                     selected: 2,
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //             Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //               children: [
+  //                 ScreenIndicatorMontant(
+  //                   simuOuchargeFixe: simuOuchargeFixe,
+  //                   titre: "Charges",
+  //                   icones: Icons.arrow_circle_up,
+  //                   listMontantUniverselle: _listMontantUniverselle,
+  //                   listMontantPrevision: _listMontPrevision,
+  //                   montantCharge: montantChargesDouble.toStringAsFixed(2),
+  //                   montantRevenu: montantRevenuDouble.toStringAsFixed(2),
+  //                   montantTotals: montantTotalsDouble.toStringAsFixed(2),
+  //                 ),
+  //                 ScreenIndicatorMontant(
+  //                   simuOuchargeFixe: simuOuchargeFixe,
+  //                   titre: "Revenus",
+  //                   icones: Icons.arrow_circle_down,
+  //                   listMontantUniverselle: _listMontantUniverselle,
+  //                   listMontantPrevision: _listMontPrevision,
+  //                   montantCharge: montantChargesDouble.toStringAsFixed(2),
+  //                   montantRevenu: montantRevenuDouble.toStringAsFixed(2),
+  //                   montantTotals: montantTotalsDouble.toStringAsFixed(2),
+  //                 ),
+  //                 ScreenIndicatorMontant(
+  //                   simuOuchargeFixe: simuOuchargeFixe,
+  //                   titre: "Solde",
+  //                   icones: Icons.calculate_outlined,
+  //                   listMontantUniverselle: _listMontantUniverselle,
+  //                   listMontantPrevision: _listMontPrevision,
+  //                   montantCharge: montantChargesDouble.toStringAsFixed(2),
+  //                   montantRevenu: montantRevenuDouble.toStringAsFixed(2),
+  //                   montantTotals: montantTotalsDouble.toStringAsFixed(2),
+  //                 ),
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //     decoration: BoxDecoration(
+  //         gradient: LinearGradient(
+  //             begin: Alignment.centerLeft,
+  //             end: Alignment.centerRight,
+  //             colors: <Color>[Colors.orange, Colors.blueAccent])),
+  //   );
+  //   return headers;
   // }
-
-  // double montantCharges(List<MontantUniverselle> listMontantUniverselle,
-  //     List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
-  //   double montants = 0;
-  //   if (!simuOuchargeFixe) {
-  //     for (var i = listMontantUniverselle.length - 1; i >= 0; i--) {
-  //       print(listMontantUniverselle[i].unity.toString());
-  //       if (listMontantUniverselle[i].unity.toString() ==
-  //           'unity_Montant_universelle.ChargeFixe') {
-  //         montants = montants + listMontantUniverselle[i].montant;
-  //       }
-  //     }
-  //   } else if (simuOuchargeFixe) {
-  //     for (var i = listMontantPrevision.length - 1; i >= 0; i--) {
-  //       print(listMontantPrevision[i].unity.toString());
-  //       if (listMontantPrevision[i].unity.toString() ==
-  //               'unity_Montant_universelle.ChargeFixe' ||
-  //           listMontantPrevision[i].unity.toString() ==
-  //               'unity_Montant_universelle.depensePonctuelle') {
-  //         montants = montants + listMontantPrevision[i].montant;
-  //       }
-  //     }
-  //   }
-
-  //   return montants;
-  // }
-
-  // double montantRevenu(List<MontantUniverselle> listMontantUniverselle,
-  //     List<MontantUniverselle> listMontantPrevision, bool simuOuchargeFixe) {
-  //   double montants = 0;
-  //   if (!simuOuchargeFixe) {
-  //     for (var i = listMontantUniverselle.length - 1; i >= 0; i--) {
-  //       if (listMontantUniverselle[i].unity.toString() ==
-  //           'unity_Montant_universelle.RevenuFixe') {
-  //         montants = montants + listMontantUniverselle[i].montant;
-  //       }
-  //     }
-  //   } else if (simuOuchargeFixe) {
-  //     for (var i = listMontantPrevision.length - 1; i >= 0; i--) {
-  //       if (listMontantPrevision[i].unity.toString() ==
-  //               'unity_Montant_universelle.RevenuFixe' ||
-  //           listMontantPrevision[i].unity.toString() ==
-  //               'unity_Montant_universelle.RevenuPonctuel') {
-  //         montants = montants + listMontantPrevision[i].montant;
-  //       }
-  //     }
-  //   }
-  //   return montants;
-  // }
-
-  Widget header(
-      BuildContext context,
-      EasyController variable,
-      bool transactionPasse,
-      List<MontantUniverselle> _listMontantUniverselle,
-      List<MontantUniverselle> _listMontPrevision,
-      double montantChargesDouble,
-      double montantRevenuDouble,
-      double montantTotalsDouble,
-      bool simuOuchargeFixe) {
-    Widget headers = Container(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 70.0, right: 10, left: 10),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Card(
-                    color: Colors.transparent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    elevation: 25.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: !simuOuchargeFixe
-                            ? Text(
-                                " Charges Fixes".toUpperCase(),
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              )
-                            : Text(
-                                !transactionPasse
-                                    ? " Simulateur".toUpperCase()
-                                    : " Transactions validées".toUpperCase(),
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              ),
-                      ),
-                    ),
-                  ),
-                  !transactionPasse
-                      ? !simuOuchargeFixe
-                          ? Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: SizedBox.fromSize(
-                                      size: Size(
-                                          50, 50), // button width and height
-                                      child: ClipOval(
-                                          child: Material(
-                                              color: Colors.blue,
-                                              child: InkWell(
-                                                // splash color
-                                                splashColor: Colors.white,
-                                                onTap: () {
-                                                  variable.uploadChallenge();
-                                                },
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: <Widget>[
-                                                    Icon(
-                                                      Icons.upload_sharp,
-                                                      size: 20,
-                                                      color: Colors.white,
-                                                    ), // icon
-                                                    Text(
-                                                      "Upload",
-                                                      style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: Colors.white),
-                                                    ), // text
-                                                  ],
-                                                ),
-                                              )))),
-                                ),
-                                SizedBox.fromSize(
-                                    size:
-                                        Size(50, 50), // button width and height
-                                    child: ClipOval(
-                                        child: Material(
-                                            color: Colors.blue,
-                                            child: InkWell(
-                                              // splash color
-                                              splashColor: Colors.white,
-                                              onTap: () {
-                                                variable.writeContent();
-                                              }, // button pressed
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: <Widget>[
-                                                  Icon(
-                                                    Icons.share_rounded,
-                                                    size: 20,
-                                                    color: Colors.white,
-                                                  ), // icon
-                                                  Text(
-                                                    "partage",
-                                                    style: TextStyle(
-                                                        fontSize: 10,
-                                                        color: Colors.white),
-                                                  ), // text
-                                                ],
-                                              ),
-                                            )))),
-                              ],
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SizedBox.fromSize(
-                                  size: Size(50, 50), // button width and height
-                                  child: ClipOval(
-                                      child: Material(
-                                          color: Colors.blue,
-                                          child: InkWell(
-                                            // splash color
-                                            splashColor: Colors.white,
-                                            onTap: () async {
-                                              variable.isLoadingTrue();
-
-                                              await delay(2000);
-                                              variable.isLoadingFalse();
-                                              showTopSnackBar(
-                                                context,
-                                                CustomSnackBar.success(
-                                                  backgroundColor: Colors.blue,
-                                                  icon: Icon(
-                                                    Icons.restore,
-                                                    size: 30,
-                                                    color: Colors.white,
-                                                  ),
-                                                  message:
-                                                      'reset effectué avec succes',
-                                                ),
-                                              );
-                                              variable
-                                                  .resetListMontantPrevision();
-                                            },
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Icon(
-                                                  Icons.restore,
-                                                  size: 20,
-                                                  color: Colors.white,
-                                                ), // icon
-                                                Text(
-                                                  "Reset",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.white),
-                                                ), // text
-                                              ],
-                                            ),
-                                          )))),
-                            )
-                      : SizedBox(
-                          width: 1,
-                        ),
-                  Container(
-                    padding: EdgeInsets.all(8),
-                    width: 80,
-                    height: 80,
-                    child: FlutterPieChart(
-                      pies: [
-                        Pie(
-                            color: Colors.red.shade500,
-                            proportion: montantChargesDouble),
-                        Pie(
-                            color: Colors.green.shade500,
-                            proportion: montantRevenuDouble),
-                        Pie(
-                            color: montantChargesDouble > montantRevenuDouble
-                                ? Colors.red.shade900
-                                : Colors.green.shade900,
-                            proportion: montantTotalsDouble > 0
-                                ? montantTotalsDouble
-                                : -montantTotalsDouble),
-                      ],
-                      selected: 2,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ScreenIndicatorMontant(
-                    simuOuchargeFixe: simuOuchargeFixe,
-                    titre: "Charges",
-                    icones: Icons.arrow_circle_up,
-                    listMontantUniverselle: _listMontantUniverselle,
-                    listMontantPrevision: _listMontPrevision,
-                    montantCharge: montantChargesDouble.toStringAsFixed(2),
-                    montantRevenu: montantRevenuDouble.toStringAsFixed(2),
-                    montantTotals: montantTotalsDouble.toStringAsFixed(2),
-                  ),
-                  ScreenIndicatorMontant(
-                    simuOuchargeFixe: simuOuchargeFixe,
-                    titre: "Revenus",
-                    icones: Icons.arrow_circle_down,
-                    listMontantUniverselle: _listMontantUniverselle,
-                    listMontantPrevision: _listMontPrevision,
-                    montantCharge: montantChargesDouble.toStringAsFixed(2),
-                    montantRevenu: montantRevenuDouble.toStringAsFixed(2),
-                    montantTotals: montantTotalsDouble.toStringAsFixed(2),
-                  ),
-                  ScreenIndicatorMontant(
-                    simuOuchargeFixe: simuOuchargeFixe,
-                    titre: "Solde",
-                    icones: Icons.calculate_outlined,
-                    listMontantUniverselle: _listMontantUniverselle,
-                    listMontantPrevision: _listMontPrevision,
-                    montantCharge: montantChargesDouble.toStringAsFixed(2),
-                    montantRevenu: montantRevenuDouble.toStringAsFixed(2),
-                    montantTotals: montantTotalsDouble.toStringAsFixed(2),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: <Color>[Colors.orange, Colors.blueAccent])),
-    );
-    return headers;
-  }
 
   Widget maxLetterTitre(String word, BuildContext context) {
     Widget longLetter;
@@ -664,7 +583,7 @@ class CalculMontant {
                           valueText2,
                           controller);
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.edit,
                       size: 17,
                     )),
