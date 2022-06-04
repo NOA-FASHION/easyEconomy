@@ -1,6 +1,7 @@
 import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 
 import 'package:easyeconomy/screens/calcul_montant_mensuel.dart';
 import 'package:easyeconomy/screens/description_gestion.dart';
@@ -434,9 +435,9 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                     onTap: () async {
                       Navigator.push(
                           context,
-                             WaveTransition(
-                            center: FractionalOffset(0.90, 0.90),
-                            duration: Duration(milliseconds: 1000),
+                          WaveTransition(
+                              center: FractionalOffset(0.90, 0.90),
+                              duration: Duration(milliseconds: 1000),
                               child: ChangeNotifierProvider.value(
                                   value: variable,
                                   child: DescriptionGestion(
@@ -447,18 +448,31 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                                     indexGestionMensuelMontantUniv: index,
                                   ))));
                     },
-                    subtitle: CalculMontantMensuel().activeGlow(
-                        _listMontantUniverselle[index].previsionsTotal,
-                        widget.indexGestionMensuel,
-                        _listMontantUniverselle[index],
-                        context,
-                        index,
-                        _listMontantUniverselle[index],
-                        variable,
-                        _listMontantUniverselle[index].icones,
-                        formKey,
-                        controller),
-                    isThreeLine: true,
+                    // subtitle: CalculMontantMensuel().activeGlow(
+                    //     _listMontantUniverselle[index].previsionsTotal,
+                    //     widget.indexGestionMensuel,
+                    //     _listMontantUniverselle[index],
+                    //     context,
+                    //     index,
+                    //     _listMontantUniverselle[index],
+                    //     variable,
+                    //     _listMontantUniverselle[index].icones,
+                    //     formKey,
+                    //     controller),
+                    subtitle: ActiveGlowWidget(
+                      active: _listMontantUniverselle[index].previsionsTotal,
+                      context: context,
+                      controller: controller,
+                      formKey: formKey,
+                      gestion: _listMontantUniverselle[index],
+                      icon: _listMontantUniverselle[index].icones,
+                      index: index,
+                      item: _listMontantUniverselle[index],
+                      modifNamePrix: true,
+                      valueText: valueText,
+                      valueText2: valueText2,
+                      variable: variable,
+                    ),
                   ),
                 ),
               ),

@@ -1,17 +1,14 @@
 import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
-import 'package:easyeconomy/screens/gestion_mensuel_live_resultats.dart';
 
-import 'package:easyeconomy/screens/screen_indicator_montant_gestionMensuel_live.dart';
 import 'package:easyeconomy/screens/transaction_edit.dart';
-import 'package:flip_card/flip_card.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_pie_chart/flutter_pie_chart.dart';
+
 import 'package:marquee_text/marquee_text.dart';
 
 import 'package:provider/provider.dart';
-import 'package:wave_transition/wave_transition.dart';
 
 class CalculMontantMensuel {
   String valueText3 = '';
@@ -150,572 +147,400 @@ class CalculMontantMensuel {
     return montant;
   }
 
-  //  double montantCharge(List<MontantUniverselle> gestionListMontantUniverselle) {
-  //   double montants = 0;
+  // Widget header(
+  //     double montantCharge,
+  //     double montantChargeLive,
+  //     double montantRevenu,
+  //     double montantRevenuLive,
+  //     double montantTotals,
+  //     double montantTotalsLive,
+  //     BuildContext context,
+  //     String idGestionMontantUniverselle,
+  //     EasyController variable,
+  //     int indexMontantUniverselle,
+  //     List<MontantUniverselle> _listMontantUniverselle,
+  //     List<MontantUniverselle> _listMontantUniverselleLive,
+  //     bool simuOuchargeFixe) {
+  //   Widget headers = Container(
+  //     alignment: Alignment.center,
+  //     child: Padding(
+  //       padding: const EdgeInsets.only(top: 60.0, right: 10, left: 10),
+  //       child: FlipCard(
+  //         speed: 400,
+  //         flipOnTouch: true,
+  //         fill: Fill
+  //             .fillBack, // Fill the back side of the card to make in the same size as the front.
+  //         direction: FlipDirection.HORIZONTAL, // default
+  //         front: Container(
+  //           decoration: BoxDecoration(
+  //             color: Colors.white,
+  //             borderRadius: BorderRadius.circular(10),
+  //           ),
+  //           child: Column(
+  //             children: [
+  //               Row(
+  //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //                 children: [
+  //                   Column(
+  //                     children: [
+  //                       Card(
+  //                         color: Colors.transparent,
+  //                         shape: RoundedRectangleBorder(
+  //                           borderRadius: BorderRadius.circular(5.0),
+  //                         ),
+  //                         elevation: 25.0,
+  //                         child: Container(
+  //                           decoration: BoxDecoration(
+  //                               borderRadius: BorderRadius.circular(10),
+  //                               color: Colors.white),
+  //                           child: Padding(
+  //                               padding: const EdgeInsets.all(8.0),
+  //                               child: Text(
+  //                                 "Transactions à venir".toUpperCase(),
+  //                                 style: TextStyle(
+  //                                     fontSize: 12,
+  //                                     color: Colors.black,
+  //                                     fontWeight: FontWeight.bold),
+  //                                 textAlign: TextAlign.center,
+  //                               )),
+  //                         ),
+  //                       ),
+  //                       Container(
+  //                         padding: EdgeInsets.all(8),
+  //                         width: 80,
+  //                         height: 80,
+  //                         child: FlutterPieChart(
+  //                           pies: [
+  //                             Pie(
+  //                                 color: Colors.red.shade500,
+  //                                 proportion: montantCharge),
+  //                             Pie(
+  //                                 color: Colors.green.shade500,
+  //                                 proportion: montantRevenu),
+  //                             Pie(
+  //                                 color: montantCharge > montantRevenu
+  //                                     ? Colors.red.shade900
+  //                                     : Colors.green.shade900,
+  //                                 proportion: montantTotals > 0
+  //                                     ? montantTotals
+  //                                     : -montantTotals),
+  //                           ],
+  //                           selected: 2,
+  //                         ),
+  //                       ),
+  //                     ],
+  //                   ),
+  //                   Padding(
+  //                     padding: const EdgeInsets.only(right: 27, top: 17),
+  //                     child: Column(
+  //                       mainAxisAlignment: MainAxisAlignment.center,
+  //                       children: <Widget>[
+  //                         InkWell(
+  //                           splashColor: Colors.white,
+  //                           onTap: () {
+  //                             Navigator.push(
+  //                                 context,
+  //                                 WaveTransition(
+  //                                     center: FractionalOffset(0.90, 0.90),
+  //                                     duration: Duration(milliseconds: 1000),
+  //                                     child: ChangeNotifierProvider.value(
+  //                                         value: variable,
+  //                                         child: GestionMensuelLiveResultats(
+  //                                           idGestionMontantUniverselle:
+  //                                               idGestionMontantUniverselle,
+  //                                           indexMontantUniverselle:
+  //                                               indexMontantUniverselle,
+  //                                         ))));
+  //                           },
+  //                           child: Icon(
+  //                             Icons.settings,
+  //                             size: 30,
+  //                             color: Colors.black,
+  //                           ),
+  //                         ), // icon
+  //                         Text(
+  //                           "Transactions passées",
+  //                           style: TextStyle(fontSize: 12, color: Colors.black),
+  //                         ), // text
+  //                       ],
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //               Row(
+  //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //                 children: [
+  //                   ScreenIndicatorMontantGestionLive(
+  //                     titre: 'Prévisons charges',
+  //                     icones: Icons.arrow_circle_up,
+  //                     gestionListMontantUniverselle: _listMontantUniverselle,
+  //                     gestionListMontantUniverselleLive:
+  //                         _listMontantUniverselleLive,
+  //                     titre1: 'Charges',
+  //                     titre2: 'CHARGE',
+  //                     montantCharge: montantCharge,
+  //                     montantChargeLive: montantChargeLive,
+  //                     montantRevenu: montantRevenu,
+  //                     montantRevenuLive: montantRevenuLive,
+  //                     montantTotals: montantTotals,
+  //                     montantTotalsLive: montantTotalsLive,
+  //                   ),
+  //                   ScreenIndicatorMontantGestionLive(
+  //                     montantCharge: montantCharge,
+  //                     montantChargeLive: montantChargeLive,
+  //                     montantRevenu: montantRevenu,
+  //                     montantRevenuLive: montantRevenuLive,
+  //                     montantTotals: montantTotals,
+  //                     montantTotalsLive: montantTotalsLive,
+  //                     titre: 'Prévisions revenus',
+  //                     icones: Icons.arrow_circle_down,
+  //                     gestionListMontantUniverselle: _listMontantUniverselle,
+  //                     gestionListMontantUniverselleLive:
+  //                         _listMontantUniverselleLive,
+  //                     titre2: 'REVENUS',
+  //                     titre1: 'Revenus',
+  //                   ),
+  //                   ScreenIndicatorMontantGestionLive(
+  //                     montantCharge: montantCharge,
+  //                     montantChargeLive: montantChargeLive,
+  //                     montantRevenu: montantRevenu,
+  //                     montantRevenuLive: montantRevenuLive,
+  //                     montantTotals: montantTotals,
+  //                     montantTotalsLive: montantTotalsLive,
+  //                     titre: 'Prévision  solde',
+  //                     icones: Icons.calculate_outlined,
+  //                     gestionListMontantUniverselle: _listMontantUniverselle,
+  //                     gestionListMontantUniverselleLive:
+  //                         _listMontantUniverselleLive,
+  //                     titre1: 'Solde',
+  //                     titre2: 'SOLDE',
+  //                   ),
+  //                 ],
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         back: Container(
+  //           decoration: BoxDecoration(
+  //             color: Colors.white,
+  //             borderRadius: BorderRadius.circular(10),
+  //           ),
+  //           child: Column(
+  //             children: [
+  //               Row(
+  //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //                 children: [
+  //                   Column(
+  //                     children: [
+  //                       Card(
+  //                         color: Colors.transparent,
+  //                         shape: RoundedRectangleBorder(
+  //                           borderRadius: BorderRadius.circular(5.0),
+  //                         ),
+  //                         elevation: 25.0,
+  //                         child: Container(
+  //                           decoration: BoxDecoration(
+  //                               borderRadius: BorderRadius.circular(10),
+  //                               color: Colors.white),
+  //                           child: Padding(
+  //                               padding: const EdgeInsets.all(8.0),
+  //                               child: Text(
+  //                                 " Transactions validées".toUpperCase(),
+  //                                 style: TextStyle(
+  //                                     fontSize: 12,
+  //                                     color: Colors.black,
+  //                                     fontWeight: FontWeight.bold),
+  //                                 textAlign: TextAlign.center,
+  //                               )),
+  //                         ),
+  //                       ),
+  //                       Container(
+  //                         padding: EdgeInsets.all(8),
+  //                         width: 80,
+  //                         height: 80,
+  //                         child: FlutterPieChart(
+  //                           pies: [
+  //                             Pie(
+  //                                 color: Colors.red.shade500,
+  //                                 proportion: montantChargeLive),
+  //                             Pie(
+  //                                 color: Colors.green.shade500,
+  //                                 proportion: montantRevenuLive),
+  //                             Pie(
+  //                                 color: montantChargeLive > montantRevenuLive
+  //                                     ? Colors.red.shade900
+  //                                     : Colors.green.shade900,
+  //                                 proportion: montantTotalsLive > 0
+  //                                     ? montantTotalsLive
+  //                                     : -montantTotalsLive),
+  //                           ],
+  //                           selected: 2,
+  //                         ),
+  //                       ),
+  //                     ],
+  //                   ),
+  //                   Container(
+  //                     margin: EdgeInsets.only(top: 1),
+  //                     width: MediaQuery.of(context).size.width / 3.2,
+  //                     height: 150,
+  //                     child: Container(
+  //                       decoration: BoxDecoration(
+  //                         border: Border.all(color: Colors.white70),
+  //                         color: Colors.transparent,
+  //                         borderRadius: BorderRadius.circular(10),
+  //                       ),
+  //                       child: Center(
+  //                         child: Column(
+  //                           mainAxisAlignment: MainAxisAlignment.center,
+  //                           children: <Widget>[
+  //                             Card(
+  //                               color: Colors.transparent,
+  //                               shape: RoundedRectangleBorder(
+  //                                 borderRadius: BorderRadius.circular(5.0),
+  //                               ),
+  //                               elevation: 25.0,
+  //                               child: Container(
+  //                                 decoration: BoxDecoration(
+  //                                     borderRadius: BorderRadius.circular(10),
+  //                                     color: Colors.white),
+  //                                 child: Padding(
+  //                                     padding: const EdgeInsets.all(8.0),
+  //                                     child: Text(
+  //                                       "Estimation".toUpperCase(),
+  //                                       style: TextStyle(
+  //                                           fontSize: 12,
+  //                                           color: Colors.black,
+  //                                           fontWeight: FontWeight.bold),
+  //                                       textAlign: TextAlign.center,
+  //                                     )),
+  //                               ),
+  //                             ),
+  //                             Icon(
+  //                               Icons.calculate,
+  //                               size: 30,
+  //                               color: baterry
+  //                                   ? Colors.green.shade900
+  //                                   : Colors.red.shade900,
+  //                             ),
+  //                             Card(
+  //                               shape: RoundedRectangleBorder(
+  //                                 borderRadius: BorderRadius.circular(5.0),
+  //                               ),
+  //                               elevation: 5.0,
+  //                               color: baterry
+  //                                   ? Colors.green.shade900
+  //                                   : Colors.red.shade900,
+  //                               child: Padding(
+  //                                 padding: const EdgeInsets.all(3.0),
+  //                                 child: Text(
+  //                                   "Solde",
+  //                                   style: TextStyle(
+  //                                       fontSize: 13,
+  //                                       color: Colors.black,
+  //                                       fontWeight: FontWeight.bold),
+  //                                   textAlign: TextAlign.center,
+  //                                 ),
+  //                               ),
+  //                             ),
+  //                             Card(
+  //                               color: Colors.orange,
+  //                               shape: RoundedRectangleBorder(
+  //                                 borderRadius: BorderRadius.circular(10.0),
+  //                               ),
+  //                               elevation: 25.0,
+  //                               child: Container(
+  //                                 decoration: BoxDecoration(
+  //                                     borderRadius: BorderRadius.circular(10),
+  //                                     color: Colors.white),
+  //                                 child: Padding(
+  //                                   padding: const EdgeInsets.all(8.0),
+  //                                   child: Text(
+  //                                     soldeLive(montantTotals,
+  //                                                 montantTotalsLive)
+  //                                             .toStringAsFixed(2) +
+  //                                         " €",
+  //                                     style: TextStyle(
+  //                                         fontSize: 13,
+  //                                         color: baterry
+  //                                             ? Colors.green.shade900
+  //                                             : Colors.red.shade900,
+  //                                         fontWeight: FontWeight.bold),
+  //                                     textAlign: TextAlign.center,
+  //                                   ),
+  //                                 ),
+  //                               ),
+  //                             ), // text
+  //                           ],
+  //                         ),
+  //                       ),
+  //                     ),
+  //                   ),
 
-  //   for (var i = gestionListMontantUniverselle.length - 1; i >= 0; i--) {
-  //     if (gestionListMontantUniverselle[i].unity.toString() ==
-  //             'unity_Montant_universelle.ChargeFixe' ||
-  //         gestionListMontantUniverselle[i].unity.toString() ==
-  //             'unity_Montant_universelle.depensePonctuelle') {
-  //       montants = montants + gestionListMontantUniverselle[i].montant;
-  //     }
-  //   }
-  //   return montants;
+  //                 ],
+  //               ),
+  //               Row(
+  //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //                 children: [
+  //                   ScreenIndicatorMontantGestionLive(
+  //                     montantCharge: montantCharge,
+  //                     montantChargeLive: montantChargeLive,
+  //                     montantRevenu: montantRevenu,
+  //                     montantRevenuLive: montantRevenuLive,
+  //                     montantTotals: montantTotals,
+  //                     montantTotalsLive: montantTotalsLive,
+  //                     titre: "Charge Live",
+  //                     icones: Icons.arrow_circle_up,
+  //                     gestionListMontantUniverselle: _listMontantUniverselle,
+  //                     gestionListMontantUniverselleLive:
+  //                         _listMontantUniverselleLive,
+  //                     titre1: 'Charges',
+  //                     titre2: 'Charge Live',
+  //                   ),
+  //                   ScreenIndicatorMontantGestionLive(
+  //                     montantCharge: montantCharge,
+  //                     montantChargeLive: montantChargeLive,
+  //                     montantRevenu: montantRevenu,
+  //                     montantRevenuLive: montantRevenuLive,
+  //                     montantTotals: montantTotals,
+  //                     montantTotalsLive: montantTotalsLive,
+  //                     titre: "Revenu live",
+  //                     icones: Icons.arrow_circle_down,
+  //                     gestionListMontantUniverselle: _listMontantUniverselle,
+  //                     gestionListMontantUniverselleLive:
+  //                         _listMontantUniverselleLive,
+  //                     titre2: 'REVENUS',
+  //                     titre1: 'Revenus',
+  //                   ),
+  //                   ScreenIndicatorMontantGestionLive(
+  //                     montantCharge: montantCharge,
+  //                     montantChargeLive: montantChargeLive,
+  //                     montantRevenu: montantRevenu,
+  //                     montantRevenuLive: montantRevenuLive,
+  //                     montantTotals: montantTotals,
+  //                     montantTotalsLive: montantTotalsLive,
+  //                     titre: "Solde live",
+  //                     icones: Icons.calculate_outlined,
+  //                     gestionListMontantUniverselle: _listMontantUniverselle,
+  //                     gestionListMontantUniverselleLive:
+  //                         _listMontantUniverselleLive,
+  //                     titre1: 'Solde',
+  //                     titre2: 'SOLDE',
+  //                   ),
+  //                 ],
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //     decoration: BoxDecoration(
+  //         gradient: LinearGradient(
+  //             begin: Alignment.centerLeft,
+  //             end: Alignment.centerRight,
+  //             colors: <Color>[Colors.orange, Colors.blueAccent])),
+  //   );
+  //   return headers;
   // }
-
-  // double montantChargeLive(
-  //     List<MontantUniverselle> gestionListMontantUniverselleLive) {
-  //   double montants = 0;
-
-  //   for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
-  //     print(gestionListMontantUniverselleLive[i].unity.toString());
-  //     if (gestionListMontantUniverselleLive[i].unity.toString() ==
-  //             'unity_Montant_universelle.ChargeFixe' ||
-  //         gestionListMontantUniverselleLive[i].unity.toString() ==
-  //             'unity_Montant_universelle.depensePonctuelle') {
-  //       montants = montants + gestionListMontantUniverselleLive[i].montant;
-  //     }
-  //   }
-
-  //   return montants;
-  // }
-
-  // double montantRevenu(List<MontantUniverselle> gestionListMontantUniverselle) {
-  //   double montants = 0;
-  //   for (var i = gestionListMontantUniverselle.length - 1; i >= 0; i--) {
-  //     if (gestionListMontantUniverselle[i].unity.toString() ==
-  //             'unity_Montant_universelle.RevenuFixe' ||
-  //         gestionListMontantUniverselle[i].unity.toString() ==
-  //             'unity_Montant_universelle.RevenuPonctuel') {
-  //       montants = montants + gestionListMontantUniverselle[i].montant;
-  //     }
-  //   }
-
-  //   return montants;
-  // }
-
-  // double montantRevenuLive(
-  //     List<MontantUniverselle> gestionListMontantUniverselleLive) {
-  //   double montants = 0;
-
-  //   for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
-  //     if (gestionListMontantUniverselleLive[i].unity.toString() ==
-  //             'unity_Montant_universelle.RevenuFixe' ||
-  //         gestionListMontantUniverselleLive[i].unity.toString() ==
-  //             'unity_Montant_universelle.RevenuPonctuel') {
-  //       montants = montants + gestionListMontantUniverselleLive[i].montant;
-  //     }
-  //   }
-  //   return montants;
-  // }
-
-  // double montantTotals(List<MontantUniverselle> gestionListMontantUniverselle) {
-  //   double montant = 0;
-  //   for (var i = gestionListMontantUniverselle.length - 1; i >= 0; i--) {
-  //     if (gestionListMontantUniverselle[i].unity.toString() ==
-  //             'unity_Montant_universelle.ChargeFixe' ||
-  //         gestionListMontantUniverselle[i].unity.toString() ==
-  //             'unity_Montant_universelle.depensePonctuelle') {
-  //       montant = montant - gestionListMontantUniverselle[i].montant;
-  //     } else if (gestionListMontantUniverselle[i].unity.toString() ==
-  //             'unity_Montant_universelle.RevenuFixe' ||
-  //         gestionListMontantUniverselle[i].unity.toString() ==
-  //             'unity_Montant_universelle.RevenuPonctuel') {
-  //       montant = montant + gestionListMontantUniverselle[i].montant;
-  //     }
-  //   }
-
-  //   return montant;
-  // }
-
-  // double montantTotalsLive(
-  //     List<MontantUniverselle> gestionListMontantUniverselleLive) {
-  //   double montant = 0;
-
-  //   for (var i = gestionListMontantUniverselleLive.length - 1; i >= 0; i--) {
-  //     if (gestionListMontantUniverselleLive[i].unity.toString() ==
-  //             'unity_Montant_universelle.ChargeFixe' ||
-  //         gestionListMontantUniverselleLive[i].unity.toString() ==
-  //             'unity_Montant_universelle.depensePonctuelle') {
-  //       montant = montant - gestionListMontantUniverselleLive[i].montant;
-  //     } else if (gestionListMontantUniverselleLive[i].unity.toString() ==
-  //             'unity_Montant_universelle.RevenuFixe' ||
-  //         gestionListMontantUniverselleLive[i].unity.toString() ==
-  //             'unity_Montant_universelle.RevenuPonctuel') {
-  //       montant = montant + gestionListMontantUniverselleLive[i].montant;
-  //     }
-  //   }
-
-  //   return montant;
-  // }
-
-  Widget header(
-      double montantCharge,
-      double montantChargeLive,
-      double montantRevenu,
-      double montantRevenuLive,
-      double montantTotals,
-      double montantTotalsLive,
-      BuildContext context,
-      String idGestionMontantUniverselle,
-      EasyController variable,
-      int indexMontantUniverselle,
-      List<MontantUniverselle> _listMontantUniverselle,
-      List<MontantUniverselle> _listMontantUniverselleLive,
-      bool simuOuchargeFixe) {
-    Widget headers = Container(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 60.0, right: 10, left: 10),
-        child: FlipCard(
-          speed: 400,
-          flipOnTouch: true,
-          fill: Fill
-              .fillBack, // Fill the back side of the card to make in the same size as the front.
-          direction: FlipDirection.HORIZONTAL, // default
-          front: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      children: [
-                        Card(
-                          color: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          elevation: 25.0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white),
-                            child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Transactions à venir".toUpperCase(),
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                )),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(8),
-                          width: 80,
-                          height: 80,
-                          child: FlutterPieChart(
-                            pies: [
-                              Pie(
-                                  color: Colors.red.shade500,
-                                  proportion: montantCharge),
-                              Pie(
-                                  color: Colors.green.shade500,
-                                  proportion: montantRevenu),
-                              Pie(
-                                  color: montantCharge > montantRevenu
-                                      ? Colors.red.shade900
-                                      : Colors.green.shade900,
-                                  proportion: montantTotals > 0
-                                      ? montantTotals
-                                      : -montantTotals),
-                            ],
-                            selected: 2,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 27, top: 17),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          InkWell(
-                            splashColor: Colors.white,
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  WaveTransition(
-                                      center: FractionalOffset(0.90, 0.90),
-                                      duration: Duration(milliseconds: 1000),
-                                      child: ChangeNotifierProvider.value(
-                                          value: variable,
-                                          child: GestionMensuelLiveResultats(
-                                            idGestionMontantUniverselle:
-                                                idGestionMontantUniverselle,
-                                            indexMontantUniverselle:
-                                                indexMontantUniverselle,
-                                          ))));
-                            },
-                            child: Icon(
-                              Icons.settings,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                          ), // icon
-                          Text(
-                            "Transactions passées",
-                            style: TextStyle(fontSize: 12, color: Colors.black),
-                          ), // text
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ScreenIndicatorMontantGestionLive(
-                      titre: 'Prévisons charges',
-                      icones: Icons.arrow_circle_up,
-                      gestionListMontantUniverselle: _listMontantUniverselle,
-                      gestionListMontantUniverselleLive:
-                          _listMontantUniverselleLive,
-                      titre1: 'Charges',
-                      titre2: 'CHARGE',
-                      montantCharge: montantCharge,
-                      montantChargeLive: montantChargeLive,
-                      montantRevenu: montantRevenu,
-                      montantRevenuLive: montantRevenuLive,
-                      montantTotals: montantTotals,
-                      montantTotalsLive: montantTotalsLive,
-                    ),
-                    ScreenIndicatorMontantGestionLive(
-                      montantCharge: montantCharge,
-                      montantChargeLive: montantChargeLive,
-                      montantRevenu: montantRevenu,
-                      montantRevenuLive: montantRevenuLive,
-                      montantTotals: montantTotals,
-                      montantTotalsLive: montantTotalsLive,
-                      titre: 'Prévisions revenus',
-                      icones: Icons.arrow_circle_down,
-                      gestionListMontantUniverselle: _listMontantUniverselle,
-                      gestionListMontantUniverselleLive:
-                          _listMontantUniverselleLive,
-                      titre2: 'REVENUS',
-                      titre1: 'Revenus',
-                    ),
-                    ScreenIndicatorMontantGestionLive(
-                      montantCharge: montantCharge,
-                      montantChargeLive: montantChargeLive,
-                      montantRevenu: montantRevenu,
-                      montantRevenuLive: montantRevenuLive,
-                      montantTotals: montantTotals,
-                      montantTotalsLive: montantTotalsLive,
-                      titre: 'Prévision  solde',
-                      icones: Icons.calculate_outlined,
-                      gestionListMontantUniverselle: _listMontantUniverselle,
-                      gestionListMontantUniverselleLive:
-                          _listMontantUniverselleLive,
-                      titre1: 'Solde',
-                      titre2: 'SOLDE',
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          back: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      children: [
-                        Card(
-                          color: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          elevation: 25.0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white),
-                            child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  " Transactions validées".toUpperCase(),
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                )),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(8),
-                          width: 80,
-                          height: 80,
-                          child: FlutterPieChart(
-                            pies: [
-                              Pie(
-                                  color: Colors.red.shade500,
-                                  proportion: montantChargeLive),
-                              Pie(
-                                  color: Colors.green.shade500,
-                                  proportion: montantRevenuLive),
-                              Pie(
-                                  color: montantChargeLive > montantRevenuLive
-                                      ? Colors.red.shade900
-                                      : Colors.green.shade900,
-                                  proportion: montantTotalsLive > 0
-                                      ? montantTotalsLive
-                                      : -montantTotalsLive),
-                            ],
-                            selected: 2,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 1),
-                      width: MediaQuery.of(context).size.width / 3.2,
-                      height: 150,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white70),
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Card(
-                                color: Colors.transparent,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                elevation: 25.0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
-                                  child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "Estimation".toUpperCase(),
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                        textAlign: TextAlign.center,
-                                      )),
-                                ),
-                              ),
-                              Icon(
-                                Icons.calculate,
-                                size: 30,
-                                color: baterry
-                                    ? Colors.green.shade900
-                                    : Colors.red.shade900,
-                              ),
-                              Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                elevation: 5.0,
-                                color: baterry
-                                    ? Colors.green.shade900
-                                    : Colors.red.shade900,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(3.0),
-                                  child: Text(
-                                    "Solde",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
-                              Card(
-                                color: Colors.orange,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                elevation: 25.0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      soldeLive(montantTotals,
-                                                  montantTotalsLive)
-                                              .toStringAsFixed(2) +
-                                          " €",
-                                      style: TextStyle(
-                                          fontSize: 13,
-                                          color: baterry
-                                              ? Colors.green.shade900
-                                              : Colors.red.shade900,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
-                              ), // text
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    // Container(
-                    //   width: MediaQuery.of(context).size.width / 3.2,
-                    //   height: 150,
-                    //   child: Container(
-                    //     decoration: BoxDecoration(
-                    //       color: Colors.transparent,
-                    //       borderRadius: BorderRadius.circular(10),
-                    //     ),
-                    //     child: Center(
-                    //       child: Column(
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: <Widget>[
-                    //           // icon
-                    //           Padding(
-                    //             padding: const EdgeInsets.all(8.0),
-                    //             child: Text(
-                    //               "Estimation finale ",
-                    //               style: TextStyle(
-                    //                   fontSize: 13,
-                    //                   color: baterry
-                    //                       ? Colors.green.shade900
-                    //                       : Colors.red.shade900,
-                    //                   fontWeight: FontWeight.bold),
-                    //               textAlign: TextAlign.center,
-                    //             ),
-                    //           ),
-                    //           Card(
-                    //             color: Colors.orange,
-                    //             shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(10.0),
-                    //             ),
-                    //             elevation: 25.0,
-                    //             child: Container(
-                    //               decoration: BoxDecoration(
-                    //                 color: Colors.white,
-                    //                 borderRadius: BorderRadius.circular(10),
-                    //               ),
-                    //               child: Padding(
-                    //                 padding: const EdgeInsets.all(8.0),
-                    //                 child: Text(
-                    //                   soldeLive(montantTotals,
-                    //                               montantTotalsLive)
-                    //                           .toStringAsFixed(2) +
-                    //                       " €",
-                    //                   style: TextStyle(
-                    //                       fontSize: 13,
-                    //                       color: baterry
-                    //                           ? Colors.green.shade900
-                    //                           : Colors.red.shade900,
-                    //                       fontWeight: FontWeight.bold),
-                    //                   textAlign: TextAlign.center,
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //           ),
-                    //           SizedBox(
-                    //             height: 13,
-                    //           ),
-                    //           Text(
-                    //             "Solde",
-                    //             style: TextStyle(
-                    //                 fontSize: 13,
-                    //                 color: baterry
-                    //                     ? Colors.green.shade900
-                    //                     : Colors.red.shade900,
-                    //                 fontWeight: FontWeight.bold),
-                    //             textAlign: TextAlign.center,
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ScreenIndicatorMontantGestionLive(
-                      montantCharge: montantCharge,
-                      montantChargeLive: montantChargeLive,
-                      montantRevenu: montantRevenu,
-                      montantRevenuLive: montantRevenuLive,
-                      montantTotals: montantTotals,
-                      montantTotalsLive: montantTotalsLive,
-                      titre: "Charge Live",
-                      icones: Icons.arrow_circle_up,
-                      gestionListMontantUniverselle: _listMontantUniverselle,
-                      gestionListMontantUniverselleLive:
-                          _listMontantUniverselleLive,
-                      titre1: 'Charges',
-                      titre2: 'Charge Live',
-                    ),
-                    ScreenIndicatorMontantGestionLive(
-                      montantCharge: montantCharge,
-                      montantChargeLive: montantChargeLive,
-                      montantRevenu: montantRevenu,
-                      montantRevenuLive: montantRevenuLive,
-                      montantTotals: montantTotals,
-                      montantTotalsLive: montantTotalsLive,
-                      titre: "Revenu live",
-                      icones: Icons.arrow_circle_down,
-                      gestionListMontantUniverselle: _listMontantUniverselle,
-                      gestionListMontantUniverselleLive:
-                          _listMontantUniverselleLive,
-                      titre2: 'REVENUS',
-                      titre1: 'Revenus',
-                    ),
-                    ScreenIndicatorMontantGestionLive(
-                      montantCharge: montantCharge,
-                      montantChargeLive: montantChargeLive,
-                      montantRevenu: montantRevenu,
-                      montantRevenuLive: montantRevenuLive,
-                      montantTotals: montantTotals,
-                      montantTotalsLive: montantTotalsLive,
-                      titre: "Solde live",
-                      icones: Icons.calculate_outlined,
-                      gestionListMontantUniverselle: _listMontantUniverselle,
-                      gestionListMontantUniverselleLive:
-                          _listMontantUniverselleLive,
-                      titre1: 'Solde',
-                      titre2: 'SOLDE',
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: <Color>[Colors.orange, Colors.blueAccent])),
-    );
-    return headers;
-  }
 
   double soldeLive(double montantTotals, double montantTotalsLive) {
     double montant = 0;
@@ -751,133 +576,133 @@ class CalculMontantMensuel {
     return montant;
   }
 
-  Widget activeGlow(
-      double active,
-      int indexGestionMensuel,
-      MontantUniverselle gestion,
-      BuildContext context,
-      int index,
-      MontantUniverselle item,
-      EasyController variable,
-      int icon,
-      GlobalKey<FormState> formKey,
-      CurrencyTextFieldController controller) {
-    Widget glow = Padding(
-      padding: const EdgeInsets.all(1.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          // color: colorsDescription(gestion.unity.toString()),
-        ),
-        child: Card(
-          color: active == 0 ? Colors.white : Colors.grey,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          elevation: 15.0,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                    padding: EdgeInsets.all(2),
-                    onPressed: () {
-                      displayTextInputDialog(indexGestionMensuel, context,
-                          index, item, variable, icon, formKey, controller);
-                    },
-                    icon: Icon(
-                      Icons.edit,
-                      size: 17,
-                    )),
-                // InkWell(onTap: ,
-                //   child: Icon(Icons.edit)),
-                Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.72,
-                      height: 25.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          maxLetterTitre(gestion.nom.toUpperCase(), context),
-                          SizedBox(
-                            width: 15.0,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.72,
-                      height: 30.0,
-                      child: Row(
-                        children: [
-                          Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            elevation: 5.0,
-                            color: colorsDescription(gestion.unity.toString()),
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: Text(
-                                gestion.unity
-                                    .toString()
-                                    .replaceAll(unityPattern, "")
-                                    .toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Text(
-                            gestion.montant.toStringAsFixed(2) + " €",
-                            style: TextStyle(
-                              color:
-                                  colorsDescription(gestion.unity.toString()),
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Card(
-                  color: active == 0 ? Colors.white : Colors.grey,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60.0),
-                  ),
-                  elevation: 15.0,
-                  child: Container(
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(40.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Icon(
-                            IconData(gestion.icones,
-                                fontFamily: 'MaterialIcons'),
-                            color: colorsDescription(gestion.unity.toString()),
-                          ),
-                        )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+  // Widget activeGlow(
+  //     double active,
+  //     int indexGestionMensuel,
+  //     MontantUniverselle gestion,
+  //     BuildContext context,
+  //     int index,
+  //     MontantUniverselle item,
+  //     EasyController variable,
+  //     int icon,
+  //     GlobalKey<FormState> formKey,
+  //     CurrencyTextFieldController controller) {
+  //   Widget glow = Padding(
+  //     padding: const EdgeInsets.all(1.0),
+  //     child: Container(
+  //       width: MediaQuery.of(context).size.width,
+  //       decoration: BoxDecoration(
+  //         borderRadius: BorderRadius.circular(20),
+  //         // color: colorsDescription(gestion.unity.toString()),
+  //       ),
+  //       child: Card(
+  //         color: active == 0 ? Colors.white : Colors.grey,
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(15.0),
+  //         ),
+  //         elevation: 15.0,
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(8.0),
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.start,
+  //             children: [
+  //               IconButton(
+  //                   padding: EdgeInsets.all(2),
+  //                   onPressed: () {
+  //                     displayTextInputDialog(indexGestionMensuel, context,
+  //                         index, item, variable, icon, formKey, controller);
+  //                   },
+  //                   icon: Icon(
+  //                     Icons.edit,
+  //                     size: 17,
+  //                   )),
+  //               // InkWell(onTap: ,
+  //               //   child: Icon(Icons.edit)),
+  //               Column(
+  //                 children: [
+  //                   Container(
+  //                     width: MediaQuery.of(context).size.width / 1.72,
+  //                     height: 25.0,
+  //                     child: Row(
+  //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                       children: [
+  //                         maxLetterTitre(gestion.nom.toUpperCase(), context),
+  //                         SizedBox(
+  //                           width: 15.0,
+  //                         ),
+  //                       ],
+  //                     ),
+  //                   ),
+  //                   Container(
+  //                     width: MediaQuery.of(context).size.width / 1.72,
+  //                     height: 30.0,
+  //                     child: Row(
+  //                       children: [
+  //                         Card(
+  //                           shape: RoundedRectangleBorder(
+  //                             borderRadius: BorderRadius.circular(5.0),
+  //                           ),
+  //                           elevation: 5.0,
+  //                           color: colorsDescription(gestion.unity.toString()),
+  //                           child: Padding(
+  //                             padding: const EdgeInsets.all(3.0),
+  //                             child: Text(
+  //                               gestion.unity
+  //                                   .toString()
+  //                                   .replaceAll(unityPattern, "")
+  //                                   .toUpperCase(),
+  //                               style: TextStyle(
+  //                                 fontSize: 12,
+  //                                 fontWeight: FontWeight.bold,
+  //                               ),
+  //                             ),
+  //                           ),
+  //                         ),
+  //                         SizedBox(
+  //                           width: 10.0,
+  //                         ),
+  //                         Text(
+  //                           gestion.montant.toStringAsFixed(2) + " €",
+  //                           style: TextStyle(
+  //                             color:
+  //                                 colorsDescription(gestion.unity.toString()),
+  //                             fontSize: 13,
+  //                             fontWeight: FontWeight.bold,
+  //                           ),
+  //                         ),
+  //                       ],
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //               Card(
+  //                 color: active == 0 ? Colors.white : Colors.grey,
+  //                 shape: RoundedRectangleBorder(
+  //                   borderRadius: BorderRadius.circular(60.0),
+  //                 ),
+  //                 elevation: 15.0,
+  //                 child: Container(
+  //                   child: ClipRRect(
+  //                       borderRadius: BorderRadius.circular(40.0),
+  //                       child: Padding(
+  //                         padding: const EdgeInsets.all(3.0),
+  //                         child: Icon(
+  //                           IconData(gestion.icones,
+  //                               fontFamily: 'MaterialIcons'),
+  //                           color: colorsDescription(gestion.unity.toString()),
+  //                         ),
+  //                       )),
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
 
-    return glow;
-  }
+  //   return glow;
+  // }
 
   Color colorsDescription(String description) {
     Color colors = Colors.black;

@@ -4,7 +4,9 @@ import 'package:draggable_home/draggable_home.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_gestion_mensuel_live.dart';
+import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 import 'package:easyeconomy/screens/calcul_montant_mensuel.dart';
+import 'package:easyeconomy/screens/calcul_montant_mensuel_widget.dart';
 import 'package:easyeconomy/screens/charge_fixe_mensuel.dart';
 import 'package:easyeconomy/screens/constant.dart';
 
@@ -12,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
 
 import 'package:provider/provider.dart';
-
 
 class GestionMensuelLive extends StatefulWidget {
   final String idGestionMontantUniverselle;
@@ -161,20 +162,35 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                 ),
               ),
             ],
-            headerWidget: CalculMontantMensuel().header(
-                montantChargeDouble,
-                montantChargeLiveDouble,
-                montantRevenuDouble,
-                montantRevenuLiveDouble,
-                montantTotalsDouble,
-                montantTotalsLiveDouble,
-                context,
-                widget.idGestionMontantUniverselle,
-                variable,
-                widget.indexMontantUniverselle,
-                _listMontantUniverselle,
-                _listMontantUniverselleLive,
-                simuOuchargeFixe),
+            headerWidget: HeadderMensuel(
+              context: context,
+              listMontantUniverselle: _listMontantUniverselle,
+              idGestionMontantUniverselle: widget.idGestionMontantUniverselle,
+              indexMontantUniverselle: widget.indexMontantUniverselle,
+              listMontantUniverselleLive: _listMontantUniverselleLive,
+              montantCharge: montantChargeDouble,
+              montantChargeLive: montantChargeLiveDouble,
+              montantRevenu: montantRevenuDouble,
+              montantRevenuLive: montantRevenuLiveDouble,
+              montantTotals: montantTotalsDouble,
+              montantTotalsLive: montantTotalsLiveDouble,
+              simuOuchargeFixe: simuOuchargeFixe,
+              variable: variable,
+            ),
+            // headerWidget: CalculMontantMensuel().header(
+            //     montantChargeDouble,
+            //     montantChargeLiveDouble,
+            //     montantRevenuDouble,
+            //     montantRevenuLiveDouble,
+            //     montantTotalsDouble,
+            //     montantTotalsLiveDouble,
+            //     context,
+            //     widget.idGestionMontantUniverselle,
+            //     variable,
+            //     widget.indexMontantUniverselle,
+            //     _listMontantUniverselle,
+            //     _listMontantUniverselleLive,
+            //     simuOuchargeFixe),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

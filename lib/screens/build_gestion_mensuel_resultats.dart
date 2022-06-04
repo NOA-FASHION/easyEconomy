@@ -1,5 +1,6 @@
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 import 'package:easyeconomy/screens/calcul_montant.dart';
 
 import 'package:flutter/material.dart';
@@ -398,11 +399,16 @@ class _BuildGestionMensuelResultatsState
                       //             child: ResultDays(
                       //                 index, _productGagnantList[index].id))));
                     },
-                    subtitle: CalculMontant().activeGlow1(
-                        _listMontantUniverselle[index].previsionsTotal,
-                        _listMontantUniverselle[index],
-                        context),
-                    isThreeLine: true,
+                    // subtitle: CalculMontant().activeGlow1(
+                    //     _listMontantUniverselle[index].previsionsTotal,
+                    //     _listMontantUniverselle[index],
+                    //     context),
+                    // isThreeLine: true,
+                    subtitle: ActiveGlow1(
+                      active: _listMontantUniverselle[index].previsionsTotal,
+                      context: context,
+                      gestion: _listMontantUniverselle[index],
+                    ),
                   ),
                 ),
               ),

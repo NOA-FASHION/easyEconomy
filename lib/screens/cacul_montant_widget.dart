@@ -700,3 +700,129 @@ Color colorsDescription(String description) {
   }
   return colors;
 }
+
+class ActiveGlow1 extends StatefulWidget {
+  final double active;
+  final MontantUniverselle gestion;
+  final BuildContext context;
+  ActiveGlow1(
+      {Key? key,
+      required this.active,
+      required this.gestion,
+      required this.context})
+      : super(key: key);
+
+  @override
+  State<ActiveGlow1> createState() => _ActiveGlow1State();
+}
+
+class _ActiveGlow1State extends State<ActiveGlow1> {
+  @override
+  Widget build(BuildContext context) {
+    String unityPattern = "unity_Montant_universelle.";
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          // color: colorsDescription(gestion.unity.toString()),
+        ),
+        child: Card(
+          color: widget.active == 0 ? Colors.white : Colors.grey,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          elevation: 15.0,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.80,
+                      height: 25.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          maxLetterTitre(
+                              widget.gestion.nom.toUpperCase(), context),
+                          SizedBox(
+                            width: 15.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.72,
+                      height: 30.0,
+                      child: Row(
+                        children: [
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            elevation: 5.0,
+                            color: colorsDescription(
+                                widget.gestion.unity.toString()),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: Text(
+                                widget.gestion.unity
+                                    .toString()
+                                    .replaceAll(unityPattern, "")
+                                    .toUpperCase(),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          Text(
+                            widget.gestion.montant.toStringAsFixed(2) + " €",
+                            style: TextStyle(
+                              color: colorsDescription(
+                                  widget.gestion.unity.toString()),
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Card(
+                  color: widget.active == 0 ? Colors.white : Colors.grey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60.0),
+                  ),
+                  elevation: 15.0,
+                  child: Container(
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(40.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Icon(
+                            IconData(widget.gestion.icones,
+                                fontFamily: 'MaterialIcons'),
+                            color: colorsDescription(
+                                widget.gestion.unity.toString()),
+                          ),
+                        )),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
