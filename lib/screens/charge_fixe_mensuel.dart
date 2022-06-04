@@ -13,7 +13,6 @@ import 'package:easyeconomy/screens/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
 
 class ChargeFixeMensuel extends StatefulWidget {
   ChargeFixeMensuel({Key? key}) : super(key: key);
@@ -240,110 +239,115 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           key: scaffoldkey,
-          body: Shimmer(
-            duration: Duration(seconds: 3),
-            interval: Duration(seconds: 5),
-            color: Colors.white,
-            enabled: true,
-            direction: ShimmerDirection.fromLTRB(),
-            child: DraggableHome(
-              backgroundColor: Colors.transparent,
-              appBarColor: Colors.orange,
-              body: [
-                Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Colors.orange, Colors.blueAccent])),
-                  child: BuildChargeFixe(),
+          body: DraggableHome(
+            backgroundColor: Colors.transparent,
+            appBarColor: Colors.orange,
+            body: [
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.orange, Colors.blueAccent])),
+                child: BuildChargeFixe(),
+              ),
+            ],
+            headerWidget: Header(
+              context: context,
+              variable: variable,
+              listMontantUniverselle: _listMontantUniverselle,
+              listMontPrevision: _listMontPrevision,
+              montantChargesDouble: montantChargessString,
+              montantRevenuDouble: montantRevenuString,
+              montantTotalsDouble: montantTotalsString,
+              simuOuchargeFix: simuOuchargeFixe,
+              transactionPasse: false,
+            ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RaccourciMontant(
+                  montant: montantChargessString,
+                  colors: Colors.red.shade900,
                 ),
+                RaccourciMontant(
+                  montant: montantRevenuString,
+                  colors: Colors.green.shade900,
+                ),
+                RaccourciMontant(
+                  montant: montantTotalsString,
+                  colors: Colors.blue.shade900,
+                ),
+                // Card(
+                //   color: Colors.orange,
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10.0),
+                //   ),
+                //   elevation: 25.0,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         color: Colors.white),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Text(
+                //         montantChargessString.toStringAsFixed(2) + " €",
+                //         style: TextStyle(
+                //             fontSize: 13,
+                //             color: Colors.red.shade900,
+                //             fontWeight: FontWeight.bold),
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Colors.orange,
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10.0),
+                //   ),
+                //   elevation: 25.0,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         color: Colors.white),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Text(
+                //         montantRevenuString.toStringAsFixed(2) + " €",
+                //         style: TextStyle(
+                //             fontSize: 13,
+                //             color: Colors.green.shade900,
+                //             fontWeight: FontWeight.bold),
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Colors.orange,
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10.0),
+                //   ),
+                //   elevation: 25.0,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         color: Colors.white),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Text(
+                //         montantTotalsString.toStringAsFixed(2) + " €",
+                //         style: TextStyle(
+                //             fontSize: 13,
+                //             color: Colors.blue.shade900,
+                //             fontWeight: FontWeight.bold),
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
-              headerWidget: Header(
-                context: context,
-                variable: variable,
-                listMontantUniverselle: _listMontantUniverselle,
-                listMontPrevision: _listMontPrevision,
-                montantChargesDouble: montantChargessString,
-                montantRevenuDouble: montantRevenuString,
-                montantTotalsDouble: montantTotalsString,
-                simuOuchargeFix: simuOuchargeFixe,
-                transactionPasse: false,
-              ),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Card(
-                    color: Colors.orange,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    elevation: 25.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          montantChargessString.toStringAsFixed(2) + " €",
-                          style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.red.shade900,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.orange,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    elevation: 25.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          montantRevenuString.toStringAsFixed(2) + " €",
-                          style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.green.shade900,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.orange,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    elevation: 25.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          montantTotalsString.toStringAsFixed(2) + " €",
-                          style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.blue.shade900,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ),
           ),
           floatingActionButtonLocation:
@@ -430,5 +434,37 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
             },
           );
         });
+  }
+}
+
+class RaccourciMontant extends StatelessWidget {
+  final double montant;
+  final Color colors;
+  const RaccourciMontant(
+      {Key? key, required this.montant, required this.colors})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.orange,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      elevation: 25.0,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), color: Colors.white),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            montant.toStringAsFixed(2) + " €",
+            style: TextStyle(
+                fontSize: 13, color: colors, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
   }
 }

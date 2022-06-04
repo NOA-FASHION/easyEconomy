@@ -1,6 +1,7 @@
 import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/charge_fixe_description.dart';
 
@@ -544,19 +545,20 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                   ))));
                     },
 
-                    subtitle: CalculMontant().activeGlow(
-                        _listMontantUniverselle[index].previsionsTotal,
-                        false,
-                        _listMontantUniverselle[index],
-                        context,
-                        index,
-                        _listMontantUniverselle[index],
-                        variable,
-                        _listMontantUniverselle[index].icones,
-                        formKey,
-                        valueText,
-                        valueText2,
-                        controller),
+                  subtitle: ActiveGlowWidget(
+                    active: _listMontantUniverselle[index].previsionsTotal,
+                    context: context,
+                    controller: controller,
+                    formKey: formKey,
+                    gestion: _listMontantUniverselle[index],
+                    icon: _listMontantUniverselle[index].icones,
+                    index: index,
+                    item: _listMontantUniverselle[index],
+                    modifNamePrix: true,
+                    valueText: valueText,
+                    valueText2: valueText2,
+                    variable: variable,
+                  ),
                     // subtitle: CalculMontant()
                     //     .activeGlow(_listMontantUniverselle[index], context),
                     isThreeLine: true,

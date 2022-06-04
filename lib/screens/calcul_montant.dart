@@ -1,16 +1,16 @@
 import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
-import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
+// import 'package:easyeconomy/screens/screen_indicateur_montant.dart';
 
 import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pie_chart/flutter_pie_chart.dart';
+// import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 import 'package:marquee_text/marquee_text.dart';
 
 import 'package:provider/provider.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
+// import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+// import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class CalculMontant {
   String valueText3 = '';
@@ -536,144 +536,144 @@ class CalculMontant {
     return glow;
   }
 
-  Widget activeGlow(
-      double active,
-      bool modifNamePrix,
-      MontantUniverselle gestion,
-      BuildContext context,
-      int index,
-      MontantUniverselle item,
-      EasyController variable,
-      int icon,
-      GlobalKey<FormState> formKey,
-      String valueText,
-      String valueText2,
-      CurrencyTextFieldController controller) {
-    Widget glow = Padding(
-      padding: const EdgeInsets.all(1.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          // color: colorsDescription(gestion.unity.toString()),
-        ),
-        child: Card(
-          color: active == 0 ? Colors.white : Colors.grey,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          elevation: 15.0,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                    padding: EdgeInsets.all(2),
-                    onPressed: () {
-                      displayTextInputDialog(
-                          modifNamePrix,
-                          context,
-                          index,
-                          item,
-                          variable,
-                          icon,
-                          formKey,
-                          valueText,
-                          valueText2,
-                          controller);
-                    },
-                    icon: const Icon(
-                      Icons.edit,
-                      size: 17,
-                    )),
-                // InkWell(onTap: ,
-                //   child: Icon(Icons.edit)),
-                Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.72,
-                      height: 25.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          maxLetterTitre(gestion.nom.toUpperCase(), context),
-                          SizedBox(
-                            width: 15.0,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.72,
-                      height: 30.0,
-                      child: Row(
-                        children: [
-                          Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            elevation: 5.0,
-                            color: colorsDescription(gestion.unity.toString()),
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: Text(
-                                gestion.unity
-                                    .toString()
-                                    .replaceAll(unityPattern, "")
-                                    .toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Text(
-                            gestion.montant.toStringAsFixed(2) + " €",
-                            style: TextStyle(
-                              color:
-                                  colorsDescription(gestion.unity.toString()),
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Card(
-                  color: active == 0 ? Colors.white : Colors.grey,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60.0),
-                  ),
-                  elevation: 15.0,
-                  child: Container(
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(40.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Icon(
-                            IconData(gestion.icones,
-                                fontFamily: 'MaterialIcons'),
-                            color: colorsDescription(gestion.unity.toString()),
-                          ),
-                        )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+  // Widget activeGlow(
+  //     double active,
+  //     bool modifNamePrix,
+  //     MontantUniverselle gestion,
+  //     BuildContext context,
+  //     int index,
+  //     MontantUniverselle item,
+  //     EasyController variable,
+  //     int icon,
+  //     GlobalKey<FormState> formKey,
+  //     String valueText,
+  //     String valueText2,
+  //     CurrencyTextFieldController controller) {
+  //   Widget glow = Padding(
+  //     padding: const EdgeInsets.all(1.0),
+  //     child: Container(
+  //       width: MediaQuery.of(context).size.width,
+  //       decoration: BoxDecoration(
+  //         borderRadius: BorderRadius.circular(20),
+  //         // color: colorsDescription(gestion.unity.toString()),
+  //       ),
+  //       child: Card(
+  //         color: active == 0 ? Colors.white : Colors.grey,
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(15.0),
+  //         ),
+  //         elevation: 15.0,
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(8.0),
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.start,
+  //             children: [
+  //               IconButton(
+  //                   padding: EdgeInsets.all(2),
+  //                   onPressed: () {
+  //                     displayTextInputDialog(
+  //                         modifNamePrix,
+  //                         context,
+  //                         index,
+  //                         item,
+  //                         variable,
+  //                         icon,
+  //                         formKey,
+  //                         valueText,
+  //                         valueText2,
+  //                         controller);
+  //                   },
+  //                   icon: const Icon(
+  //                     Icons.edit,
+  //                     size: 17,
+  //                   )),
+  //               // InkWell(onTap: ,
+  //               //   child: Icon(Icons.edit)),
+  //               Column(
+  //                 children: [
+  //                   Container(
+  //                     width: MediaQuery.of(context).size.width / 1.72,
+  //                     height: 25.0,
+  //                     child: Row(
+  //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                       children: [
+  //                         maxLetterTitre(gestion.nom.toUpperCase(), context),
+  //                         SizedBox(
+  //                           width: 15.0,
+  //                         ),
+  //                       ],
+  //                     ),
+  //                   ),
+  //                   Container(
+  //                     width: MediaQuery.of(context).size.width / 1.72,
+  //                     height: 30.0,
+  //                     child: Row(
+  //                       children: [
+  //                         Card(
+  //                           shape: RoundedRectangleBorder(
+  //                             borderRadius: BorderRadius.circular(5.0),
+  //                           ),
+  //                           elevation: 5.0,
+  //                           color: colorsDescription(gestion.unity.toString()),
+  //                           child: Padding(
+  //                             padding: const EdgeInsets.all(3.0),
+  //                             child: Text(
+  //                               gestion.unity
+  //                                   .toString()
+  //                                   .replaceAll(unityPattern, "")
+  //                                   .toUpperCase(),
+  //                               style: TextStyle(
+  //                                 fontSize: 12,
+  //                                 fontWeight: FontWeight.bold,
+  //                               ),
+  //                             ),
+  //                           ),
+  //                         ),
+  //                         SizedBox(
+  //                           width: 10.0,
+  //                         ),
+  //                         Text(
+  //                           gestion.montant.toStringAsFixed(2) + " €",
+  //                           style: TextStyle(
+  //                             color:
+  //                                 colorsDescription(gestion.unity.toString()),
+  //                             fontSize: 13,
+  //                             fontWeight: FontWeight.bold,
+  //                           ),
+  //                         ),
+  //                       ],
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //               Card(
+  //                 color: active == 0 ? Colors.white : Colors.grey,
+  //                 shape: RoundedRectangleBorder(
+  //                   borderRadius: BorderRadius.circular(60.0),
+  //                 ),
+  //                 elevation: 15.0,
+  //                 child: Container(
+  //                   child: ClipRRect(
+  //                       borderRadius: BorderRadius.circular(40.0),
+  //                       child: Padding(
+  //                         padding: const EdgeInsets.all(3.0),
+  //                         child: Icon(
+  //                           IconData(gestion.icones,
+  //                               fontFamily: 'MaterialIcons'),
+  //                           color: colorsDescription(gestion.unity.toString()),
+  //                         ),
+  //                       )),
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
 
-    return glow;
-  }
+  //   return glow;
+  // }
 
   Future<void> displayTextInputDialog(
       bool modifNamePrix,
