@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nanoid/nanoid.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -423,9 +423,8 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
     List<DesciprtionUniverselle> listDesription =
         providerType.getGestionMensuelDescription(
             widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
-    List<double> GestionMensListAchat =
-        providerType.getGestionMensuelListAchat(
-            widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
+    List<double> GestionMensListAchat = providerType.getGestionMensuelListAchat(
+        widget.indexGestionMensuel, widget.indexGestionMensuelMontantUniv);
     return Scaffold(
       key: scaffoldkeyTache,
       appBar: PreferredSize(
@@ -480,25 +479,18 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
           ),
         ),
       ),
-      body: Shimmer(
-        duration: Duration(seconds: 3),
-        interval: Duration(seconds: 5),
-        color: Colors.white,
-        enabled: true,
-        direction: ShimmerDirection.fromLTRB(),
-        child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: <Color>[Colors.orange, Colors.blueAccent])),
-            child: BuildDescriptionGestion(
-              idGestionMontantUniverselle: widget.idGestionMontantUniverselle,
-              indexGestionMensuel: widget.indexGestionMensuel,
-              indexGestionMensuelMontantUniv:
-                  widget.indexGestionMensuelMontantUniv,
-            )),
-      ),
+      body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: <Color>[Colors.orange, Colors.blueAccent])),
+          child: BuildDescriptionGestion(
+            idGestionMontantUniverselle: widget.idGestionMontantUniverselle,
+            indexGestionMensuel: widget.indexGestionMensuel,
+            indexGestionMensuelMontantUniv:
+                widget.indexGestionMensuelMontantUniv,
+          )),
       backgroundColor: Color(0xff414a4c),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: buildBottomSheet(),

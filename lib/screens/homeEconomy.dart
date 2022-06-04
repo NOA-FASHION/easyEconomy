@@ -11,7 +11,7 @@ import 'package:marquee_text/marquee_text.dart';
 
 import 'package:provider/provider.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+
 
 import 'package:vertical_card_pager/vertical_card_pager.dart';
 import 'package:wave_transition/wave_transition.dart';
@@ -88,230 +88,88 @@ class _HomeState extends State<Home> {
           body: navbar
               ? LoadingOverlayPro(
                   isLoading: _isLoading,
-                  child: Shimmer(
-                    duration: Duration(seconds: 3),
-                    interval: Duration(seconds: 5),
-                    color: Colors.white,
-                    enabled: true,
-                    direction: ShimmerDirection.fromLTRB(),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 50),
-                            child: _buildHeader(context, widthC),
-                          ),
-                          Container(
-                            height: 550,
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                  Colors.orange,
-                                  Colors.blueAccent
-                                ])),
-                            child: VerticalCardPager(
-                              initialPage: 1,
-                              align: ALIGN.CENTER,
-                              onPageChanged: (page) {},
-                              onSelectedItem: (page) {
-                                if (page == 0) {
-                                  Navigator.push(
-                                      context,
-                                      WaveTransition(
-                                          center: FractionalOffset(0.90, 0.90),
-                                          duration:
-                                              Duration(milliseconds: 1000),
-                                          child: ChangeNotifierProvider.value(
-                                              value: variable,
-                                              child: ChargeFixeMensuel())));
-                                } else if (page == 1) {
-                                  Navigator.push(
-                                      context,
-                                      WaveTransition(
-                                          center: FractionalOffset(0.90, 0.90),
-                                          duration:
-                                              Duration(milliseconds: 1000),
-                                          child: ChangeNotifierProvider.value(
-                                              value: variable,
-                                              child: SimulatorGestion())));
-                                } else if (page == 2) {
-                                  Navigator.push(
-                                      context,
-                                      WaveTransition(
-                                          center: FractionalOffset(0.90, 0.90),
-                                          duration:
-                                              Duration(milliseconds: 1000),
-                                          child: ChangeNotifierProvider.value(
-                                              value: variable,
-                                              child: GestionMensuel())));
-                                }
-                              },
-                              titles: titles,
-                              images: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    image: DecorationImage(
-                                      invertColors: true,
-                                      image: AssetImage("assets/1.png"),
-                                      fit: BoxFit.cover,
-                                    ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: _buildHeader(context, widthC),
+                        ),
+                        Container(
+                          height: 550,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                Colors.orange,
+                                Colors.blueAccent
+                              ])),
+                          child: VerticalCardPager(
+                            initialPage: 1,
+                            align: ALIGN.CENTER,
+                            onPageChanged: (page) {},
+                            onSelectedItem: (page) {
+                              if (page == 0) {
+                                Navigator.push(
+                                    context,
+                                    WaveTransition(
+                                        center: FractionalOffset(0.90, 0.90),
+                                        duration:
+                                            Duration(milliseconds: 1000),
+                                        child: ChangeNotifierProvider.value(
+                                            value: variable,
+                                            child: ChargeFixeMensuel())));
+                              } else if (page == 1) {
+                                Navigator.push(
+                                    context,
+                                    WaveTransition(
+                                        center: FractionalOffset(0.90, 0.90),
+                                        duration:
+                                            Duration(milliseconds: 1000),
+                                        child: ChangeNotifierProvider.value(
+                                            value: variable,
+                                            child: SimulatorGestion())));
+                              } else if (page == 2) {
+                                Navigator.push(
+                                    context,
+                                    WaveTransition(
+                                        center: FractionalOffset(0.90, 0.90),
+                                        duration:
+                                            Duration(milliseconds: 1000),
+                                        child: ChangeNotifierProvider.value(
+                                            value: variable,
+                                            child: GestionMensuel())));
+                              }
+                            },
+                            titles: titles,
+                            images: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  image: DecorationImage(
+                                    invertColors: true,
+                                    image: AssetImage("assets/1.png"),
+                                    fit: BoxFit.cover,
                                   ),
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.2,
-                                  height: 190,
-                                  child: Card(
-                                      color: Colors.transparent,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      elevation: 15.0,
-                                      child: Container(
-                                        margin: EdgeInsets.only(bottom: 1),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Card(
-                                              color: Colors.transparent,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5.0),
-                                              ),
-                                              elevation: 25.0,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    color:
-                                                        Colors.orange.shade200),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(4.0),
-                                                  child: MarqueeText(
-                                                    text: TextSpan(
-                                                        text:
-                                                            "Charges et revenus fixes"
-                                                                .toUpperCase()),
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.black,
-                                                    ),
-                                                    speed: 30,
-                                                  ),
-
-                                                  // ),
-                                                ),
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [],
-                                            ),
-                                          ],
-                                        ),
-                                      )),
                                 ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/2.png"),
-                                      fit: BoxFit.cover,
+                                width:
+                                    MediaQuery.of(context).size.width / 1.2,
+                                height: 190,
+                                child: Card(
+                                    color: Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(15.0),
                                     ),
-                                  ),
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.2,
-                                  height: 190,
-                                  child: Card(
-                                      color: Colors.transparent,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0),
-                                      ),
-                                      elevation: 15.0,
-                                      child: Container(
-                                        margin: EdgeInsets.only(bottom: 1),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Card(
-                                              color: Colors.transparent,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5.0),
-                                              ),
-                                              elevation: 25.0,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    color:
-                                                        Colors.orange.shade200),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(4.0),
-                                                  child: MarqueeText(
-                                                    text: TextSpan(
-                                                        text:
-                                                            "Simulateur de gestion"
-                                                                .toUpperCase()),
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.black,
-                                                    ),
-                                                    speed: 30,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    image: DecorationImage(
-                                      invertColors: true,
-                                      image: AssetImage("assets/3.png"),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.2,
-                                  height: 190,
-                                  child: Card(
-                                      color: Colors.transparent,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0),
-                                      ),
-                                      elevation: 15.0,
+                                    elevation: 15.0,
+                                    child: Container(
+                                      margin: EdgeInsets.only(bottom: 1),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          // Lottie.asset("assets/shedule.json",
-                                          //     width: 60),
-                                          // Icon(
-                                          //   Icons.calendar_view_day,
-                                          //   color: Colors.white,
-                                          //   size: 45,
-                                          // ),
-
                                           Card(
                                             color: Colors.transparent,
                                             shape: RoundedRectangleBorder(
@@ -322,7 +180,8 @@ class _HomeState extends State<Home> {
                                             child: Container(
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(5),
+                                                      BorderRadius.circular(
+                                                          5),
                                                   color:
                                                       Colors.orange.shade200),
                                               child: Padding(
@@ -330,37 +189,171 @@ class _HomeState extends State<Home> {
                                                     const EdgeInsets.all(4.0),
                                                 child: MarqueeText(
                                                   text: TextSpan(
-                                                      text: "Gestion mensuelle"
-                                                          .toUpperCase()),
+                                                      text:
+                                                          "Charges et revenus fixes"
+                                                              .toUpperCase()),
                                                   style: TextStyle(
                                                     fontSize: 12,
-                                                    fontWeight: FontWeight.bold,
+                                                    fontWeight:
+                                                        FontWeight.bold,
                                                     color: Colors.black,
                                                   ),
                                                   speed: 30,
                                                 ),
-                                                // child: Text(
-                                                //   "Gestion mensuelle"
-                                                //       .toUpperCase(),
-                                                //   style: TextStyle(
-                                                //       fontSize: 12,
-                                                //       color: Colors.black,
-                                                //       fontWeight:
-                                                //           FontWeight.bold),
-                                                //   textAlign: TextAlign.center,
+
                                                 // ),
                                               ),
                                             ),
                                           ),
-                                          // Center(child: Text("Gestion mensuelle")),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [],
+                                          ),
                                         ],
-                                      )),
+                                      ),
+                                    )),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  image: DecorationImage(
+                                    image: AssetImage("assets/2.png"),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ],
-                            ),
+                                width:
+                                    MediaQuery.of(context).size.width / 1.2,
+                                height: 190,
+                                child: Card(
+                                    color: Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(30.0),
+                                    ),
+                                    elevation: 15.0,
+                                    child: Container(
+                                      margin: EdgeInsets.only(bottom: 1),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Card(
+                                            color: Colors.transparent,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5.0),
+                                            ),
+                                            elevation: 25.0,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          5),
+                                                  color:
+                                                      Colors.orange.shade200),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: MarqueeText(
+                                                  text: TextSpan(
+                                                      text:
+                                                          "Simulateur de gestion"
+                                                              .toUpperCase()),
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.bold,
+                                                    color: Colors.black,
+                                                  ),
+                                                  speed: 30,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  image: DecorationImage(
+                                    invertColors: true,
+                                    image: AssetImage("assets/3.png"),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                width:
+                                    MediaQuery.of(context).size.width / 1.2,
+                                height: 190,
+                                child: Card(
+                                    color: Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(30.0),
+                                    ),
+                                    elevation: 15.0,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        // Lottie.asset("assets/shedule.json",
+                                        //     width: 60),
+                                        // Icon(
+                                        //   Icons.calendar_view_day,
+                                        //   color: Colors.white,
+                                        //   size: 45,
+                                        // ),
+
+                                        Card(
+                                          color: Colors.transparent,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5.0),
+                                          ),
+                                          elevation: 25.0,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                color:
+                                                    Colors.orange.shade200),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: MarqueeText(
+                                                text: TextSpan(
+                                                    text: "Gestion mensuelle"
+                                                        .toUpperCase()),
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                ),
+                                                speed: 30,
+                                              ),
+                                              // child: Text(
+                                              //   "Gestion mensuelle"
+                                              //       .toUpperCase(),
+                                              //   style: TextStyle(
+                                              //       fontSize: 12,
+                                              //       color: Colors.black,
+                                              //       fontWeight:
+                                              //           FontWeight.bold),
+                                              //   textAlign: TextAlign.center,
+                                              // ),
+                                            ),
+                                          ),
+                                        ),
+                                        // Center(child: Text("Gestion mensuelle")),
+                                      ],
+                                    )),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 )

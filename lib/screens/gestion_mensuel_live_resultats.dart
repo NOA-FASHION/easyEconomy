@@ -9,7 +9,7 @@ import 'package:easyeconomy/screens/charge_fixe_mensuel.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+
 
 class GestionMensuelLiveResultats extends StatefulWidget {
   final String idGestionMontantUniverselle;
@@ -63,126 +63,119 @@ class _GestionMensuelLiveResultatsState
         child: Scaffold(
           backgroundColor: Colors.transparent,
           key: scaffoldkey,
-          body: Shimmer(
-            duration: Duration(seconds: 3),
-            interval: Duration(seconds: 5),
-            color: Colors.white,
-            enabled: true,
-            direction: ShimmerDirection.fromLTRB(),
-            child: DraggableHome(
-              backgroundColor: Colors.transparent,
-              appBarColor: Colors.orange,
-              body: [
-                Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Colors.orange, Colors.blueAccent])),
-                  child: BuildGestionMensuelResultats(
-                    idGestionMontantUniverselle:
-                        widget.idGestionMontantUniverselle,
-                    indexGestionMensuel: widget.indexMontantUniverselle,
-                  ),
+          body: DraggableHome(
+            backgroundColor: Colors.transparent,
+            appBarColor: Colors.orange,
+            body: [
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.orange, Colors.blueAccent])),
+                child: BuildGestionMensuelResultats(
+                  idGestionMontantUniverselle:
+                      widget.idGestionMontantUniverselle,
+                  indexGestionMensuel: widget.indexMontantUniverselle,
                 ),
+              ),
+            ],
+            headerWidget: Header(
+              context: context,
+              variable: variable,
+              listMontantUniverselle: _listMontantUniverselle,
+              listMontPrevision: _listMontantUniverselleLive,
+              montantChargesDouble: montantChargessString,
+              montantRevenuDouble: montantRevenuString,
+              montantTotalsDouble: montantTotalsString,
+              simuOuchargeFix: simuOuchargeFixe,
+              transactionPasse: false,
+            ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RaccourciMontant(
+                  montant: montantChargessString,
+                  colors: Colors.red.shade900,
+                ),
+                RaccourciMontant(
+                  montant: montantRevenuString,
+                  colors: Colors.green.shade900,
+                ),
+                RaccourciMontant(
+                  montant: montantTotalsString,
+                  colors: Colors.blue.shade900,
+                ),
+                // Card(
+                //   color: Colors.orange,
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10.0),
+                //   ),
+                //   elevation: 25.0,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         color: Colors.white),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Text(
+                //         montantChargessString.toStringAsFixed(2) + " €",
+                //         style: TextStyle(
+                //             fontSize: 13,
+                //             color: Colors.red.shade900,
+                //             fontWeight: FontWeight.bold),
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Colors.orange,
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10.0),
+                //   ),
+                //   elevation: 25.0,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         color: Colors.white),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Text(
+                //         montantRevenuString.toStringAsFixed(2) + " €",
+                //         style: TextStyle(
+                //             fontSize: 13,
+                //             color: Colors.green.shade900,
+                //             fontWeight: FontWeight.bold),
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Colors.orange,
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10.0),
+                //   ),
+                //   elevation: 25.0,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         color: Colors.white),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Text(
+                //         montantTotalsString.toStringAsFixed(2) + " €",
+                //         style: TextStyle(
+                //             fontSize: 13,
+                //             color: Colors.blue.shade900,
+                //             fontWeight: FontWeight.bold),
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
-              headerWidget: Header(
-                context: context,
-                variable: variable,
-                listMontantUniverselle: _listMontantUniverselle,
-                listMontPrevision: _listMontantUniverselleLive,
-                montantChargesDouble: montantChargessString,
-                montantRevenuDouble: montantRevenuString,
-                montantTotalsDouble: montantTotalsString,
-                simuOuchargeFix: simuOuchargeFixe,
-                transactionPasse: false,
-              ),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RaccourciMontant(
-                    montant: montantChargessString,
-                    colors: Colors.red.shade900,
-                  ),
-                  RaccourciMontant(
-                    montant: montantRevenuString,
-                    colors: Colors.green.shade900,
-                  ),
-                  RaccourciMontant(
-                    montant: montantTotalsString,
-                    colors: Colors.blue.shade900,
-                  ),
-                  // Card(
-                  //   color: Colors.orange,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(10.0),
-                  //   ),
-                  //   elevation: 25.0,
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         color: Colors.white),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Text(
-                  //         montantChargessString.toStringAsFixed(2) + " €",
-                  //         style: TextStyle(
-                  //             fontSize: 13,
-                  //             color: Colors.red.shade900,
-                  //             fontWeight: FontWeight.bold),
-                  //         textAlign: TextAlign.center,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // Card(
-                  //   color: Colors.orange,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(10.0),
-                  //   ),
-                  //   elevation: 25.0,
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         color: Colors.white),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Text(
-                  //         montantRevenuString.toStringAsFixed(2) + " €",
-                  //         style: TextStyle(
-                  //             fontSize: 13,
-                  //             color: Colors.green.shade900,
-                  //             fontWeight: FontWeight.bold),
-                  //         textAlign: TextAlign.center,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // Card(
-                  //   color: Colors.orange,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(10.0),
-                  //   ),
-                  //   elevation: 25.0,
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         color: Colors.white),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Text(
-                  //         montantTotalsString.toStringAsFixed(2) + " €",
-                  //         style: TextStyle(
-                  //             fontSize: 13,
-                  //             color: Colors.blue.shade900,
-                  //             fontWeight: FontWeight.bold),
-                  //         textAlign: TextAlign.center,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                ],
-              ),
             ),
           ),
         ),

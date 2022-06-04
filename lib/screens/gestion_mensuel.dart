@@ -1,8 +1,5 @@
-
 import 'package:easyeconomy/screens/build_gestion_mensuel.dart';
 import 'package:flutter/material.dart';
-
-import 'package:shimmer_animation/shimmer_animation.dart';
 
 class GestionMensuel extends StatefulWidget {
   GestionMensuel({Key? key}) : super(key: key);
@@ -42,20 +39,13 @@ class _GestionMensuelState extends State<GestionMensuel> {
             ),
           ),
         ),
-        body: Shimmer(
-          duration: Duration(seconds: 3),
-          interval: Duration(seconds: 5),
-          color: Colors.white,
-          enabled: true,
-          direction: ShimmerDirection.fromLTRB(),
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.orange, Colors.blueAccent])),
-            child: BuildGestionMensuel(),
-          ),
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Colors.orange, Colors.blueAccent])),
+          child: BuildGestionMensuel(),
         ),
       ),
     );

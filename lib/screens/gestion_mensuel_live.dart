@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
 
 import 'package:provider/provider.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
+
 
 class GestionMensuelLive extends StatefulWidget {
   final String idGestionMontantUniverselle;
@@ -143,130 +143,123 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           key: scaffoldkey,
-          body: Shimmer(
-            duration: Duration(seconds: 3),
-            interval: Duration(seconds: 5),
-            color: Colors.white,
-            enabled: true,
-            direction: ShimmerDirection.fromLTRB(),
-            child: DraggableHome(
-              headerExpandedHeight: 0.38,
-              backgroundColor: Colors.transparent,
-              appBarColor: Colors.orange,
-              body: [
-                Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Colors.orange, Colors.blueAccent])),
-                  child: BuildGestionMensuelLive(
-                    idGestionMontantUniverselle:
-                        widget.idGestionMontantUniverselle,
-                    indexGestionMensuel: widget.indexMontantUniverselle,
-                  ),
+          body: DraggableHome(
+            headerExpandedHeight: 0.38,
+            backgroundColor: Colors.transparent,
+            appBarColor: Colors.orange,
+            body: [
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.orange, Colors.blueAccent])),
+                child: BuildGestionMensuelLive(
+                  idGestionMontantUniverselle:
+                      widget.idGestionMontantUniverselle,
+                  indexGestionMensuel: widget.indexMontantUniverselle,
                 ),
-              ],
-              headerWidget: CalculMontantMensuel().header(
-                  montantChargeDouble,
-                  montantChargeLiveDouble,
-                  montantRevenuDouble,
-                  montantRevenuLiveDouble,
-                  montantTotalsDouble,
-                  montantTotalsLiveDouble,
-                  context,
-                  widget.idGestionMontantUniverselle,
-                  variable,
-                  widget.indexMontantUniverselle,
-                  _listMontantUniverselle,
-                  _listMontantUniverselleLive,
-                  simuOuchargeFixe),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RaccourciMontant(
-                    montant: montantChargeDouble,
-                    colors: Colors.red.shade900,
-                  ),
-                  RaccourciMontant(
-                    montant: montantRevenuDouble,
-                    colors: Colors.green.shade900,
-                  ),
-                  RaccourciMontant(
-                    montant: montantTotalsDouble,
-                    colors: Colors.blue.shade900,
-                  ),
-                  // Card(
-                  //   color: Colors.orange,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(10.0),
-                  //   ),
-                  //   elevation: 25.0,
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         color: Colors.white),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Text(
-                  //         montantChargeDouble.toStringAsFixed(2) + " €",
-                  //         style: TextStyle(
-                  //             fontSize: 13,
-                  //             color: Colors.red.shade900,
-                  //             fontWeight: FontWeight.bold),
-                  //         textAlign: TextAlign.center,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // Card(
-                  //   color: Colors.orange,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(10.0),
-                  //   ),
-                  //   elevation: 25.0,
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         color: Colors.white),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Text(
-                  //         montantRevenuDouble.toStringAsFixed(2) + " €",
-                  //         style: TextStyle(
-                  //             fontSize: 13,
-                  //             color: Colors.green.shade900,
-                  //             fontWeight: FontWeight.bold),
-                  //         textAlign: TextAlign.center,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // Card(
-                  //   color: Colors.orange,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(10.0),
-                  //   ),
-                  //   elevation: 25.0,
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         color: Colors.white),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Text(
-                  //         montantTotalsDouble.toStringAsFixed(2) + " €",
-                  //         style: TextStyle(
-                  //             fontSize: 13,
-                  //             color: Colors.blue.shade900,
-                  //             fontWeight: FontWeight.bold),
-                  //         textAlign: TextAlign.center,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                ],
               ),
+            ],
+            headerWidget: CalculMontantMensuel().header(
+                montantChargeDouble,
+                montantChargeLiveDouble,
+                montantRevenuDouble,
+                montantRevenuLiveDouble,
+                montantTotalsDouble,
+                montantTotalsLiveDouble,
+                context,
+                widget.idGestionMontantUniverselle,
+                variable,
+                widget.indexMontantUniverselle,
+                _listMontantUniverselle,
+                _listMontantUniverselleLive,
+                simuOuchargeFixe),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RaccourciMontant(
+                  montant: montantChargeDouble,
+                  colors: Colors.red.shade900,
+                ),
+                RaccourciMontant(
+                  montant: montantRevenuDouble,
+                  colors: Colors.green.shade900,
+                ),
+                RaccourciMontant(
+                  montant: montantTotalsDouble,
+                  colors: Colors.blue.shade900,
+                ),
+                // Card(
+                //   color: Colors.orange,
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10.0),
+                //   ),
+                //   elevation: 25.0,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         color: Colors.white),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Text(
+                //         montantChargeDouble.toStringAsFixed(2) + " €",
+                //         style: TextStyle(
+                //             fontSize: 13,
+                //             color: Colors.red.shade900,
+                //             fontWeight: FontWeight.bold),
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Colors.orange,
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10.0),
+                //   ),
+                //   elevation: 25.0,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         color: Colors.white),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Text(
+                //         montantRevenuDouble.toStringAsFixed(2) + " €",
+                //         style: TextStyle(
+                //             fontSize: 13,
+                //             color: Colors.green.shade900,
+                //             fontWeight: FontWeight.bold),
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Colors.orange,
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10.0),
+                //   ),
+                //   elevation: 25.0,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         color: Colors.white),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Text(
+                //         montantTotalsDouble.toStringAsFixed(2) + " €",
+                //         style: TextStyle(
+                //             fontSize: 13,
+                //             color: Colors.blue.shade900,
+                //             fontWeight: FontWeight.bold),
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+              ],
             ),
           ),
           floatingActionButtonLocation:
