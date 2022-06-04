@@ -1,9 +1,8 @@
 import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
-import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 
-import 'package:easyeconomy/screens/calcul_montant_mensuel.dart';
+import 'package:easyeconomy/screens/calcul_montant_mensuel_widget.dart';
 import 'package:easyeconomy/screens/description_gestion.dart';
 import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flutter/material.dart';
@@ -459,7 +458,7 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                     //     _listMontantUniverselle[index].icones,
                     //     formKey,
                     //     controller),
-                    subtitle: ActiveGlowWidget(
+                    subtitle: ActiveGlowWidget2(
                       active: _listMontantUniverselle[index].previsionsTotal,
                       context: context,
                       controller: controller,
@@ -468,10 +467,8 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
                       icon: _listMontantUniverselle[index].icones,
                       index: index,
                       item: _listMontantUniverselle[index],
-                      modifNamePrix: true,
-                      valueText: valueText,
-                      valueText2: valueText2,
                       variable: variable,
+                      indexGestionMensuel: widget.indexGestionMensuel,
                     ),
                   ),
                 ),

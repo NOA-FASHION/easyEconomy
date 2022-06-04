@@ -576,133 +576,133 @@ class CalculMontantMensuel {
     return montant;
   }
 
-  // Widget activeGlow(
-  //     double active,
-  //     int indexGestionMensuel,
-  //     MontantUniverselle gestion,
-  //     BuildContext context,
-  //     int index,
-  //     MontantUniverselle item,
-  //     EasyController variable,
-  //     int icon,
-  //     GlobalKey<FormState> formKey,
-  //     CurrencyTextFieldController controller) {
-  //   Widget glow = Padding(
-  //     padding: const EdgeInsets.all(1.0),
-  //     child: Container(
-  //       width: MediaQuery.of(context).size.width,
-  //       decoration: BoxDecoration(
-  //         borderRadius: BorderRadius.circular(20),
-  //         // color: colorsDescription(gestion.unity.toString()),
-  //       ),
-  //       child: Card(
-  //         color: active == 0 ? Colors.white : Colors.grey,
-  //         shape: RoundedRectangleBorder(
-  //           borderRadius: BorderRadius.circular(15.0),
-  //         ),
-  //         elevation: 15.0,
-  //         child: Padding(
-  //           padding: const EdgeInsets.all(8.0),
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.start,
-  //             children: [
-  //               IconButton(
-  //                   padding: EdgeInsets.all(2),
-  //                   onPressed: () {
-  //                     displayTextInputDialog(indexGestionMensuel, context,
-  //                         index, item, variable, icon, formKey, controller);
-  //                   },
-  //                   icon: Icon(
-  //                     Icons.edit,
-  //                     size: 17,
-  //                   )),
-  //               // InkWell(onTap: ,
-  //               //   child: Icon(Icons.edit)),
-  //               Column(
-  //                 children: [
-  //                   Container(
-  //                     width: MediaQuery.of(context).size.width / 1.72,
-  //                     height: 25.0,
-  //                     child: Row(
-  //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                       children: [
-  //                         maxLetterTitre(gestion.nom.toUpperCase(), context),
-  //                         SizedBox(
-  //                           width: 15.0,
-  //                         ),
-  //                       ],
-  //                     ),
-  //                   ),
-  //                   Container(
-  //                     width: MediaQuery.of(context).size.width / 1.72,
-  //                     height: 30.0,
-  //                     child: Row(
-  //                       children: [
-  //                         Card(
-  //                           shape: RoundedRectangleBorder(
-  //                             borderRadius: BorderRadius.circular(5.0),
-  //                           ),
-  //                           elevation: 5.0,
-  //                           color: colorsDescription(gestion.unity.toString()),
-  //                           child: Padding(
-  //                             padding: const EdgeInsets.all(3.0),
-  //                             child: Text(
-  //                               gestion.unity
-  //                                   .toString()
-  //                                   .replaceAll(unityPattern, "")
-  //                                   .toUpperCase(),
-  //                               style: TextStyle(
-  //                                 fontSize: 12,
-  //                                 fontWeight: FontWeight.bold,
-  //                               ),
-  //                             ),
-  //                           ),
-  //                         ),
-  //                         SizedBox(
-  //                           width: 10.0,
-  //                         ),
-  //                         Text(
-  //                           gestion.montant.toStringAsFixed(2) + " €",
-  //                           style: TextStyle(
-  //                             color:
-  //                                 colorsDescription(gestion.unity.toString()),
-  //                             fontSize: 13,
-  //                             fontWeight: FontWeight.bold,
-  //                           ),
-  //                         ),
-  //                       ],
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //               Card(
-  //                 color: active == 0 ? Colors.white : Colors.grey,
-  //                 shape: RoundedRectangleBorder(
-  //                   borderRadius: BorderRadius.circular(60.0),
-  //                 ),
-  //                 elevation: 15.0,
-  //                 child: Container(
-  //                   child: ClipRRect(
-  //                       borderRadius: BorderRadius.circular(40.0),
-  //                       child: Padding(
-  //                         padding: const EdgeInsets.all(3.0),
-  //                         child: Icon(
-  //                           IconData(gestion.icones,
-  //                               fontFamily: 'MaterialIcons'),
-  //                           color: colorsDescription(gestion.unity.toString()),
-  //                         ),
-  //                       )),
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
+  Widget activeGlow(
+      double active,
+      int indexGestionMensuel,
+      MontantUniverselle gestion,
+      BuildContext context,
+      int index,
+      MontantUniverselle item,
+      EasyController variable,
+      int icon,
+      GlobalKey<FormState> formKey,
+      CurrencyTextFieldController controller) {
+    Widget glow = Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          // color: colorsDescription(gestion.unity.toString()),
+        ),
+        child: Card(
+          color: active == 0 ? Colors.white : Colors.grey,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          elevation: 15.0,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                IconButton(
+                    padding: EdgeInsets.all(2),
+                    onPressed: () {
+                      displayTextInputDialog(indexGestionMensuel, context,
+                          index, item, variable, icon, formKey, controller);
+                    },
+                    icon: Icon(
+                      Icons.edit,
+                      size: 17,
+                    )),
+                // InkWell(onTap: ,
+                //   child: Icon(Icons.edit)),
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.72,
+                      height: 25.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          maxLetterTitre(gestion.nom.toUpperCase(), context),
+                          SizedBox(
+                            width: 15.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.72,
+                      height: 30.0,
+                      child: Row(
+                        children: [
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            elevation: 5.0,
+                            color: colorsDescription(gestion.unity.toString()),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: Text(
+                                gestion.unity
+                                    .toString()
+                                    .replaceAll(unityPattern, "")
+                                    .toUpperCase(),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          Text(
+                            gestion.montant.toStringAsFixed(2) + " €",
+                            style: TextStyle(
+                              color:
+                                  colorsDescription(gestion.unity.toString()),
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Card(
+                  color: active == 0 ? Colors.white : Colors.grey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60.0),
+                  ),
+                  elevation: 15.0,
+                  child: Container(
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(40.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Icon(
+                            IconData(gestion.icones,
+                                fontFamily: 'MaterialIcons'),
+                            color: colorsDescription(gestion.unity.toString()),
+                          ),
+                        )),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
 
-  //   return glow;
-  // }
+    return glow;
+  }
 
   Color colorsDescription(String description) {
     Color colors = Colors.black;

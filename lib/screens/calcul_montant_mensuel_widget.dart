@@ -1,7 +1,10 @@
+import 'package:currency_textfield/currency_textfield.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
+import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 import 'package:easyeconomy/screens/gestion_mensuel_live_resultats.dart';
 import 'package:easyeconomy/screens/screen_indicator_montant_gestionMensuel_live.dart';
+import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pie_chart/flutter_pie_chart.dart';
@@ -623,6 +626,303 @@ class SoldeLive extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ActiveGlowWidget2 extends StatefulWidget {
+  final double active;
+  final int indexGestionMensuel;
+  final MontantUniverselle gestion;
+  final BuildContext context;
+  final int index;
+  final MontantUniverselle item;
+  final EasyController variable;
+  final int icon;
+  final GlobalKey<FormState> formKey;
+  final CurrencyTextFieldController controller;
+  ActiveGlowWidget2(
+      {Key? key,
+      required this.active,
+      required this.indexGestionMensuel,
+      required this.gestion,
+      required this.context,
+      required this.index,
+      required this.item,
+      required this.variable,
+      required this.icon,
+      required this.formKey,
+      required this.controller})
+      : super(key: key);
+
+  @override
+  State<ActiveGlowWidget2> createState() => _ActiveGlowWidget2State();
+}
+
+class _ActiveGlowWidget2State extends State<ActiveGlowWidget2> {
+  String valueText3 = '';
+  String valueText4 = '';
+  String unityPattern = "unity_Montant_universelle.";
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          // color: colorsDescription(gestion.unity.toString()),
+        ),
+        child: Card(
+          color: widget.active == 0 ? Colors.white : Colors.grey,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          elevation: 15.0,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                IconButton(
+                    padding: EdgeInsets.all(2),
+                    onPressed: () {
+                      displayTextInputDialog(
+                          widget.indexGestionMensuel,
+                          context,
+                          widget.index,
+                          widget.item,
+                          widget.variable,
+                          widget.icon,
+                          widget.formKey,
+                          widget.controller);
+                    },
+                    icon: Icon(
+                      Icons.edit,
+                      size: 17,
+                    )),
+                // InkWell(onTap: ,
+                //   child: Icon(Icons.edit)),
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.72,
+                      height: 25.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          maxLetterTitre(
+                              widget.gestion.nom.toUpperCase(), context),
+                          SizedBox(
+                            width: 15.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.72,
+                      height: 30.0,
+                      child: Row(
+                        children: [
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            elevation: 5.0,
+                            color: colorsDescription(
+                                widget.gestion.unity.toString()),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: Text(
+                                widget.gestion.unity
+                                    .toString()
+                                    .replaceAll(unityPattern, "")
+                                    .toUpperCase(),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          Text(
+                            widget.gestion.montant.toStringAsFixed(2) + " €",
+                            style: TextStyle(
+                              color: colorsDescription(
+                                  widget.gestion.unity.toString()),
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Card(
+                  color: widget.active == 0 ? Colors.white : Colors.grey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60.0),
+                  ),
+                  elevation: 15.0,
+                  child: Container(
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(40.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Icon(
+                            IconData(widget.gestion.icones,
+                                fontFamily: 'MaterialIcons'),
+                            color: colorsDescription(
+                                widget.gestion.unity.toString()),
+                          ),
+                        )),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> displayTextInputDialog(
+      int indexGestionMensuel,
+      BuildContext context,
+      int index,
+      MontantUniverselle item,
+      EasyController variable,
+      int icon,
+      GlobalKey<FormState> formKey,
+      CurrencyTextFieldController controller) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            scrollable: true,
+            title: Text('Modification'),
+            content: Form(
+              key: formKey,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                height: 450,
+                width: double.maxFinite,
+                child: ListView(
+                  children: [
+                    formfieldDropDown(formKey, controller),
+                    ChangeNotifierProvider.value(
+                      value: variable,
+                      child: TransactionEdit(
+                        icon: icon,
+                        indexGestion: index,
+                        item: item,
+                        typeMontantUniv: '',
+                        indexGestionMensuel: indexGestionMensuel,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            actions: <Widget>[
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.cancel),
+                iconSize: 35,
+              ),
+              IconButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    if (valueText3.isNotEmpty) {
+                      variable.changeTitreGestionMensuel(
+                          indexGestionMensuel: indexGestionMensuel,
+                          indexGestion: index,
+                          nom: valueText3);
+                    }
+                    if (valueText4.isNotEmpty) {
+                      variable.changePrixGestionMensuel(
+                          indexGestionMensuel: indexGestionMensuel,
+                          indexGestion: index,
+                          montant: valueText4);
+                    }
+
+                    Navigator.pop(context);
+                  }
+                },
+                icon: Icon(Icons.check),
+                iconSize: 35,
+              ),
+            ],
+          );
+        });
+  }
+
+  Widget formfieldDropDown(
+      GlobalKey<FormState> formKey, CurrencyTextFieldController controller) {
+    return Column(
+      children: [
+        TextFormField(
+          textCapitalization: TextCapitalization.sentences,
+          onSaved: (value) {
+            valueText3 = value!;
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Merci d'entrer un nouveau titre ";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              labelText: "Modifier titre",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
+        TextFormField(
+          controller: controller,
+          textCapitalization: TextCapitalization.sentences,
+          onSaved: (value) {
+            valueText4 = controller.doubleValue.toString();
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Merci d'entrer un nouveau prix ";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.0, color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15.0)),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              labelText: "Modifier prix",
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0))),
+        ),
+      ],
     );
   }
 }
