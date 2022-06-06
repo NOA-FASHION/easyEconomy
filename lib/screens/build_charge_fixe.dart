@@ -535,9 +535,9 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                     onTap: () async {
                       Navigator.push(
                           context,
-                              WaveTransition(
-                            center: FractionalOffset(0.90, 0.90),
-                            duration: Duration(milliseconds: 1000),
+                          WaveTransition(
+                              center: FractionalOffset(0.90, 0.90),
+                              duration: Duration(milliseconds: 1000),
                               child: ChangeNotifierProvider.value(
                                   value: variable,
                                   child: ChargeFixeDescription(
@@ -545,20 +545,23 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                                   ))));
                     },
 
-                  subtitle: ActiveGlowWidget(
-                    active: _listMontantUniverselle[index].previsionsTotal,
-                    context: context,
-                    controller: controller,
-                    formKey: formKey,
-                    gestion: _listMontantUniverselle[index],
-                    icon: _listMontantUniverselle[index].icones,
-                    index: index,
-                    item: _listMontantUniverselle[index],
-                    modifNamePrix: true,
-                    valueText: valueText,
-                    valueText2: valueText2,
-                    variable: variable,
-                  ),
+                    subtitle: ChangeNotifierProvider.value(
+                      value: variable,
+                      child: ActiveGlowWidget(
+                        active: _listMontantUniverselle[index].previsionsTotal,
+                        context: context,
+                        controller: controller,
+                        formKey: formKey,
+                        gestion: _listMontantUniverselle[index],
+                        icon: _listMontantUniverselle[index].icones,
+                        index: index,
+                        item: _listMontantUniverselle[index],
+                        modifNamePrix: true,
+                        valueText: valueText,
+                        valueText2: valueText2,
+                        variable: variable,
+                      ),
+                    ),
                     // subtitle: CalculMontant()
                     //     .activeGlow(_listMontantUniverselle[index], context),
                     isThreeLine: true,

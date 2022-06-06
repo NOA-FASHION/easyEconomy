@@ -90,7 +90,7 @@ class _HeaderState extends State<Header> {
                                 : Colors.green.shade900,
                             proportion: widget.montantTotalsDouble > 0
                                 ? widget.montantTotalsDouble
-                                : widget.montantTotalsDouble),
+                                : -widget.montantTotalsDouble),
                       ],
                       selected: 2,
                     ),

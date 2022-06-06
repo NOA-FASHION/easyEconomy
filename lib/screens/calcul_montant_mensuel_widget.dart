@@ -539,7 +539,7 @@ class PieChart extends StatelessWidget {
               color: montantCharge > montantRevenu
                   ? Colors.red.shade900
                   : Colors.green.shade900,
-              proportion: montantTotals > 0 ? montantTotals : montantTotals),
+              proportion: montantTotals > 0 ? montantTotals : -montantTotals),
         ],
         selected: 2,
       ),
