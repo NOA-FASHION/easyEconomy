@@ -4,11 +4,12 @@ import 'package:draggable_home/draggable_home.dart';
 import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/build_gestion_mensuel_live.dart';
-import 'package:easyeconomy/screens/cacul_montant_widget.dart';
+
 import 'package:easyeconomy/screens/calcul_montant_mensuel.dart';
 import 'package:easyeconomy/screens/calcul_montant_mensuel_widget.dart';
 import 'package:easyeconomy/screens/charge_fixe_mensuel.dart';
 import 'package:easyeconomy/screens/constant.dart';
+import 'package:easyeconomy/screens/simulator_gestion.dart';
 
 import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
@@ -44,6 +45,14 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
   void initState() {
     super.initState();
     simuOuchargeFixe = true;
+  }
+
+  void slectedIcon(int index) {
+    _bottomSheetController.setState!(() {
+      iconData = GlobalConstant.icons[index];
+      icones =
+          IconData(GlobalConstant.icons[index], fontFamily: 'MaterialIcons');
+    });
   }
 
   Widget gridIcon() {
@@ -443,7 +452,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                                 header: Text("Choisir une icone",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 17)),
-                                content: gridIcon(),
+                                content: GridIconWidegt(onPressed: slectedIcon),
                               ),
                             ],
                           ),

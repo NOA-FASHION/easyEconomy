@@ -9,6 +9,7 @@ import 'package:easyeconomy/screens/build_charge_fixe.dart';
 import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/constant.dart';
+import 'package:easyeconomy/screens/simulator_gestion.dart';
 
 import 'package:flutter/material.dart';
 import 'package:nanoid/nanoid.dart';
@@ -36,6 +37,14 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
   void initState() {
     super.initState();
     simuOuchargeFixe = false;
+  }
+
+  void slectedIcon(int index) {
+    _bottomSheetController.setState!(() {
+      iconData = GlobalConstant.icons[index];
+      icones =
+          IconData(GlobalConstant.icons[index], fontFamily: 'MaterialIcons');
+    });
   }
 
   int iconData = 57403;
@@ -411,7 +420,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                                 header: Text("Choisir une icone",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 17)),
-                                content: gridIcon(),
+                                content: GridIconWidegt(onPressed: slectedIcon),
                               ),
                             ],
                           ),

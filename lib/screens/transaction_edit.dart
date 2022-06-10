@@ -26,6 +26,14 @@ class TransactionEdit extends StatefulWidget {
 }
 
 class _TransactionEditState extends State<TransactionEdit> {
+  void selectedIcon(int index) {
+    {
+      iconData = GlobalConstant.icons[index];
+      icon1 = GlobalConstant.icons[index];
+    }
+    ;
+  }
+
   late IconData icones = Icons.info;
   late int icon1 = 57403;
   int iconData = 57403;
@@ -124,17 +132,111 @@ class _TransactionEditState extends State<TransactionEdit> {
             leftIcon: Icon(Icons.description, color: Colors.white),
             children: [
               AccordionSection(
-                isOpen: false,
-                header: Text("Choisir une icone",
-                    style: TextStyle(color: Colors.white, fontSize: 17)),
-                content: gridIcon(
-                  provider,
-                ),
-              ),
+                  isOpen: false,
+                  header: Text("Choisir une icone",
+                      style: TextStyle(color: Colors.white, fontSize: 17)),
+                  content: GridIconWidegtEdit(
+                    indexGestion: widget.indexGestion,
+                    indexGestionMensuel: widget.indexGestionMensuel,
+                    onPressed: selectedIcon,
+                    provider: provider,
+                    typeMontantUniv: widget.typeMontantUniv,
+                  )),
             ],
           ),
         ],
       ),
     );
+  }
+}
+
+class GridIconWidegtEdit extends StatelessWidget {
+  final EasyController provider;
+
+  final int indexGestion;
+  final int indexGestionMensuel;
+  final void Function(int index) onPressed;
+  final String typeMontantUniv;
+
+  const GridIconWidegtEdit(
+      {Key? key,
+      required this.indexGestion,
+      required this.indexGestionMensuel,
+      required this.typeMontantUniv,
+      required this.provider,
+      required this.onPressed})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.white70),
+            borderRadius: BorderRadius.circular(10),
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Colors.blueAccent, Colors.orange])),
+        height: 400,
+        child: Scrollbar(
+          thickness: 3,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 1.0),
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: GlobalConstant.icons.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 0.7,
+                        crossAxisCount: 5,
+                        crossAxisSpacing: 1.0,
+                        mainAxisSpacing: 1.0),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        elevation: 0.2,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            IconButton(
+                              onPressed: () {
+                                onPressed(index);
+                                if (typeMontantUniv == "simulator") {
+                                  provider.changeIconsSimulation(
+                                      indexGestion: indexGestion,
+                                      icons: GlobalConstant.icons[index]);
+                                } else if (typeMontantUniv == "chargeFixe") {
+                                  provider.changeIcons(
+                                      indexGestion: indexGestion,
+                                      icons: GlobalConstant.icons[index]);
+                                } else {
+                                  provider.changeIconsGestionMensuel(
+                                      indexGestion: indexGestion,
+                                      icons: GlobalConstant.icons[index],
+                                      indexGestionMensuel: indexGestionMensuel);
+                                }
+                              },
+                              icon: Icon(
+                                IconData(GlobalConstant.icons[index],
+                                    fontFamily: 'MaterialIcons'),
+                                size: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }

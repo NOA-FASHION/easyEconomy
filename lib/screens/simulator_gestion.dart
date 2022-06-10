@@ -42,67 +42,75 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
     simuOuchargeFixe = true;
   }
 
-  Widget gridIcon() {
-    return Container(
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.white70),
-            borderRadius: BorderRadius.circular(10),
-            gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [Colors.blueAccent, Colors.orange])),
-        height: 400,
-        child: Scrollbar(
-          thickness: 3,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 1.0),
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: BouncingScrollPhysics(),
-                    itemCount: GlobalConstant.icons.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 0.9,
-                        crossAxisCount: 6,
-                        crossAxisSpacing: 1.0,
-                        mainAxisSpacing: 1.0),
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        elevation: 0.2,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            IconButton(
-                              onPressed: () {
-                                _bottomSheetController.setState!(() {
-                                  iconData = GlobalConstant.icons[index];
-                                  icones = IconData(GlobalConstant.icons[index],
-                                      fontFamily: 'MaterialIcons');
-                                });
-                              },
-                              icon: Icon(
-                                IconData(GlobalConstant.icons[index],
-                                    fontFamily: 'MaterialIcons'),
-                                size: 25,
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ));
+  void slectedIcon(int index) {
+    _bottomSheetController.setState!(() {
+      iconData = GlobalConstant.icons[index];
+      icones =
+          IconData(GlobalConstant.icons[index], fontFamily: 'MaterialIcons');
+    });
   }
+
+  // Widget gridIcon() {
+  //   return Container(
+  //       decoration: BoxDecoration(
+  //           border: Border.all(color: Colors.white70),
+  //           borderRadius: BorderRadius.circular(10),
+  //           gradient: LinearGradient(
+  //               begin: Alignment.centerLeft,
+  //               end: Alignment.centerRight,
+  //               colors: [Colors.blueAccent, Colors.orange])),
+  //       height: 400,
+  //       child: Scrollbar(
+  //         thickness: 3,
+  //         child: Padding(
+  //           padding: EdgeInsets.symmetric(horizontal: 1.0),
+  //           child: SingleChildScrollView(
+  //             physics: BouncingScrollPhysics(),
+  //             child: Column(
+  //               children: [
+  //                 GridView.builder(
+  //                   shrinkWrap: true,
+  //                   physics: BouncingScrollPhysics(),
+  //                   itemCount: GlobalConstant.icons.length,
+  //                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+  //                       childAspectRatio: 0.9,
+  //                       crossAxisCount: 6,
+  //                       crossAxisSpacing: 1.0,
+  //                       mainAxisSpacing: 1.0),
+  //                   itemBuilder: (BuildContext context, int index) {
+  //                     return Card(
+  //                       elevation: 0.2,
+  //                       shape: RoundedRectangleBorder(
+  //                           borderRadius: BorderRadius.circular(8.0)),
+  //                       child: Column(
+  //                         mainAxisAlignment: MainAxisAlignment.center,
+  //                         crossAxisAlignment: CrossAxisAlignment.center,
+  //                         children: <Widget>[
+  //                           IconButton(
+  //                             onPressed: () {
+  //                               _bottomSheetController.setState!(() {
+  //                                 iconData = GlobalConstant.icons[index];
+  //                                 icones = IconData(GlobalConstant.icons[index],
+  //                                     fontFamily: 'MaterialIcons');
+  //                               });
+  //                             },
+  //                             icon: Icon(
+  //                               IconData(GlobalConstant.icons[index],
+  //                                   fontFamily: 'MaterialIcons'),
+  //                               size: 25,
+  //                             ),
+  //                           )
+  //                         ],
+  //                       ),
+  //                     );
+  //                   },
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //         ),
+  //       ));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -171,75 +179,6 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                     montant: montantTotalsString,
                     colors: Colors.blue.shade900,
                   ),
-                  // Card(
-                  //   color: Colors.orange,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(10.0),
-                  //   ),
-                  //   elevation: 25.0,
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         color: Colors.white),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Text(
-                  //         montantChargessString.toStringAsFixed(2) + " €",
-                  //         style: TextStyle(
-                  //             fontSize: 13,
-                  //             color: Colors.red.shade900,
-                  //             fontWeight: FontWeight.bold),
-                  //         textAlign: TextAlign.center,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // Card(
-                  //   color: Colors.orange,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(10.0),
-                  //   ),
-                  //   elevation: 25.0,
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         color: Colors.white),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Text(
-                  //         montantRevenuString.toStringAsFixed(2) + " €",
-                  //         style: TextStyle(
-                  //             fontSize: 13,
-                  //             color: Colors.green.shade900,
-                  //             fontWeight: FontWeight.bold),
-                  //         textAlign: TextAlign.center,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // Card(
-                  //   color: Colors.orange,
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(10.0),
-                  //   ),
-                  //   elevation: 25.0,
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         color: Colors.white),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Text(
-                  //         montantTotalsString.toStringAsFixed(2) + " €",
-                  //         style: TextStyle(
-                  //             fontSize: 13,
-                  //             color: Colors.blue.shade900,
-                  //             fontWeight: FontWeight.bold),
-                  //         textAlign: TextAlign.center,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -406,7 +345,7 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
                                 header: Text("Choisir une icone",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 17)),
-                                content: gridIcon(),
+                                content: GridIconWidegt(onPressed: slectedIcon),
                               ),
                             ],
                           ),
@@ -444,5 +383,69 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
             },
           );
         });
+  }
+}
+
+class GridIconWidegt extends StatelessWidget {
+  final void Function(int index) onPressed;
+  const GridIconWidegt({Key? key, required this.onPressed}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.white70),
+            borderRadius: BorderRadius.circular(10),
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Colors.blueAccent, Colors.orange])),
+        height: 400,
+        child: Scrollbar(
+          thickness: 3,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 1.0),
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: GlobalConstant.icons.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 0.9,
+                        crossAxisCount: 6,
+                        crossAxisSpacing: 1.0,
+                        mainAxisSpacing: 1.0),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        elevation: 0.2,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            IconButton(
+                              onPressed: () {
+                                onPressed(index);
+                              },
+                              icon: Icon(
+                                IconData(GlobalConstant.icons[index],
+                                    fontFamily: 'MaterialIcons'),
+                                size: 25,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }
