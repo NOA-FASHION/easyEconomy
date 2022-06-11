@@ -2,7 +2,6 @@ import 'package:easyeconomy/controllers/easy_Controller.dart';
 import 'package:easyeconomy/models/easy_economy_models.dart';
 import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
@@ -148,99 +147,7 @@ class _BuildGestionMensuelResultatsState
     return longLetter;
   }
 
-  Widget activeGlow(MontantUniverselle gestion) {
-    Widget glow = Padding(
-      padding: const EdgeInsets.all(1.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: colorsDescription(gestion.unity.toString()),
-        ),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          elevation: 15.0,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.45,
-                      height: 25.0,
-                      child: Row(
-                        children: [
-                          Text(
-                            "Type de montant",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
-                          ),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          maxLetter(
-                            gestion.unity
-                                .toString()
-                                .replaceAll(unityPattern, "")
-                                .toUpperCase(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.45,
-                      height: 30.0,
-                      child: Row(
-                        children: [
-                          Text(
-                            "Montant",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
-                          ),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          Text(
-                            gestion.montant.toStringAsFixed(2) + " €",
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60.0),
-                  ),
-                  elevation: 15.0,
-                  child: Container(
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(40.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Icon(
-                            IconData(gestion.icones,
-                                fontFamily: 'MaterialIcons'),
-                            color: colorsDescription(gestion.unity.toString()),
-                          ),
-                        )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
 
-    return glow;
-  }
 
   String unityPattern = "unity_Montant_universelle.";
   @override
@@ -380,31 +287,10 @@ class _BuildGestionMensuelResultatsState
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 elevation: 20.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white70),
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Colors.blueAccent, Colors.orange])),
-                  child: ListTile(
-                    onTap: () async {
-                      // Navigator.push(
-                      //     context,
-                      //     PageTransition(
-                      //         type: PageTransitionType.bottomToTop,
-                      //         child: ChangeNotifierProvider.value(
-                      //             value: variable,
-                      //             child: ResultDays(
-                      //                 index, _productGagnantList[index].id))));
-                    },
-                    // subtitle: CalculMontant().activeGlow1(
-                    //     _listMontantUniverselle[index].previsionsTotal,
-                    //     _listMontantUniverselle[index],
-                    //     context),
-                    // isThreeLine: true,
-                    subtitle: ActiveGlow1(
+                child: ListTile(
+                  subtitle: ChangeNotifierProvider.value(
+                    value: variable,
+                    child: ActiveGlow1(
                       active: _listMontantUniverselle[index].previsionsTotal,
                       context: context,
                       gestion: _listMontantUniverselle[index],

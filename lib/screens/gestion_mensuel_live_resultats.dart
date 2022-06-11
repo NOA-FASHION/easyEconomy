@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-
 class GestionMensuelLiveResultats extends StatefulWidget {
   final String idGestionMontantUniverselle;
   final int indexMontantUniverselle;
@@ -89,7 +88,7 @@ class _GestionMensuelLiveResultatsState
               montantRevenuDouble: montantRevenuString,
               montantTotalsDouble: montantTotalsString,
               simuOuchargeFix: simuOuchargeFixe,
-              transactionPasse: false,
+              transactionPasse: true,
             ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
