@@ -22,6 +22,100 @@ class BuildGestionMensuelResultats extends StatefulWidget {
 
 class _BuildGestionMensuelResultatsState
     extends State<BuildGestionMensuelResultats> {
+  Widget activeGlow(MontantUniverselle gestion) {
+    Widget glow = Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: colorsDescription(gestion.unity.toString()),
+        ),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          elevation: 15.0,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.45,
+                      height: 25.0,
+                      child: Row(
+                        children: [
+                          Text(
+                            "Type de montant",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          maxLetter(
+                            gestion.unity
+                                .toString()
+                                .replaceAll(unityPattern, "")
+                                .toUpperCase(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.45,
+                      height: 30.0,
+                      child: Row(
+                        children: [
+                          Text(
+                            "Montant",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Text(
+                            gestion.montant.toStringAsFixed(2) + " €",
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60.0),
+                  ),
+                  elevation: 15.0,
+                  child: Container(
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(40.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Icon(
+                            IconData(gestion.icones,
+                                fontFamily: 'MaterialIcons'),
+                            color: colorsDescription(gestion.unity.toString()),
+                          ),
+                        )),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+    return glow;
+  }
+
   Color colorsDescription(String description) {
     Color colors = Colors.black;
     if (description == "unity_Montant_universelle.ChargeFixe") {
@@ -147,8 +241,6 @@ class _BuildGestionMensuelResultatsState
     return longLetter;
   }
 
-
-
   String unityPattern = "unity_Montant_universelle.";
   @override
   Widget build(BuildContext context) {
@@ -169,7 +261,7 @@ class _BuildGestionMensuelResultatsState
 
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.only(top: 20),
+      itemExtent: 93,
       shrinkWrap: true,
       itemCount: _listMontantUniverselle.length,
       itemBuilder: (context, index) {
