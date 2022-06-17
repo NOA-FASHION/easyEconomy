@@ -259,142 +259,167 @@ class _BuildGestionMensuelResultatsState
       );
     }
 
-    return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      addAutomaticKeepAlives: true,
-      itemExtent: 93,
-      shrinkWrap: true,
-      itemCount: _listMontantUniverselle.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 3.0, left: 8.0, right: 8.0),
-          child: Dismissible(
-            onDismissed: (direction) {
-              if (direction == DismissDirection.endToStart) {
-                variable.echeanceNoPasseMontanUnive(
-                    widget.idGestionMontantUniverselle,
-                    widget.indexGestionMensuel,
-                    index);
-                variable.removeGestionMensuelleMontantUnivLive(
-                  indexGestionMensMontanUniv: index,
-                  idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
-                  indexGestionMensuel: widget.indexGestionMensuel,
-                  validation: true,
-                );
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Flexible(
+            child: ListView.builder(
+              physics: BouncingScrollPhysics(),
+              addAutomaticKeepAlives: true,
+              itemExtent: 93,
+              shrinkWrap: true,
+              itemCount: _listMontantUniverselle.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding:
+                      const EdgeInsets.only(bottom: 3.0, left: 8.0, right: 8.0),
+                  child: Dismissible(
+                    onDismissed: (direction) {
+                      if (direction == DismissDirection.endToStart) {
+                        variable.echeanceNoPasseMontanUnive(
+                            widget.idGestionMontantUniverselle,
+                            widget.indexGestionMensuel,
+                            index);
+                        variable.removeGestionMensuelleMontantUnivLive(
+                          indexGestionMensMontanUniv: index,
+                          idGestionMensMontanUniv:
+                              widget.idGestionMontantUniverselle,
+                          indexGestionMensuel: widget.indexGestionMensuel,
+                          validation: true,
+                        );
 
-                Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "La transaction à été validée",
-                    lotties: 'assets/challenge.json'));
-              }
+                        Scaffold.of(context).showSnackBar(_buildSnackBar(
+                            content: "La transaction à été validée",
+                            lotties: 'assets/challenge.json'));
+                      }
 
-              if (direction == DismissDirection.startToEnd) {
-                variable.removeGestionMensuelleMontantUnivLive(
-                  indexGestionMensMontanUniv: index,
-                  idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
-                  indexGestionMensuel: widget.indexGestionMensuel,
-                  validation: false,
-                );
-                Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "La transaction a bien été supprimée",
-                    lotties: 'assets/trash.json'));
-              }
-            },
-            confirmDismiss: (direction) async {
-              if (direction == DismissDirection.startToEnd) {
-                final bool? resultat = await showDialog<bool>(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text(
-                          "Confirmation",
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                        content:
-                            Text("Voulez vous supprimer cette transaction"),
-                        actions: [
-                          RaisedButton(
-                            onPressed: () {
-                              Navigator.pop(context, true);
-                            },
-                            child: Text("Oui"),
-                          ),
-                          RaisedButton(
-                            onPressed: () {
-                              Navigator.pop(context, false);
-                            },
-                            child: Text("Non"),
-                          )
-                        ],
-                      );
-                    });
-                return resultat;
-              }
-              return true;
-            },
-            background: Container(
-              color: Colors.red,
-              padding: EdgeInsets.only(right: 10.0),
-              alignment: Alignment.centerLeft,
-              child: Icon(
-                Icons.delete,
-                size: 55.0,
-                color: Colors.white,
-              ),
-            ),
-            secondaryBackground: Container(
-              padding: EdgeInsets.only(right: 10.0),
-              alignment: Alignment.centerRight,
-              color: Colors.green,
-              child: Icon(
-                Icons.check,
-                size: 30.0,
-                color: Colors.white,
-              ),
-            ),
-            key: Key(UniqueKey().toString()),
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.orange, Colors.blueAccent]),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 45.0, // soften the shadow
-                    spreadRadius: 2.0, //extend the shadow
-                    offset: Offset(
-                      3.0, // Move to right 10  horizontally
-                      3.0, // Move to bottom 10 Vertically
+                      if (direction == DismissDirection.startToEnd) {
+                        variable.removeGestionMensuelleMontantUnivLive(
+                          indexGestionMensMontanUniv: index,
+                          idGestionMensMontanUniv:
+                              widget.idGestionMontantUniverselle,
+                          indexGestionMensuel: widget.indexGestionMensuel,
+                          validation: false,
+                        );
+                        Scaffold.of(context).showSnackBar(_buildSnackBar(
+                            content: "La transaction a bien été supprimée",
+                            lotties: 'assets/trash.json'));
+                      }
+                    },
+                    confirmDismiss: (direction) async {
+                      if (direction == DismissDirection.startToEnd) {
+                        final bool? resultat = await showDialog<bool>(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text(
+                                  "Confirmation",
+                                  style: TextStyle(color: Colors.blue),
+                                ),
+                                content: Text(
+                                    "Voulez vous supprimer cette transaction"),
+                                actions: [
+                                  RaisedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context, true);
+                                    },
+                                    child: Text("Oui"),
+                                  ),
+                                  RaisedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context, false);
+                                    },
+                                    child: Text("Non"),
+                                  )
+                                ],
+                              );
+                            });
+                        return resultat;
+                      }
+                      return true;
+                    },
+                    background: Container(
+                      color: Colors.red,
+                      padding: EdgeInsets.only(right: 10.0),
+                      alignment: Alignment.centerLeft,
+                      child: Icon(
+                        Icons.delete,
+                        size: 55.0,
+                        color: Colors.white,
+                      ),
                     ),
-                  )
-                ],
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.transparent,
-              ),
-              child: Card(
-                color: _listMontantUniverselle[index].previsionsTotal == 1
-                    ? Colors.grey
-                    : Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                elevation: 20.0,
-                child: ListTile(
-                  subtitle: ChangeNotifierProvider.value(
-                    value: variable,
-                    child: ActiveGlow1(
-                      active: _listMontantUniverselle[index].previsionsTotal,
-                      context: context,
-                      gestion: _listMontantUniverselle[index],
+                    secondaryBackground: Container(
+                      padding: EdgeInsets.only(right: 10.0),
+                      alignment: Alignment.centerRight,
+                      color: Colors.green,
+                      child: Icon(
+                        Icons.check,
+                        size: 30.0,
+                        color: Colors.white,
+                      ),
                     ),
+                    key: Key(UniqueKey().toString()),
+                    child: ListTile(
+                      leading: Icon(
+                        IconData(_listMontantUniverselle[index].icones,
+                            fontFamily: 'MaterialIcons'),
+                      ),
+                      title: Text(_listMontantUniverselle[index].nom),
+                      subtitle: Text(_listMontantUniverselle[index]
+                              .montant
+                              .toStringAsFixed(2) +
+                          " €"),
+                    ),
+                    // child: Container(
+                    //   decoration: BoxDecoration(
+                    //     gradient: LinearGradient(
+                    //         begin: Alignment.centerLeft,
+                    //         end: Alignment.centerRight,
+                    //         colors: [Colors.orange, Colors.blueAccent]),
+                    //     boxShadow: [
+                    //       BoxShadow(
+                    //         color: Colors.black,
+                    //         blurRadius: 45.0, // soften the shadow
+                    //         spreadRadius: 2.0, //extend the shadow
+                    //         offset: Offset(
+                    //           3.0, // Move to right 10  horizontally
+                    //           3.0, // Move to bottom 10 Vertically
+                    //         ),
+                    //       )
+                    //     ],
+                    //     borderRadius: BorderRadius.circular(20),
+                    //     color: Colors.transparent,
+                    //   ),
+                    //   child: Card(
+                    //     color:
+                    //         _listMontantUniverselle[index].previsionsTotal == 1
+                    //             ? Colors.grey
+                    //             : Colors.white,
+                    //     shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(20.0),
+                    //     ),
+                    //     elevation: 20.0,
+                    //     child: ListTile(
+                    //       subtitle: ChangeNotifierProvider.value(
+                    //         value: variable,
+                    //         child: ActiveGlow1(
+                    //           active: _listMontantUniverselle[index]
+                    //               .previsionsTotal,
+                    //           context: context,
+                    //           gestion: _listMontantUniverselle[index],
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 
@@ -419,28 +444,28 @@ class _BuildGestionMensuelResultatsState
   }
 }
 
-class SizeTransition3 extends PageRouteBuilder {
-  final Widget page;
+// class SizeTransition3 extends PageRouteBuilder {
+//   final Widget page;
 
-  SizeTransition3(this.page)
-      : super(
-          pageBuilder: (context, animation, anotherAnimation) => page,
-          transitionDuration: Duration(milliseconds: 1000),
-          reverseTransitionDuration: Duration(milliseconds: 200),
-          transitionsBuilder: (context, animation, anotherAnimation, child) {
-            animation = CurvedAnimation(
-                curve: Curves.fastLinearToSlowEaseIn,
-                parent: animation,
-                reverseCurve: Curves.fastOutSlowIn);
-            return Align(
-              alignment: Alignment.center,
-              child: SizeTransition(
-                axis: Axis.horizontal,
-                sizeFactor: animation,
-                child: page,
-                axisAlignment: 0,
-              ),
-            );
-          },
-        );
-}
+//   SizeTransition3(this.page)
+//       : super(
+//           pageBuilder: (context, animation, anotherAnimation) => page,
+//           transitionDuration: Duration(milliseconds: 1000),
+//           reverseTransitionDuration: Duration(milliseconds: 200),
+//           transitionsBuilder: (context, animation, anotherAnimation, child) {
+//             animation = CurvedAnimation(
+//                 curve: Curves.fastLinearToSlowEaseIn,
+//                 parent: animation,
+//                 reverseCurve: Curves.fastOutSlowIn);
+//             return Align(
+//               alignment: Alignment.center,
+//               child: SizeTransition(
+//                 axis: Axis.horizontal,
+//                 sizeFactor: animation,
+//                 child: page,
+//                 axisAlignment: 0,
+//               ),
+//             );
+//           },
+//         );
+// }
