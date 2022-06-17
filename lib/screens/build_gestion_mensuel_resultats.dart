@@ -261,6 +261,7 @@ class _BuildGestionMensuelResultatsState
 
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
+      addAutomaticKeepAlives: true,
       itemExtent: 93,
       shrinkWrap: true,
       itemCount: _listMontantUniverselle.length,

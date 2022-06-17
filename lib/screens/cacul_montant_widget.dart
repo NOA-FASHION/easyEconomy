@@ -366,6 +366,7 @@ class _ActiveGlowWidgetState extends State<ActiveGlowWidget> {
   String valueText4 = '';
   @override
   Widget build(BuildContext context) {
+    Color colors = colorsDescription(widget.gestion.unity.toString());
     String unityPattern = "unity_Montant_universelle.";
 
     return Padding(
@@ -434,8 +435,7 @@ class _ActiveGlowWidgetState extends State<ActiveGlowWidget> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             elevation: 5.0,
-                            color: colorsDescription(
-                                widget.gestion.unity.toString()),
+                            color: colors,
                             child: Padding(
                               padding: const EdgeInsets.all(3.0),
                               child: Text(
@@ -456,8 +456,7 @@ class _ActiveGlowWidgetState extends State<ActiveGlowWidget> {
                           Text(
                             widget.gestion.montant.toStringAsFixed(2) + " €",
                             style: TextStyle(
-                              color: colorsDescription(
-                                  widget.gestion.unity.toString()),
+                              color: colors,
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
@@ -481,8 +480,7 @@ class _ActiveGlowWidgetState extends State<ActiveGlowWidget> {
                           child: Icon(
                             IconData(widget.gestion.icones,
                                 fontFamily: 'MaterialIcons'),
-                            color: colorsDescription(
-                                widget.gestion.unity.toString()),
+                            color: colors,
                           ),
                         )),
                   ),
@@ -719,6 +717,7 @@ class ActiveGlow1 extends StatefulWidget {
 class _ActiveGlow1State extends State<ActiveGlow1> {
   @override
   Widget build(BuildContext context) {
+    Color colors = colorsDescription(widget.gestion.unity.toString());
     String unityPattern = "unity_Montant_universelle.";
     return Padding(
       padding: const EdgeInsets.all(1.0),
@@ -747,6 +746,7 @@ class _ActiveGlow1State extends State<ActiveGlow1> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          // Text(widget.gestion.nom.toUpperCase()),
                           maxLetterTitre(
                               widget.gestion.nom.toUpperCase(), context),
                           SizedBox(
@@ -765,8 +765,7 @@ class _ActiveGlow1State extends State<ActiveGlow1> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             elevation: 5.0,
-                            color: colorsDescription(
-                                widget.gestion.unity.toString()),
+                            color: colors,
                             child: Padding(
                               padding: const EdgeInsets.all(3.0),
                               child: Text(
@@ -787,8 +786,7 @@ class _ActiveGlow1State extends State<ActiveGlow1> {
                           Text(
                             widget.gestion.montant.toStringAsFixed(2) + " €",
                             style: TextStyle(
-                              color: colorsDescription(
-                                  widget.gestion.unity.toString()),
+                              color: colors,
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
@@ -812,8 +810,7 @@ class _ActiveGlow1State extends State<ActiveGlow1> {
                           child: Icon(
                             IconData(widget.gestion.icones,
                                 fontFamily: 'MaterialIcons'),
-                            color: colorsDescription(
-                                widget.gestion.unity.toString()),
+                            color: colors,
                           ),
                         )),
                   ),

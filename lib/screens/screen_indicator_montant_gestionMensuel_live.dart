@@ -133,6 +133,7 @@ class _ScreenIndicatorMontantGestionLiveState
 
   @override
   Widget build(BuildContext context) {
+    Color choixColorVariable = choixColors();
     return Container(
       margin: EdgeInsets.only(top: 1),
       width: MediaQuery.of(context).size.width / 3.2,
@@ -150,7 +151,7 @@ class _ScreenIndicatorMontantGestionLiveState
               Icon(
                 widget.icones,
                 size: 30,
-                color: choixColors(),
+                color: choixColorVariable,
               ), // icon
               // Padding(
               //   padding: const EdgeInsets.all(4.0),
@@ -168,7 +169,7 @@ class _ScreenIndicatorMontantGestionLiveState
                   borderRadius: BorderRadius.circular(5.0),
                 ),
                 elevation: 5.0,
-                color: choixColors(),
+                color: choixColorVariable,
                 child: Padding(
                   padding: const EdgeInsets.all(3.0),
                   child: Text(
@@ -195,7 +196,7 @@ class _ScreenIndicatorMontantGestionLiveState
                       choixMontant() + " €",
                       style: TextStyle(
                           fontSize: 13,
-                          color: choixColors(),
+                          color: choixColorVariable,
                           fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
