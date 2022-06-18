@@ -120,10 +120,14 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
-    List<MontantUniverselle> _listMontantUniverselle = variable
-        .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
+    // List<MontantUniverselle> _listMontantUniverselle = variable
+    //     .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
+    // List<MontantUniverselle> _listMontantUniverselleLive = variable
+    //     .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
+        List<MontantUniverselle> _listMontantUniverselle = variable
+        .getIndexGestionMontantUniverselle(widget.indexMontantUniverselle);
     List<MontantUniverselle> _listMontantUniverselleLive = variable
-        .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
+        .getIndexGestionMontantUniverselleLive(widget.indexMontantUniverselle);
 
     double montantChargeDouble = CalculMontantMensuel().montantCharge(
       _listMontantUniverselle,

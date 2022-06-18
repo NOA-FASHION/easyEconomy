@@ -291,8 +291,10 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
-    List<MontantUniverselle> _listMontantUniverselle = variable
-        .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
+    // List<MontantUniverselle> _listMontantUniverselle = variable
+    //     .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
+    List<MontantUniverselle> _listMontantUniverselle =
+        variable.getIndexGestionMontantUniverselle(widget.indexGestionMensuel);
 
     if (_listMontantUniverselle.isEmpty) {
       return Container(

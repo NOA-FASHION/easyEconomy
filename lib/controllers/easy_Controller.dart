@@ -371,6 +371,15 @@ class EasyController extends ChangeNotifier {
     return montanUniverselle;
   }
 
+  List<MontantUniverselle> getIndexGestionMontantUniverselleLive(
+      int indexGestion) {
+    return _listGestionMensuel[indexGestion].montantUniverselleLive;
+  }
+
+  List<MontantUniverselle> getIndexGestionMontantUniverselle(int indexGestion) {
+    return _listGestionMensuel[indexGestion].montantUniverselle;
+  }
+
   void removeMontantUniverselle({
     required int index,
   }) async {

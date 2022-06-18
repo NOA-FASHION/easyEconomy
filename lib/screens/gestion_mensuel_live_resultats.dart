@@ -5,6 +5,7 @@ import 'package:easyeconomy/screens/build_gestion_mensuel_resultats.dart';
 import 'package:easyeconomy/screens/cacul_montant_widget.dart';
 import 'package:easyeconomy/screens/calcul_montant.dart';
 import 'package:easyeconomy/screens/charge_fixe_mensuel.dart';
+// import 'package:easyeconomy/screens/test.dart';
 
 import 'package:flutter/material.dart';
 
@@ -41,10 +42,14 @@ class _GestionMensuelLiveResultatsState
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
+    // List<MontantUniverselle> _listMontantUniverselle = variable
+    //     .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
+    // List<MontantUniverselle> _listMontantUniverselleLive = variable
+    //     .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
     List<MontantUniverselle> _listMontantUniverselle = variable
-        .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
+        .getIndexGestionMontantUniverselle(widget.indexMontantUniverselle);
     List<MontantUniverselle> _listMontantUniverselleLive = variable
-        .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
+        .getIndexGestionMontantUniverselleLive(widget.indexMontantUniverselle);
 
     double montantChargessString = CalculMontant().montantCharges(
         _listMontantUniverselle, _listMontantUniverselleLive, simuOuchargeFixe);
@@ -58,10 +63,14 @@ class _GestionMensuelLiveResultatsState
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Colors.orange, Colors.blueAccent])),
+                colors: [Colors.orange, Color.fromARGB(255, 194, 213, 244)])),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           key: scaffoldkey,
+          // body: BuildDescriptionGestionTest(
+          //   idGestionMontantUniverselle: widget.idGestionMontantUniverselle,
+          //   indexGestionMensuel: widget.indexMontantUniverselle,
+          // ),
           body: DraggableHome(
             backgroundColor: Colors.transparent,
             appBarColor: Colors.orange,
@@ -105,75 +114,6 @@ class _GestionMensuelLiveResultatsState
                   montant: montantTotalsString,
                   colors: Colors.blue.shade900,
                 ),
-                // Card(
-                //   color: Colors.orange,
-                //   shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.circular(10.0),
-                //   ),
-                //   elevation: 25.0,
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(10),
-                //         color: Colors.white),
-                //     child: Padding(
-                //       padding: const EdgeInsets.all(8.0),
-                //       child: Text(
-                //         montantChargessString.toStringAsFixed(2) + " €",
-                //         style: TextStyle(
-                //             fontSize: 13,
-                //             color: Colors.red.shade900,
-                //             fontWeight: FontWeight.bold),
-                //         textAlign: TextAlign.center,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // Card(
-                //   color: Colors.orange,
-                //   shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.circular(10.0),
-                //   ),
-                //   elevation: 25.0,
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(10),
-                //         color: Colors.white),
-                //     child: Padding(
-                //       padding: const EdgeInsets.all(8.0),
-                //       child: Text(
-                //         montantRevenuString.toStringAsFixed(2) + " €",
-                //         style: TextStyle(
-                //             fontSize: 13,
-                //             color: Colors.green.shade900,
-                //             fontWeight: FontWeight.bold),
-                //         textAlign: TextAlign.center,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // Card(
-                //   color: Colors.orange,
-                //   shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.circular(10.0),
-                //   ),
-                //   elevation: 25.0,
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(10),
-                //         color: Colors.white),
-                //     child: Padding(
-                //       padding: const EdgeInsets.all(8.0),
-                //       child: Text(
-                //         montantTotalsString.toStringAsFixed(2) + " €",
-                //         style: TextStyle(
-                //             fontSize: 13,
-                //             color: Colors.blue.shade900,
-                //             fontWeight: FontWeight.bold),
-                //         textAlign: TextAlign.center,
-                //       ),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),

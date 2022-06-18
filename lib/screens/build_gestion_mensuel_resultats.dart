@@ -134,42 +134,42 @@ class _BuildGestionMensuelResultatsState
     return colors;
   }
 
-  Widget iconDataJoin(String resultat) {
-    Widget documentJoint = Icon(
-      Icons.block,
-      size: 20.0,
-    );
-    if (resultat == "unity_Montant_universelle.ChargeFixe") {
-      documentJoint = Icon(
-        Icons.all_out,
-        size: 20.0,
-        color: Colors.red.shade900,
-      );
-      return documentJoint;
-    } else if (resultat == "unity_Montant_universelle.depensePonctuelle") {
-      documentJoint = Icon(
-        Icons.schedule,
-        size: 20.0,
-        color: Colors.red.shade900,
-      );
-      return documentJoint;
-    } else if (resultat == "unity_Montant_universelle.RevenuFixe") {
-      documentJoint = Icon(
-        Icons.all_out,
-        size: 20.0,
-        color: Colors.green.shade900,
-      );
-      return documentJoint;
-    } else if (resultat == "unity_Montant_universelle.RevenuPonctuel") {
-      documentJoint = Icon(
-        Icons.schedule,
-        size: 20.0,
-        color: Colors.green.shade900,
-      );
-      return documentJoint;
-    }
-    return documentJoint;
-  }
+  // Widget iconDataJoin(String resultat) {
+  //   Widget documentJoint = Icon(
+  //     Icons.block,
+  //     size: 20.0,
+  //   );
+  //   if (resultat == "unity_Montant_universelle.ChargeFixe") {
+  //     documentJoint = Icon(
+  //       Icons.all_out,
+  //       size: 20.0,
+  //       color: Colors.red.shade900,
+  //     );
+  //     return documentJoint;
+  //   } else if (resultat == "unity_Montant_universelle.depensePonctuelle") {
+  //     documentJoint = Icon(
+  //       Icons.schedule,
+  //       size: 20.0,
+  //       color: Colors.red.shade900,
+  //     );
+  //     return documentJoint;
+  //   } else if (resultat == "unity_Montant_universelle.RevenuFixe") {
+  //     documentJoint = Icon(
+  //       Icons.all_out,
+  //       size: 20.0,
+  //       color: Colors.green.shade900,
+  //     );
+  //     return documentJoint;
+  //   } else if (resultat == "unity_Montant_universelle.RevenuPonctuel") {
+  //     documentJoint = Icon(
+  //       Icons.schedule,
+  //       size: 20.0,
+  //       color: Colors.green.shade900,
+  //     );
+  //     return documentJoint;
+  //   }
+  //   return documentJoint;
+  // }
 
   Widget maxLetter(String word) {
     Widget longLetter;
@@ -245,8 +245,10 @@ class _BuildGestionMensuelResultatsState
   @override
   Widget build(BuildContext context) {
     EasyController variable = Provider.of<EasyController>(context);
+    // List<MontantUniverselle> _listMontantUniverselle = variable
+    //     .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
     List<MontantUniverselle> _listMontantUniverselle = variable
-        .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
+        .getIndexGestionMontantUniverselleLive(widget.indexGestionMensuel);
 
     if (_listMontantUniverselle.isEmpty) {
       return Container(
@@ -265,7 +267,7 @@ class _BuildGestionMensuelResultatsState
         children: [
           Flexible(
             child: ListView.builder(
-              physics: BouncingScrollPhysics(),
+              physics: ClampingScrollPhysics(),
               addAutomaticKeepAlives: true,
               itemExtent: 93,
               shrinkWrap: true,
@@ -360,16 +362,55 @@ class _BuildGestionMensuelResultatsState
                       ),
                     ),
                     key: Key(UniqueKey().toString()),
-                    child: ListTile(
-                      leading: Icon(
-                        IconData(_listMontantUniverselle[index].icones,
-                            fontFamily: 'MaterialIcons'),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 45.0, // soften the shadow
+                            spreadRadius: 2.0, //extend the shadow
+                            offset: Offset(
+                              3.0, // Move to right 10  horizontally
+                              3.0, // Move to bottom 10 Vertically
+                            ),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
                       ),
-                      title: Text(_listMontantUniverselle[index].nom),
-                      subtitle: Text(_listMontantUniverselle[index]
-                              .montant
-                              .toStringAsFixed(2) +
-                          " €"),
+                      child: ListTile(
+                        leading: Icon(
+                          IconData(_listMontantUniverselle[index].icones,
+                              fontFamily: 'MaterialIcons'),
+                        ),
+                        title: Text(_listMontantUniverselle[index].nom),
+                        subtitle: Text(_listMontantUniverselle[index]
+                                .montant
+                                .toStringAsFixed(2) +
+                            " €"),
+                        trailing: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          elevation: 5.0,
+                          color: colorsDescription(
+                              _listMontantUniverselle[index].unity.toString()),
+                          child: Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: Text(
+                              _listMontantUniverselle[index]
+                                  .unity
+                                  .toString()
+                                  .replaceAll(unityPattern, "")
+                                  .toUpperCase(),
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     // child: Container(
                     //   decoration: BoxDecoration(
