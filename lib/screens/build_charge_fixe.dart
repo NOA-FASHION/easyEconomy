@@ -7,6 +7,7 @@ import 'package:easyeconomy/screens/charge_fixe_description.dart';
 
 import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flutter/material.dart';
+
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
 

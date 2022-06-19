@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 
 import 'package:loading_overlay_pro/loading_overlay_pro.dart';
 import 'package:marquee_text/marquee_text.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'package:provider/provider.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 
 import 'package:vertical_card_pager/vertical_card_pager.dart';
-
 
 import 'gestion_mensuel.dart';
 
@@ -107,48 +107,53 @@ class _HomeState extends State<Home> {
                             onPageChanged: (page) {},
                             onSelectedItem: (page) {
                               if (page == 0) {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        ChangeNotifierProvider.value(
-                                            value: variable,
-                                            child: SimulatorGestion())));
-                                // Navigator.push(
-                                //     context,
-                                //     WaveTransition(
-                                //         center: FractionalOffset(0.90, 0.90),
-                                //         duration: Duration(milliseconds: 1000),
-                                //         child: ChangeNotifierProvider.value(
+                                // Navigator.of(context).push(MaterialPageRoute(
+                                //     builder: (context) =>
+                                //         ChangeNotifierProvider.value(
                                 //             value: variable,
                                 //             child: ChargeFixeMensuel())));
-                              } else if (page == 1) {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        ChangeNotifierProvider.value(
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        duration:
+                                            const Duration(milliseconds: 1300),
+                                        child: ChangeNotifierProvider.value(
                                             value: variable,
-                                            child: SimulatorGestion())));
-                                // Navigator.push(
-                                //     context,
-                                //     WaveTransition(
-                                //         center: FractionalOffset(0.90, 0.90),
-                                //         duration: Duration(milliseconds: 1000),
-                                //         child: ChangeNotifierProvider.value(
+                                            child: ChargeFixeMensuel()),
+                                        type: PageTransitionType
+                                            .rightToLeftWithFade));
+                              } else if (page == 1) {
+                                // Navigator.of(context).push(MaterialPageRoute(
+                                //     builder: (context) =>
+                                //         ChangeNotifierProvider.value(
                                 //             value: variable,
                                 //             child: SimulatorGestion())));
-                              } else if (page == 2) {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        ChangeNotifierProvider.value(
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        duration:
+                                            const Duration(milliseconds: 1300),
+                                        child: ChangeNotifierProvider.value(
                                             value: variable,
-                                            child: GestionMensuel())));
-                                // Navigator.push(
-                                //     context,
-                                //     WaveTransition(
-                                //         center: FractionalOffset(0.90, 0.90),
-                                //         duration:
-                                //             Duration(milliseconds: 1000),
-                                //         child: ChangeNotifierProvider.value(
+                                            child: SimulatorGestion()),
+                                        type: PageTransitionType
+                                            .rightToLeftWithFade));
+                              } else if (page == 2) {
+                                // Navigator.of(context).push(MaterialPageRoute(
+                                //     builder: (context) =>
+                                //         ChangeNotifierProvider.value(
                                 //             value: variable,
                                 //             child: GestionMensuel())));
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        duration:
+                                            const Duration(milliseconds: 1300),
+                                        child: ChangeNotifierProvider.value(
+                                            value: variable,
+                                            child: GestionMensuel()),
+                                        type: PageTransitionType
+                                            .rightToLeftWithFade));
                               }
                             },
                             titles: titles,

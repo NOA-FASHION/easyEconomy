@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'package:provider/provider.dart';
-
 
 class BuildGestionMensuel extends StatefulWidget {
   BuildGestionMensuel({Key? key}) : super(key: key);
@@ -439,26 +439,26 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                 elevation: 20.0,
                 child: ListTile(
                   onTap: () async {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ChangeNotifierProvider.value(
-                            value: variable,
-                            child: GestionMensuelLive(
-                              idGestionMontantUniverselle:
-                                  _listGestionMensuel[index].idGestion,
-                              indexMontantUniverselle: index,
-                            ))));
-                    // Navigator.push(
-                    //     context,
-                    //     WaveTransition(
-                    //         center: FractionalOffset(0.90, 0.90),
-                    //         duration: Duration(milliseconds: 1000),
-                    //         child: ChangeNotifierProvider.value(
-                    //             value: variable,
-                    //             child: GestionMensuelLive(
-                    //               idGestionMontantUniverselle:
-                    //                   _listGestionMensuel[index].idGestion,
-                    //               indexMontantUniverselle: index,
-                    //             ))));
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => ChangeNotifierProvider.value(
+                    //         value: variable,
+                    //         child: GestionMensuelLive(
+                    //           idGestionMontantUniverselle:
+                    //               _listGestionMensuel[index].idGestion,
+                    //           indexMontantUniverselle: index,
+                    //         ))));
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            duration: const Duration(milliseconds: 1300),
+                            child: ChangeNotifierProvider.value(
+                                value: variable,
+                                child: GestionMensuelLive(
+                                  idGestionMontantUniverselle:
+                                      _listGestionMensuel[index].idGestion,
+                                  indexMontantUniverselle: index,
+                                )),
+                            type: PageTransitionType.rightToLeftWithFade));
                   },
                   title: Container(
                     child: Row(

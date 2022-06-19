@@ -8,6 +8,7 @@ import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pie_chart/flutter_pie_chart.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class HeadderMensuel extends StatefulWidget {
@@ -388,26 +389,26 @@ class TransactionPasse extends StatelessWidget {
           InkWell(
             splashColor: Colors.white,
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider.value(
-                      value: variable,
-                      child: GestionMensuelLiveResultats(
-                        idGestionMontantUniverselle:
-                            idGestionMontantUniverselle,
-                        indexMontantUniverselle: indexMontantUniverselle,
-                      ))));
-              // Navigator.push(
-              //     context,
-              //     WaveTransition(
-              //         center: FractionalOffset(0.90, 0.90),
-              //         duration: Duration(milliseconds: 1000),
-              //         child: ChangeNotifierProvider.value(
-              //             value: variable,
-              //             child: GestionMensuelLiveResultats(
-              //               idGestionMontantUniverselle:
-              //                   idGestionMontantUniverselle,
-              //               indexMontantUniverselle: indexMontantUniverselle,
-              //             ))));
+              // Navigator.of(context).push(MaterialPageRoute(
+              //     builder: (context) => ChangeNotifierProvider.value(
+              //         value: variable,
+              //         child: GestionMensuelLiveResultats(
+              //           idGestionMontantUniverselle:
+              //               idGestionMontantUniverselle,
+              //           indexMontantUniverselle: indexMontantUniverselle,
+              //         ))));
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      duration: const Duration(milliseconds: 1300),
+                      child: ChangeNotifierProvider.value(
+                          value: variable,
+                          child: GestionMensuelLiveResultats(
+                            idGestionMontantUniverselle:
+                                idGestionMontantUniverselle,
+                            indexMontantUniverselle: indexMontantUniverselle,
+                          )),
+                      type: PageTransitionType.rightToLeftWithFade));
             },
             child: Icon(
               Icons.settings,
