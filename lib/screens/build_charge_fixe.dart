@@ -11,7 +11,6 @@ import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
 
 import 'package:provider/provider.dart';
-import 'package:wave_transition/wave_transition.dart';
 
 class BuildChargeFixe extends StatefulWidget {
   // final String gestionId;
@@ -533,16 +532,22 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                       variable.activeListListMontantUniverselle(index: index);
                     },
                     onTap: () async {
-                      Navigator.push(
-                          context,
-                          WaveTransition(
-                              center: FractionalOffset(0.90, 0.90),
-                              duration: Duration(milliseconds: 1000),
-                              child: ChangeNotifierProvider.value(
-                                  value: variable,
-                                  child: ChargeFixeDescription(
-                                    indexChargeFixe: index,
-                                  ))));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ChangeNotifierProvider.value(
+                              value: variable,
+                              child: ChargeFixeDescription(
+                                indexChargeFixe: index,
+                              ))));
+                      //   Navigator.push(
+                      //       context,
+                      //       WaveTransition(
+                      //           center: FractionalOffset(0.90, 0.90),
+                      //           duration: Duration(milliseconds: 1000),
+                      //           child: ChangeNotifierProvider.value(
+                      //               value: variable,
+                      //               child: ChargeFixeDescription(
+                      //                 indexChargeFixe: index,
+                      //               ))));
                     },
 
                     subtitle: ChangeNotifierProvider.value(

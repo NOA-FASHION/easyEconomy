@@ -12,9 +12,8 @@ import 'package:marquee_text/marquee_text.dart';
 import 'package:provider/provider.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 
-
 import 'package:vertical_card_pager/vertical_card_pager.dart';
-import 'package:wave_transition/wave_transition.dart';
+
 
 import 'gestion_mensuel.dart';
 
@@ -101,45 +100,55 @@ class _HomeState extends State<Home> {
                               gradient: LinearGradient(
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
-                                  colors: [
-                                Colors.orange,
-                                Colors.blueAccent
-                              ])),
+                                  colors: [Colors.orange, Colors.blueAccent])),
                           child: VerticalCardPager(
                             initialPage: 1,
                             align: ALIGN.CENTER,
                             onPageChanged: (page) {},
                             onSelectedItem: (page) {
                               if (page == 0) {
-                                Navigator.push(
-                                    context,
-                                    WaveTransition(
-                                        center: FractionalOffset(0.90, 0.90),
-                                        duration:
-                                            Duration(milliseconds: 1000),
-                                        child: ChangeNotifierProvider.value(
-                                            value: variable,
-                                            child: ChargeFixeMensuel())));
-                              } else if (page == 1) {
-                                Navigator.push(
-                                    context,
-                                    WaveTransition(
-                                        center: FractionalOffset(0.90, 0.90),
-                                        duration:
-                                            Duration(milliseconds: 1000),
-                                        child: ChangeNotifierProvider.value(
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChangeNotifierProvider.value(
                                             value: variable,
                                             child: SimulatorGestion())));
+                                // Navigator.push(
+                                //     context,
+                                //     WaveTransition(
+                                //         center: FractionalOffset(0.90, 0.90),
+                                //         duration: Duration(milliseconds: 1000),
+                                //         child: ChangeNotifierProvider.value(
+                                //             value: variable,
+                                //             child: ChargeFixeMensuel())));
+                              } else if (page == 1) {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChangeNotifierProvider.value(
+                                            value: variable,
+                                            child: SimulatorGestion())));
+                                // Navigator.push(
+                                //     context,
+                                //     WaveTransition(
+                                //         center: FractionalOffset(0.90, 0.90),
+                                //         duration: Duration(milliseconds: 1000),
+                                //         child: ChangeNotifierProvider.value(
+                                //             value: variable,
+                                //             child: SimulatorGestion())));
                               } else if (page == 2) {
-                                Navigator.push(
-                                    context,
-                                    WaveTransition(
-                                        center: FractionalOffset(0.90, 0.90),
-                                        duration:
-                                            Duration(milliseconds: 1000),
-                                        child: ChangeNotifierProvider.value(
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChangeNotifierProvider.value(
                                             value: variable,
                                             child: GestionMensuel())));
+                                // Navigator.push(
+                                //     context,
+                                //     WaveTransition(
+                                //         center: FractionalOffset(0.90, 0.90),
+                                //         duration:
+                                //             Duration(milliseconds: 1000),
+                                //         child: ChangeNotifierProvider.value(
+                                //             value: variable,
+                                //             child: GestionMensuel())));
                               }
                             },
                             titles: titles,
@@ -154,14 +163,12 @@ class _HomeState extends State<Home> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                                width:
-                                    MediaQuery.of(context).size.width / 1.2,
+                                width: MediaQuery.of(context).size.width / 1.2,
                                 height: 190,
                                 child: Card(
                                     color: Colors.transparent,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(15.0),
+                                      borderRadius: BorderRadius.circular(15.0),
                                     ),
                                     elevation: 15.0,
                                     child: Container(
@@ -180,8 +187,7 @@ class _HomeState extends State<Home> {
                                             child: Container(
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          5),
+                                                      BorderRadius.circular(5),
                                                   color:
                                                       Colors.orange.shade200),
                                               child: Padding(
@@ -194,8 +200,7 @@ class _HomeState extends State<Home> {
                                                               .toUpperCase()),
                                                   style: TextStyle(
                                                     fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                     color: Colors.black,
                                                   ),
                                                   speed: 30,
@@ -222,14 +227,12 @@ class _HomeState extends State<Home> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                                width:
-                                    MediaQuery.of(context).size.width / 1.2,
+                                width: MediaQuery.of(context).size.width / 1.2,
                                 height: 190,
                                 child: Card(
                                     color: Colors.transparent,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(30.0),
+                                      borderRadius: BorderRadius.circular(30.0),
                                     ),
                                     elevation: 15.0,
                                     child: Container(
@@ -248,8 +251,7 @@ class _HomeState extends State<Home> {
                                             child: Container(
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          5),
+                                                      BorderRadius.circular(5),
                                                   color:
                                                       Colors.orange.shade200),
                                               child: Padding(
@@ -262,8 +264,7 @@ class _HomeState extends State<Home> {
                                                               .toUpperCase()),
                                                   style: TextStyle(
                                                     fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                     color: Colors.black,
                                                   ),
                                                   speed: 30,
@@ -284,14 +285,12 @@ class _HomeState extends State<Home> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                                width:
-                                    MediaQuery.of(context).size.width / 1.2,
+                                width: MediaQuery.of(context).size.width / 1.2,
                                 height: 190,
                                 child: Card(
                                     color: Colors.transparent,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(30.0),
+                                      borderRadius: BorderRadius.circular(30.0),
                                     ),
                                     elevation: 15.0,
                                     child: Column(
@@ -317,8 +316,7 @@ class _HomeState extends State<Home> {
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(5),
-                                                color:
-                                                    Colors.orange.shade200),
+                                                color: Colors.orange.shade200),
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.all(4.0),

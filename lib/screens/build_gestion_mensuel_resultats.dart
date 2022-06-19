@@ -200,7 +200,7 @@ class _BuildGestionMensuelResultatsState
     Widget longLetter;
 
     String word2;
-    if (word.length > 20) {
+    if (word.length > 25) {
       longLetter = Container(
         width: MediaQuery.of(context).size.width / 2.4,
         color: Colors.transparent,
@@ -362,62 +362,8 @@ class _BuildGestionMensuelResultatsState
                       ),
                     ),
                     key: Key(UniqueKey().toString()),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 45.0, // soften the shadow
-                            spreadRadius: 2.0, //extend the shadow
-                            offset: Offset(
-                              3.0, // Move to right 10  horizontally
-                              3.0, // Move to bottom 10 Vertically
-                            ),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                      ),
-                      child: ListTile(
-                        leading: Icon(
-                          IconData(_listMontantUniverselle[index].icones,
-                              fontFamily: 'MaterialIcons'),
-                        ),
-                        title: Text(_listMontantUniverselle[index].nom),
-                        subtitle: Text(_listMontantUniverselle[index]
-                                .montant
-                                .toStringAsFixed(2) +
-                            " €"),
-                        trailing: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          elevation: 5.0,
-                          color: colorsDescription(
-                              _listMontantUniverselle[index].unity.toString()),
-                          child: Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: Text(
-                              _listMontantUniverselle[index]
-                                  .unity
-                                  .toString()
-                                  .replaceAll(unityPattern, "")
-                                  .toUpperCase(),
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
                     // child: Container(
                     //   decoration: BoxDecoration(
-                    //     gradient: LinearGradient(
-                    //         begin: Alignment.centerLeft,
-                    //         end: Alignment.centerRight,
-                    //         colors: [Colors.orange, Colors.blueAccent]),
                     //     boxShadow: [
                     //       BoxShadow(
                     //         color: Colors.black,
@@ -430,30 +376,98 @@ class _BuildGestionMensuelResultatsState
                     //       )
                     //     ],
                     //     borderRadius: BorderRadius.circular(20),
-                    //     color: Colors.transparent,
+                    //     color: Colors.white,
                     //   ),
-                    //   child: Card(
-                    //     color:
-                    //         _listMontantUniverselle[index].previsionsTotal == 1
-                    //             ? Colors.grey
-                    //             : Colors.white,
-                    //     shape: RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.circular(20.0),
+                    //   child: ListTile(
+                    //     leading: Icon(
+                    //       IconData(
+                    //         _listMontantUniverselle[index].icones,
+                    //         fontFamily: 'MaterialIcons',
+                    //       ),
+                    //       color: colorsDescription(
+                    //           _listMontantUniverselle[index].unity.toString()),
                     //     ),
-                    //     elevation: 20.0,
-                    //     child: ListTile(
-                    //       subtitle: ChangeNotifierProvider.value(
-                    //         value: variable,
-                    //         child: ActiveGlow1(
-                    //           active: _listMontantUniverselle[index]
-                    //               .previsionsTotal,
-                    //           context: context,
-                    //           gestion: _listMontantUniverselle[index],
+                    //     title: maxLetterTitre(
+                    //       _listMontantUniverselle[index].nom,
+                    //     ),
+                    //     subtitle: Text(
+                    //       _listMontantUniverselle[index]
+                    //               .montant
+                    //               .toStringAsFixed(2) +
+                    //           " €",
+                    //       style: TextStyle(
+                    //         color: colorsDescription(
+                    //             _listMontantUniverselle[index]
+                    //                 .unity
+                    //                 .toString()),
+                    //       ),
+                    //     ),
+                    //     trailing: Card(
+                    //       shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(5.0),
+                    //       ),
+                    //       elevation: 5.0,
+                    //       color: colorsDescription(
+                    //           _listMontantUniverselle[index].unity.toString()),
+                    //       child: Padding(
+                    //         padding: const EdgeInsets.all(3.0),
+                    //         child: Text(
+                    //           _listMontantUniverselle[index]
+                    //               .unity
+                    //               .toString()
+                    //               .replaceAll(unityPattern, "")
+                    //               .toUpperCase(),
+                    //           style: TextStyle(
+                    //             fontSize: 12,
+                    //             fontWeight: FontWeight.bold,
+                    //           ),
                     //         ),
                     //       ),
                     //     ),
                     //   ),
                     // ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [Colors.orange, Colors.blueAccent]),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 45.0, // soften the shadow
+                            spreadRadius: 2.0, //extend the shadow
+                            offset: Offset(
+                              3.0, // Move to right 10  horizontally
+                              3.0, // Move to bottom 10 Vertically
+                            ),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.transparent,
+                      ),
+                      child: Card(
+                        color:
+                            _listMontantUniverselle[index].previsionsTotal == 1
+                                ? Colors.grey
+                                : Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        elevation: 20.0,
+                        child: ListTile(
+                          subtitle: ChangeNotifierProvider.value(
+                            value: variable,
+                            child: ActiveGlow1(
+                              active: _listMontantUniverselle[index]
+                                  .previsionsTotal,
+                              context: context,
+                              gestion: _listMontantUniverselle[index],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 );
               },

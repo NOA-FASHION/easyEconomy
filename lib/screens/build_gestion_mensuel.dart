@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
 
 import 'package:provider/provider.dart';
-import 'package:wave_transition/wave_transition.dart';
+
 
 class BuildGestionMensuel extends StatefulWidget {
   BuildGestionMensuel({Key? key}) : super(key: key);
@@ -439,18 +439,26 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                 elevation: 20.0,
                 child: ListTile(
                   onTap: () async {
-                    Navigator.push(
-                        context,
-                        WaveTransition(
-                            center: FractionalOffset(0.90, 0.90),
-                            duration: Duration(milliseconds: 1000),
-                            child: ChangeNotifierProvider.value(
-                                value: variable,
-                                child: GestionMensuelLive(
-                                  idGestionMontantUniverselle:
-                                      _listGestionMensuel[index].idGestion,
-                                  indexMontantUniverselle: index,
-                                ))));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ChangeNotifierProvider.value(
+                            value: variable,
+                            child: GestionMensuelLive(
+                              idGestionMontantUniverselle:
+                                  _listGestionMensuel[index].idGestion,
+                              indexMontantUniverselle: index,
+                            ))));
+                    // Navigator.push(
+                    //     context,
+                    //     WaveTransition(
+                    //         center: FractionalOffset(0.90, 0.90),
+                    //         duration: Duration(milliseconds: 1000),
+                    //         child: ChangeNotifierProvider.value(
+                    //             value: variable,
+                    //             child: GestionMensuelLive(
+                    //               idGestionMontantUniverselle:
+                    //                   _listGestionMensuel[index].idGestion,
+                    //               indexMontantUniverselle: index,
+                    //             ))));
                   },
                   title: Container(
                     child: Row(

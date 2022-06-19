@@ -9,16 +9,40 @@ import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
 
 import 'package:provider/provider.dart';
-import 'package:wave_transition/wave_transition.dart';
 
 import 'cacul_montant_widget.dart';
+import 'charge_fixe_mensuel.dart';
 
 class BuildDescriptionGestionTest extends StatefulWidget {
+  final double montantRevenuString;
+  final double montantTotalsString;
+  final double montantChargessString;
   final String idGestionMontantUniverselle;
   final int indexGestionMensuel;
+  final BuildContext context;
+  final EasyController variable;
+  final List<MontantUniverselle> listMontantUniverselle;
+  final List<MontantUniverselle> listMontPrevision;
+  final double montantChargesDouble;
+  final double montantRevenuDouble;
+  final double montantTotalsDouble;
+  final bool simuOuchargeFix;
+  final bool transactionPasse;
   BuildDescriptionGestionTest(
       {required this.idGestionMontantUniverselle,
-      required this.indexGestionMensuel});
+      required this.indexGestionMensuel,
+      required this.context,
+      required this.variable,
+      required this.listMontantUniverselle,
+      required this.listMontPrevision,
+      required this.montantChargesDouble,
+      required this.montantRevenuDouble,
+      required this.montantTotalsDouble,
+      required this.simuOuchargeFix,
+      required this.transactionPasse,
+      required this.montantRevenuString,
+      required this.montantTotalsString,
+      required this.montantChargessString});
 
   @override
   _BuildDescriptionGestionTestState createState() =>
@@ -413,202 +437,247 @@ class _BuildDescriptionGestionTestState
         ),
       );
     }
-    return ListView.builder(
-      itemCount: _listMontantUniverselle.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 3.0, left: 8.0, right: 8.0),
-          child: Dismissible(
-            onDismissed: (direction) {
-              if (direction == DismissDirection.endToStart) {
-                variable.echeanceNoPasseMontanUnive(
-                    widget.idGestionMontantUniverselle,
-                    widget.indexGestionMensuel,
-                    index);
-                variable.removeGestionMensuelleMontantUnivLive(
-                  indexGestionMensMontanUniv: index,
-                  idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
-                  indexGestionMensuel: widget.indexGestionMensuel,
-                  validation: true,
-                );
-
-                Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "La transaction à été validée",
-                    lotties: 'assets/challenge.json'));
-              }
-
-              if (direction == DismissDirection.startToEnd) {
-                variable.removeGestionMensuelleMontantUnivLive(
-                  indexGestionMensMontanUniv: index,
-                  idGestionMensMontanUniv: widget.idGestionMontantUniverselle,
-                  indexGestionMensuel: widget.indexGestionMensuel,
-                  validation: false,
-                );
-                Scaffold.of(context).showSnackBar(_buildSnackBar(
-                    content: "La transaction a bien été supprimée",
-                    lotties: 'assets/trash.json'));
-              }
-            },
-            confirmDismiss: (direction) async {
-              if (direction == DismissDirection.startToEnd) {
-                final bool? resultat = await showDialog<bool>(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text(
-                          "Confirmation",
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                        content: Text("Voulez vous suprimmez la description"),
-                        actions: [
-                          RaisedButton(
-                            onPressed: () {
-                              Navigator.pop(context, true);
-                            },
-                            child: Text("Oui"),
-                          ),
-                          RaisedButton(
-                            onPressed: () {
-                              Navigator.pop(context, false);
-                            },
-                            child: Text("Nom"),
-                          )
-                        ],
-                      );
-                    });
-                return resultat;
-              }
-              return true;
-            },
-            background: Container(
-              color: Colors.red,
-              padding: EdgeInsets.only(right: 10.0),
-              alignment: Alignment.centerLeft,
-              child: Icon(
-                Icons.delete,
-                size: 35.0,
-                color: Colors.white,
-              ),
-            ),
-            secondaryBackground: Container(
-              padding: EdgeInsets.only(right: 10.0),
-              alignment: Alignment.centerRight,
-              color: Colors.green,
-              child: Icon(
-                Icons.check,
-                size: 30.0,
-                color: Colors.white,
-              ),
-            ),
-            key: Key(UniqueKey().toString()),
-
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.orange, Colors.blueAccent]),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 45.0, // soften the shadow
-                    spreadRadius: 2.0, //extend the shadow
-                    offset: Offset(
-                      3.0, // Move to right 10  horizontally
-                      3.0, // Move to bottom 10 Vertically
-                    ),
-                  )
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+            floating: true,
+            pinned: true,
+            expandedHeight: 250.0,
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RaccourciMontant(
+                    montant: widget.montantChargessString,
+                    colors: Colors.red.shade900,
+                  ),
+                  RaccourciMontant(
+                    montant: widget.montantRevenuString,
+                    colors: Colors.green.shade900,
+                  ),
+                  RaccourciMontant(
+                    montant: widget.montantTotalsString,
+                    colors: Colors.blue.shade900,
+                  ),
                 ],
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.transparent,
               ),
-              child: Card(
-                color: _listMontantUniverselle[index].previsionsTotal == 1
-                    ? Colors.grey
-                    : Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                elevation: 20.0,
-                child: ListTile(
-                  subtitle: ChangeNotifierProvider.value(
-                    value: variable,
-                    child: ActiveGlow1(
-                      active: _listMontantUniverselle[index].previsionsTotal,
-                      context: context,
-                      gestion: _listMontantUniverselle[index],
+              background: Header(
+                context: context,
+                variable: variable,
+                listMontantUniverselle: widget.listMontantUniverselle,
+                listMontPrevision: widget.listMontPrevision,
+                montantChargesDouble: widget.montantChargesDouble,
+                montantRevenuDouble: widget.montantRevenuDouble,
+                montantTotalsDouble: widget.montantTotalsDouble,
+                simuOuchargeFix: widget.simuOuchargeFix,
+                transactionPasse: true,
+              ),
+            )),
+        SliverList(
+            delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            // print('item: $index');
+            return Padding(
+                padding:
+                    const EdgeInsets.only(bottom: 3.0, left: 8.0, right: 8.0),
+                child: Dismissible(
+                  onDismissed: (direction) {
+                    if (direction == DismissDirection.endToStart) {
+                      variable.echeanceNoPasseMontanUnive(
+                          widget.idGestionMontantUniverselle,
+                          widget.indexGestionMensuel,
+                          index);
+                      variable.removeGestionMensuelleMontantUnivLive(
+                        indexGestionMensMontanUniv: index,
+                        idGestionMensMontanUniv:
+                            widget.idGestionMontantUniverselle,
+                        indexGestionMensuel: widget.indexGestionMensuel,
+                        validation: true,
+                      );
+
+                      Scaffold.of(context).showSnackBar(_buildSnackBar(
+                          content: "La transaction à été validée",
+                          lotties: 'assets/challenge.json'));
+                    }
+
+                    if (direction == DismissDirection.startToEnd) {
+                      variable.removeGestionMensuelleMontantUnivLive(
+                        indexGestionMensMontanUniv: index,
+                        idGestionMensMontanUniv:
+                            widget.idGestionMontantUniverselle,
+                        indexGestionMensuel: widget.indexGestionMensuel,
+                        validation: false,
+                      );
+                      Scaffold.of(context).showSnackBar(_buildSnackBar(
+                          content: "La transaction a bien été supprimée",
+                          lotties: 'assets/trash.json'));
+                    }
+                  },
+                  confirmDismiss: (direction) async {
+                    if (direction == DismissDirection.startToEnd) {
+                      final bool? resultat = await showDialog<bool>(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text(
+                                "Confirmation",
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                              content:
+                                  Text("Voulez vous suprimmez la description"),
+                              actions: [
+                                RaisedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context, true);
+                                  },
+                                  child: Text("Oui"),
+                                ),
+                                RaisedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context, false);
+                                  },
+                                  child: Text("Nom"),
+                                )
+                              ],
+                            );
+                          });
+                      return resultat;
+                    }
+                    return true;
+                  },
+                  background: Container(
+                    color: Colors.red,
+                    padding: EdgeInsets.only(right: 10.0),
+                    alignment: Alignment.centerLeft,
+                    child: Icon(
+                      Icons.delete,
+                      size: 35.0,
+                      color: Colors.white,
                     ),
                   ),
-                ),
-              ),
-            ),
+                  secondaryBackground: Container(
+                    padding: EdgeInsets.only(right: 10.0),
+                    alignment: Alignment.centerRight,
+                    color: Colors.green,
+                    child: Icon(
+                      Icons.check,
+                      size: 30.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  key: Key(UniqueKey().toString()),
 
-            // child: Container(
-            //   decoration: BoxDecoration(
-            //     boxShadow: [
-            //       BoxShadow(
-            //         color: Colors.black,
-            //         blurRadius: 45.0, // soften the shadow
-            //         spreadRadius: 2.0, //extend the shadow
-            //         offset: Offset(
-            //           3.0, // Move to right 10  horizontally
-            //           3.0, // Move to bottom 10 Vertically
-            //         ),
-            //       )
-            //     ],
-            //     borderRadius: BorderRadius.circular(20),
-            //     color: Colors.transparent,
-            //   ),
-            //   child: Card(
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(20.0),
-            //     ),
-            //     elevation: 20.0,
-            //     child: ListTile(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [Colors.orange, Colors.blueAccent]),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 45.0, // soften the shadow
+                          spreadRadius: 2.0, //extend the shadow
+                          offset: Offset(
+                            3.0, // Move to right 10  horizontally
+                            3.0, // Move to bottom 10 Vertically
+                          ),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.transparent,
+                    ),
+                    child: Card(
+                      color: _listMontantUniverselle[index].previsionsTotal == 1
+                          ? Colors.grey
+                          : Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      elevation: 20.0,
+                      child: ListTile(
+                        subtitle: ChangeNotifierProvider.value(
+                          value: variable,
+                          child: ActiveGlow1(
+                            active:
+                                _listMontantUniverselle[index].previsionsTotal,
+                            context: context,
+                            gestion: _listMontantUniverselle[index],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
 
-            //       title: Container(
-            //         child: Row(
-            //           children: [
-            //             Card(
-            //               shape: RoundedRectangleBorder(
-            //                 borderRadius: BorderRadius.circular(5.0),
-            //               ),
-            //               elevation: 15.0,
-            //               child: Padding(
-            //                 padding: const EdgeInsets.all(4.0),
-            //                 child: Row(
-            //                   children: [
-            //                     Text(
-            //                       "Document".toUpperCase(),
-            //                       style: TextStyle(
-            //                           fontWeight: FontWeight.bold,
-            //                           color: Colors.purple),
-            //                     ),
-            //                     SizedBox(
-            //                       width: 5.0,
-            //                     ),
-            //                     Text(ListDesription[index].name),
-            //                   ],
-            //                 ),
-            //               ),
-            //             ),
+                  // child: Container(
+                  //   decoration: BoxDecoration(
+                  //     boxShadow: [
+                  //       BoxShadow(
+                  //         color: Colors.black,
+                  //         blurRadius: 45.0, // soften the shadow
+                  //         spreadRadius: 2.0, //extend the shadow
+                  //         offset: Offset(
+                  //           3.0, // Move to right 10  horizontally
+                  //           3.0, // Move to bottom 10 Vertically
+                  //         ),
+                  //       )
+                  //     ],
+                  //     borderRadius: BorderRadius.circular(20),
+                  //     color: Colors.transparent,
+                  //   ),
+                  //   child: Card(
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(20.0),
+                  //     ),
+                  //     elevation: 20.0,
+                  //     child: ListTile(
 
-            //             SizedBox(
-            //               width: 5.0,
-            //             ),
-            //             // prixCout(item.prix, item.cout)
-            //           ],
-            //         ),
-            //       ),
-            //       subtitle:
-            //           activeGlow(ListDesription[index], index, ListDesription),
-            //       isThreeLine: true,
-            //     ),
-            //   ),
-            // ),
-          ),
-        );
-      },
+                  //       title: Container(
+                  //         child: Row(
+                  //           children: [
+                  //             Card(
+                  //               shape: RoundedRectangleBorder(
+                  //                 borderRadius: BorderRadius.circular(5.0),
+                  //               ),
+                  //               elevation: 15.0,
+                  //               child: Padding(
+                  //                 padding: const EdgeInsets.all(4.0),
+                  //                 child: Row(
+                  //                   children: [
+                  //                     Text(
+                  //                       "Document".toUpperCase(),
+                  //                       style: TextStyle(
+                  //                           fontWeight: FontWeight.bold,
+                  //                           color: Colors.purple),
+                  //                     ),
+                  //                     SizedBox(
+                  //                       width: 5.0,
+                  //                     ),
+                  //                     Text(ListDesription[index].name),
+                  //                   ],
+                  //                 ),
+                  //               ),
+                  //             ),
+
+                  //             SizedBox(
+                  //               width: 5.0,
+                  //             ),
+                  //             // prixCout(item.prix, item.cout)
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       subtitle:
+                  //           activeGlow(ListDesription[index], index, ListDesription),
+                  //       isThreeLine: true,
+                  //     ),
+                  //   ),
+                  // ),
+                ));
+          },
+          childCount: _listMontantUniverselle.length,
+        ))
+      ],
     );
   }
 

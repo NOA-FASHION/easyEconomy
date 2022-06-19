@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:wave_transition/wave_transition.dart';
+
 
 class Setting extends StatefulWidget {
   final int index;
@@ -240,13 +240,16 @@ class _SettingState extends State<Setting> {
                 color: Colors.white24,
                 child: ListTile(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        WaveTransition(
-                            center: FractionalOffset(0.90, 0.90),
-                            duration: Duration(milliseconds: 1000),
-                            child: ChangeNotifierProvider.value(
-                                value: variable, child: PurchaseApp())));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ChangeNotifierProvider.value(
+                            value: variable, child: PurchaseApp())));
+                    // Navigator.push(
+                    //     context,
+                    //     WaveTransition(
+                    //         center: FractionalOffset(0.90, 0.90),
+                    //         duration: Duration(milliseconds: 1000),
+                    //         child: ChangeNotifierProvider.value(
+                    //             value: variable, child: PurchaseApp())));
                   },
                   leading: Icon(Icons.store, color: Colors.deepOrangeAccent),
                   title: Text("Achat à vie",
@@ -298,13 +301,16 @@ class _SettingState extends State<Setting> {
                 color: Colors.white24,
                 child: ListTile(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        WaveTransition(
-                            center: FractionalOffset(0.90, 0.90),
-                            duration: Duration(milliseconds: 1000),
-                            child: ChangeNotifierProvider.value(
-                                value: variable, child: IntroViewsPage())));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ChangeNotifierProvider.value(
+                            value: variable, child: IntroViewsPage())));
+                    // Navigator.push(
+                    //     context,
+                    //     WaveTransition(
+                    //         center: FractionalOffset(0.90, 0.90),
+                    //         duration: Duration(milliseconds: 1000),
+                    //         child: ChangeNotifierProvider.value(
+                    //             value: variable, child: IntroViewsPage())));
                   },
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 12, vertical: 4),

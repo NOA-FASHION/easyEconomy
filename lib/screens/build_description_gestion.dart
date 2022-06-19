@@ -9,7 +9,6 @@ import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
 
 import 'package:provider/provider.dart';
-import 'package:wave_transition/wave_transition.dart';
 
 class BuildDescriptionGestion extends StatefulWidget {
   final String idGestionMontantUniverselle;
@@ -527,33 +526,46 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                             .toString()
                             .replaceAll(unityPattern, "") ==
                         "commentaire") {
-                      Navigator.push(
-                          context,
-                            WaveTransition(
-                            center: FractionalOffset(0.90, 0.90),
-                            duration: Duration(milliseconds: 1000),
-                              child: ChangeNotifierProvider.value(
-                                  value: providerType,
-                                  child: PlayCommentaire(
-                                    commentaire:
-                                        ListDesription[index].commentaire,
-                                  ))));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ChangeNotifierProvider.value(
+                              value: providerType,
+                              child: PlayCommentaire(
+                                commentaire: ListDesription[index].commentaire,
+                              ))));
+                      // Navigator.push(
+                      //     context,
+                      //       WaveTransition(
+                      //       center: FractionalOffset(0.90, 0.90),
+                      //       duration: Duration(milliseconds: 1000),
+                      //         child: ChangeNotifierProvider.value(
+                      //             value: providerType,
+                      //             child: PlayCommentaire(
+                      //               commentaire:
+                      //                   ListDesription[index].commentaire,
+                      //             ))));
                     } else if (ListDesription[index]
                             .description
                             .toString()
                             .replaceAll(unityPattern, "") ==
                         "image") {
-                      Navigator.push(
-                          context,
-                          WaveTransition(
-                            center: FractionalOffset(0.90, 0.90),
-                            duration: Duration(milliseconds: 1000),
-                              child: ChangeNotifierProvider.value(
-                                  value: providerType,
-                                  child: PlayPicture(
-                                    patchPicture:
-                                        ListDesription[index].adresseImage,
-                                  ))));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ChangeNotifierProvider.value(
+                              value: providerType,
+                              child: PlayPicture(
+                                patchPicture:
+                                    ListDesription[index].adresseImage,
+                              ))));
+                      // Navigator.push(
+                      //     context,
+                      //     WaveTransition(
+                      //         center: FractionalOffset(0.90, 0.90),
+                      //         duration: Duration(milliseconds: 1000),
+                      //         child: ChangeNotifierProvider.value(
+                      //             value: providerType,
+                      //             child: PlayPicture(
+                      //               patchPicture:
+                      //                   ListDesription[index].adresseImage,
+                      //             ))));
                     }
                   },
                   title: Container(

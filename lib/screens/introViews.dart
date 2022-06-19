@@ -7,7 +7,6 @@ import 'package:intro_views_flutter/intro_views_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:tab_container/tab_container.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:wave_transition/wave_transition.dart';
 
 class IntroViewsPage extends StatelessWidget {
   static const routeName = '/IntroViewsPage';
@@ -655,13 +654,16 @@ class IntroViewsPage extends StatelessWidget {
           showNextButton: true,
           showBackButton: true,
           onTapDoneButton: () {
-            Navigator.push(
-                context,
-                WaveTransition(
-                    center: FractionalOffset(0.90, 0.90),
-                    duration: Duration(milliseconds: 1000),
-                    child: ChangeNotifierProvider.value(
-                        value: variable, child: Home())));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ChangeNotifierProvider.value(
+                    value: variable, child: Home())));
+            // Navigator.push(
+            //     context,
+            //     WaveTransition(
+            //         center: FractionalOffset(0.90, 0.90),
+            //         duration: Duration(milliseconds: 1000),
+            //         child: ChangeNotifierProvider.value(
+            //             value: variable, child: Home())));
             // Navigator.push(
             //   context,
             //   MaterialPageRoute(
