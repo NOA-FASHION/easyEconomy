@@ -139,21 +139,21 @@ class _HomeState extends State<Home> {
                                         type: PageTransitionType
                                             .rightToLeftWithFade));
                               } else if (page == 2) {
-                                // Navigator.of(context).push(MaterialPageRoute(
-                                //     builder: (context) =>
-                                //         ChangeNotifierProvider.value(
-                                //             value: variable,
-                                //             child: GestionMensuel())));
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        duration:
-                                            const Duration(milliseconds: 1300),
-                                        child: ChangeNotifierProvider.value(
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChangeNotifierProvider.value(
                                             value: variable,
-                                            child: GestionMensuel()),
-                                        type: PageTransitionType
-                                            .rightToLeftWithFade));
+                                            child: GestionMensuel())));
+                                // Navigator.push(
+                                //     context,
+                                //     PageTransition(
+                                //         duration:
+                                //             const Duration(milliseconds: 1300),
+                                //         child: ChangeNotifierProvider.value(
+                                //             value: variable,
+                                //             child: GestionMensuel()),
+                                //         type: PageTransitionType
+                                //             .rightToLeftWithFade));
                               }
                             },
                             titles: titles,

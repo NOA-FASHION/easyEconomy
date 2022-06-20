@@ -389,26 +389,26 @@ class TransactionPasse extends StatelessWidget {
           InkWell(
             splashColor: Colors.white,
             onTap: () {
-              // Navigator.of(context).push(MaterialPageRoute(
-              //     builder: (context) => ChangeNotifierProvider.value(
-              //         value: variable,
-              //         child: GestionMensuelLiveResultats(
-              //           idGestionMontantUniverselle:
-              //               idGestionMontantUniverselle,
-              //           indexMontantUniverselle: indexMontantUniverselle,
-              //         ))));
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      duration: const Duration(milliseconds: 1300),
-                      child: ChangeNotifierProvider.value(
-                          value: variable,
-                          child: GestionMensuelLiveResultats(
-                            idGestionMontantUniverselle:
-                                idGestionMontantUniverselle,
-                            indexMontantUniverselle: indexMontantUniverselle,
-                          )),
-                      type: PageTransitionType.rightToLeftWithFade));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ChangeNotifierProvider.value(
+                      value: variable,
+                      child: GestionMensuelLiveResultats(
+                        idGestionMontantUniverselle:
+                            idGestionMontantUniverselle,
+                        indexMontantUniverselle: indexMontantUniverselle,
+                      ))));
+              // Navigator.push(
+              //     context,
+              //     PageTransition(
+              //         duration: const Duration(milliseconds: 1300),
+              //         child: ChangeNotifierProvider.value(
+              //             value: variable,
+              //             child: GestionMensuelLiveResultats(
+              //               idGestionMontantUniverselle:
+              //                   idGestionMontantUniverselle,
+              //               indexMontantUniverselle: indexMontantUniverselle,
+              //             )),
+              //         type: PageTransitionType.rightToLeftWithFade));
             },
             child: Icon(
               Icons.settings,

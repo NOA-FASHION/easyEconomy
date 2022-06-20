@@ -439,26 +439,26 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                 elevation: 20.0,
                 child: ListTile(
                   onTap: () async {
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (context) => ChangeNotifierProvider.value(
-                    //         value: variable,
-                    //         child: GestionMensuelLive(
-                    //           idGestionMontantUniverselle:
-                    //               _listGestionMensuel[index].idGestion,
-                    //           indexMontantUniverselle: index,
-                    //         ))));
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                            duration: const Duration(milliseconds: 1300),
-                            child: ChangeNotifierProvider.value(
-                                value: variable,
-                                child: GestionMensuelLive(
-                                  idGestionMontantUniverselle:
-                                      _listGestionMensuel[index].idGestion,
-                                  indexMontantUniverselle: index,
-                                )),
-                            type: PageTransitionType.rightToLeftWithFade));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ChangeNotifierProvider.value(
+                            value: variable,
+                            child: GestionMensuelLive(
+                              idGestionMontantUniverselle:
+                                  _listGestionMensuel[index].idGestion,
+                              indexMontantUniverselle: index,
+                            ))));
+                    // Navigator.push(
+                    //     context,
+                    //     PageTransition(
+                    //         duration: const Duration(milliseconds: 1300),
+                    //         child: ChangeNotifierProvider.value(
+                    //             value: variable,
+                    //             child: GestionMensuelLive(
+                    //               idGestionMontantUniverselle:
+                    //                   _listGestionMensuel[index].idGestion,
+                    //               indexMontantUniverselle: index,
+                    //             )),
+                    //         type: PageTransitionType.rightToLeftWithFade));
                   },
                   title: Container(
                     child: Row(
