@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 
 import 'package:loading_overlay_pro/loading_overlay_pro.dart';
 import 'package:marquee_text/marquee_text.dart';
-import 'package:page_transition/page_transition.dart';
 
 import 'package:provider/provider.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
@@ -107,37 +106,37 @@ class _HomeState extends State<Home> {
                             onPageChanged: (page) {},
                             onSelectedItem: (page) {
                               if (page == 0) {
-                                // Navigator.of(context).push(MaterialPageRoute(
-                                //     builder: (context) =>
-                                //         ChangeNotifierProvider.value(
-                                //             value: variable,
-                                //             child: ChargeFixeMensuel())));
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        duration:
-                                            const Duration(milliseconds: 1300),
-                                        child: ChangeNotifierProvider.value(
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChangeNotifierProvider.value(
                                             value: variable,
-                                            child: ChargeFixeMensuel()),
-                                        type: PageTransitionType
-                                            .rightToLeftWithFade));
+                                            child: ChargeFixeMensuel())));
+                                // Navigator.push(
+                                //     context,
+                                //     PageTransition(
+                                //         duration:
+                                //             const Duration(milliseconds: 1300),
+                                //         child: ChangeNotifierProvider.value(
+                                //             value: variable,
+                                //             child: ChargeFixeMensuel()),
+                                //         type: PageTransitionType
+                                //             .rightToLeftWithFade));
                               } else if (page == 1) {
-                                // Navigator.of(context).push(MaterialPageRoute(
-                                //     builder: (context) =>
-                                //         ChangeNotifierProvider.value(
-                                //             value: variable,
-                                //             child: SimulatorGestion())));
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        duration:
-                                            const Duration(milliseconds: 1300),
-                                        child: ChangeNotifierProvider.value(
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChangeNotifierProvider.value(
                                             value: variable,
-                                            child: SimulatorGestion()),
-                                        type: PageTransitionType
-                                            .rightToLeftWithFade));
+                                            child: SimulatorGestion())));
+                                // Navigator.push(
+                                //     context,
+                                //     PageTransition(
+                                //         duration:
+                                //             const Duration(milliseconds: 1300),
+                                //         child: ChangeNotifierProvider.value(
+                                //             value: variable,
+                                //             child: SimulatorGestion()),
+                                //         type: PageTransitionType
+                                //             .rightToLeftWithFade));
                               } else if (page == 2) {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) =>

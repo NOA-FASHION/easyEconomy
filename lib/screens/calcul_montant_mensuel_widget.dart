@@ -8,7 +8,7 @@ import 'package:easyeconomy/screens/transaction_edit.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pie_chart/flutter_pie_chart.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:provider/provider.dart';
 
 class HeadderMensuel extends StatefulWidget {
