@@ -54,9 +54,13 @@ class _HeadderMensuelState extends State<HeadderMensuel> {
     montant = montantTotals + montantTotalsLive;
 
     if (montant > 0) {
-      baterry = true;
+      setState(() {
+        baterry = true;
+      });
     } else {
-      baterry = false;
+      setState(() {
+        baterry = false;
+      });
     }
 
     return montant;
@@ -64,6 +68,8 @@ class _HeadderMensuelState extends State<HeadderMensuel> {
 
   @override
   Widget build(BuildContext context) {
+    double montantTotal =
+        soldeLive(widget.montantTotals, widget.montantTotalsLive);
     return Container(
       alignment: Alignment.center,
       child: Padding(
@@ -228,8 +234,7 @@ class _HeadderMensuelState extends State<HeadderMensuel> {
                               ),
                               SoldeLive(
                                 baterry: baterry,
-                                soldeLive: soldeLive(widget.montantTotals,
-                                    widget.montantTotalsLive),
+                                soldeLive: montantTotal,
                               ),
                             ],
                           ),
