@@ -404,7 +404,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
       return Container(
         alignment: Alignment.center,
         child: Text(
-          "Pas de descrion en cours.",
+          "Pas de description en cours.",
           style: TextStyle(color: Colors.orange[600], fontSize: 18.0),
           textAlign: TextAlign.center,
         ),

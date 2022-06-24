@@ -30,81 +30,83 @@ class IntroViewsPage extends StatelessWidget {
           bubbleBackgroundColor: Color.fromRGBO(43, 132, 170, 1),
           pageColor: Colors.grey,
           bubble: Image.asset('assets/logo1.png'),
-          body: SizedBox(
-            height: 160,
-            child: TabContainer(
-              color: Color.fromRGBO(43, 132, 170, 1),
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 1.1,
-                  padding: const EdgeInsets.all(15.0),
-                  child: SingleChildScrollView(
-                    child: Text(
-                      "La première étape consiste, à rentrer vos charges et revenus fixes. dans l'onglet 'revenus et charges fixes mensuels'.",
-                      maxLines: 3,
-                      style: TextStyle(fontSize: 15),
-                      textAlign: TextAlign.start,
+          body: SingleChildScrollView(
+            child: SizedBox(
+              height: 160,
+              child: TabContainer(
+                color: Color.fromRGBO(43, 132, 170, 1),
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    padding: const EdgeInsets.all(15.0),
+                    child: SingleChildScrollView(
+                      child: Text(
+                        "La première étape consiste, à rentrer vos charges et revenus fixes. dans l'onglet 'revenus et charges fixes mensuels'.",
+                        maxLines: 3,
+                        style: TextStyle(fontSize: 15),
+                        textAlign: TextAlign.start,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 1.1,
-                  padding: const EdgeInsets.all(8.0),
-                  child: SingleChildScrollView(
-                    child: Text(
-                      "Vous aurez une idée rapide de vos capacités de consomation.",
-                      maxLines: 5,
-                      style: TextStyle(fontSize: 15),
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Padding(
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.1,
                     padding: const EdgeInsets.all(8.0),
-                    child: SizedBox.fromSize(
-                        size: Size(50, 50), // button width and height
-                        child: ClipOval(
-                            child: Material(
-                                color: Colors.blue,
-                                child: InkWell(
-                                  // splash color
-                                  splashColor: Colors.white,
-                                  onTap: () async {
-                                    _launchMapsUrl(
-                                        "https://esyeconomy.freshdesk.com/support/solutions/articles/73000552862-charges-et-revenus-fixe");
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Icon(
-                                        Icons.info,
-                                        size: 20,
-                                        color: Colors.white,
-                                      ), // icon
-                                      Text(
-                                        "AIDE",
-                                        style: TextStyle(
-                                            fontSize: 10, color: Colors.white),
-                                      ), // text
-                                    ],
-                                  ),
-                                )))),
+                    child: SingleChildScrollView(
+                      child: Text(
+                        "Vous aurez une idée rapide de vos capacités de consomation.",
+                        maxLines: 5,
+                        style: TextStyle(fontSize: 15),
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
                   ),
-                ),
-              ],
-              tabs: [
-                Icon(
-                  Icons.settings,
-                ),
-                Icon(
-                  Icons.remove_red_eye,
-                ),
-                Icon(
-                  Icons.info,
-                ),
-              ],
-              isStringTabs: false,
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox.fromSize(
+                          size: Size(50, 50), // button width and height
+                          child: ClipOval(
+                              child: Material(
+                                  color: Colors.blue,
+                                  child: InkWell(
+                                    // splash color
+                                    splashColor: Colors.white,
+                                    onTap: () async {
+                                      _launchMapsUrl(
+                                          "https://esyeconomy.freshdesk.com/support/solutions/articles/73000552862-charges-et-revenus-fixe");
+                                    },
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.info,
+                                          size: 20,
+                                          color: Colors.white,
+                                        ), // icon
+                                        Text(
+                                          "AIDE",
+                                          style: TextStyle(
+                                              fontSize: 10, color: Colors.white),
+                                        ), // text
+                                      ],
+                                    ),
+                                  )))),
+                    ),
+                  ),
+                ],
+                tabs: [
+                  Icon(
+                    Icons.settings,
+                  ),
+                  Icon(
+                    Icons.remove_red_eye,
+                  ),
+                  Icon(
+                    Icons.info,
+                  ),
+                ],
+                isStringTabs: false,
+              ),
             ),
           ),
           title: Text(
@@ -548,7 +550,7 @@ class IntroViewsPage extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: SingleChildScrollView(
                     child: Text(
-                      "Vous pouvez lorsque vous faites vos emplettes, par exemple vos courses du mois, ajouter les informations de vos articles tel que, le prix et le type d'article.",
+                      "Vous pouvez lorsque vous faites vos emplettes, par exemple vos courses du mois, ajouter les informations de vos articles tel que le prix et le type d'article.",
                       maxLines: 4,
                       style: TextStyle(fontSize: 15),
                       textAlign: TextAlign.start,
