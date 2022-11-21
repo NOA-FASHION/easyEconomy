@@ -418,7 +418,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
           child: Dismissible(
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
-                Scaffold.of(context).showSnackBar(_buildSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(
                     content: "La tâche a bien été validé",
                     lotties: 'assets/challenge.json'));
                 providerType.achatTotals(
@@ -435,7 +435,7 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
               }
 
               if (direction == DismissDirection.startToEnd) {
-                Scaffold.of(context).showSnackBar(_buildSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(
                     content: "La description a bien été supprimée",
                     lotties: 'assets/trash.json'));
                 providerType.removeGestionDescriptionGestion(
@@ -458,13 +458,13 @@ class _BuildDescriptionGestionState extends State<BuildDescriptionGestion> {
                         ),
                         content: Text("Voulez vous suprimmez la description"),
                         actions: [
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context, true);
                             },
                             child: Text("Oui"),
                           ),
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context, false);
                             },

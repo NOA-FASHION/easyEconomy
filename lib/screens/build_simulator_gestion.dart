@@ -310,7 +310,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                 variable.removeMontantPrevision(
                   index: index,
                 );
-                Scaffold.of(context).showSnackBar(_buildSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(
                     content: "la transaction a bien été supprimée",
                     lotties: 'assets/trash.json'));
               }
@@ -319,7 +319,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                 variable.removeMontantPrevision(
                   index: index,
                 );
-                Scaffold.of(context).showSnackBar(_buildSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(
                     content: "La transaction a bien été supprimée",
                     lotties: 'assets/trash.json'));
               }
@@ -337,13 +337,13 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                         content:
                             Text("Voulez vous supprimer cette transaction"),
                         actions: [
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context, true);
                             },
                             child: Text("Oui"),
                           ),
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context, false);
                             },
@@ -366,13 +366,13 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
                         content:
                             Text("Voulez vous supprimer cette transaction"),
                         actions: [
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context, true);
                             },
                             child: Text("Oui"),
                           ),
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context, false);
                             },

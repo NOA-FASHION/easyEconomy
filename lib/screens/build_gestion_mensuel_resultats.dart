@@ -291,7 +291,7 @@ class _BuildGestionMensuelResultatsState
                           validation: true,
                         );
 
-                        Scaffold.of(context).showSnackBar(_buildSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(
                             content: "La transaction à été validée",
                             lotties: 'assets/challenge.json'));
                       }
@@ -304,7 +304,7 @@ class _BuildGestionMensuelResultatsState
                           indexGestionMensuel: widget.indexGestionMensuel,
                           validation: false,
                         );
-                        Scaffold.of(context).showSnackBar(_buildSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(
                             content: "La transaction a bien été supprimée",
                             lotties: 'assets/trash.json'));
                       }
@@ -322,13 +322,13 @@ class _BuildGestionMensuelResultatsState
                                 content: Text(
                                     "Voulez vous supprimer cette transaction"),
                                 actions: [
-                                  RaisedButton(
+                                  ElevatedButton(
                                     onPressed: () {
                                       Navigator.pop(context, true);
                                     },
                                     child: Text("Oui"),
                                   ),
-                                  RaisedButton(
+                                  ElevatedButton(
                                     onPressed: () {
                                       Navigator.pop(context, false);
                                     },

@@ -405,7 +405,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                 variable.removeMontantUniverselle(
                   index: index,
                 );
-                Scaffold.of(context).showSnackBar(_buildSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(
                     content: "La transaction a bien été supprimée",
                     lotties: 'assets/trash.json'));
               }
@@ -414,7 +414,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                 variable.removeMontantUniverselle(
                   index: index,
                 );
-                Scaffold.of(context).showSnackBar(_buildSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(
                     content: "La transaction a bien été supprimée",
                     lotties: 'assets/trash.json'));
               }
@@ -431,13 +431,13 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                         ),
                         content: Text("Voulez vous supprimer la transaction"),
                         actions: [
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context, true);
                             },
                             child: Text("Oui"),
                           ),
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context, false);
                             },
@@ -459,13 +459,13 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                         ),
                         content: Text("Voulez vous supprimer la transaction"),
                         actions: [
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context, true);
                             },
                             child: Text("Oui"),
                           ),
-                          RaisedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context, false);
                             },
