@@ -112,7 +112,7 @@ class _BuildChargeFixeDescriptionState
                   SizedBox(
                     width: 15.0,
                   ),
-                  Text(listdescript[index].echeance.toStringAsFixed(2) + "€"),
+                  Text(listdescript[index].echeance.toStringAsFixed(2) + "\$"),
                 ],
               ),
             ),
@@ -131,7 +131,7 @@ class _BuildChargeFixeDescriptionState
                   Text((listdescript[index].echeance *
                               listdescript[index].nombreEcheance)
                           .toStringAsFixed(2) +
-                      "€"),
+                      "\$"),
                 ],
               ),
             ),
@@ -230,10 +230,10 @@ class _BuildChargeFixeDescriptionState
       width: 5.0,
     );
     if (prix > 0) {
-      prixCout1 = Text("Prix : " + prix.toString() + "€");
+      prixCout1 = Text("Prix : " + prix.toString() + "\$");
       return prixCout1;
     } else if (cout > 0) {
-      prixCout1 = Text("Montant : " + cout.toString() + "€");
+      prixCout1 = Text("Montant : " + cout.toString() + "\$");
     }
     return prixCout1;
   }

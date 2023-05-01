@@ -27,7 +27,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
   late String valueText = "";
   late String valueText2 = "";
   var controller = CurrencyTextFieldController(
-      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
   Color colorsDescription(String description) {
     Color colors = Colors.black;
     if (description == "unity_Montant_universelle.ChargeFixe") {
@@ -338,7 +338,7 @@ class _BuildChargeFixeState extends State<BuildChargeFixe> {
                             width: 5.0,
                           ),
                           Text(
-                            gestion.montant.toStringAsFixed(2) + " €",
+                            gestion.montant.toStringAsFixed(2) + " \$",
                           ),
                         ],
                       ),

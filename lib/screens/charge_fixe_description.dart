@@ -26,9 +26,9 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
   // late String idChallenge1;
   String nombreEchenace = '0';
   var controller = CurrencyTextFieldController(
-      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
   var controller1 = CurrencyTextFieldController(
-      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
   String prixProduit = '0';
   String coutPaiment = '0';
   late List<String> docPaths;
@@ -316,7 +316,7 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
                       borderRadius: BorderRadius.circular(15.0))),
             ),
           ),
-          Text("€")
+          Text("\$")
         ],
       );
     } else if (resultat == "echeancier") {

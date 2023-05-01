@@ -451,7 +451,7 @@ class SoldeLive extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            soldeLive.toStringAsFixed(2) + " €",
+            soldeLive.toStringAsFixed(2) + " \$",
             style: TextStyle(
                 fontSize: 13,
                 color: baterry ? Colors.green.shade900 : Colors.red.shade900,
@@ -583,7 +583,7 @@ class _ActiveGlowWidget2State extends State<ActiveGlowWidget2> {
                             width: 10.0,
                           ),
                           Text(
-                            widget.gestion.montant.toStringAsFixed(2) + " €",
+                            widget.gestion.montant.toStringAsFixed(2) + " \$",
                             style: TextStyle(
                               color: colorsDescription(
                                   widget.gestion.unity.toString()),

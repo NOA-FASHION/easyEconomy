@@ -498,7 +498,7 @@ class CalculMontant {
   //                           width: 10.0,
   //                         ),
   //                         Text(
-  //                           gestion.montant.toStringAsFixed(2) + " €",
+  //                           gestion.montant.toStringAsFixed(2) + " \$",
   //                           style: TextStyle(
   //                             color:
   //                                 colorsDescription(gestion.unity.toString()),
@@ -637,7 +637,7 @@ class CalculMontant {
   //                           width: 10.0,
   //                         ),
   //                         Text(
-  //                           gestion.montant.toStringAsFixed(2) + " €",
+  //                           gestion.montant.toStringAsFixed(2) + " \$",
   //                           style: TextStyle(
   //                             color:
   //                                 colorsDescription(gestion.unity.toString()),

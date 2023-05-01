@@ -6,7 +6,6 @@ import 'package:flutter_pie_chart/flutter_pie_chart.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee_text/marquee_text.dart';
 
-
 import 'package:provider/provider.dart';
 
 class BuildGestionMensuel extends StatefulWidget {
@@ -184,7 +183,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                           maxLetter(
                               montantChargeLive(gestion.montantUniverselleLive)
                                       .toStringAsFixed(2) +
-                                  " €"),
+                                  " \$"),
                         ],
                       ),
                     ),
@@ -205,7 +204,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                           Text(
                               montantRevenuLive(gestion.montantUniverselleLive)
                                       .toStringAsFixed(2) +
-                                  " €",
+                                  " \$",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.green.shade500)),
@@ -232,7 +231,7 @@ class _BuildGestionMensuelState extends State<BuildGestionMensuel> {
                           Text(
                             montantTotalsLive(gestion.montantUniverselleLive)
                                     .toStringAsFixed(2) +
-                                " €",
+                                " \$",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: montantChargeLives > montantRevenuLives

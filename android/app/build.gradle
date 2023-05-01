@@ -32,7 +32,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -49,10 +49,10 @@ android {
 
        signingConfigs {
        release {
-           keyAlias keystoreProperties['key0']
-           keyPassword keystoreProperties['Wipit@2017']
-           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-           storePassword keystoreProperties['Wipit@2017']
+           keyAlias keystoreProperties['keyAlias']
+           keyPassword keystoreProperties['keyPassword']
+           storeFile file(keystoreProperties['storeFile'])
+           storePassword keystoreProperties['storePassword']
        }
    }
    buildTypes {

@@ -27,9 +27,9 @@ class DescriptionGestion extends StatefulWidget {
 
 class _DescriptionGestionState extends State<DescriptionGestion> {
   var controller = CurrencyTextFieldController(
-      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
   var controller1 = CurrencyTextFieldController(
-      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
   bool isSwitched = false;
   String unityPattern = "unity_challenge1.";
   // late String idChallenge1;
@@ -335,7 +335,7 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                       borderRadius: BorderRadius.circular(15.0))),
             ),
           ),
-          Text("€")
+          Text("\$")
         ],
       );
     } else if (resultat == "echeancier") {
@@ -593,22 +593,6 @@ class _DescriptionGestionState extends State<DescriptionGestion> {
                                   ],
                                 ),
                               ),
-                              // DropdownMenuItem(
-                              //   value: "echeancier",
-                              //   child: Row(
-                              //     children: [
-                              //       Icon(Icons.payment,
-                              //           size: 30.0, color: Colors.yellow),
-                              //       SizedBox(width: 10),
-                              //       Text(
-                              //         "Échéancier",
-                              //         style: TextStyle(
-                              //           color: Colors.yellow,
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
                               DropdownMenuItem(
                                 value: "commentaire",
                                 child: Row(

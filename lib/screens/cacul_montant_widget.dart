@@ -454,7 +454,7 @@ class _ActiveGlowWidgetState extends State<ActiveGlowWidget> {
                             width: 10.0,
                           ),
                           Text(
-                            widget.gestion.montant.toStringAsFixed(2) + " €",
+                            widget.gestion.montant.toStringAsFixed(2) + " \$",
                             style: TextStyle(
                               color: colors,
                               fontSize: 13,
@@ -784,7 +784,7 @@ class _ActiveGlow1State extends State<ActiveGlow1> {
                             width: 10.0,
                           ),
                           Text(
-                            widget.gestion.montant.toStringAsFixed(2) + " €",
+                            widget.gestion.montant.toStringAsFixed(2) + " \$",
                             style: TextStyle(
                               color: colors,
                               fontSize: 13,

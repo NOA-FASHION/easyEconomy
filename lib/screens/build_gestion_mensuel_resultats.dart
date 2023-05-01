@@ -81,7 +81,7 @@ class _BuildGestionMensuelResultatsState
                             width: 5.0,
                           ),
                           Text(
-                            gestion.montant.toStringAsFixed(2) + " €",
+                            gestion.montant.toStringAsFixed(2) + " \$",
                           ),
                         ],
                       ),
@@ -291,9 +291,10 @@ class _BuildGestionMensuelResultatsState
                           validation: true,
                         );
 
-                        ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(
-                            content: "La transaction à été validée",
-                            lotties: 'assets/challenge.json'));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            _buildSnackBar(
+                                content: "La transaction à été validée",
+                                lotties: 'assets/challenge.json'));
                       }
 
                       if (direction == DismissDirection.startToEnd) {
@@ -304,9 +305,10 @@ class _BuildGestionMensuelResultatsState
                           indexGestionMensuel: widget.indexGestionMensuel,
                           validation: false,
                         );
-                        ScaffoldMessenger.of(context).showSnackBar(_buildSnackBar(
-                            content: "La transaction a bien été supprimée",
-                            lotties: 'assets/trash.json'));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            _buildSnackBar(
+                                content: "La transaction a bien été supprimée",
+                                lotties: 'assets/trash.json'));
                       }
                     },
                     confirmDismiss: (direction) async {
@@ -394,7 +396,7 @@ class _BuildGestionMensuelResultatsState
                     //       _listMontantUniverselle[index]
                     //               .montant
                     //               .toStringAsFixed(2) +
-                    //           " €",
+                    //           " \$",
                     //       style: TextStyle(
                     //         color: colorsDescription(
                     //             _listMontantUniverselle[index]

@@ -29,7 +29,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
   late String nomCharge;
   late String nomRevenu;
   var controller = CurrencyTextFieldController(
-      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
   double montantCharge = 0;
   String unityChallenge = "RevenuFixe";
   late bool simuOuchargeFixe;
@@ -313,7 +313,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                 //     child: Padding(
                 //       padding: const EdgeInsets.all(8.0),
                 //       child: Text(
-                //         montantChargessString.toStringAsFixed(2) + " €",
+                //         montantChargessString.toStringAsFixed(2) + " \$",
                 //         style: TextStyle(
                 //             fontSize: 13,
                 //             color: Colors.red.shade900,
@@ -336,7 +336,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                 //     child: Padding(
                 //       padding: const EdgeInsets.all(8.0),
                 //       child: Text(
-                //         montantRevenuString.toStringAsFixed(2) + " €",
+                //         montantRevenuString.toStringAsFixed(2) + " \$",
                 //         style: TextStyle(
                 //             fontSize: 13,
                 //             color: Colors.green.shade900,
@@ -359,7 +359,7 @@ class _ChargeFixeMensuelState extends State<ChargeFixeMensuel> {
                 //     child: Padding(
                 //       padding: const EdgeInsets.all(8.0),
                 //       child: Text(
-                //         montantTotalsString.toStringAsFixed(2) + " €",
+                //         montantTotalsString.toStringAsFixed(2) + " \$",
                 //         style: TextStyle(
                 //             fontSize: 13,
                 //             color: Colors.blue.shade900,
@@ -480,7 +480,7 @@ class RaccourciMontant extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            montant.toStringAsFixed(2) + " €",
+            montant.toStringAsFixed(2) + " \$",
             style: TextStyle(
                 fontSize: 13, color: colors, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,

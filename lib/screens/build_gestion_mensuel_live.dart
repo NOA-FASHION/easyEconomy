@@ -28,7 +28,7 @@ class _BuildGestionMensuelLiveState extends State<BuildGestionMensuelLive> {
   late String valueText = "";
   late String valueText2 = "";
   var controller = CurrencyTextFieldController(
-      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Color colorsDescription(String description) {
     Color colors = Colors.black;

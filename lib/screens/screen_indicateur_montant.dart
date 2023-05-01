@@ -196,7 +196,7 @@ class _ScreenIndicatorMontantState extends State<ScreenIndicatorMontant> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          choixMontant() + " €",
+                          choixMontant() + " \$",
                           style: TextStyle(
                               fontSize: 13,
                               color: choixColorVariable,

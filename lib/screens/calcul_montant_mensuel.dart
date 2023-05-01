@@ -458,7 +458,7 @@ class CalculMontantMensuel {
   //                                     soldeLive(montantTotals,
   //                                                 montantTotalsLive)
   //                                             .toStringAsFixed(2) +
-  //                                         " €",
+  //                                         " \$",
   //                                     style: TextStyle(
   //                                         fontSize: 13,
   //                                         color: baterry
@@ -662,7 +662,7 @@ class CalculMontantMensuel {
                             width: 10.0,
                           ),
                           Text(
-                            gestion.montant.toStringAsFixed(2) + " €",
+                            gestion.montant.toStringAsFixed(2) + " \$",
                             style: TextStyle(
                               color:
                                   colorsDescription(gestion.unity.toString()),

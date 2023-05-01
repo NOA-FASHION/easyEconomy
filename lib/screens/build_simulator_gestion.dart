@@ -21,7 +21,7 @@ class _BuildSimulatorGestionState extends State<BuildSimulatorGestion> {
   late String valueText = "";
   late String valueText2 = "";
   var controller = CurrencyTextFieldController(
-      rightSymbol: "€", decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
   Color colorsDescription(String description) {
     Color colors = Colors.black;
     if (description == "unity_Montant_universelle.ChargeFixe") {
