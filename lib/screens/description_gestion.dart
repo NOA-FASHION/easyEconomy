@@ -27,9 +27,9 @@ class DescriptionGestion extends StatefulWidget {
 
 class _DescriptionGestionState extends State<DescriptionGestion> {
   var controller = CurrencyTextFieldController(
-      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: '\$', decimalSymbol: ".", thousandSymbol: ",");
   var controller1 = CurrencyTextFieldController(
-      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: '\$', decimalSymbol: ".", thousandSymbol: ",");
   bool isSwitched = false;
   String unityPattern = "unity_challenge1.";
   // late String idChallenge1;

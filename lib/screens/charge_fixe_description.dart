@@ -26,9 +26,9 @@ class _ChargeFixeDescriptionState extends State<ChargeFixeDescription> {
   // late String idChallenge1;
   String nombreEchenace = '0';
   var controller = CurrencyTextFieldController(
-      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: '\$', decimalSymbol: ".", thousandSymbol: ",");
   var controller1 = CurrencyTextFieldController(
-      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: '\$', decimalSymbol: ".", thousandSymbol: ",");
   String prixProduit = '0';
   String coutPaiment = '0';
   late List<String> docPaths;

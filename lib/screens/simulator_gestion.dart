@@ -29,7 +29,7 @@ class _SimulatorGestionState extends State<SimulatorGestion> {
   late PersistentBottomSheetController _bottomSheetController;
   late String nomCharge;
   var controller = CurrencyTextFieldController(
-      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: '\$', decimalSymbol: ".", thousandSymbol: ",");
   late String nomRevenu;
   late bool simuOuchargeFixe;
   double montantCharge = 0;

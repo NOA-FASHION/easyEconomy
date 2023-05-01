@@ -33,7 +33,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late PersistentBottomSheetController _bottomSheetController;
   var controller = CurrencyTextFieldController(
-      currencySymbol: 'R\$', decimalSymbol: ".", thousandSymbol: ",");
+      currencySymbol: '\$', decimalSymbol: ".", thousandSymbol: ",");
   late String nomCharge;
   late String nomRevenu;
   late bool simuOuchargeFixe;
@@ -124,7 +124,7 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
     //     .getGestionMontantUniverselle(widget.idGestionMontantUniverselle);
     // List<MontantUniverselle> _listMontantUniverselleLive = variable
     //     .getGestionMontantUniverselleLive(widget.idGestionMontantUniverselle);
-        List<MontantUniverselle> _listMontantUniverselle = variable
+    List<MontantUniverselle> _listMontantUniverselle = variable
         .getIndexGestionMontantUniverselle(widget.indexMontantUniverselle);
     List<MontantUniverselle> _listMontantUniverselleLive = variable
         .getIndexGestionMontantUniverselleLive(widget.indexMontantUniverselle);
@@ -193,7 +193,6 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                 variable: variable,
               ),
             ),
-   
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -209,7 +208,6 @@ class _GestionMensuelLiveState extends State<GestionMensuelLive> {
                   montant: montantTotalsDouble,
                   colors: Colors.blue.shade900,
                 ),
-            
               ],
             ),
           ),
